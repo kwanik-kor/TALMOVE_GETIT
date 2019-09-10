@@ -40,4 +40,5 @@ public class Category implements Serializable{
 		return "Category [categoryNo=" + categoryNo + ", categoryName=" + categoryName + ", categoryUpper="
 				+ categoryUpper + "]";
 	}
+
 }
