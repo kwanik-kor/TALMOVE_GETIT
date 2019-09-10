@@ -1,13 +1,8 @@
-/common/
-/user/
-/util/
-<<<<<<< HEAD
-=======
-/category/
->>>>>>> master
 /admin/
 /cart/
+/category/
 /comment/
+/common/
 /course/
 /lecture/
 /message/
@@ -17,3 +12,5 @@
 /section/
 /tag/
 /teacher/
+/user/
+/util/
