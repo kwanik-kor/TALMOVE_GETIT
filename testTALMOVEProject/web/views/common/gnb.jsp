@@ -36,23 +36,23 @@
                     <li>카테고리</li>
                     <a onclick="setTimeout(toggleList('business'),200);"><li>비즈니스<i id="business-list" class="fa fa-chevron-down list-down"></i></li></a>
                     <ul class="toggle-business">
-                        <a href="#"><li>비즈니스 전체보기</li></a>
-                        <a href="#"><li>커뮤니케이션</li></a>
-                        <a href="#"><li>경영</li></a>
-                        <a href="#"><li>판매</li></a>
-                        <a href="#"><li>전략</li></a>
-                        <a href="#"><li>운영</li></a>
+                        <a href="/testt/category.ed?category='비즈니스'"><li>비즈니스 전체보기</li></a>
+                        <a href="/testt/category.ed?category='커뮤니케이션'"><li>커뮤니케이션</li></a>
+                        <a href="/testt/category.ed?category='경영'"><li>경영</li></a>
+                        <a href="/testt/category.ed?category='판매'"><li>판매</li></a>
+                        <a href="/testt/category.ed?category='전략'"><li>전략</li></a>
+                        <a href="/testt/category.ed?category='운영'"><li>운영</li></a>
                     </ul>
                     <a onclick="toggleList('programming');"><li>프로그래밍<i id ="programming-list" class="fa fa-chevron-down list-down"></i></li></a>
                     <ul class="toggle-programming">
-                        <a href="#"><li>프로그래밍 전체보기</li></a>
-                        <a href="#"><li>프로그래밍 이론</li></a>
-                        <a href="#"><li>프로그래밍 언어</li></a>
-                        <a href="#"><li>웹</li></a>
-                        <a href="#"><li>모바일</li></a>
-                        <a href="#"><li>게임</li></a>
-                        <a href="#"><li>DB</li></a>
-                        <a href="#"><li>데이터과학</li></a>
+                        <a href="/testt/category.ed?category='프로그래밍'"><li>프로그래밍 전체보기</li></a>
+                        <a href="/testt/category.ed?category='프로그래밍 이론'"><li>프로그래밍 이론</li></a>
+                        <a href="/testt/category.ed?category='프로그래밍 언어'"><li>프로그래밍 언어</li></a>
+                        <a href="/testt/category.ed?category='웹'"><li>웹</li></a>
+                        <a href="/testt/category.ed?category='모바일'"><li>모바일</li></a>
+                        <a href="/testt/category.ed?category='게임'"><li>게임</li></a>
+                        <a href="/testt/category.ed?category='DB'"><li>DB</li></a>
+                        <a href="/testt/category.ed?category='데이터과학'"><li>데이터과학</li></a>
                     </ul>
                 </ul>
             </div>
