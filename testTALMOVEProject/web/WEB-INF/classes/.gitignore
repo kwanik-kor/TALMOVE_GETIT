@@ -1,3 +1,16 @@
 /common/
 /user/
 /util/
+/admin/
+/cart/
+/category/
+/comment/
+/course/
+/lecture/
+/message/
+/payment/
+/reply/
+/review/
+/section/
+/tag/
+/teacher/
