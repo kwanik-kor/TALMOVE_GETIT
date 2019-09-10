@@ -1,4 +1,4 @@
-package category.controller;
+package message.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,19 +7,37 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/cdetail")
-public class CourseDetailViewServlet extends HttpServlet {
+import message.model.vo.Message;
+import message.model.service.MessageService;
+
+/**
+ * Servlet implementation class MessageListServlet
+ */
+@WebServlet("/msglist")
+public class MessageListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public CourseDetailViewServlet() {
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public MessageListServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
