@@ -7,5 +7,6 @@ public class Category implements Serializable{
 	
 	private int categoryNo;
 	private String categoryName;
-	private int categoryUppter;
+	private int categoryUpper;
+	
 }
