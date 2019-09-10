@@ -1,0 +1,361 @@
+html{
+    font-family: 'Lato', 'Arial', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(-45deg, #23445a, #2980b9, #6dd5fa, #fff);
+    color: #555555;
+    background-size: 300% 300%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG{
+    0%{
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+*{
+    box-sizing: border-box;
+}
+
+*:focus{
+    outline: none;
+}
+
+.row{
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+a {
+    color: #00a8ff;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.wrapper{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 100%;
+    min-height: 100%;
+    padding: 20px;
+}
+
+.forms{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 60%;
+    min-height: 100%;
+}
+.formContent {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #fff;
+    padding: 30px;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    padding: 0px;
+}
+
+.one{
+    z-index: 15;
+    transform: translate(50%, 0);
+    transition: transform 0.3s ease-in-out;
+}
+.two{
+    z-index: 5;
+    transform: translate(-43%, 5%);
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 39px 60px 0 rgba(0,0,0,0.3);
+    background: #264e62;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.enrollFooter{
+    display: none;
+}
+
+.signup-active{
+    transform: translateX(-50%);
+    z-index: 15;
+    cursor:auto;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    background: #fff;
+}
+
+.login-inactive{
+    transform: translate(57%, 7.5%);
+    background: #264e62;
+    cursor: pointer;
+    z-index: 5;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 39px 60px 0 rgba(0,0,0,0.3);
+}
+
+/* 내부 Components */
+h1.logo-text{
+    font-size: 30px;
+    color: #00a8ff;
+    margin-left: 15%;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+button#api-login {
+    width: 70%;
+    margin: 5px 15%;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    padding: 12px 8px 12px 8px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+#api-login img {
+    width: 20px;
+    height: auto;
+    margin: 0;
+    margin-left: 8px;
+    padding: 0;
+    float: left;
+}
+
+#center-word{
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+form input{
+    width: 70%;
+    margin-left: 15%;
+    border: 0;
+    border-bottom: 1px solid #000;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    padding-left: 3px;
+    font-size: 0.7rem;
+    outline: none;   
+}
+
+.form-btn {
+    width: 70%;
+    border: 0;
+    outline: none;
+    background-color: #00a8ff;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+    color: #fff;
+    padding: 12px 9px 12px 9px;
+    font-size: 0.7rem;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 15%;
+    transition: background-color 0.2s linear;
+    
+}
+
+.form-btn:hover{
+    cursor: pointer;
+    background-color: #009ae8;
+}
+
+.placeholder{
+    text-align: left;
+    width: 70%;
+    margin: 0 auto;
+    font-size: 0.7rem;
+    transition-timing-function: ease-in;
+    transition: transform 0.2s linear;
+    -webkit-transition: transform 0.2s linear;
+    transform: translate(2px, 25px);
+    z-index: 0;
+}
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate(1px, 0);
+    }
+    20%, 80% {
+        transform: translate(-1px, 0);
+    }
+    30%, 50%, 70% {
+        transform: translate(-2px, 0);
+    }
+    40%, 60% {
+        transform: translate(2px, 0);
+    }
+}
+
+.guide{
+    font-size: 0.6rem;
+    text-align: left;
+    visibility: hidden;
+    width: 70%;
+    margin: 0 auto;
+    padding-top: 7px;
+    color: #898989;
+    margin-bottom: 7px;
+}
+/* Animations */
+.fadeInDown {
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.forgetPwd {
+    display: inline-block;
+    margin-bottom: 40px;
+    font-size: 0.8rem;
+    margin-left: 30%;
+    color: #0d0d0d;
+}
+
+.enrollFooter{
+    font-size: 0.6rem;
+    margin: 0 15%;
+    margin-bottom: 40px;
+}
+
+.form-message{
+    text-align: right;
+    font-size: 0.6rem;
+    font-weight: bold;
+    margin: 0;
+    margin-right: 10px;
+    padding: 0;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.one .form-message{
+	display: none;
+}
+
+.form-message p span{
+    font-size: 0.9rem;
+}
+
+@-webkit-keyframes fadeInDown{
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@keyframes fadeInDown{
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.fadeIn {
+  opacity:0;
+  -webkit-animation:fadeIn ease-in 1;
+  -moz-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode:forwards;
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+
+  -webkit-animation-duration:1s;
+  -moz-animation-duration:1s;
+  animation-duration:1s;
+}
+
+.fadeIn.first {
+  -webkit-animation-delay: 0.4s;
+  -moz-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+.fadeIn.second {
+  -webkit-animation-delay: 0.6s;
+  -moz-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+
+.fadeIn.third {
+  -webkit-animation-delay: 0.8s;
+  -moz-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+}
+
+.fadeIn.fourth {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+/* Simple CSS3 Fade-in Animation */
+.underlineHover:after {
+  display: block;
+  left: 0;
+  bottom: -10px;
+  width: 0;
+  height: 2px;
+  background-color: #56baed;
+  margin-top: 10px;
+  content: "";
+  transition: width 0.2s;
+}
+
+.underlineHover:hover:after{
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

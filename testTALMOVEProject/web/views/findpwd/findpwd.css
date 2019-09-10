@@ -1,0 +1,124 @@
+@charset "UTF-8";
+
+.msg-content{
+    background-color: #e6e6e6;
+    width: 100%;
+    padding: 50px;
+}
+.msg-box{
+    background-color: #fff;
+    width: 40%;
+    margin: 50px auto;
+    padding: 50px;
+}
+
+.msg-box h3{
+    font-size: 1rem;
+}
+.msg-box p{
+    font-size: 0.8rem;
+    margin-bottom: 0;
+}
+
+.link-btn{
+    display: block;
+    width: 60%;
+    margin: 20px auto;
+    text-align: center;
+    padding: 12px;
+    border: 1px solid #00a8ff;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #00a8ff;
+}
+
+.link-btn-full{
+    background-color: #00a8ff;
+    color: #fff;
+}
+
+/* find pwd form + input */
+.find-pwd,
+.new-pwd{
+	margin: 0 auto;
+}
+
+form.find-pwd input,
+form.new-pwd input{
+	width: 100%;
+	border: 0;
+	border-bottom: 1px solid #000;
+	padding-bottom: 8px;
+	padding-top: 8px;
+	padding-left: 3px;
+	font-size: 0.7rem;
+	outline: none;	
+}
+
+.placeholdermsg{
+    text-align: left;
+    width: 50px;
+    font-size: 0.7rem;
+    margin: 0;
+    margin-top: 20px;
+    transition-timing-function: ease-in;
+    transition: transform 0.2s linear;
+    -webkit-transition: transform 0.2s linear;
+    transform: translate(2px, 25px);
+    z-index: 0;
+}
+
+form.new-pwd .placeholdermsg{
+	width: 100px;
+}
+
+p.guidemsg{
+    font-size: 0.6rem;
+    text-align: left;
+    visibility: hidden;
+    width: 100%;
+    margin-top: 0;
+    padding-top: 7px;
+    color: #898989;
+    margin-bottom: 3px;
+}
+
+button.sendmail,
+button.sendpwd {
+    width: 40%;
+    outline: none;
+    border: 0;
+    background: #00a8ff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    color: #fff;
+    padding: 8px 16px;
+    margin-top: 25px;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+}
+
+button.sendmail:active {
+    transform: scale(0.95);
+}
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate(1px, 0);
+    }
+    20%, 80% {
+        transform: translate(-1px, 0);
+    }
+    30%, 50%, 70% {
+        transform: translate(-2px, 0);
+    }
+    40%, 60% {
+        transform: translate(2px, 0);
+    }
+}
+
+
+
