@@ -1,10 +1,8 @@
-/common/
-/user/
-/util/
 /admin/
 /cart/
 /category/
 /comment/
+/common/
 /course/
 /lecture/
 /message/
@@ -14,3 +12,5 @@
 /section/
 /tag/
 /teacher/
+/user/
+/util/
