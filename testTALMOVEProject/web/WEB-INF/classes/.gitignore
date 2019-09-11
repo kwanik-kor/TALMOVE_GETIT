@@ -1,7 +1,16 @@
+/admin/
+/cart/
+/category/
+/comment/
 /common/
+/course/
+/lecture/
+/message/
+/payment/
+/reply/
+/review/
+/section/
+/tag/
+/teacher/
 /user/
 /util/
-<<<<<<< HEAD
-=======
-/category/
->>>>>>> master
