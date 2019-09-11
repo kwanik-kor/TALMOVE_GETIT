@@ -14,3 +14,19 @@
 /teacher/
 /user/
 /util/
+<<<<<<< HEAD
+=======
+/admin/
+/cart/
+/category/
+/comment/
+/course/
+/lecture/
+/message/
+/payment/
+/reply/
+/review/
+/section/
+/tag/
+/teacher/
+>>>>>>> master
