@@ -24,7 +24,7 @@
         <div class="hero-text-box">
             <h3>TALMOVE를 통해<br>여러분의 지식과 경험을<br>공유해주세요.</h3>
             <% if(loginUser != null){ %>
-            <a href="#" class="bttn">강좌 개설하러 가기</a>
+            <a href="/testt/views/typeOfService/tos.jsp" class="bttn">강좌 개설하러 가기</a>
             <% }else{ %>
             <a href="#" class="bttn" onclick="javascript:alert('로그인 후에 이용해주세요.');">강좌 개설하러 가기</a>
             <% } %>
