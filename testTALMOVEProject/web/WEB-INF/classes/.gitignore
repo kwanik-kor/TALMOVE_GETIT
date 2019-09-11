@@ -3,9 +3,25 @@
 /user/
 /util/
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
 /category/
 >>>>>>> master
+>>>>>>> master
+=======
+/admin/
+/cart/
+/category/
+/comment/
+/course/
+/lecture/
+/message/
+/payment/
+/reply/
+/review/
+/section/
+/tag/
+/teacher/
 >>>>>>> master
