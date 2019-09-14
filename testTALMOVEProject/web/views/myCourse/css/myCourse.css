@@ -100,6 +100,10 @@ a{
     color: black;
 }
 
+a:hover {
+    color: black;
+}
+
 .course-progress-percentage{
     color: black;
     font-weight: 500;
@@ -107,12 +111,9 @@ a{
     margin-bottom: 4px;
 }
 
+
 .rating{
     font-size: 15px;
-}
-
-a:hover {
-    color: black;
 }
 
 .meta a {
@@ -162,6 +163,7 @@ a:hover {
 h1.display-7{
 	font-weight: 800;
 }
+
 h2.display-7{
 	font-weight: 700;
 	color: rgb(52, 152, 219);

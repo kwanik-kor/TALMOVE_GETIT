@@ -22,10 +22,6 @@
 <script src="/testt/vendors/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/08d0951667.js"></script>
 
-<link rel="stylesheet"
-	href="vendor/jquery/jquery-bar-rating-master/dist/themes/css-stars.css">
-<script
-	src="vendor/jquery/jquery-bar-rating-master/dist/jquery.barrating.min.js"></script>
 <title>내강좌</title>
 </head>
 <body>
@@ -42,10 +38,42 @@
 		<div class="row">
 			<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
 				<div class="card">
-					<a href="#"><img class="card-img-top"
-						src="https://picsum.photos/200/150/?random"></a>
+					<a href="/testt/views/coursePlay/coursePlay.jsp">
+						<img class="card-img-top"src="https://picsum.photos/200/150/?random">
+					</a>
 					<div class="card-block">
-						<a href="#">
+						<a href="/testt/views/coursePlay/coursePlay.jsp">
+							<h4 class="card-title">자바 java 8 프로그래밍 중고급 배우기[2단계] 강좌</h4>
+						</a>
+						<div class="meta">
+							<span id="name">장관익</span>
+						</div>
+					</div>
+					<div class="card-footer bg-white">
+						<div class="progress" style="height: 10px;"">
+							<div class=" progress-bar" role="progressbar" style="width: 40%;"
+								aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+							</div>
+						</div>
+						<div class='small course-progress-percentage'>
+							<span class='percentage'>40%</span> 
+							완료 
+							<span class='float-right rating'>★★★★★</span>
+						</div>
+						<div class="meta" id="open-review-box" style="text-align: right;"
+							data-toggle="modal" data-target="#exampleModal">
+							<a href="#">등급 남기기</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+				<div class="card">
+					<a href="/testt/views/coursePlay/coursePlay.jsp">
+						<img class="card-img-top"src="https://picsum.photos/200/150/?random">
+					</a>
+					<div class="card-block">
+						<a href="/testt/views/coursePlay/coursePlay.jsp">
 							<h4 class="card-title">자바 java 8 프로그래밍 중고급 배우기[2단계] 강좌</h4>
 						</a>
 						<div class="meta">
@@ -71,10 +99,11 @@
 			</div>
 			<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
 				<div class="card">
-					<a href="#"><img class="card-img-top"
-						src="https://picsum.photos/200/150/?random"></a>
+					<a href="/testt/views/coursePlay/coursePlay.jsp">
+						<img class="card-img-top"src="https://picsum.photos/200/150/?random">
+					</a>
 					<div class="card-block">
-						<a href="#">
+						<a href="/testt/views/coursePlay/coursePlay.jsp">
 							<h4 class="card-title">자바 java 8 프로그래밍 중고급 배우기[2단계] 강좌</h4>
 						</a>
 						<div class="meta">
@@ -100,39 +129,11 @@
 			</div>
 			<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
 				<div class="card">
-					<a href="#"><img class="card-img-top"
-						src="https://picsum.photos/200/150/?random"></a>
+					<a href="/testt/views/coursePlay/coursePlay.jsp">
+						<img class="card-img-top"src="https://picsum.photos/200/150/?random">
+					</a>
 					<div class="card-block">
-						<a href="#">
-							<h4 class="card-title">자바 java 8 프로그래밍 중고급 배우기[2단계] 강좌</h4>
-						</a>
-						<div class="meta">
-							<span id="name">장관익</span>
-						</div>
-					</div>
-					<div class="card-footer bg-white">
-						<div class="progress" style="height: 10px;"">
-							<div class=" progress-bar" role="progressbar" style="width: 40%;"
-								aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-							</div>
-						</div>
-						<div class='small course-progress-percentage'>
-							<span class='percentage'>40%</span> 완료 <span
-								class='float-right rating'>★★★★★</span>
-						</div>
-						<div class="meta" id="open-review-box" style="text-align: right;"
-							data-toggle="modal" data-target="#exampleModal">
-							<a href="#">등급 남기기</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-				<div class="card">
-					<a href="#"><img class="card-img-top"
-						src="https://picsum.photos/200/150/?random"></a>
-					<div class="card-block">
-						<a href="#">
+						<a href="/testt/views/coursePlay/coursePlay.jsp">
 							<h4 class="card-title">자바 java 8 프로그래밍 중고급 배우기[2단계] 강좌</h4>
 						</a>
 						<div class="meta">
@@ -163,10 +164,11 @@
 		<div class="row mb-5">
 			<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
 				<div class="card">
-					<a href="#"><img class="card-img-top"
-						src="https://picsum.photos/200/150/?random"></a>
+					<a href="/testt/views/coursePlay/coursePlay.jsp">
+						<img class="card-img-top"src="https://picsum.photos/200/150/?random">
+					</a>
 					<div class="card-block">
-						<a href="#">
+						<a href="/testt/views/coursePlay/coursePlay.jsp">
 							<h4 class="card-title">자바 java 8 프로그래밍 중고급 배우기[2단계] 강좌</h4>
 						</a>
 						<div class="meta">
@@ -192,10 +194,11 @@
 			</div>
 			<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
 				<div class="card">
-					<a href="#"><img class="card-img-top"
-						src="https://picsum.photos/200/150/?random"></a>
+					<a href="/testt/views/coursePlay/coursePlay.jsp">
+						<img class="card-img-top"src="https://picsum.photos/200/150/?random">
+					</a>
 					<div class="card-block">
-						<a href="#">
+						<a href="/testt/views/coursePlay/coursePlay.jsp">
 							<h4 class="card-title">자바 java 8 프로그래밍 중고급 배우기[2단계] 강좌</h4>
 						</a>
 						<div class="meta">
@@ -221,10 +224,11 @@
 			</div>
 			<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
 				<div class="card">
-					<a href="#"><img class="card-img-top"
-						src="https://picsum.photos/200/150/?random"></a>
+					<a href="/testt/views/coursePlay/coursePlay.jsp">
+						<img class="card-img-top"src="https://picsum.photos/200/150/?random">
+					</a>
 					<div class="card-block">
-						<a href="#">
+						<a href="/testt/views/coursePlay/coursePlay.jsp">
 							<h4 class="card-title">자바 java 8 프로그래밍 중고급 배우기[2단계] 강좌</h4>
 						</a>
 						<div class="meta">
