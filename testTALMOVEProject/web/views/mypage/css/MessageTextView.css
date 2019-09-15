@@ -1,0 +1,211 @@
+@charset "UTF-8";
+
+*{margin:0;padding:0;}
+html, body{font-family: 'Lato', 'Arial', sans-serif; width:100%;font-size:12px;color:#555555;}
+section{width:100%;}
+a{text-decoration:none;color:#555555;}
+
+#pannel{
+   width: 100%;
+    height: 280px;
+    background-color: rgba(210, 225, 235, 0.68);
+}
+#pfimg{
+   margin:6% 0 0 5%;
+   width:  150px;
+   height: 150px;
+   background: none;
+   border-radius: 100%;
+   float:left;
+}
+#teacherPage{padding-top:10%;font-size:3rem;font-weight:bold;padding-left:18%;}
+#tname{color:blue;}
+
+#left-tap{
+    float: left;
+    padding-top: 30px;
+    width: 22%;
+    height: 1039px;
+    background-color: rgba(210, 225, 235, 0.68);
+    
+}
+#tap{
+   width:100%;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+ul#tap>li{
+   width:100%;
+   height:50px;
+   margin-bottom:13%;
+   padding-top:5%;
+   border-radius:8px;
+}
+
+#left-tap>#tap a{
+   width:100%;
+    text-decoration: none;
+    color: #555555;
+}
+#tap li:hover{
+   background-color: darkgray;
+    color: dimgray;
+}
+
+
+.maghidemenu {
+   text-decoration: none;
+   color: #555555;
+    text-align: center;
+    line-height: 50px;
+    font-weight: 600;
+    font-size:1.3rem;
+    border-radius: 8px;
+    cursor: pointer;
+   list-style:none;
+   display:none;
+   list-style:none; 
+/*       font-size: 0.8em;
+      width: 100%;
+      padding-left: 30px;
+
+     list-style:none; */
+  }
+  .maghidemenu li{border-radius:8px;}
+.maghidemenu li:hover{
+    background-color: darkgray;
+    color: dimgray;
+}
+
+#right-page{width:78%;float:left;}
+
+#nmp1 {
+   font-size: 2.7rem;
+   text-align:center;
+   margin-top:25px;
+   font-weight:600;
+
+}
+
+#plist{
+   font-size:1.3rem;
+   background:lightgray;
+   width:135px;
+   text-align:center;
+   height:30px;
+   border-radius:20px;
+   padding-top:5px;
+   margin-top:20px;
+   margin-left:54px;
+   cursor:pointer;
+}
+
+
+input:-ms-input-placeholder{color:#a8a8a8;}
+input::-webkit-input-placeholder{color:#a8a8a8;}
+input:-moz-input-placeholder{color:#a8a8a8;}
+
+#search{
+   height:40px;
+   width:400px;
+   border:1px solid lightgray;
+   background:#ffffff;
+   margin-top:-36px;
+   margin-right:52px;
+   float:right;
+}
+#sinput{
+   font-size:16px;
+   width:325px;
+   border:0px;
+   outline:none;
+   float:left;
+   padding:10px;
+}
+#sbtn{
+   width:50px;
+   height:100%;
+   border:0;
+   background:lightgray;
+   outline:none;
+   float:right;
+   color:#ffffff
+}
+
+#chatplace{margin:2%;margin-right:5%;margin-left:5%;height:905px;}
+
+#sendImage{float:left;width:60px;height:60px;margin-left:21px;margin-top:10px;}
+#sendName{float:left;font-size:2.3rem;margin-top:19px;margin-left:28px;}
+#starbtn{float:left;margin-top:15px;border:0;background:#ffffff;font-size:2.3rem;margin-left:32px;}
+#sendDate{float:right;font-size:2.3rem;margin-top:30px;margin-right:20px;}
+
+.rightms{
+   background-image:url('/testt/views/mypage/images/00001.png');
+   background-repeat:no-repeat;
+   clear:both;
+   float:right;
+   margin-top:10px;
+   width:373px;
+   height:110px;
+}
+.leftms{
+   background-image:url('/testt/views/mypage/images/00002.png');
+   background-repeat:no-repeat;
+   clear:both;
+   float:left;
+   margin-top:10px;
+   width:373px;
+   height:110px;
+}
+.rightdate{
+   margin-top:10px;
+   margin-right:27px;
+   font-size:1.5rem;
+   float:right;
+   clear:both;}
+.rightco{font-size:1.3rem;float:left;clear:both;margin:9px;}
+
+.leftdate{
+   margin-top:10px;
+   margin-right:41px;
+   font-size:1.5rem;
+   float:right;
+   clear:both;
+}
+.leftco{
+   font-size:1.3rem;
+   float:left;
+   clear:both;
+   margin:9px;
+   margin-left:33px;
+}
+
+#chatdiv{height:550px;overflow:scroll;border:1px solid lightgray;}
+#cotext{width:99.8%;height:200px;font-size:1.5rem;}
+#subbtn{
+   border:0;
+   background:skyblue;
+   color:white;
+   width:100px;
+   height:43px;
+   font-size:1.3rem;
+   border-radius:5px;
+   margin-top:10px;
+   float:left;
+}
+#rbtn{
+   border:0;
+   background:lightgray;
+   width:100px;
+   height:43px;
+   font-size:1.3rem;
+   border-radius:5px;
+   margin-top:10px;
+   float:left;
+   margin-left:15px;
+}
+
+#chp{border:1px solid lightgray;height:83px;border-bottom:2px solid lightgray;}
