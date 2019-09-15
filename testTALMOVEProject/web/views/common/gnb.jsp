@@ -27,7 +27,7 @@
                     <a href="/testt/views/courseOpen/courseOpen.jsp"><li>강좌개설</li></a>
                     <% }else{ %>
                     <a href="#"><li><%= loginUser.getUserName() %></li></a>
-                    <a href="#"><li>내강좌</li></a>
+                    <a href="/testt/views/myCourse/myCourse.jsp"><li>내강좌</li></a>
                     <a href="#"><li>장바구니</li></a>
                     <a href="/testt/views/courseOpen/courseOpen.jsp"><li>강좌개설</li></a>
                     <a href="/testt/logout"><li>로그아웃</li></a>
@@ -103,7 +103,7 @@
                 <% }else{ %>
                 	<ul class="unlogin-nav">
                         <li><button onclick="location.href='/testt/views/courseOpen/courseOpen.jsp'">강좌개설</button></li>
-                        <li><button>내강좌</button></li>
+                        <li><button onclick="location.href='/testt/views/myCourse/myCourse.jsp'">내강좌</button></li>
                         <li><button>장바구니</button></li>
                         <div class="mydrop">
                             <li><button><%= loginUser.getUserName() %></button></li>

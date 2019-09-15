@@ -1,0 +1,338 @@
+@charset "UTF-8";
+
+body {
+  overflow-x: hidden;
+}
+
+#menu-toggle{
+  margin-left: 100px;
+}
+
+.progress{
+  width: 90%;
+  position: relative; 
+  left: 5%; 
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.course-progress-percentage{
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom:15px;
+}
+
+.percentage{
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.boxes{
+  display: flex;
+}
+
+.talmove{
+  font-size: 20px;
+  padding-left: 30px;
+}
+
+.talmove a{
+	color: white;
+	text-decoration: none;
+}
+
+.talmove a:hover{
+	color: blue;
+}
+
+.course-title{
+  position: relative;
+  padding-top: 20px;
+  height:20%;
+}
+
+.lecture-name{
+  width:20rem;
+}
+
+.nav-item{
+  padding-right: 300px;
+}
+
+.sidebar-nav {
+  position: relative;
+  top: 10px;
+	width: 20rem;
+	margin: 0;
+	padding: 0;
+}
+.sidebar-nav>li {
+	text-indent: 10px;
+  line-height: 42px;
+  border-bottom: 1px solid gray;
+  cursor: pointer;
+}
+.sidebar-nav>li>ul>li:hover{
+  background-color: rgb(185, 182, 182);
+}
+
+.sidebar-nav>li a {
+	display: block;
+	text-decoration: none;
+	color: black;
+	font-weight: 600;
+	margin: 3px 0px;
+	font-size: 14px;
+}
+
+.sidebar-nav>li>a:hover, .sidebar-nav>li.active>a {
+	text-decoration: none;
+	color: black;
+	background: #fff;
+}
+.sidebar-nav>li>a i.fas {
+	
+}
+
+.card-white  .card-heading {
+  color: #333;
+  background-color: #fff;
+  border-color: #ddd;
+   border: 1px solid #dddddd;
+}
+.card-white  .card-footer {
+  background-color: #fff;
+  border-color: #ddd;
+}
+.card-white .h5 {
+  top:0;
+    font-size:14px;
+    //font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.card-white .comment-date {
+    font-size:12px;
+    color: gray;
+    //font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.post .post-heading {
+  height: 95px;
+  padding: 20px 15px;
+}
+
+.post .post-heading .meta .title {
+  margin-bottom: 0;
+}
+.post .post-heading .meta .title a {
+  color: black;
+}
+.post .post-heading .meta .title a:hover {
+  color: #aaaaaa;
+}
+.post .post-heading .meta .time {
+  margin-top: 8px;
+  color: #999;
+}
+.post .post-image .image {
+  width: 100%;
+  height: auto;
+}
+.post .post-description {
+  padding: 15px;
+}
+.post .post-description p {
+  font-size: 14px;
+}
+.post .post-description button{
+  margin: 10px 0px;
+  float: right;
+}
+
+
+.post .post-footer {
+  border-top: 1px solid #ddd;
+  padding: 15px;
+}
+.post .post-footer .input-group-addon a {
+  color: #454545;
+}
+.post .post-footer .comments-list {
+  padding: 0;
+  margin-top: 20px;
+  list-style-type: none;
+}
+.post .post-footer .comments-list .comment {
+  display: block;
+  width: 100%;
+  margin: 20px 0;
+}
+.post .post-footer .comments-list .comment .avatar {
+  width: 35px;
+  height: 35px;
+}
+.post .post-footer .comments-list .comment .comment-heading {
+  display: block;
+  width: 100%;
+}
+.post .post-footer .comments-list .comment .comment-heading .user {
+  font-size: 14px;
+  font-weight: bold;
+  display: inline;
+  margin-top: 0;
+  margin-right: 10px;
+}
+.post .post-footer .comments-list .comment .comment-heading .time {
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 0;
+  display: inline;
+}
+.post .post-footer .comments-list .comment .comment-body {
+  margin-left: 50px;
+}
+.post .post-footer .comments-list .comment > .comments-list {
+  margin-left: 50px;
+}
+
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .logo {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 20rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -20rem;
+  }
+
+  
+  .container-fluid{
+    margin: 1px 30px;
+  }
+
+  fieldset 
+	{
+		border: 1px solid #ddd !important;
+		margin: 0;
+		min-width: 0;
+		padding: 5px;       
+		position: relative;
+		border-radius:4px;
+		background-color:rgb(255, 255, 255);
+		padding-left:10px!important;
+	}
+		legend
+		{
+			font-size:15px;
+			font-weight: bold;
+			margin-bottom: 0px;
+			margin-right: 0px;
+			min-width: 5%;
+			width:auto;
+			border: 1px solid #ddd;
+			border-radius: 5px; 
+			padding: 2px 10px 2px 10px; 
+      background-color: #110955;
+      color: white;
+    }
+
+    .card-white{
+      margin-left: 30px;
+    }
+    
+    .profile {
+      width: 60px;
+      height: 60px;
+      display: block;
+      border-radius: 50%;
+    }
+
+    .instructor{
+      display: block;
+      margin-top: 5px;
+      padding: 2px 12px;
+      border-radius: 30px;
+      border: 1px solid #efd3ba;
+      color: #fd7b48;
+      font-size: 14px;
+      line-height: 24px;
+      margin: 10px -10px;
+      background-color: #fff8f2;
+      font-weight: 900;
+    }
+    
+    .btn-menu{
+      margin-top: -10px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    .btn-default{
+      margin: 0px -8px;
+    }
+
+    .btn-primary{
+      width: 110px;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    .post-heading{
+      margin-bottom: -50px;
+    }
+
+    .reply-form{
+      margin-left: 15%;
+      margin-right: -15px;
+      margin-bottom: 30px;
+    }
+  
+    .comment-form{
+      margin: 30px 5%;
+    }
+
+    .comment-heading{
+      margin-top: 15px;
+      margin-bottom: 30px;
+      font-size: 18px;
+    }
+
+    
+    #deleteModal{
+      top: 30%;
+    }
+
+    .modal-footer, .modal-header{
+      border: none;
+    }
+}
