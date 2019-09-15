@@ -11,6 +11,8 @@
 
 <link rel="stylesheet" href="/testt/resources/css/common/gnb.css">
 <link rel="stylesheet" href="/testt/resources/css/common/footer.css">
+<link rel="sytlesheet" href="/testt/resources/css/style.css">
+<link rel="stylesheet" href="/testt/resources/css/queries.css">
 <link rel="stylesheet" href="/testt/resources/js/main.js">
 
 <link href="https://fonts.googleapis.com/css?family=Lato&display=swap"
