@@ -60,7 +60,7 @@
                 <div class="gnb-logo">
                     <p class="logo-text"><a href="/testt/index.jsp">TALMOVE</a></p>
                     <div class="dropdown">
-                        <p class="category btn btn-full dropbtn">카테고리</p>
+                        <p class="category dropbtn">카테고리</p>
                         <div class="dropdown-content">
                             <a id="business" href="#">비즈니스</a>
                             <a id="programming" href="#">프로그래밍</a>
@@ -121,8 +121,8 @@
                 </div>        
             </div>
         </nav>
-        <div id="enroll-form" class="modal">
-            <div class="modal-content">
+        <div id="enroll-form" class="modal-form">
+            <div class="modal-form-content">
                 <div class="form-nav">
                    <button id="login-tab" class="form-tab" onclick="changeTab('form-login', 'login-tab')">로그인</button>
                    <button id="signup-tab" class="form-tab" onclick="changeTab('form-signup', 'signup-tab')">회원가입</button>

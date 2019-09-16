@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.btn {
+p.category {
     display: inline-block;
     padding: 10px 10px;
     border-radius: 10px;
@@ -9,13 +9,13 @@
     cursor: pointer;
 }
 
-.btn-full {
+p.category {
     color: #fff;
     background-color: #0097e6;
     transition: all 0.1s linear;
 }
 
-.btn-full:hover {
+p.category:hover {
     background-color: #007fbf;
 }
 
@@ -441,7 +441,7 @@ nav {
 /*----------------------------*/
 /* Modal enroll form */
 /*----------------------------*/
-.modal {
+.modal-form {
     display: none;
     position: fixed;
     z-index: 99;
@@ -457,7 +457,7 @@ nav {
     transition: all .2s linear;
 }
 
-.modal-content {
+.modal-form-content {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
