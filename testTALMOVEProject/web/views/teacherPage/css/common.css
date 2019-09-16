@@ -1,0 +1,126 @@
+@charset "utf-8";
+body{
+    font-family: 'Lato', 'Arial' ;
+    font-size: 12px;
+    color: #555555;
+}
+#pfpreview {
+    width:  160px;
+	height: 160px;
+    border: none;
+	border-radius: 100%;
+}
+img{
+    width:  150px;
+    height: 150px;
+    background: none;
+    border-radius: 100%;
+    border:none;
+    background-image: url("https://www.bootdey.com/img/Content/user_1.jpg");
+    background-size: contain;
+    border: none;
+}    
+
+#top-background{
+    width: 100%;
+    height: 280px;
+    background-color: rgba(210, 225, 235, 0.68);
+}
+#pannel{
+    position: absolute;
+    width: 600px;
+    top: 110px;
+    left: 180px;
+}
+
+
+#top-background #teacher-name{
+    position: absolute;
+    font-weight: 700;
+    font-size: 30px;
+    left:170px;
+    top:60px
+}
+#teacher-name span{
+    color: cadetblue;
+    font-weight: 900;
+}
+
+
+#left-tap{
+    position: relative;
+    float: left;
+    padding-top: 15px;
+    width: 20%;
+    height: 400px;
+    background-color: rgba(210, 225, 235, 0.68);
+    
+}
+#left-tap>.tap{
+    width: auto;
+    height: 50px;
+    margin: 5px 2px 0px 2px;
+    text-align: center;
+    line-height: 50px;
+    font-weight: 600;
+    font-size: 17px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+#left-tap>.tap a{
+	text-decoration: none;
+	color: #555555;
+}
+
+#left-tap .tap:hover{
+    background-color: darkgray;
+    color: dimgray;
+}
+section#left-tap>div.tap{
+    border: 0.5px solid rgba(210, 225, 235, 0.68);
+}
+
+#right-page{
+    position: relative;
+    float: left;
+    left: 15px;
+    padding: 3px 10px 3px 10px;
+    height: 1000px;
+    width: 77%;
+}
+
+#right-page p{
+     font-size: 20px; font-weight: 800; left: 10px;
+}
+section#right-top{
+    position: relative;
+    float: left;
+    background-color: rgba(210, 225, 235, 0.68);
+    height: 320px;
+    border-radius: 10px;
+    width: 100%;
+    
+}
+#profilephoto-zone{
+    position: relative;
+    float: left;
+    text-align: center;
+    width: 100px;
+    margin-left: 65px;
+    padding: 80px 20px 0px 40px;
+}
+#pannel .pfimg{
+	position: relative;
+	float: left;
+}
+    
+#save-btn{
+    float: right; 
+    margin: 10px 25px 0px 0px;
+    border-style: none;
+    background: none;
+    color: cornflowerblue;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
