@@ -1,126 +1,92 @@
-@charset "utf-8";
-body{
-    font-family: 'Lato', 'Arial' ;
-    font-size: 12px;
-    color: #555555;
-}
-#pfpreview {
-    width:  160px;
-	height: 160px;
-    border: none;
-	border-radius: 100%;
-}
-img{
-    width:  150px;
-    height: 150px;
-    background: none;
-    border-radius: 100%;
-    border:none;
-    background-image: url("https://www.bootdey.com/img/Content/user_1.jpg");
-    background-size: contain;
-    border: none;
-}    
+@charset "UTF-8";
 
-#top-background{
-    width: 100%;
-    height: 280px;
-    background-color: rgba(210, 225, 235, 0.68);
+.clearfix {zoom: 1}
+.clearfix:after {
+    content: '.';
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
 }
+
+section, .left-side, .right-side, ul, li, a{
+    margin: 0;
+}
+.section-top{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 230px;
+    background: #f7fcff;
+    box-shadow: inset 0 7px 3px -7px rgba(0,0,0,0.2);
+}
+.section-middle{
+    width: 100%;
+}
+
 #pannel{
     position: absolute;
-    width: 600px;
-    top: 110px;
-    left: 180px;
+    top: 30%;
+    left: 10%;
+}
+.pfimg{
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+}
+#teacher-name{
+    margin-left: 50px;
+    padding-top: 23px;
+    letter-spacing: 1px;
+}
+#teacher-name span{ color: #00a8ff; }
+
+.left-side{
+    display: inline-block;
+    width: 25%;
+    height: 100vh;
+    background: #f7fcff;
+    border: 0;
+}
+.right-side{
+    display: inline-block;
+    padding: 20px;
+    padding-left: 40px;
+    width: 75%;
+    float: right;
+    padding-right: 10%;
 }
 
-
-#top-background #teacher-name{
-    position: absolute;
-    font-weight: 700;
-    font-size: 30px;
-    left:170px;
-    top:60px
-}
-#teacher-name span{
-    color: cadetblue;
-    font-weight: 900;
-}
-
-
-#left-tap{
-    position: relative;
-    float: left;
-    padding-top: 15px;
-    width: 20%;
-    height: 400px;
-    background-color: rgba(210, 225, 235, 0.68);
-    
-}
-#left-tap>.tap{
-    width: auto;
-    height: 50px;
-    margin: 5px 2px 0px 2px;
-    text-align: center;
-    line-height: 50px;
-    font-weight: 600;
-    font-size: 17px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-#left-tap>.tap a{
-	text-decoration: none;
-	color: #555555;
-}
-
-#left-tap .tap:hover{
-    background-color: darkgray;
-    color: dimgray;
-}
-section#left-tap>div.tap{
-    border: 0.5px solid rgba(210, 225, 235, 0.68);
-}
-
-#right-page{
-    position: relative;
-    float: left;
-    left: 15px;
-    padding: 3px 10px 3px 10px;
-    height: 1000px;
-    width: 77%;
-}
-
-#right-page p{
-     font-size: 20px; font-weight: 800; left: 10px;
-}
-section#right-top{
-    position: relative;
-    float: left;
-    background-color: rgba(210, 225, 235, 0.68);
-    height: 320px;
-    border-radius: 10px;
+.tmenu{
+    list-style: none;
     width: 100%;
-    
+    padding-left: 40%;
+    padding-right: 30px;
 }
-#profilephoto-zone{
-    position: relative;
-    float: left;
-    text-align: center;
-    width: 100px;
-    margin-left: 65px;
-    padding: 80px 20px 0px 40px;
+.tmenu li{
+    margin: 10px auto;
+    transition: background 0.1s linear;
 }
-#pannel .pfimg{
-	position: relative;
-	float: left;
+.tmenu li:first-of-type{
+    margin-top: 40px;
 }
-    
-#save-btn{
-    float: right; 
-    margin: 10px 25px 0px 0px;
-    border-style: none;
-    background: none;
-    color: cornflowerblue;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
+.tmenu li:hover{
+    background:#d0edff;
+}
+.tmenu li a{
+    text-decoration: none;
+    color: #7c7c7c;
+    font-size: 1rem;
+    line-height: 50px;
+    padding-left: 10px;
+}
+
+a.active-menu{
+    color: #000 !important;
+}
+
+.right-side h2{
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: 30px;
 }
