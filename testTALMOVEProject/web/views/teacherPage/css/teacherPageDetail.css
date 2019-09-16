@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+button{ outline: none; cursor: pointer;}
+div.right-top {
+    width: 100%;
+    margin: 40px 0 0 0;
+}
+.right-top-left{
+    display: inline-block;
+    width: 30%;
+}
+.right-top-right{
+    display: inline-block;
+    width: 70%;
+    float: right;
+}
+
+.pfimg:last-of-type{
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.right-top-left label{
+    display: block;
+    width: 70%;
+    margin: 15px auto;
+    text-align: center;
+}
+
+.right-top-right label{
+    display: inline-block;
+    width: 20%;
+    margin: 15px auto;
+}
+.right-top-right input{
+    display: inline-block;
+    width: 60%;
+    font-size: 0.8rem;
+    padding: 5px;
+}
+.addBtn{
+    border: 0;
+    border-radius: 5px;
+    background: #00a8ff;
+    color: #fff;
+    height: 30px;
+    font-size: 0.8rem;
+    padding: 5px 15px;
+}
+
+.ck-editor__editable {
+    min-height: 200px;
+}
+
+.ck.ck-editor {
+    min-width: 800px;
+}
+
+
+#savebtn{
+    margin: 15px;
+    padding: 15px;
+    border: 0;
+    border-radius: 5px;
+    background: none;
+    color: #00a8ff;
+    float: right;
+}
+
+#savebtn:hover{
+    background: #b6e6ff;
+}

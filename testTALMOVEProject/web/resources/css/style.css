@@ -19,7 +19,7 @@
 html{
     background-color: #fff;
     color: #555555;
-    font-family: 'NanumBarunGothic','ON-IGothic','Lato', 'Arial', sans-serif;
+    font-family: 'NanumBarunGothic','Lato', 'Arial', sans-serif;
     font-weight: 400;
     font-size: 20px;
     text-rendering: optimizeLegibility;
@@ -35,26 +35,14 @@ html{
     margin: 0 auto;
 }
 
-.btn {
-    display: inline-block;
-    padding: 10px 10px;
-    border-radius: 10px;
-    font-weight: 100;
-    margin: 15px 15px;
-    cursor: pointer;
+.clearfix {zoom: 1}
+.clearfix:after {
+    content: '.';
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
 }
-
-.btn-full {
-    color: #fff;
-    background-color: #0097e6;
-    transition: all 0.1s linear;
-}
-
-.btn-full:hover {
-    background-color: #007fbf;
-}
-
-
 /*----------------------------*/
 /* Carousel */
 /*----------------------------*/
@@ -92,8 +80,8 @@ html{
     color: #fff;
     cursor: pointer;
     display: none;
-    font-size: 40px;
-    height: 40px;
+    font-size: 15px;
+    height: 15px;
     line-height: 35px;
     position: absolute;
     top: 50%;

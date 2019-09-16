@@ -26,8 +26,8 @@
                     <a href="#"><li>회원가입</li></a>
                     <a href="/testt/views/courseOpen/courseOpen.jsp"><li>강좌개설</li></a>
                     <% }else{ %>
-                    <a href="#"><li><%= loginUser.getUserName() %></li></a>
-                    <a href="#"><li>내강좌</li></a>
+                    <a href="/testt/views/mypage/UserUpdateView.jsp"><li><%= loginUser.getUserName() %></li></a>
+                    <a href="/testt/views/myCourse/myCourse.jsp"><li>내강좌</li></a>
                     <a href="#"><li>장바구니</li></a>
                     <a href="/testt/views/courseOpen/courseOpen.jsp"><li>강좌개설</li></a>
                     <a href="/testt/logout"><li>로그아웃</li></a>
@@ -60,7 +60,7 @@
                 <div class="gnb-logo">
                     <p class="logo-text"><a href="/testt/index.jsp">TALMOVE</a></p>
                     <div class="dropdown">
-                        <p class="category btn btn-full dropbtn">카테고리</p>
+                        <p class="category dropbtn">카테고리</p>
                         <div class="dropdown-content">
                             <a id="business" href="#">비즈니스</a>
                             <a id="programming" href="#">프로그래밍</a>
@@ -103,13 +103,13 @@
                 <% }else{ %>
                 	<ul class="unlogin-nav">
                         <li><button onclick="location.href='/testt/views/courseOpen/courseOpen.jsp'">강좌개설</button></li>
-                        <li><button>내강좌</button></li>
+                        <li><button onclick="location.href='/testt/views/myCourse/myCourse.jsp'">내강좌</button></li>
                         <li><button>장바구니</button></li>
                         <div class="mydrop">
                             <li><button><%= loginUser.getUserName() %></button></li>
                             <div class="mydrop-content">
-                                <a href="#"><i class="fas fa-user-circle"></i>프로필</a>
-                                <a href="#"><i class="far fa-envelope"></i>메시지</a>
+                                <a href="/testt/views/mypage/UserUpdateView.jsp"><i class="fas fa-user-circle"></i>프로필</a>
+                                <a href="/testt/views/mypage/MessageListView.jsp"><i class="far fa-envelope"></i>메시지</a>
                                 <a href="#"><i class="far fa-credit-card"></i>결제내역</a>
                                 <hr>
                                 <a href="/testt/logout"><i class="fa fa-sign-out-alt"></i>로그아웃</a>
@@ -121,8 +121,8 @@
                 </div>        
             </div>
         </nav>
-        <div id="enroll-form" class="modal">
-            <div class="modal-content">
+        <div id="enroll-form" class="modal-form">
+            <div class="modal-form-content">
                 <div class="form-nav">
                    <button id="login-tab" class="form-tab" onclick="changeTab('form-login', 'login-tab')">로그인</button>
                    <button id="signup-tab" class="form-tab" onclick="changeTab('form-signup', 'signup-tab')">회원가입</button>
