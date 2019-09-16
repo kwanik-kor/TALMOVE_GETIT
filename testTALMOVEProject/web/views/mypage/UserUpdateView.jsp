@@ -3,120 +3,103 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-   <link type="text/css" rel="stylesheet" href="/testt/views/mypage/css/UserUpdateView.css">
- <script type="text/javascript" src="/testt/resources/js/jquery-3.4.1.min.js"></script>
-
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width:device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/testt/vendors/css/normalize.css">
+    <link rel="stylesheet" href="/testt/vendors/css/bootstrap-grid.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/testt/resources/css/style.css">
+    <link rel="stylesheet" href="/testt/resources/css/common/footer.css">
+    <link rel="stylesheet" href="/testt/resources/css/common/gnb.css">
+    <link rel="stylesheet" href="/testt/resources/css/queries.css">
+    <link type="text/css" rel="stylesheet" href="/testt/views/teacherPage/css/common.css">
+    <link type="text/css" rel="stylesheet" href="/testt/views/mypage/css/UserUpdateView.css">
+	<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
+	<title>탈무브 | 마이페이지</title>
 </head>
 
 <body>
-<section>
-   <div id="pannel">
-        <img class="fileimg" id="pfimg"  src="/testt/views/mypage/images/absence_08.jpg">
-        <p id="teacherPage"><span id="tname">장서영</span>님의 마이페이지</p>
-    </div>  
-   
-    <div id="left-tap">
-        <ul id="tap">
-        <li><a href="/testt/views/mypage/UserUpdateView.jsp">프로필</a></li>
-        <li id="msgmenu"><a>메시지</a></li>
-           <ul class="maghidemenu">
-                <li><a href="/testt/views/mypage/MessageNewSendView.jsp">새 메시지</a></li>
-                <li><a href="/testt/views/mypage/MessageListView.jsp">모든 메시지</a></li>
-                <li><a href="/testt/views/mypage/MessageImportantListView.jsp">중요 메시지</a></li>
+	<%@ include file="../common/gnb.jsp" %>
+	
+	<section class="section-top">
+        <div class="row" id="pannel">
+            <div id="pfpreview">
+                <img class="pfimg" src="../../resources/img/customer-1.jpg">
+            </div>
+            <h2 id="teacher-name"><span><%= loginUser.getUserName() %></span> 님 마이페이지</h2>
+        </div>
+    </section>
+    <section class="section-middle clearfix">
+    	<div class="left-side">
+            <ul class="tmenu">
+                <li><a class="active-menu" href="/testt/views/mypage/UserUpdateView.jsp">프로필</a></li>
+                <li id="msgmenu"><a>메시지</a></li>
+                <ul class="maghidemenu">
+                	<li><a href="/testt/views/mypage/MessageNewSendView.jsp">새 메시지</a></li>
+                	<li><a href="/testt/views/mypage/MessageListView.jsp">모든 메시지</a></li>
+                	<li><a href="/testt/views/mypage/MessageImportantListView.jsp">중요 메시지</a></li>
+                </ul>
             </ul>
-        </ul>          
-    </div>
-        
-    <div id="right-page">
+        </div>
+        <div class="right-side">
+        	<h2>프로필</h2>
+        	<!-- 프로필사진 -->
+        	<div class="right-side-row clearfix">
+        		<h3>프로필 사진</h3>
+        		<div class="right-side-right">
+        			<img class="pfimg" src="../../resources/img/customer-1.jpg">
+        			<input type="file" accept="image/*" id="filebutton" name="filebutton"/>
+        		</div>
+        	</div>
+        	<!-- 이메일 -->
+        	<div class="right-side-row clearfix">
+        		<h3>이메일</h3>
+        		<div class="right-side-right">
+        		<input type="email" id="user-email" size="50" readonly value="<%= loginUser.getUserEmail() %>">
+        		</div>
+        	</div>
+        	<!-- 비밀번호 변경 -->
+        	<div class="right-side-row clearfix">
+        		<h3>비밀번호 변경</h3>
+        		<div class="right-side-right newPwdSet">
+        			<form action="" method="post">
+        			<input type="password" placeholder="현재 비밀번호" name="upwdNow" id="upwdNow">
+        			<p class="guide" id="upwdNow-focus">사용중인 비밀번호를 입력해주세요</p>
+        			<input type="password" placeholder="새 비밀번호" name="upwdNew" id="upwdNew">
+        			<p class="guide" id="upwdNew-focus">새 비밀번호를 입력해주세요</p>
+        			<input type="password" placeholder="새 비밀번호  확인" name="upwdNewchk" id="upwdNewchk">
+        			<p class="guide" id="upwdNewchk-focus">새 비밀번호를 한 번 더 입력해주세요</p>
+        			<button class="newPwdBtn">비밀번호 변경</button>
+        			</form>
+        		</div>
+        	</div>
+        	<!-- 회원탈퇴 -->
+        	<div class="right-side-row clearfix">
+        		<h3>회원탈퇴</h3>
+        		<div class="right-side-right">
+	        		<p class="withdrawl-text">TALMOVE에서  본 약관은 TALMOVE 주식회사(이하 “당사”)가 TALMOVE 회원(이하 “회원”)의 탈퇴에 관한 모든 조건을 규정한 것입니다. 
+		          	회원탈퇴를 하실 경우에는 아래의 내용에 동의하신 것으로 간주됩니다.
+		          	수강중인 강의가 존재할 경우, 탈퇴 후에는 더 이상 해당 강의를 수강할 수 없습니다. 
+		          	당사가 운영하는 웹사이트(이하 “TALMOVE 사이트”)에서 제공하는 모든 회원 대상 서비스를 이용하실 수 없습니다.
+		          	보유하신 TALMOVE 강의는 탈퇴하시는 시점부터 전부 무효가 됩니다
+		          	탈퇴 후에도 카드결제 등으로 발생한 이용요금 지불책임은 이행해야 합니다.
+		          	회원 대상 서비스의 재이용을 원하실 경우에는 다시 신규회원에 가입하셔야 하며, 이전 강의는 이관되지 않습니다.
+		          	회원 탈퇴 수속이 수리된 후에도 회원정보에 대해서는 당사가 관리하게 됩니다. 
+		          	탈퇴 전 다시 한번 확인해 주십시오 </p>
+	          		<input type="checkbox" id="withdrawl-chk"><label for="withdrawl-chk")>회원탈퇴 약관 동의</label>
+	          		<button class="withdrawlBtn clearfix">회원 탈퇴</button>
+        		</div>
+        	</div>
+        </div>
+    </section>
     
-     <!--  프로필 첫번째영역 -이미지/ 이메일 -->
-       <div class="msgpfirdiv">
-       
-         <p id="proimg">프로필 사진</p>
-             <img class="fileimg" src="/testt/views/mypage/images/absence_08.jpg">
-          <input type="file" accept="image/*"  id="filebutton" name="filebutton"/>
-          <p id="proemail">이메일</p>
-          <input type="email" id="email" size="50" readonly>
-          <p id="propwd">비밀번호</p>
-   		  <form>
-   		  <input type="password" id="pwd1" name="mpwd1" placeholder="현재 비밀번호"  required>
-          <p class="pwdguide" id="pw1_wn">　</p>
-         
-         <input type="password" id="pwd2" placeholder="새 비밀번호" required>
-		  <p class="pwdguide" id="pw2_wn">6자 이상 26자 미만으로 입력해주세요.　</p> 
-	   
-         <input type="password" id="pwd3" name="mpwd3" placeholder="새 비밀번호 확인" required>
-          <p class="pwdguide">6자 이상 26자 미만으로 입력해주세요.　</p>
-      
-          <input type="submit" value="저장" id="submitb">
-         </form>
-            <form>
-          <p id="prode">회원 탈퇴</p>
-          <input type="checkbox" id="checkbox1" name="checkbox1" onclick="" />
-          <p id="delok">회원 탈퇴 약관 동의</p>
-          <div id="text1"><p>TALMOVE에서 
-            본 약관은 TALMOVE 주식회사(이하 “당사”)가 TALMOVE 회원(이하 “회원”)의 탈퇴에 관한 모든 조건을 규정한 것입니다. 
-          	회원탈퇴를 하실 경우에는 아래의 내용에 동의하신 것으로 간주됩니다.
-          	수강중인 강의가 존재할 경우, 탈퇴 후에는 더 이상 해당 강의를 수강할 수 없습니다. 
-          	당사가 운영하는 웹사이트(이하 “TALMOVE 사이트”)에서 제공하는 모든 회원 대상 서비스를 이용하실 수 없습니다.
-          	보유하신 TALMOVE 강의는 탈퇴하시는 시점부터 전부 무효가 됩니다
-          	탈퇴 후에도 카드결제 등으로 발생한 이용요금 지불책임은 이행해야 합니다.
-          	회원 대상 서비스의 재이용을 원하실 경우에는 다시 신규회원에 가입하셔야 하며, 이전 강의는 이관되지 않습니다.
-          	회원 탈퇴 수속이 수리된 후에도 회원정보에 대해서는 당사가 관리하게 됩니다. 
-          	탈퇴 전 다시 한번 확인해 주십시오 </p></div>
-      </div>
-      <input type="submit" value="회원탈퇴" id="delbtn">
-      </form>
-       </div>
+    
+	<%@ include file="../common/footer.jsp" %>
 
-   </div>
-
-     
-            
-</section>
-<script type="text/javascript">
-      var pf_file;
-      $(document).ready(function(){
-        $("#filebutton").on("change", handleImgFileSelect);
-      });
-      
-      function handleImgFileSelect(e) {
-        var upfiles = e.target.files;
-        var upfilesArr = Array.prototype.slice.call(upfiles);
-
-        upfilesArr.forEach(function(f){
-          if(!f.type.match("image.*")) {
-            alert("확장자는 이미지 확장자만 가능합니다.");
-
-
-
-          }else{
-          pf_file = f;
-
-          var reader = new FileReader();
-          reader.onload = function(e) {
-            $(".fileimg").attr("src", e.target.result);
-          }
-          reader.readAsDataURL(f);
-         }
-        });
-      } //handleImgFileSelect
-      
-      $(document).ready(function(){
-          // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
-          $("#msgmenu").click(function(){
-              var submenu = $(this).next("ul");
-   
-              // submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
-              if( submenu.is(":visible") ){
-                  submenu.slideUp();
-              }else{
-                  submenu.slideDown();
-              }
-          });
-      }); // sidebar 클릭시
-      </script>
+	<script type="text/javascript" src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="/testt/resources/js/main.js"></script>
+	<script type="text/javascript" src="/testt/views/mypage/UserUpdateView.js"></script>
+	
 </body>
 </html>
