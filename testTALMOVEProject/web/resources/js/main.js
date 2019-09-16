@@ -370,7 +370,7 @@ $('.login-btn').on('click', function(){
 		url: "/testt/pwd.do",
 		async: false,
 		data: {upwd: pwd.input.val(), uemail: email.input.val()},
-		type: "get",
+		type: "post",
 		success: function(data){
 			if(data == "1"){
 				pwdExist = "0";
