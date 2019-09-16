@@ -1,0 +1,92 @@
+@charset "utf-8";
+
+
+#stars {
+    position: relative;
+    float: left;
+    width: 55px;
+    text-align: center;
+    font-weight: 700;
+    top: 225px;
+    left: 25px;
+}
+
+input[type="file"] {
+    /* 파일 필드 숨기기 */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+
+}
+
+label {
+    position: relative;
+    float: right;
+    left: 13px;
+    font-size: 18px;
+    font-weight: 800;
+    color: #95a5a6;
+    font-weight: 800;
+    padding-top: 3px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+#update-zone {
+    position: relative;
+    margin-top: 40px;
+    float: left;
+    margin-left: 110px;
+    padding: 40px 0px 0px 5px;
+    width: 430px;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+}
+
+#update-zone div {
+    padding-bottom: 30px;
+}
+
+#update-zone input {
+    float: right;
+    width: 250px;
+    height: 20px;
+    border-style: none;
+    border-bottom: 0.7px solid gray;
+    background: none;
+    padding-left: 8px;
+    overflow: hidden;
+
+}
+
+#thistory input {
+    margin-bottom: 16px;
+}
+
+#edit-zone {
+    clear: both;
+}
+
+div#edit-zone {
+    padding-top: 20px;
+}
+
+/*에디터 높넓이*/
+.ck-editor__editable {
+    min-height: 200px;
+}
+
+.ck.ck-editor {
+    min-width: 100%;
+}
+#pagename {
+    font-size: 20px;
+    font-weight: 800;
+    left: 10px;
+}
