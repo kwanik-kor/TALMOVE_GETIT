@@ -17,6 +17,7 @@
 .footer-top-left .logo-text {
     color: #e2e2e2;
     transition: color 0.2s;
+    cursor: default;
 }
 
 .footer-top-left .logo-text:hover {

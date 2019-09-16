@@ -1,234 +1,133 @@
-	@charset "utf-8";
-*{margin:0;padding:0;}
-html, body{font-family: 'Lato', 'Arial', sans-serif; width:100%;font-size:12px;color:#555555;}
-section{width:100%;}
+@charset "utf-8";
 
-#pannel{
-   width: 100%;
-    height: 280px;
-    background-color: rgba(210, 225, 235, 0.68);
+.right-side-row{
+	width: 90%;
+	margin: 15px auto;
 }
-#pfimg{
-   margin:6% 0 0 5%;
-   width:  150px;
-   height: 150px;
-   background: none;
-   border-radius: 100%;
-   float:left;
+
+.right-side-row:after{
+	content:"";
+	display: block;
+	visibility: visible;
+	width: 100%;
+	margin: 15px 0;
+	border-bottom: 1px solid #e6e6e6;
 }
-#teacherPage{padding-top:10%;font-size:3rem;font-weight:bold;padding-left:18%;}
-#tname{color:blue;}
+.right-side-row h3{
+	display: inline-block;
+	width: 20%;
+	height: 100%;
+	font-weight: 400;
+	font-size: 1rem;
+	float: left;
+}
+.right-side-right{
+	display: inline-block;
+	width: 80%;
+	padding: 15px;
+}
 
+#user-email{
+	font-size: 0.8rem;
+	padding: 5px;
+	border: 0;
+	outline: none;
+}
 
-#left-tap{
-    float: left;
-    padding-top: 30px;
-    width: 22%;
-    height: 500px;
-    background-color: rgba(210, 225, 235, 0.68);
+.newPwdSet input{
+	display: block;
+	width: 60%;
+	border: 0;
+	border-bottom: 1px solid #000;
+	padding-bottom: 8px;
+	padding-left: 3px;
+	outline: none;
+	font-size: 0.7rem; 
+}
+
+.newPwdSet input:first-of-type{
+	margin-top: 20px;
+}
+.newPwdSet .guide{
+	margin-bottom: 15px;
+}
+
+.withdrawl-text{
+	width: 70%;
+	height: 150px;
+	padding: 10px;
+	overflow-y: scroll;
+	font-size: 0.7rem;
+}
+
+input[type=checkbox]{
+    display: none;
+}
+input[type=checkbox] + label{
+    display: block;  
+    cursor: pointer;  
+    position: relative;  
+    padding-left: 35px;  
+    margin-right: 20px;  
+    font-size: 0.8rem;
+}
+
+input[type=checkbox] + label:before{
+    content: "";
+    display: inline-block;
     
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    left: 5px;
+    bottom: 1px;
+    background-color: #e2e2e2;
+    border-radius: 4px;
 }
-#tap{
-   width:100%;
+
+input[type=checkbox]:checked + label:before { 
+    content: "\2713";
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);  
+    font-size: 16px; 
+    font-weight:800; 
+    color: #fff;  
+    background:#00a8ff;
     text-align: center;
-    font-weight: 600;
-    font-size: 1.8rem;
-    border-radius: 8px;
-    cursor: pointer;
-}
-ul#tap>li{
-   width:100%;
-   height:50px;
-   margin-bottom:13%;
-   padding-top:5%;
-   border-radius:8px;
+    line-height: 16px;
+    padding-top: 3px;
 }
 
-#left-tap>#tap a{
-   width:100%;
-    text-decoration: none;
-    color: #555555;
+.withdrawlBtn,
+.newPwdBtn{
+	margin-top: 15px;
+	cursor: pointer;
+	border: 0;
+	border-radius: 5px;
+	color: #fff;
+	padding: 10px 15px;
+	font-size: 0.8rem;
+	transition: background 0.1s ease;
+	outline: none;
 }
-#tap li:hover{
-   background-color: darkgray;
-    color: dimgray;
+
+.withdrawlBtn{background: #e84118;}
+.newPwdBtn{background: #00a8ff;}
+
+.withdrawlBtn:hover,
+.withdrawlBtn:active{
+	background: #c23616;
 }
 
+.newPwdBtn:hover,
+.newPwdBtn:active{
+	background: #0097e6;
+}
 
-.maghidemenu {
-   text-decoration: none;
-   color: #555555;
-    text-align: center;
-    line-height: 50px;
-    font-weight: 600;
-    font-size:1.3rem;
-    border-radius: 8px;
-    cursor: pointer;
-   list-style:none;
-   display:none;
-   list-style:none; 
-/*       font-size: 0.8em;
-      width: 100%;
-      padding-left: 30px;
-
-     list-style:none; */
-  }
-  .maghidemenu li{border-radius:8px;}
-.maghidemenu li:hover{
-    background-color: darkgray;
-    color: dimgray;
+div.newPwdSet .guide{
+	margin-left: 0;
 }
 
 
-#right-page{
-   float:left;
-    width: 76%;
-    height:1300px ;
-    padding: 3px 10px 3px 10px;
-    text-align:left;
-}
-/*   <!--  프로필 첫번째영역 -이미지/ 이메일 --> */
-.msgpfirdiv {
-   
-}
 
-#proimg{
-   font-size:2rem;
-   padding-top:44px;
-   padding-left:30px;
-   font-weight:500;          
-}
 
-.msgpfirdiv img{
-   float:left;
-   padding-left:411px;
-   margin-top:-50px;
-   width:25%;
-}
-#filebutton{
-   float:left;
-   clear:both;
-   margin-left:400px;
-   padding:1%;
-   font-size:1.3rem;
-}
 
-#proemail{
-   float:left;
-   clear:both;
-   font-size:2rem;
-   padding-top:44px;
-   padding-left:30px;
-   font-weight:500;
-}
-#email{
-   float:left;
-   margin-top:40px;
-   height:40px;
-   margin-left:121px;
-   width:60%;
-   text-align:center;
-   background:lightgray;
-   border:0;
-   border-radius:5px;
-}
-#propwd{
-   float:left;
-   clear:both;
-   font-size:2rem;
-   padding-top:80px;
-   padding-left:30px;
-   font-weight:500;
-}
-#pwd1{
-   padding-left:15px;
-   float:left;
-   margin-top:76px;
-   height:40px;
-   margin-left:96px;
-   width:60%;
-   border:1px solid lightgray;
-   border-radius:5px;
-}
-#pwd2{
-   padding-left:15px;
-   float:left;
-   margin-top:35px;
-   height:40px;
-   margin-left:220px;
-   width:60%;
-   border:1px solid lightgray;
-   border-radius:5px;
-}
-#pwd3{
-   padding-left:15px;
-   float:left;
-   margin-top:35px;
-   height:40px;
-   margin-left:220px;
-   width:60%;
-   border:1px solid lightgray;
-   border-radius:5px;
-}
-.pwdguide{
-   font-weight:500;
-   float:left;
-   margin-left:220px;
-}
-#submitb{
-   float:left;
-   margin-left:351px;
-   padding:1%;
-   border:0;
-   background:#55b0d6;
-   margin-top:48px;
-   color:white;
-   border-radius:5px;
-   width:78px;
-}
-#prode{
-   float:left;
-   clear:both;
-   font-size:2rem;
-   padding-top:40px;
-   padding-left:30px;
-   font-weight:500;
-}
-#checkbox1{
-   float:left;
-   clear:both;
-   margin-top:-26px;
-   margin-left:224px;
-   width:20px;
-   height:20px;
-}
-#delok{
-   float:left;
-   margin-left:255px;;
-   margin-top:-27px;
-   font-size:1.3rem;
-}
-#text1{
-   height:200px;
-   overflow:scroll;
-   float:left;
-   font-size:1.2rem;
-   width:60%;
-   margin-left:225px;
-   border:1px solid lightgray;
-   margin-top:26px;
-   }
-#delbtn{
-   float:left;
-   margin-left:788px;
-   padding:1%;
-   border:0;
-   background:#55b0d6;
-   margin-top:20px;
-   color:white;
-   border-radius:5px;
-   width:85px;
-
-	 
-	 
-}
