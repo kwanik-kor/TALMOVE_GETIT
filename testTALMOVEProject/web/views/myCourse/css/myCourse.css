@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-body{
-    font-family: 'Lato', sans-serif;
-}
 .card {
     font-size: 1em;
     overflow: hidden;
