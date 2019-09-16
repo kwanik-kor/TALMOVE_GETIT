@@ -91,12 +91,12 @@ var loginBtn = document.getElementById("login-btn");
 var signupBtn = document.getElementById("signup-btn");
 
 loginBtn.onclick = function(){
-    $('.modal').addClass('is-visible');
+    $('.modal-form').addClass('is-visible');
     
     setTimeout(function () {
-      $('.modal').addClass('is-open');
+      $('.modal-form').addClass('is-open');
     }, 20);
-    $('.modal').css('padding-top', '10%');
+    $('.modal-form').css('padding-top', '10%');
     document.getElementById('form-login').style.display = "block";
     document.getElementById('form-signup').style.display = "none";
     document.getElementById('login-tab').style.borderBottom = "2px solid #00a8ff";
@@ -104,12 +104,12 @@ loginBtn.onclick = function(){
 }
 
 signupBtn.onclick = function(){
-    $('.modal').addClass('is-visible');
+    $('.modal-form').addClass('is-visible');
     
     setTimeout(function () {
-      $('.modal').addClass('is-open');
+      $('.modal-form').addClass('is-open');
     }, 20);
-    $('.modal').css('padding-top', '5%');
+    $('.modal-form').css('padding-top', '5%');
     document.getElementById('form-login').style.display = "none";
     document.getElementById('form-signup').style.display = "block";
     document.getElementById('login-tab').style.borderBottom = "0";
@@ -127,16 +127,16 @@ function changeTab(tabName, tabName2){
     document.getElementById(tabName).style.display = "block";
     document.getElementById(tabName2).style.borderBottom = "2px solid #00a8ff";
     if(tabName == "form-login"){
-    	$('.modal').css('padding-top', '10%');
+    	$('.modal-form').css('padding-top', '10%');
     }else{
-    	$('.modal').css('padding-top', '5%');
+    	$('.modal-form').css('padding-top', '5%');
     }
 }
 
 window.onclick = function(event){
     if(event.target == modal){
-        $('.modal').removeClass('is-open');
-        $('.modal').removeClass('is-visible');
+        $('.modal-form').removeClass('is-open');
+        $('.modal-form').removeClass('is-visible');
     }
 }
 

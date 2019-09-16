@@ -9,8 +9,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+<link rel="stylesheet" href="/testt/vendors/css/normalize.css">
+<link rel="stylesheet" href="/testt/vendors/css/bootstrap-grid.css">
+<link rel="stylesheet" href="/testt/vendors/css/bootstrap.css">
+<link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/testt/resources/css/style.css">
 <link rel="stylesheet" href="/testt/resources/css/common/gnb.css">
 <link rel="stylesheet" href="/testt/resources/css/common/footer.css">
+
 <link rel="stylesheet" href="/testt/resources/js/main.js">
 
 <link href="https://fonts.googleapis.com/css?family=Lato&display=swap"
@@ -21,8 +27,10 @@
 <script src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
 <script src="/testt/vendors/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/08d0951667.js"></script>
+<link rel="stylesheet" href="/testt/resources/css/queries.css">
+<link rel="stylesheet" href="css/myCourse.css">
 
-<title>내강좌</title>
+<title>탈무브 | 내 강좌</title>
 </head>
 <body>
 	<%@ include file="../common/gnb.jsp"%>
@@ -292,6 +300,10 @@
 	</div>
 
 	<%@ include file="../common/footer.jsp"%>
+	<script src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
+	<script src="/testt/vendors/js/bootstrap.min.js"></script>
+	<script src="https://kit.fontawesome.com/08d0951667.js"></script>
+	<script src="/testt/resources/js/main.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			$('#example').barrating({
