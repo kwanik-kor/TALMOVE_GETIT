@@ -13,6 +13,7 @@ public class Teacher implements Serializable{
 	private String teacherRimageName;
 	private int teacherAccoumtnumber;
 	
+	public Teacher() {}
 	
 	public Teacher(int teacherNo, int userNo, String teacherName, String teacherCareer, String teacherIntro,
 			String teacherOimageName, String teacherRimageName, int teacherAccoumtnumber) {
@@ -27,6 +28,96 @@ public class Teacher implements Serializable{
 		this.teacherAccoumtnumber = teacherAccoumtnumber;
 	}
 
+
+	public int getTeacherNo() {
+		return teacherNo;
+	}
+
+
+	public void setTeacherNo(int teacherNo) {
+		this.teacherNo = teacherNo;
+	}
+
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+
+
+	public String getTeacherName() {
+		return teacherName;
+	}
+
+
+	public void setTeacherName(String teacherName) {
+		this.teacherName = teacherName;
+	}
+
+
+	public String getTeacherCareer() {
+		return teacherCareer;
+	}
+
+
+	public void setTeacherCareer(String teacherCareer) {
+		this.teacherCareer = teacherCareer;
+	}
+
+
+	public String getTeacherIntro() {
+		return teacherIntro;
+	}
+
+
+	public void setTeacherIntro(String teacherIntro) {
+		this.teacherIntro = teacherIntro;
+	}
+
+
+	public String getTeacherOimageName() {
+		return teacherOimageName;
+	}
+
+
+	public void setTeacherOimageName(String teacherOimageName) {
+		this.teacherOimageName = teacherOimageName;
+	}
+
+
+	public String getTeacherRimageName() {
+		return teacherRimageName;
+	}
+
+
+	public void setTeacherRimageName(String teacherRimageName) {
+		this.teacherRimageName = teacherRimageName;
+	}
+
+
+	public int getTeacherAccoumtnumber() {
+		return teacherAccoumtnumber;
+	}
+
+
+	public void setTeacherAccoumtnumber(int teacherAccoumtnumber) {
+		this.teacherAccoumtnumber = teacherAccoumtnumber;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Teacher [teacherNo=" + teacherNo + ", userNo=" + userNo + ", teacherName=" + teacherName
+				+ ", teacherCareer=" + teacherCareer + ", teacherIntro=" + teacherIntro + ", teacherOimageName="
+				+ teacherOimageName + ", teacherRimageName=" + teacherRimageName + ", teacherAccoumtnumber="
+				+ teacherAccoumtnumber + "]";
+	}
+	
+	
 	
 	
 }
