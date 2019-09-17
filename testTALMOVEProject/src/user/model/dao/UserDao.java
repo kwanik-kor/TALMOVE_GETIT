@@ -15,7 +15,7 @@ public class UserDao {
 	public int registUser(Connection conn, User user) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "INSERT INTO TALMOVE_USER VALUES(SEQ_USERNO.NEXTVAL, ?, ?, ?, NULL, NULL, DEFAULT, ?, 0)";
+		String query = "INSERT INTO TALMOVE_USER VALUES(SEQ_USERNO.NEXTVAL, ?, ?, ?, NULL, NULL, DEFAULT, ?, 0, NULL)";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, user.getUserEmail());
@@ -90,6 +90,7 @@ public class UserDao {
 				user.setUserEnrollDate(rset.getDate("user_enroll_date"));
 				user.setUserEmailHash(rset.getString("user_emailhash"));
 				user.setUserEmailChecked(rset.getString("user_emailchecked"));
+				user.setTeacherNo(rset.getInt("teacher_no"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
