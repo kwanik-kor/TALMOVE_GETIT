@@ -55,10 +55,12 @@ div.right-top {
 }
 
 .ck.ck-editor {
-    min-width: 800px;
+    max-width: 85%;
 }
-
-
+#edit-zone{
+    position: relative;
+    left: 7.5%;
+}
 #savebtn{
     margin: 15px;
     padding: 15px;
@@ -71,4 +73,29 @@ div.right-top {
 
 #savebtn:hover{
     background: #b6e6ff;
+}
+input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -2px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+
+}
+
+.right-top-left label {
+    left: 13px;
+    font-size: 18px;
+    font-weight: 800;
+    color: #95a5a6;
+    font-weight: 800;
+    padding-top: 3px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+.right-top {
+    
 }
