@@ -38,11 +38,11 @@
     <section class="section-middle clearfix">
         <div class="left-side">
             <ul class="tmenu">
-                <li><a class="active-menu" href="#">강사정보</a></li>
-                <li><a href="#">강좌관리</a></li>
-                <li><a href="#">수강생정보</a></li>
-                <li><a href="#">수익내역</a></li>
-                <li><a href="#">댓글</a></li>
+                <li><a class="active-menu" href="teacherPageDetail.jsp">강사정보</a></li>
+                <li><a href="teacherManageLecture.jsp">강좌관리</a></li>
+                <li><a href="teacherReferenceData.jsp">수강생정보</a></li>
+                <li><a href="teacherIncomeDetail.jsp">수익내역</a></li>
+                <li><a href="teacherComment.jsp">댓글</a></li>
             </ul>
         </div>
         <div class="right-side">
@@ -51,7 +51,7 @@
                 <form action="">
                     <div class="right-top-left clearfix">
                         <img class="pfimg" src="../../resources/img/customer-1.jpg" alt="">
-                        <label for="">사진변경<input type="file" id="pffile" name="pffile" accept="image/*"></label>    
+                        <label for="pffile">사진변경<input type="file" id="pffile" name="pffile" accept="image/*"></label>    
                     </div>
                     <div class="right-top-right">
                         <label for="">선생님 이름</label><input type="text" id="tname" name="tname">
