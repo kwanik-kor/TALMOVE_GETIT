@@ -40,7 +40,7 @@ $(".tos-title input[type='checkbox']").each(function(){
 
 $('.to-nextBtn').on('click', function(){
     if($(this).hasClass('active-button')){
-        window.location.href = "/testt/views/teacherPage/teacherPageDetail.jsp";
+        location.href = "/testt/tregi";
     }else{
         alert("약관에 동의해 주세요.");
         return false;
