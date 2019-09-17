@@ -1,0 +1,208 @@
+@charset "utf-8";
+
+#outline {
+    width: 75%;
+    min-height: 700px;
+    margin: 20px auto;
+}
+
+ui {
+    list-style: none;
+}
+
+#body_left {
+    display: inline-block;
+    /*min-height: 400px;
+    height: auto;*/
+    width: 27%;
+    min-height: 500px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+    float: left;
+
+}
+
+#body_right {
+    display: inline-block;
+    width: 72%;
+    min-height: 700px;
+    margin-left: 3px;
+    float: right;
+}
+
+#name_zone {
+    text-align: left;
+    font-weight: 400;
+}
+
+#name_zone span {
+    font-size: 18px;
+    color: #00a8ff;
+}
+
+#list {
+    background: #f6f6fa;
+    border: 0.5px solid gray;
+    padding: 10px 5px;
+}
+
+#info_zone {
+
+    padding: 1px;
+}
+
+div#info_zone div {
+    background: #fff;
+    border: 0.5px solid gray;
+    height: 35px;
+    line-height: 35px;
+    margin-top: 5px;
+}
+
+#info_zone span {
+    color: #00a8ff;
+
+}
+
+/*#1*/
+
+
+div.sect_name {
+    border: 1px solid gray;
+    height: 40px;
+    line-height: 40px;
+    margin: 5px 3px;
+    font-size: 18px;
+    font-weight: 600;
+    overflow: hidden;
+    text-align: left;
+    background: #fff;
+}
+
+div.sect_name > span {
+    float: left;
+    padding-left: 10px;
+    overflow: inherit;
+    width: 80%;
+}
+
+div.sect_zone {
+    border-top: 1.5px dashed gray;
+    margin: 10px 3px 0px 3px;
+    padding-top: 8px;
+}
+
+.sect_zone:nth-last-child(2) {
+    border-bottom: 1.5px dashed gray;
+}
+
+.sect_zone li {
+    background-color: #fff;
+    border: 0.5px solid gray;
+    margin: 2px 3px;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    padding-left: 20px;
+    overflow: hidden;
+}
+
+.sect_zone li > span {
+    float: left;
+    width: 83%;
+    overflow: inherit;
+}
+
+.sect_name .modi-btn {
+    line-height: 40px;
+    width: 20px;
+    height: 20px;
+}
+
+.modi-btn {
+    float: right;
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: none;
+    top: 3px;
+    line-height: 30px;
+    cursor: pointer;
+    color: #dcdde1;
+    opacity: 0.71;
+
+}
+
+button:focus {
+    outline: none;
+}
+
+.modi-btn:hover {
+    color: #192a56;
+}
+
+/*-#1*/
+.create_nclass {
+    margin: 10px 10px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px dashed gray;
+}
+
+.create_nsect {
+    height: 30px;
+    line-height: 30px;
+    border: 1px dashed gray;
+    margin: 15px 13px 5px 13px;
+}
+
+/*---커서---*/
+[onclick] {
+    cursor: pointer;
+
+}
+
+[onclick]:hover {
+    background: #fefcfc;
+    border-color: #ff502f;
+    color: #ff502f;
+}
+
+/*---right-page---*/
+#blank_zone {
+    text-align: left;
+    font-size: 18px;
+
+}
+
+.ck-editor__editable {
+    min-height: 400px;
+    max-height: 600px;
+}
+
+.ck.ck-editor {
+    min-width: 90%;
+}
+
+#document-zone {
+    margin-top: 20px;
+}
+#page-save{
+    width: 100%;
+}
+#page-save button {
+    overflow: hidden;
+    box-shadow: 0px;
+    border-style: none;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 400;
+    height: 30px;
+    width: 100px;
+    background: #353b48;
+    color: #eef;
+    padding: 2px 0px 2px 0px;
+    float: right;
+    margin-top: 10px;
+}
