@@ -1,0 +1,161 @@
+.contents_box {
+
+	
+  width: 90%;
+  margin: auto;
+}
+
+.shopping-cart {
+  width: 980px;
+  height: 380px;
+  margin-top: 30px 0 30px 3%;
+
+  /*border: 1px solid #ededed;*/
+  border-radius: 6px;
+  float: left;
+  overflow: scroll;
+  overflow-x: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  /*column 혹은 column-reverse 을 선택하면 주축은 페이지 상단에서 하단으로 블록 방향을 따름.*/
+}
+
+.item {
+  padding: 20px 30px;
+  height: 30%;
+  display: flex;
+  border-bottom: 1px solid #e1e8ee;
+  
+}
+
+.buttons {
+  position: relative;
+  padding-top: 23px;
+  margin: 0 60px 0 30px;
+}
+
+.delete-btn {
+  display: inline-block;
+  cursor: pointer;
+  width: 18px;
+  height: 17px;
+  margin-right: 20px;
+  background: url("delete-icn.svg") no-repeat center;
+}
+
+.title {
+  width: 250px;
+  height: 60px;
+  padding: 20px;
+  color: #5e6977;
+  margin: 20px 0 0 160px;
+  font-size: 17px;
+}
+
+/* Product Image */
+img {
+  margin-right: 45px;
+}
+
+/* Product Description */
+.description {
+  padding-top: 10px;
+  margin: 0 20px 0 30px;
+  width: 300px;
+}
+
+.description span:first-child {
+  margin-bottom: 5px;
+}
+.description span:last-child {
+  font-weight: 300;
+  margin-top: 8px;
+  color: #86939e;
+}
+
+.fa {
+  padding: 3px;
+}
+
+.Lname,
+.title,
+.Tname {
+  font-weight: bold;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 12px 10px 0 100px;
+}
+
+/* Total Price */
+.total-price {
+  width: 83px;
+  text-align: center;
+  font-size: 16px;
+  color: #43484d;
+  font-weight: 300;
+  font-family: dotum;
+}
+
+/* purchase box*/
+
+.box_detail {
+  width: 320px;
+  padding: 25px 25px 15px;
+  background-color: white;
+  margin-top: 33px 40px 30px 0;
+  float: right;
+}
+
+.box_detail_total {
+  font-size: 1.5rem;
+  color: #555555;
+}
+
+.box_detail_price {
+  font-size: 1.6rem;
+  font-weight: 600px;
+  margin: 10px 0 0 10px;
+  text-transform: uppercase;
+}
+
+.paybtn {
+  width: 230px;
+  box-shadow: inset 0px 1px 0px 0px #64b1ff;
+  background-color: #3f9fff;
+  border-radius: 5px;
+  border: 1px solid #64b1ff;
+  display: inline-block;
+  cursor: pointer;
+  color: white;
+  font-family: Arial;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 15px 43px;
+  margin: 10px 0 10px 0 ;
+  text-decoration: none;
+}
+
+a.paybtn:hover {
+  background-color: #007fbf;
+}
+
+.btnc{
+	margin-top:50%;
+}
+
+
+/* /purchase box*/
+
+/* footer*/
+footer {
+  margin-top: 430px;
+  clear: both;
+
+}
+
+/* /footer*/

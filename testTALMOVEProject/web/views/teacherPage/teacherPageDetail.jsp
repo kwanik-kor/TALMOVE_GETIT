@@ -31,7 +31,7 @@
             <div id="pfpreview">
                 <img class="pfimg" src="../../resources/img/customer-1.jpg">
             </div>
-            <h2 id="teacher-name"><span>장관익</span> 선생님 정보</h2>
+            <h2 id="teacher-name"><span><%= loginUser.getUserName() %></span> 선생님 정보</h2>
         </div>
     </section>
     
@@ -54,8 +54,8 @@
                         <label for="pffile">사진변경<input type="file" id="pffile" name="pffile" accept="image/*"></label>    
                     </div>
                     <div class="right-top-right">
-                        <label for="">선생님 이름</label><input type="text" id="tname" name="tname">
-                        <label for="">선생님 메일</label><input type="email" id="temail" value="rhksdlr134@naver.com" readonly>
+                        <label for="">선생님 이름</label><input type="text" id="tname" value="<%= loginUser.getUserName() %>" name="tname">
+                        <label for="">선생님 메일</label><input type="email" id="temail" value="<%= loginUser.getUserEmail() %>" readonly>
                         <label for="">이력</label><input type="text" placeholder="학력, 경력 등">
                         <button class="addBtn">추가</button>
                     </div>

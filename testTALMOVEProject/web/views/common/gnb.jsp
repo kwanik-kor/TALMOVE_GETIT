@@ -28,7 +28,7 @@
                     <% }else{ %>
                     <a href="/testt/views/mypage/UserUpdateView.jsp"><li><%= loginUser.getUserName() %></li></a>
                     <a href="/testt/views/myCourse/myCourse.jsp"><li>내강좌</li></a>
-                    <a href="#"><li>장바구니</li></a>
+                    <a href="/testt/views/cart/cartPage.jsp"><li>장바구니</li></a>
                     <% if(loginUser.getTeacherNo() == 0){ %>
                     <a href="/testt/views/courseOpen/courseOpen.jsp"><li>강좌개설</li></a> 
                     <% }else{ %>
@@ -113,7 +113,7 @@
                         <li><button onclick="location.href='/testt/views/teacherPage/teacherPageDetail.jsp'">강사</button></li>
                         <% } %>
                         <li><button onclick="location.href='/testt/views/myCourse/myCourse.jsp'">내강좌</button></li>
-                        <li><button>장바구니</button></li>
+                        <li><button onclick="location.href='/testt/views/cart/cartPage.jsp'">장바구니</button></li>
                         <div class="mydrop">
                             <li><button><%= loginUser.getUserName() %></button></li>
                             <div class="mydrop-content">
