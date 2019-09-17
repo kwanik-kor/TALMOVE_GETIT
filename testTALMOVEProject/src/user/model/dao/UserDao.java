@@ -141,4 +141,21 @@ public class UserDao {
 		}
 		return result;
 	}
+
+	public int tnumUpdate(Connection conn, int userNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "UPDATE TALMOVE_USER SET TEACHER_NO = (SELECT TEACHER_NO FROM TEACHER WHERE USER_NO = ?) WHERE USER_NO = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, userNo);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }
