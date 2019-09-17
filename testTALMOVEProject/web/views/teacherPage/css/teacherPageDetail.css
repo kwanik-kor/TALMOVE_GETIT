@@ -17,8 +17,6 @@ div.right-top {
 
 .pfimg:last-of-type{
     display: block;
-    width: 150px;
-    height: 150px;
     margin: 0 auto;
 }
 
@@ -83,7 +81,6 @@ input[type="file"] {
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     border: 0;
-
 }
 
 .right-top-left label {

@@ -1,69 +1,91 @@
-.contents_box {
+@charset "UTF-8";
 
-	
-  width: 90%;
-  margin: auto;
+.list-count{
+    width: 100%;
+    padding-left: 13%;
+    margin: 40px 0;
+}
+.list-count p{
+    font-size: 1rem;
+    font-weight: 600;
 }
 
+.contents_box {
+    width: 100%;
+    margin-bottom: 40px;
+}
 .shopping-cart {
-  width: 980px;
-  height: 380px;
-  margin-top: 30px 0 30px 3%;
+    display: block;
+    flex-direction: column;
+    width: 70%;
+    max-height: 400px;
+    border-radius: 6px;
+    float: left;
+    overflow-y: scroll;
+}
 
-  /*border: 1px solid #ededed;*/
-  border-radius: 6px;
-  float: left;
-  overflow: scroll;
-  overflow-x: hidden;
-
-  display: flex;
-  flex-direction: column;
-
-  /*column 혹은 column-reverse 을 선택하면 주축은 페이지 상단에서 하단으로 블록 방향을 따름.*/
+.box_detail {
+    display: block;
+    width: 30%;
+    padding: 25px 25px 15px;
+    float: left;
 }
 
 .item {
-  padding: 20px 30px;
-  height: 30%;
-  display: flex;
-  border-bottom: 1px solid #e1e8ee;
-  
+    display: block;
+    margin-left: 18%;
+    margin-bottom: 15px;
+    height: 100px;
+}
+
+.item:after{
+    content: "";
+    display: block;
+    border-bottom: 1px solid #b2b2b2;
+    width: 90%;
 }
 
 .buttons {
-  position: relative;
-  padding-top: 23px;
-  margin: 0 60px 0 30px;
+    display: inline-block;
+    float: left;
+    position: relative;
+    padding: 40px 0;
 }
 
 .delete-btn {
-  display: inline-block;
-  cursor: pointer;
-  width: 18px;
-  height: 17px;
-  margin-right: 20px;
-  background: url("delete-icn.svg") no-repeat center;
+    display: inline-block;
+    cursor: pointer;
+    width: 18px;
+    height: 20px;
+    margin: 0 20px;
+    background: url("delete-icn.svg") no-repeat center;
 }
 
-.title {
-  width: 250px;
-  height: 60px;
-  padding: 20px;
-  color: #5e6977;
-  margin: 20px 0 0 160px;
-  font-size: 17px;
+.item img {
+    display: inline-block;
+    float: left;
+    height: 100%;
+    width: auto;
+    border-radius: 5px;
+    margin-bottom: 0;
 }
-
-/* Product Image */
-img {
-  margin-right: 45px;
-}
-
 /* Product Description */
 .description {
-  padding-top: 10px;
-  margin: 0 20px 0 30px;
-  width: 300px;
+    display: inline-block;
+    float: left;
+    width: 50%;
+    height: 100%;
+    padding-top: 20px;
+    margin: 0 20px 0 30px;
+}
+
+.price {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: bold;
+    width: 10%;
+    height: 100%;
+    padding-top: 20px;
 }
 
 .description span:first-child {
@@ -75,87 +97,46 @@ img {
   color: #86939e;
 }
 
-.fa {
-  padding: 3px;
-}
-
-.Lname,
-.title,
-.Tname {
+.Lname, .Tname {
   font-weight: bold;
 }
-
-.price {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 12px 10px 0 100px;
-}
-
-/* Total Price */
-.total-price {
-  width: 83px;
-  text-align: center;
-  font-size: 16px;
-  color: #43484d;
-  font-weight: 300;
-  font-family: dotum;
-}
-
-/* purchase box*/
-
-.box_detail {
-  width: 320px;
-  padding: 25px 25px 15px;
-  background-color: white;
-  margin-top: 33px 40px 30px 0;
-  float: right;
-}
+.Lname{font-size: 1rem; }
+.Tname{font-size: 0.6rem;}
 
 .box_detail_total {
-  font-size: 1.5rem;
-  color: #555555;
+    font-size: 1rem;
+    color: #555555;
+    margin-bottom: 10px;
 }
 
 .box_detail_price {
-  font-size: 1.6rem;
-  font-weight: 600px;
-  margin: 10px 0 0 10px;
-  text-transform: uppercase;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 30px;
 }
 
 .paybtn {
-  width: 230px;
-  box-shadow: inset 0px 1px 0px 0px #64b1ff;
-  background-color: #3f9fff;
-  border-radius: 5px;
-  border: 1px solid #64b1ff;
-  display: inline-block;
-  cursor: pointer;
-  color: white;
-  font-family: Arial;
-  font-size: 22px;
-  font-weight: bold;
-  padding: 15px 43px;
-  margin: 10px 0 10px 0 ;
-  text-decoration: none;
+    width: 230px;
+    background: #00a8ff;
+    border-radius: 5px;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1rem;
+    font-weight: bold;
+    text-align: center;    
+    padding: 15px 0;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
 a.paybtn:hover {
-  background-color: #007fbf;
+  background: #0097e6;
+}
+a.paybtn:active {
+    transform: scale(0.97);
 }
 
-.btnc{
-	margin-top:50%;
-}
-
-
-/* /purchase box*/
-
-/* footer*/
-footer {
-  margin-top: 430px;
-  clear: both;
-
-}
-
-/* /footer*/

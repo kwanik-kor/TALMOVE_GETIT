@@ -43,11 +43,7 @@
             <button id="next-btn" type="submit" onclick="location.href='createLectureTag.jsp'">다음으로</button>
             <div id="auto-height"></div>
         </div>
-
-
     </section>
-
-
 </body>
 
 </html>
