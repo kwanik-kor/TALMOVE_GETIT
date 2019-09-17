@@ -26,10 +26,15 @@
                     <a href="#"><li>회원가입</li></a>
                     <a href="/testt/views/courseOpen/courseOpen.jsp"><li>강좌개설</li></a>
                     <% }else{ %>
-                    <a href="#"><li><%= loginUser.getUserName() %></li></a>
+                    <a href="/testt/views/mypage/UserUpdateView.jsp"><li><%= loginUser.getUserName() %></li></a>
                     <a href="/testt/views/myCourse/myCourse.jsp"><li>내강좌</li></a>
                     <a href="#"><li>장바구니</li></a>
-                    <a href="/testt/views/courseOpen/courseOpen.jsp"><li>강좌개설</li></a>
+                    <% if(loginUser.getTeacherNo() == 0){ %>
+                    <a href="/testt/views/courseOpen/courseOpen.jsp"><li>강좌개설</li></a> 
+                    <% }else{ %>
+                    <a href="/testt/views/teacherPage/teacherPageDetail.jsp"><li>강사</li></a>
+                    <% } %>
+                   
                     <a href="/testt/logout"><li>로그아웃</li></a>
                     <% } %>
                     <hr>
@@ -102,14 +107,18 @@
                     </ul>
                 <% }else{ %>
                 	<ul class="unlogin-nav">
+                		<% if(loginUser.getTeacherNo() == 0){ %>
                         <li><button onclick="location.href='/testt/views/courseOpen/courseOpen.jsp'">강좌개설</button></li>
+                        <% }else{ %>
+                        <li><button onclick="location.href='/testt/views/teacherPage/teacherPageDetail.jsp'">강사</button></li>
+                        <% } %>
                         <li><button onclick="location.href='/testt/views/myCourse/myCourse.jsp'">내강좌</button></li>
                         <li><button>장바구니</button></li>
                         <div class="mydrop">
                             <li><button><%= loginUser.getUserName() %></button></li>
                             <div class="mydrop-content">
-                                <a href="#"><i class="fas fa-user-circle"></i>프로필</a>
-                                <a href="#"><i class="far fa-envelope"></i>메시지</a>
+                                <a href="/testt/views/mypage/UserUpdateView.jsp"><i class="fas fa-user-circle"></i>프로필</a>
+                                <a href="/testt/views/mypage/MessageListView.jsp"><i class="far fa-envelope"></i>메시지</a>
                                 <a href="#"><i class="far fa-credit-card"></i>결제내역</a>
                                 <hr>
                                 <a href="/testt/logout"><i class="fa fa-sign-out-alt"></i>로그아웃</a>

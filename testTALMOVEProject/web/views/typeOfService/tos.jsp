@@ -21,7 +21,7 @@
 	<%@ include file="../common/gnb.jsp" %>
 	<section class="section-tos">
 		<div class="tos-top">
-		    <p><span>장관익</span> 님의 새로운 수업</p>
+		    <p><span><%= loginUser.getUserName() %></span> 님의 새로운 수업</p>
 		    <p>당신의 재능을 나눠보세요!</p>
 		</div>
 		<div class="tos-content">

@@ -1,0 +1,116 @@
+@charset "utf-8";
+
+div.block {
+    position: relative;
+    float: left;
+    padding: 7px 1px 2px 1px;
+    border: 1px solid gray;
+    border-radius: 7px;
+    width: 315px;
+    height: 380px;
+    margin: 5px 3px 0px 7px;
+    padding: 3px;
+    font-size: 15px;
+    border-bottom-style: outset;
+    border-right-style: outset;
+    box-shadow: 1.5px 1px;
+}
+
+
+.block-img {
+    display: block;
+    margin: 0px auto;
+    width: inherit-1px;
+    height: 230px;
+    border-radius: 7px;
+    background-color: #2d2c46;
+    background-image: url("../img/%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.block-text {
+    position: absolute;
+    float: left;
+    margin: 3px 2px 1px 2px;
+    width: inherit;
+    height: 140px;
+    display: flex;
+}
+
+.block .detailbtn {
+    position: absolute;
+    overflow: hidden;
+    height: 25px;
+    font: 8px;
+    top: 75px;
+    left: 245px;
+}
+
+.block button {
+    background: none;
+    color: #63beeb;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    height: 17px;
+    padding: 0px;
+    box-shadow: 0px;
+    border-style: none;
+    border-radius: 2px;
+
+}
+
+.block button:nth-of-type(2) {
+    position: absolute;
+    overflow: hidden;
+    color: #d33d5b;
+    height: 25px;
+    font: 8px;
+    top: 100px;
+    left: 245px;
+}
+
+button:hover {
+    border-right-style: outset;
+    border: 0.5px solid gray;
+    box-shadow: 0.7px 0.5px;
+    font-weight: 900;
+}
+
+label {
+    position: relative;
+    text-align: center;
+    margin-left: 37px;
+    padding-top: 70px;
+    width: 300px;
+
+}
+
+#make-newlecture {
+    border: 0.7px solid #353b48;
+    color: #63beeb;
+    text-align: center;
+    width: 400px;
+    ;
+    height: 350px;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 2px;
+    padding: 14px 100px 14px 100px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+#make-newlecture:visited {
+    text-decoration: none;
+}
+
+#make-newlecture:hover{
+    background: c7f0db;
+    border-right-style: outset;
+    box-shadow: 1.5px 1.2px;
+}
+.divide {
+    margin-top: 60px;
+}
