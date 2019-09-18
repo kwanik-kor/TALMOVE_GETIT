@@ -12,25 +12,17 @@
     margin-left: 20px
 }
 
-#center-box>span{
-    margin-left: 40px;    
-    font-size: 13px;
-    
-}
 div#center-box{
     height: 600px;
 }
 #center-box>div:nth-child(1){
     font-size: 14px;
 }
-#center-box div:nth-child(1) span{
-    font-size: 20px;
-     color: cadetblue;
-}
+
 #input-zone{
     margin:30px 0px 0px 20px;
 }
-input{
+#tag input{
     font-size: 14px;
     font-weight: 500;
     color: darkorange;
@@ -44,7 +36,7 @@ input{
     position: relative;
     float: right;
     left: 15px;
-    top: 23px;
+    top: 20px;
 }
 #plus-tag {
    clear: both; 
