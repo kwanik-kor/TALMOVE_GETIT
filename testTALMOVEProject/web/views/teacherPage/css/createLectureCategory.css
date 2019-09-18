@@ -8,10 +8,7 @@
     margin-bottom: 30px;
        
 }
-#center-box div:nth-child(1) span{
-    font-size: 20px;
-     color: cadetblue;
-}
+
 .choice-category{
     position: relative;
     float: left;
@@ -27,7 +24,7 @@ option{
     margin-left:10px;
 }
 select{
-    width: 210px;
+    width: 190px;
     padding: .5em 12px;
     border: 1px solid #999;
     font-family: inherit;
@@ -43,4 +40,9 @@ select{
     position: relative;
     float: right;
 }
-
+#center-box{
+    padding-bottom: 20px;
+}
+#center>div#center-box{
+    height: 230px;
+}
