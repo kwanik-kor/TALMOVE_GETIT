@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import teacher.model.service.TeacherService;
+import teacher.model.vo.Teacher;
 import user.model.service.UserService;
 import user.model.vo.User;
 
@@ -25,13 +26,23 @@ public class TeacherRegisterServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		User loginUser = (User)session.getAttribute("loginUser");
+		int userNo = loginUser.getUserNo();
+		String userName = loginUser.getUserName();
+		String userEmail = loginUser.getUserEmail();
+		String userPwd = loginUser.getUserPwd();
 		UserService uservice = new UserService();
-		int result1 = new TeacherService().tRegister(loginUser.getUserNo(), loginUser.getUserName());
+		TeacherService tservice = new TeacherService();
+		
+		int result1 = tservice.tRegister(userNo, userName);
 		if(result1 > 0) {
-			int result2 = new UserService().tnumUpdate(loginUser.getUserNo());
+			int result2 = uservice.tnumUpdate(userNo);
 			if(result2 > 0) {
+				User newLoginUser = uservice.loginCheck(userEmail, userPwd);
+				Teacher loginTeacher = tservice.getTeacherInfo(newLoginUser.getTeacherNo());
+				
 				session.removeAttribute("loginUser");
-				session.setAttribute("loginUser", uservice.loginCheck(loginUser.getUserEmail(), loginUser.getUserPwd()));
+				session.setAttribute("loginUser", newLoginUser);
+				session.setAttribute("loginTeacher", loginTeacher);
 				response.sendRedirect("views/teacherPage/teacherPageDetail.jsp");
 			}else {
 				RequestDispatcher view = request.getRequestDispatcher("index.jsp");

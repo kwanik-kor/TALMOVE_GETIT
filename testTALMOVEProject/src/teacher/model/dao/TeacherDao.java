@@ -1,14 +1,16 @@
 package teacher.model.dao;
 
+import static common.JDBCTemplate.close;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import course.model.vo.Course;
 import lecture.model.vo.Lecture;
 import teacher.model.vo.Teacher;
 import user.model.vo.User;
-import static common.JDBCTemplate.*;
 
 public class TeacherDao {
 	
@@ -51,6 +53,35 @@ public class TeacherDao {
 		}
 		
 		return result;
+	}
+
+	public Teacher getTeacherInfo(Connection conn, int teacherNo) {
+		Teacher teacher = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM TEACHER WHERE TEACHER_NO = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, teacherNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				teacher = new Teacher();
+				teacher.setTeacherNo(teacherNo);
+				teacher.setUserNo(rset.getInt("user_no"));
+				teacher.setTeacherName(rset.getString("teacher_name"));
+				teacher.setTeacherCareer(rset.getString("teacher_career"));
+				teacher.setTeacherIntro(rset.getString("teacher_intro"));
+				teacher.setTeacherOimageName(rset.getString("teacher_oimage_name"));
+				teacher.setTeacherRimageName(rset.getString("teacher_rimage_name"));
+				teacher.setTeacherAccountnumber(rset.getInt("teacher_account_number"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return teacher;
 	}
 
 

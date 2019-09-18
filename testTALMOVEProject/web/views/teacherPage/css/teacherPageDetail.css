@@ -17,8 +17,6 @@ div.right-top {
 
 .pfimg:last-of-type{
     display: block;
-    width: 150px;
-    height: 150px;
     margin: 0 auto;
 }
 
@@ -68,7 +66,8 @@ div.right-top {
     border-radius: 5px;
     background: none;
     color: #00a8ff;
-    float: right;
+    float:right;
+    margin-right: 6%;
 }
 
 #savebtn:hover{
@@ -83,7 +82,6 @@ input[type="file"] {
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     border: 0;
-
 }
 
 .right-top-left label {
@@ -96,6 +94,68 @@ input[type="file"] {
     margin-top: 15px;
     cursor: pointer;
 }
-.right-top {
-    
+
+.modal-crop{
+    display: none;
+    position: fixed;
+    z-index: 99;
+    padding-top: 5%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    opacity: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    transition: all .2s linear;
+}
+
+.modal-crop-content{
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    width: 500px;
+}
+.is-visible {
+    display: block;
+}
+.is-open{
+    opacity: 1;
+}
+.crop-top{
+    width: 100%;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #dbdbdb;
+}
+.crop-top a{
+    display: inline-block;
+    padding: 10px 10px;
+    text-decoration: none;
+    color: #2a2a2a;
+}
+.crop-top button{
+    display: inline-block;
+    border: 0;
+    border-radius: 5px;
+    background: #fff;
+    padding: 10px 10px;
+    height: 100%;
+    font-size: 0.8rem;
+    float: right;
+    color: #00a8ff;
+}
+
+.crop-top button:hover{
+    background: #d3f0ff;
+}
+.crop-main{
+    background: #fff;
+}
+.close-crop{
+	cursor: pointer;
 }
