@@ -1,0 +1,142 @@
+@charset "UTF-8";
+
+.list-count{
+    width: 100%;
+    padding-left: 13%;
+    margin: 40px 0;
+}
+.list-count p{
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.contents_box {
+    width: 100%;
+    margin-bottom: 40px;
+}
+.shopping-cart {
+    display: block;
+    flex-direction: column;
+    width: 70%;
+    max-height: 400px;
+    border-radius: 6px;
+    float: left;
+    overflow-y: scroll;
+}
+
+.box_detail {
+    display: block;
+    width: 30%;
+    padding: 25px 25px 15px;
+    float: left;
+}
+
+.item {
+    display: block;
+    margin-left: 18%;
+    margin-bottom: 15px;
+    height: 100px;
+}
+
+.item:after{
+    content: "";
+    display: block;
+    border-bottom: 1px solid #b2b2b2;
+    width: 90%;
+}
+
+.buttons {
+    display: inline-block;
+    float: left;
+    position: relative;
+    padding: 40px 0;
+}
+
+.delete-btn {
+    display: inline-block;
+    cursor: pointer;
+    width: 18px;
+    height: 20px;
+    margin: 0 20px;
+    background: url("delete-icn.svg") no-repeat center;
+}
+
+.item img {
+    display: inline-block;
+    float: left;
+    height: 100%;
+    width: auto;
+    border-radius: 5px;
+    margin-bottom: 0;
+}
+/* Product Description */
+.description {
+    display: inline-block;
+    float: left;
+    width: 50%;
+    height: 100%;
+    padding-top: 20px;
+    margin: 0 20px 0 30px;
+}
+
+.price {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: bold;
+    width: 10%;
+    height: 100%;
+    padding-top: 20px;
+}
+
+.description span:first-child {
+  margin-bottom: 5px;
+}
+.description span:last-child {
+  font-weight: 300;
+  margin-top: 8px;
+  color: #86939e;
+}
+
+.Lname, .Tname {
+  font-weight: bold;
+}
+.Lname{font-size: 1rem; }
+.Tname{font-size: 0.6rem;}
+
+.box_detail_total {
+    font-size: 1rem;
+    color: #555555;
+    margin-bottom: 10px;
+}
+
+.box_detail_price {
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.paybtn {
+    width: 230px;
+    background: #00a8ff;
+    border-radius: 5px;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1rem;
+    font-weight: bold;
+    text-align: center;    
+    padding: 15px 0;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+a.paybtn:hover {
+  background: #0097e6;
+}
+a.paybtn:active {
+    transform: scale(0.97);
+}
+
