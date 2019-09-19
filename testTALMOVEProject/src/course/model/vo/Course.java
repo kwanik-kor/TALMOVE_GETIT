@@ -46,6 +46,13 @@ public class Course implements Serializable{
 
 
 
+	public Course() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

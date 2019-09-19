@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ page import="user.model.vo.User" %>
+<%
+	User loginUser = (User)session.getAttribute("loginUser");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,7 +116,9 @@
                     <div class="post-heading">
                       <div class="float-left meta">
                         <div class="title h5">
-                          <span class="comment-user"><b>이학열</b></span> &nbsp;
+                        <% if(loginUser != null){ %>
+                          <span class="comment-user"><b><%= loginUser.getUserName() %></b></span> &nbsp;
+                        <% } %>
                           <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> 9/16,
                             2019</time>
                         </div>

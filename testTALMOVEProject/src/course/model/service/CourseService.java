@@ -1,11 +1,16 @@
 package course.model.service;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 
+import course.model.dao.CourseDao;
 import course.model.vo.Course;
 import payment.model.vo.Payment;
 
+import static common.JDBCTemplate.*;
+
 public class CourseService {
+	private CourseDao cdao = new CourseDao();
 	
 	//지우
 	
@@ -67,8 +72,19 @@ public class CourseService {
 	
 	
 	//학열
-	public ArrayList<Course>selectCourse (int courseNo){
-		return null;}
+	public ArrayList<Course>selectCourse (int currentPage, int limit){
+		Connection conn = getConnection();
+		ArrayList<Course> list = cdao.selectCourse(conn, currentPage, limit);
+		close(conn);
+		return list;
+	}
+	
+	public int getListCount() {
+		Connection conn = getConnection();
+		int listCount = cdao.getListCount(conn);
+		close(conn);
+		return listCount;
+	}
 
 	//강좌 정렬
 	public ArrayList<Course> sortCourse (int courseNo){

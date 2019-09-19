@@ -14,20 +14,19 @@ import javax.servlet.http.HttpServletResponse;
 public class CourseReviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public CourseReviewServlet() {
         super();
-        // TODO Auto-generated constructor stub
+       
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//리뷰 작성 처리용 컨트롤러
+		request.setCharacterEncoding("utf-8");
+		
+		int courseNum = Integer.parseInt(request.getParameter("cnum"));
 	}
 
 	/**
