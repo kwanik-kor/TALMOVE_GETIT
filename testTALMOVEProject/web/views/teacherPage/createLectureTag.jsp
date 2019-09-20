@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="/testt/resources/css/queries.css">
     <link type="text/css" rel="stylesheet" href="css/createCommon.css">
     <link type="text/css" rel="stylesheet" href="css/createLectureTag.css">
-
+	<script src="https://kit.fontawesome.com/08d0951667.js"></script>
 </head>
 
 <body>
@@ -73,11 +73,16 @@
     });
     
     function addTag(){
-        var tag = "<div class='tags'><p class='tagName'>";
-        var tagInput = $('#tag-input').val();
-        tag += tagInput + "</p><p class='del-tag' onclick='deleteTag(this);'>&times;</p></div>";
-        $('#plus-tag').html($('#plus-tag').html() + tag);
-        $('#tag-input').val('');
+    	var tagCnt = $('.tags').length;
+    	if(tagCnt < 15){
+	        var tag = "<div class='tags'><p class='tagName'>";
+	        var tagInput = $('#tag-input').val();
+	        tag += tagInput + "</p><p class='del-tag' onclick='deleteTag(this);'>&times;</p></div>";
+	        $('#plus-tag').html($('#plus-tag').html() + tag);
+	        $('#tag-input').val('');
+    	}else{
+    		alert("태그는 15개까지 입력할 수 있습니다!");
+    	}
     }
     
     function deleteTag(del){

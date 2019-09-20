@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="/testt/resources/css/queries.css">
     <link type="text/css" rel="stylesheet" href="css/createCommon.css">
     <link type="text/css" rel="stylesheet" href="css/createLectureCategory.css">
-
+	<script src="https://kit.fontawesome.com/08d0951667.js"></script>
 </head>
 
 <body>

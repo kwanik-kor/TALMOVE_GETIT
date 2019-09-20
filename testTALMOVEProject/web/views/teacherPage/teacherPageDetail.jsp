@@ -25,6 +25,7 @@
     <link type="text/css" rel="stylesheet" href="/testt/views/teacherPage/css/teacherPageDetail.css">
     <!--ck editor 불러오기 -->
     <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
+    <script src="https://kit.fontawesome.com/08d0951667.js"></script>
 </head>
 
 <body>
