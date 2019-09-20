@@ -90,10 +90,8 @@
     			alert("카테고리를 선택해 주세요!");
     			return false;
     		}else{
-    			$('#next-btn').css({
-    				background: '#00a8ff'
-    			});
-    			location.href='createLectureTag.jsp?lectureName';
+    			var categoryNo = $('.2ndC').val();
+    			location.href="createLectureTag.jsp?lectureName=<%= lectureName %>&categoryNo="+categoryNo;
     		}
     	});
     </script>
