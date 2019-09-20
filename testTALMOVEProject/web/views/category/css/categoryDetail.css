@@ -86,7 +86,8 @@ div.category-menu,
     font-size: 0.7rem;
     margin-left: 10px;
 }
-.dropdown-upcat{
+.dropdown-upcat,
+.dropdown-upcat2{
     display: none;
     position: absolute;
     width: 150px;
@@ -97,7 +98,9 @@ div.category-menu,
     padding: 0;
     border-radius: 5px;
 }
-.dropdown-upcat li{
+
+.dropdown-upcat li,
+.dropdown-upcat2 li{
     display: block;
     margin: 0;
     padding: 10px 15px;
@@ -105,17 +108,20 @@ div.category-menu,
     border-radius: 5px;
 }
 
-.dropdown-upcat li a{
+.dropdown-upcat li a,
+.dropdown-upcat2 li a{
     color: #fff;
     font-size: 0.7rem;
     font-weight: 300;
 }
 
-.dropdown-upcat li:hover{
+.dropdown-upcat li:hover
+.dropdown-upcat2 li:hover{
     background: #404957;
     cursor: pointer;
 }
-.dropdown-upcat li:hover a{
+.dropdown-upcat li:hover a,
+.dropdown-upcat2 li:hover a{
     color: #00a8ff;
 }
 
