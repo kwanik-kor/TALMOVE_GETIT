@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/testt/resources/css/queries.css">
     <link type="text/css" rel="stylesheet" href="css/common.css">
     <link type="text/css" rel="stylesheet" href="css/teacherManageLecture.css">
+    <script src="https://kit.fontawesome.com/08d0951667.js"></script>
 </head>
 
 <body>

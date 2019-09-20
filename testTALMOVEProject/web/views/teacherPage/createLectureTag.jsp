@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="teacher.model.vo.Teacher" %>
+<%
+	Teacher loginTeacher = (Teacher)session.getAttribute("loginTeacher");
+	String lectureName = request.getParameter("lectureName");
+	int categoryNo = Integer.parseInt(request.getParameter("categoryNo"));
+%>
 <!DOCTYPE html>
 <html>
 
@@ -17,45 +23,88 @@
     <link rel="stylesheet" href="/testt/resources/css/queries.css">
     <link type="text/css" rel="stylesheet" href="css/createCommon.css">
     <link type="text/css" rel="stylesheet" href="css/createLectureTag.css">
-
-    <script type="text/javascript" src="../resorces/jquery-3.4.1.min.js"></script>
+	<script src="https://kit.fontawesome.com/08d0951667.js"></script>
 </head>
 
 <body>
     <%@ include file="../common/gnb.jsp" %>
     <section id="left-top">
         <div class="tos-top">
-            <p><span><%= loginUser.getUserName() %></span> 님의 새로운 수업</p>
+            <p><span><%= loginTeacher.getTeacherName() %></span> 님의 새로운 수업</p>
             <p>당신의 재능을 나눠보세요!</p>
         </div>
     </section>
     <section id="center">
         <div id="center-box">
             <div>
-                <span id="lectureName">설정된 강좌명</span>은 어떤 수업인가요?
+                <span id="lectureName"><%= lectureName %></span>은(는) 어떤 수업인가요?
             </div>
-            <span>-수업의 관련 키워드 들을 적어주세요.<br></span>
-            <span>-해당 키워드 검색 시 강좌가 추천됩니다.<br></span>
+            <div class="sub-text">
+                <span>- 수업의 관련 키워드 들을 적어주세요.<br></span>
+                <span>- 해당 키워드 검색 시 강좌가 추천됩니다.<br></span>    
+            </div>
             <div id="tag">
-                <input type="text" placeholder=" : 10글자 미만, 15개 태그까지 가능.">
-                <button id="next-btn" type="submit" onclick="location.href='createLectureIntroduce.jsp'">다음으로</button>
+                <input id="tag-input" type="text" maxlength="10" placeholder=" : 10글자 미만, 15개 태그까지 가능.">
+                <button id="next-btn">다음으로</button>
             </div>
             <div id="plus-tag">
-                <div class="tags">TAG</div>
-                <div class="tags">기본태그</div>
-                <div class="tags">장문태그장문태그</div>
-                <div class="tags">TAG</div>
-                <div class="tags">TAG</div>
-                <div class="tags">장문태그장문태그</div>
-                <div class="tags">장문TAG</div>
-                <div class="tags">장문태그장문태그</div>
-                <div class="tags">TAG태그</div>
-                <div class="tags">장문태그장문태그</div>
+                <!--태그 플러스 영역-->
             </div>
             <div id="auto-height"></div>
         </div>
     </section>
     <%@ include file="../common/footer.jsp" %>
+    <script type="text/javascript" src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+    $('#tag-input').keyup(function(){
+        if(window.event.keyCode == 13){
+            if($(this).val() != ""){
+                addTag();
+            }
+        }
+        if(window.event.keyCode == 32){
+            if($(this).val() == " "){
+                alert("내용을 입력해주세용");
+                $(this).val('');
+            }else{
+                addTag();
+            }
+        }
+    });
+    
+    function addTag(){
+    	var tagCnt = $('.tags').length;
+    	if(tagCnt < 15){
+	        var tag = "<div class='tags'><p class='tagName'>";
+	        var tagInput = $('#tag-input').val();
+	        tag += tagInput + "</p><p class='del-tag' onclick='deleteTag(this);'>&times;</p></div>";
+	        $('#plus-tag').html($('#plus-tag').html() + tag);
+	        $('#tag-input').val('');
+    	}else{
+    		alert("태그는 15개까지 입력할 수 있습니다!");
+    	}
+    }
+    
+    function deleteTag(del){
+        var indexNo = $('.del-tag').index(del);
+        $('.tags').eq(indexNo).remove();
+    }
+    
+    $('#next-btn').on('click', function(){
+         if($('.tags').length == 0){
+             alert("태그를 추가해주세요!");
+         }else{
+             var tags = "";
+             $('.tags').each(function(){
+                 var otagname = $(this).children().text();
+                 var rtagname = (otagname.substring(0,otagname.length-1)).trim();
+                 tags += rtagname +",";
+             });
+             tags = tags.substring(0, tags.lastIndexOf(","));
+             location.href="createLectureIntroduce.jsp?lectureName=<%= lectureName %>&categoryNo=<%= categoryNo %>&tags="+tags;
+         }
+    });
+    </script>
 </body>
 
 </html>

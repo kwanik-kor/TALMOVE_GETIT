@@ -39,8 +39,7 @@ public class TeacherRegisterServlet extends HttpServlet {
 			if(result2 > 0) {
 				User newLoginUser = uservice.loginCheck(userEmail, userPwd);
 				Teacher loginTeacher = tservice.getTeacherInfo(newLoginUser.getTeacherNo());
-				
-				session.removeAttribute("loginUser");
+			
 				session.setAttribute("loginUser", newLoginUser);
 				session.setAttribute("loginTeacher", loginTeacher);
 				response.sendRedirect("views/teacherPage/teacherPageDetail.jsp");
