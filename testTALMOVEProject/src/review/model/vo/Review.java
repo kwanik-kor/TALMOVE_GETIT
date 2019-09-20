@@ -15,6 +15,8 @@ public class Review implements Serializable{
 	private  Date modifiedReviewDate;
 	
 	
+	public Review() {}
+	
 	public Review(int reviewNo, int courseNo, int userNo, int rating, String reviewContent, Date reviewDate,
 			Date modifiedReviewDate) {
 		super();

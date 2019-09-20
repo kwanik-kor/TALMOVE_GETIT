@@ -1,11 +1,16 @@
 package review.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import review.model.service.ReviewService;
+import review.model.vo.Review;
 
 /**
  * Servlet implementation class CourseReviewServlet
@@ -26,7 +31,33 @@ public class CourseReviewServlet extends HttpServlet {
 		//리뷰 작성 처리용 컨트롤러
 		request.setCharacterEncoding("utf-8");
 		
-		int courseNum = Integer.parseInt(request.getParameter("cnum"));
+		int rating = Integer.parseInt(request.getParameter("star"));
+		String reviewContent = request.getParameter("content");
+		int courseNo = Integer.parseInt(request.getParameter("cno"));
+		int userNo = Integer.parseInt(request.getParameter("uno"));
+		
+		Review review = new Review();
+		
+		review.setCourseNo(courseNo);
+		review.setRating(rating);
+		review.setUserNo(userNo);
+		review.setReviewContent(reviewContent);;
+		
+		
+		//리뷰 등록처리
+		int result = new ReviewService().insertReview(review);
+		
+		RequestDispatcher view = null;
+		response.setContentType("text/html; charset=utf-8"); 
+		
+		
+		String mapping = "/mclist?userNo=" + userNo;
+		if(result > 0) {
+			view = request.getRequestDispatcher(mapping);
+			request.setAttribute("rating", rating);
+			view.forward(request, response);
+		}
+		
 	}
 
 	/**
