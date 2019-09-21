@@ -1,0 +1,22 @@
+@charset "UTF-8";
+section#center > div {
+	height: auto;
+}
+#center-box{
+    height: 700px;
+    margin-top: 200px;
+    padding-left: 40px;
+}
+
+#lectureName{
+    font-size: 1rem;
+    color: #00a8ff;
+    letter-spacing: 1px;
+}
+
+.sub-text{
+    margin-top: 15px;
+    padding-left: 10px;
+    font-size: 0.7rem;
+    line-height: 1rem;
+}
