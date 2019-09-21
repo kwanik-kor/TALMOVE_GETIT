@@ -25,6 +25,7 @@
     <link type="text/css" rel="stylesheet" href="/testt/views/teacherPage/css/teacherPageDetail.css">
     <!--ck editor 불러오기 -->
     <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
+    <script src="https://kit.fontawesome.com/08d0951667.js"></script>
 </head>
 
 <body>
@@ -54,13 +55,20 @@
             <div class="right-top">
                 <form action="">
                     <div class="right-top-left clearfix">
-                        <img class="pfimg" src="../../resources/img/customer-1.jpg" alt="">
+                        <img id="editImg" class="pfimg" src="../../resources/img/customer-1.jpg" alt="">
                         <label for="pffile">사진변경<input type="file" id="pffile" name="pffile" accept="image/*"></label>    
                     </div>
                     <div class="right-top-right">
-                        <label for="">선생님 이름</label><input type="text" id="tname" value="<%= loginTeacher.getTeacherName() %>" name="tname">
-                        <label for="">선생님 메일</label><input type="email" id="temail" value="<%= loginUser.getUserEmail() %>" readonly>
-                        <label for="">이력</label><input type="text" placeholder="학력, 경력 등" value="<%= loginTeacher.getTeacherCareer() %>">
+                        <label for="">선생님 이름</label>
+                        <input type="text" id="tname" value="<%= loginTeacher.getTeacherName() %>" name="tname">
+                        <label for="">선생님 메일</label>
+                        <input type="email" id="temail" value="<%= loginUser.getUserEmail() %>" readonly>
+                        <label for="">이력</label>
+                        <% if(loginTeacher.getTeacherCareer() != null){ %>
+                        <input type="text" placeholder="학력, 경력 등" value="<%= loginTeacher.getTeacherCareer() %>">
+                        <% }else{ %>
+                        <input type="text" placeholder="학력, 경력 등">
+                        <% } %>
                     </div>
                     
                     <div id="edit-zone">
@@ -118,7 +126,8 @@
 		                format: 'jpeg',
 		                size: {width: 300, height: 300}
 		            }).then(function(resp){
-		                $('.pfimg').attr("src", resp);
+		                $('#editImg').attr("src", resp);
+		                console.log($('#editImg').attr("src"));
 		                $('.modal-crop').removeClass('is-open');
 		                $('.modal-crop').removeClass('is-visible');
 		            });

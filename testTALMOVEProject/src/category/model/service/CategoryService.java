@@ -1,12 +1,16 @@
 package category.model.service;
 
+import static common.JDBCTemplate.*;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import category.model.dao.CategoryDao;
+import category.model.vo.Category;
 import course.model.vo.Course;
 
 public class CategoryService {
-	
+	private CategoryDao cDao = new CategoryDao();
 	
 	public ArrayList<Course> selectSortPurchaseCounrt(String sortKeyword){
 		return null;}  // 인기도 정렬
@@ -28,6 +32,13 @@ public class CategoryService {
 	
 	public int pagePassing(int pageNo){
 		return pageNo;}  // 페이지 넘김
+
+	public ArrayList<Category> getCategoryList(String categoryName) {
+		Connection conn = getConnection();
+		ArrayList<Category> clist = cDao.getCategoryList(conn, categoryName);
+		close(conn);
+		return clist;
+	}
 
 }
 

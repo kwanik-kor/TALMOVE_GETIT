@@ -1,8 +1,9 @@
 @charset "utf-8";
 
 #center-box{
-    margin-top: 200px;
+    margin-top: 10px;
     padding-left: 40px;
+    padding-bottom: 30px;
     box-sizing: none;
 }
 #center-box div:nth-child(1){
@@ -26,12 +27,12 @@
     width: 310px;
     height: 23px;
     border: 0.1px solid gray;
-    font-family: inherit; /* 폰트 상속 */
     padding-left: 13px;
     border-radius: 1px;
 }
 #next-btn{
     margin-left: 15px;
+    cursor: pointer;
 }
 #center-box {
     height: 280px;

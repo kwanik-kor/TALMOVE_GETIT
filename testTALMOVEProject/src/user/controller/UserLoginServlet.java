@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import teacher.model.service.TeacherService;
+import teacher.model.vo.Teacher;
 import user.model.service.UserService;
 import user.model.vo.User;
 import util.SHA256;
@@ -27,9 +29,11 @@ public class UserLoginServlet extends HttpServlet {
 		String upwd = request.getParameter("upwd");
 		
 		User loginUser = uservice.loginCheck(uemail, SHA256.getSHA256(upwd));
+		Teacher loginTeacher = new TeacherService().getTeacherInfo(loginUser.getTeacherNo());
 		HttpSession session = request.getSession();
 		if(loginUser != null) {
 			session.setAttribute("loginUser", loginUser);
+			session.setAttribute("loginTeacher", loginTeacher);
 			response.sendRedirect("index.jsp");
 		}else {
 			session.setAttribute("message", "인증받지 않은 회원입니다.");
