@@ -108,6 +108,7 @@ public class CourseDao {
 					course.setCourseNo(rset.getInt("course_no"));
 					course.setTeacherNo(rset.getInt("teacher_no"));
 					course.setCategoryNo(rset.getInt("category_no"));
+					course.setCourseName(courseName);
 					course.setThumbnailOfileName(rset.getString("thumbnail_ofilename"));
 					course.setThumbnailRfileName(rset.getString("thumbnail_rfilename"));
 					course.setDescription(rset.getString("description"));
@@ -122,6 +123,38 @@ public class CourseDao {
 				close(pstmt);
 			}
 			return course;
+		}
+
+		public ArrayList<Course> getCourseListByTNo(Connection conn, int teacherNo) {
+			ArrayList<Course> courseList = new ArrayList<Course>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String query = "SELECT * FROM COURSE WHERE TEACHER_NO = ?";
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, teacherNo);
+				rset = pstmt.executeQuery();
+				while(rset.next()) {
+					Course course = new Course();
+					course.setCourseNo(rset.getInt("course_no"));
+					course.setTeacherNo(teacherNo);
+					course.setCategoryNo(rset.getInt("category_no"));
+					course.setCourseName(rset.getString("course_name"));
+					course.setThumbnailOfileName(rset.getString("thumbnail_ofilename"));
+					course.setThumbnailRfileName(rset.getString("thumbnail_rfilename"));
+					course.setDescription(rset.getString("description"));
+					course.setOpenYN(rset.getString("open_yn"));
+					course.setPrice(rset.getInt("price"));
+					course.setPurchaseCount(rset.getInt("purchase_count"));
+					courseList.add(course);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			return courseList;
 		}
 
 

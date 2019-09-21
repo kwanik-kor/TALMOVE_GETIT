@@ -84,5 +84,11 @@ public class CourseService {
 		close(conn);
 		return course;
 	}
+	public ArrayList<Course> getCourseListByTNo(int teacherNo) {
+		Connection conn = getConnection();
+		ArrayList<Course> courseList = cDao.getCourseListByTNo(conn, teacherNo);
+		close(conn);
+		return courseList;
+	}
 
 }

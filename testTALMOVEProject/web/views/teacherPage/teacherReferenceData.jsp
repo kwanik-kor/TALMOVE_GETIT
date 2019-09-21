@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="teacher.model.vo.Teacher" %>
+<%
+	Teacher loginTeacher = (Teacher)session.getAttribute("loginTeacher");
+%>
 <!DOCTYPE html>
 <html>
 
@@ -32,7 +36,7 @@
         <div class="left-side">
             <ul class="tmenu">
                 <li><a href="teacherPageDetail.jsp">강사정보</a></li>
-                <li><a href="teacherManageLecture.jsp">강좌관리</a></li>
+                <li><a href="/testt/gtcourse">강좌관리</a></li>
                 <li><a class="active-menu" href="teacherReferenceData.jsp">수강생정보</a></li>
                 <li><a href="teacherIncomeDetail.jsp">수익내역</a></li>
                 <li><a href="teacherComment.jsp">댓글</a></li>
