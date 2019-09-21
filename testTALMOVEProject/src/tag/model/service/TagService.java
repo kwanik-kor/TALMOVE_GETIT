@@ -1,11 +1,15 @@
 package tag.model.service;
 
+import static common.JDBCTemplate.*;
+
+import java.sql.Connection;
 import java.util.ArrayList;
 
+import tag.model.dao.TagDao;
 import tag.model.vo.Tag;
 
 public class TagService {
-	
+	private TagDao tDao = new TagDao();
 	
 	public ArrayList<Tag> exixtingCheck(Tag tag){
 		return null;}
@@ -15,6 +19,29 @@ public class TagService {
 	
 	public ArrayList<Tag> TagRestoreProcess(Tag tag){
 		return null;}
+
+	public int insertTag(String[] tagList) {
+		Connection conn = getConnection();
+		int result = tDao.insertTag(conn, tagList);
+		if(result > 0) {
+			commit(conn);
+		}else{
+			rollback(conn);
+		}
+		
+		return result;
+	}
+
+	public int insertTagCourse(int courseNo, String[] tagList) {
+		Connection conn = getConnection();
+		int result = tDao.insertTagCourse(conn, courseNo, tagList);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
 
 
 }
