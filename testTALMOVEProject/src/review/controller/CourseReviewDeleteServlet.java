@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import review.model.service.ReviewService;
+
 /**
  * Servlet implementation class CourseReviewDeleteServlet
  */
@@ -23,6 +25,8 @@ public class CourseReviewDeleteServlet extends HttpServlet {
 		
 		int courseNo = Integer.parseInt(request.getParameter("cno"));
 		int userNo = Integer.parseInt(request.getParameter("uno"));
+		
+		if (new ReviewService().deleteReview(reviewNo))
 	}
 
 	/**

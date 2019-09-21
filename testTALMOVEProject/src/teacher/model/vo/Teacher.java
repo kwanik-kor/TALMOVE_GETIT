@@ -11,12 +11,12 @@ public class Teacher implements Serializable{
 	private String teacherIntro;
 	private String teacherOimageName;
 	private String teacherRimageName;
-	private int teacherAccoumtnumber;
+	private int teacherAccountnumber;
 	
 	public Teacher() {}
 	
 	public Teacher(int teacherNo, int userNo, String teacherName, String teacherCareer, String teacherIntro,
-			String teacherOimageName, String teacherRimageName, int teacherAccoumtnumber) {
+			String teacherOimageName, String teacherRimageName, int teacherAccountnumber) {
 		super();
 		this.teacherNo = teacherNo;
 		this.userNo = userNo;
@@ -25,7 +25,7 @@ public class Teacher implements Serializable{
 		this.teacherIntro = teacherIntro;
 		this.teacherOimageName = teacherOimageName;
 		this.teacherRimageName = teacherRimageName;
-		this.teacherAccoumtnumber = teacherAccoumtnumber;
+		this.teacherAccountnumber = teacherAccountnumber;
 	}
 
 
@@ -99,13 +99,13 @@ public class Teacher implements Serializable{
 	}
 
 
-	public int getTeacherAccoumtnumber() {
-		return teacherAccoumtnumber;
+	public int getTeacherAccountnumber() {
+		return teacherAccountnumber;
 	}
 
 
-	public void setTeacherAccoumtnumber(int teacherAccoumtnumber) {
-		this.teacherAccoumtnumber = teacherAccoumtnumber;
+	public void setTeacherAccountnumber(int teacherAccountnumber) {
+		this.teacherAccountnumber = teacherAccountnumber;
 	}
 
 
@@ -114,7 +114,7 @@ public class Teacher implements Serializable{
 		return "Teacher [teacherNo=" + teacherNo + ", userNo=" + userNo + ", teacherName=" + teacherName
 				+ ", teacherCareer=" + teacherCareer + ", teacherIntro=" + teacherIntro + ", teacherOimageName="
 				+ teacherOimageName + ", teacherRimageName=" + teacherRimageName + ", teacherAccoumtnumber="
-				+ teacherAccoumtnumber + "]";
+				+ teacherAccountnumber + "]";
 	}
 	
 	

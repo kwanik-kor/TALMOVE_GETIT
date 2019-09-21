@@ -53,5 +53,12 @@ public class TeacherService {
 		return result;
 	}
 
+	public Teacher getTeacherInfo(int teacherNo) {
+		Connection conn = getConnection();
+		Teacher teacher = tDao.getTeacherInfo(conn, teacherNo);
+		close(conn);
+		return teacher;
+	}
+
 	
 }
