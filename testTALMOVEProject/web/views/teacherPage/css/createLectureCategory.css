@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+/* Category Page */
+
+#lectureName{
+    color: #00a8ff;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+div#category{
+    display: block;
+    margin:30px auto;    
+}
+
+#category .choice-category{
+    display: inline-block;
+    width: 210px;
+}
+
+select{
+    border-radius: 3px;
+    font-size: 0.7rem;
+    line-height: 1rem;
+    padding: 10px;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+option{
+	line-height: 1rem;
+}
+
+#next-btn{
+    float: right;
+    margin-right: 15px;
+}

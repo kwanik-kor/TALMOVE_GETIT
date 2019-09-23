@@ -15,11 +15,12 @@ public class User implements Serializable{
 	private Date userEnrollDate;
 	private String userEmailHash;
 	private String userEmailChecked;
+	private int teacherNo;
 	
 	public User() {}
 
 	public User(int userNo, String userEmail, String userPwd, String userName, String userOImageName,
-			String userRImageName, Date userEnrollDate, String userEmailHash, String userEmailChecked) {
+			String userRImageName, Date userEnrollDate, String userEmailHash, String userEmailChecked, int teacherNo) {
 		super();
 		this.userNo = userNo;
 		this.userEmail = userEmail;
@@ -30,6 +31,7 @@ public class User implements Serializable{
 		this.userEnrollDate = userEnrollDate;
 		this.userEmailHash = userEmailHash;
 		this.userEmailChecked = userEmailChecked;
+		this.teacherNo = teacherNo;
 	}
 
 	public String getUserName() {
@@ -76,6 +78,14 @@ public class User implements Serializable{
 		return userRImageName;
 	}
 
+	public int getTeacherNo() {
+		return teacherNo;
+	}
+
+	public void setTeacherNo(int teacherNo) {
+		this.teacherNo = teacherNo;
+	}
+
 	public void setUserRImageName(String userRImageName) {
 		this.userRImageName = userRImageName;
 	}
@@ -106,8 +116,9 @@ public class User implements Serializable{
 
 	@Override
 	public String toString() {
-		return "User [userNo=" + userNo + ", userEmail=" + userEmail + ", userPwd=" + userPwd + ", userOImageName="
-				+ userOImageName + ", userRImageName=" + userRImageName + ", userEnrollDate=" + userEnrollDate
-				+ ", userEmailHash=" + userEmailHash + ", userEmailChecked=" + userEmailChecked + "]";
+		return "User [userNo=" + userNo + ", userEmail=" + userEmail + ", userPwd=" + userPwd + ", userName=" + userName
+				+ ", userOImageName=" + userOImageName + ", userRImageName=" + userRImageName + ", userEnrollDate="
+				+ userEnrollDate + ", userEmailHash=" + userEmailHash + ", userEmailChecked=" + userEmailChecked
+				+ ", teacherNo=" + teacherNo + "]";
 	}
 }

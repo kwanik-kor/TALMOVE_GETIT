@@ -68,4 +68,15 @@ public class UserService {
 		}
 		return result;
 	}
+
+	public int tnumUpdate(int userNo) {
+		Connection conn = getConnection();
+		int result = udao.tnumUpdate(conn, userNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
 }

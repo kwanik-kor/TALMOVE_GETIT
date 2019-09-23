@@ -50,6 +50,9 @@
         		<div class="right-side-right">
         			<img class="pfimg" src="../../resources/img/customer-1.jpg">
         			<input type="file" accept="image/*" id="filebutton" name="filebutton"/>
+        			<br>
+        		<%=request.getRealPath("/") %>
+        		
         		</div>
         	</div>
         	<!-- 이메일 -->

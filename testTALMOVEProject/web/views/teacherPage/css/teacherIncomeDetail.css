@@ -1,0 +1,144 @@
+
+@charset "UTF-8";
+
+.block {
+    position: relative;
+    float: left;
+    width: 70%;
+    height: 100px;
+    margin: 20px 0px 0px 20px;
+    font-size: 20px;
+    font-weight: 800;
+    padding-left:20px; 
+    
+}
+div.block:nth-child(2){
+    height: 200px;
+}
+
+block div.income-attr{
+    position: relative;
+    float: left;
+    height: 190px;
+    margin-left: 20px;
+
+}    
+.block p{
+    display: block;
+}
+
+.income-attr {
+	float:left;
+    width: 28%;
+    text-align: center;
+}
+
+.description {
+    font-size: 12px;
+    color: darkgray;
+    font-weight: 300;
+    text-align: left;
+}
+.symbols{
+    position: relative;
+    float: left;
+    width: 10px;
+    margin-top: 40px;
+    margin-left: 20px;
+    font-size: 25px;
+    color: darkgray;
+}
+
+#bank-select{
+    float: left;
+    margin-left: 150px;
+    left: 300px;
+    width: 130px;
+    height: 30px;
+    text-align: center;
+
+    
+}
+#account{
+    float: left;
+
+    width: 150px;
+
+    font-family: inherit;
+}
+#account input{
+    font-size: 12px;
+    font-weight: 600;
+    padding-left: 6px;
+    width: 140px;
+    height: 23px;
+    font-family: inherit; /* 폰트 상속 */
+    background-color: #bbb;
+    border-style: none;
+    padding-left: 13px;
+}
+select{
+    width: 100px;
+    font-weight: 600;
+    padding: .45em 0.7em 0.45em 0.7em; /* 여백으로 높이 설정 */
+    font-family: inherit; /* 폰트 상속 */
+    font-size: 12px;
+    border: 1px solid #bbb;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url('../image/selectbox-img.jpg') no-repeat 100% 50%;
+    border-radius: 0px;
+}
+option{
+    text-align: center;
+    font-size:12px;
+}
+#withdraw{
+  
+}
+#save-btn {
+    float: left;
+    width: 60px;
+    height: 23px;
+    font-size: 12px;
+    margin: 2px 0px 0px 8px;
+    font-weight: 500;
+    background: #888;
+    color: snow;
+    border-radius: 3px;
+    text-align: center;
+    border-style: none;
+}
+table{
+    width: 800px;
+    border: 0.3px solid black;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 3px 60px 3px 60px;
+    
+}
+tr th{
+    border-bottom: 0.7px solid black;
+    font-size: 14px;
+}
+tr th:nth-child(1){
+    width: 30%;
+}
+tr th:nth-child(2){
+    width: 30%;
+}
+tr th:nth-child(3){
+   width: 30%;
+}
+tr td{
+    padding-left: 10px;
+    width: 30%;
+    background: none;
+    text-align: center;
+}
+.right-top {
+    position: relative;
+    float: left;
+    width: inherit;;
+}
