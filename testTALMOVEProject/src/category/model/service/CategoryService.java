@@ -40,6 +40,13 @@ public class CategoryService {
 		return clist;
 	}
 
+	public ArrayList<Category> getAllCategoryList() {
+		Connection conn = getConnection();
+		ArrayList<Category> clist = cDao.getAllCategoryList(conn);
+		close(conn);
+		return clist;
+	}
+
 }
 
 
