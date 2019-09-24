@@ -18,5 +18,19 @@ public class LectureService {
 	
 	public ArrayList<Lecture> selectLecture(int lectureNo){
 		return null;} //강의목록불러오기
-	
+	//건우 렉쳐 이름만 불러오기
+	public ArrayList<Lecture> lectureNameLoad(int sectionNo) {
+		Connection conn = getConnection();
+		ArrayList<Lecture> list = ldao.LectureNameLoad(conn,sectionNo);
+		close(conn);
+		return list;
+	}
+
+	//건우 렉쳐생성
+	public int createNewClass(int va) {
+		Connection conn = getConnection();
+		int result = ldao.createNewClass(conn,va);
+		close(conn);
+		return result;
+	}
 }

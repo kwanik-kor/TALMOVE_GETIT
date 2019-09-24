@@ -22,7 +22,95 @@ public class CourseDao {
 			return lerctureOriginalFileName;
 			} //샘플동영상 재생
 		
-		//건우
+		// 건우_editLecture.jsp 섹션정보 불러오기
+	public ArrayList<Section> getSectionList(Connection conn, int courseNo) {
+			ArrayList<Section> list = new ArrayList<Section>();
+	
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String query = 	"SELECT SECTION_NO , SECTION_NAME " + 
+							"FROM SECTION WHERE COURSE_NO = ?";
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, courseNo);
+				rset = pstmt.executeQuery();
+				while(rset.next()) {
+
+					Section section = new Section();
+					section.setSectionNo(rset.getInt("section_no"));
+					section.setCourseNo(courseNo);
+					section.setSectionName(rset.getString("section_name"));
+					list.add(section);
+
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			System.out.println("코스번호로 섹션리스트 불러오기 완료");
+			return list;
+		}
+		//세션개수 가져오기 ?? 어디쓰더라
+		public int getSectionCount(Connection conn, int courseNo) {
+		int SectionCount = 0;
+		PreparedStatement pstmt  = null;
+		ResultSet rset = null;
+		
+		String query = "SELECT COUNT(*) FROM SECTION WHERE COURSE_NO = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, courseNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				SectionCount = rset.getInt(1);
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("SECTION COUNTING SUCCESS");
+		System.out.println("섹션개수 ㅣ" + SectionCount);
+		return SectionCount;
+		
+	}
+		public Course getCourse(Connection conn, int courseNumber) {
+
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String query = "SELECT * FROM COURSE WHERE COURSE_NO = ?";
+			Course course = new Course();
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, courseNumber);
+				rset = pstmt.executeQuery();
+				
+				 
+			if(rset.next()) {	
+					course.setCourseNo(rset.getInt("course_no"));
+					course.setTeacherNo(rset.getInt("teacher_no"));
+					course.setCategoryNo(rset.getInt("category_no"));
+					course.setCourseName(rset.getString("course_name"));
+					course.setThumbnailOfileName(rset.getString("thumbnail_ofilename"));
+					course.setThumbnailRfileName(rset.getString("thumbnail_rfilename"));
+					course.setDescription(rset.getString("description"));
+					course.setOpenYN(rset.getString("open_yn"));
+					course.setPrice(rset.getInt("price"));
+					course.setPurchaseCount(rset.getInt("purchase_count"));
+			}	
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			System.out.println("코스넘버 리턴 :"+course.getCourseNo());
+			return course;
 		public ArrayList<Course> CourseLoad(Connection conn, int courseNo, Course course){
 			return null;}
 
@@ -189,6 +277,6 @@ public class CourseDao {
 			}
 			return result;
 		}
-
+	
 
 }

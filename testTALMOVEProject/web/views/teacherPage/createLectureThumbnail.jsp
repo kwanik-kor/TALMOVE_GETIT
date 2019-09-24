@@ -46,7 +46,7 @@
             	<input type="hidden" name="lectureName" value="<%= lectureName %>">
             	<input type="hidden" name="categoryNo" value="<%= categoryNo %>">
             	<input type="hidden" name="tags" value="<%= tags %>">
-            	<input type="hidden" name="lecIntro" value="<%= lectureName %>">
+            	<input type="hidden" name="lecIntro" value="<%= lecIntro %>">
             	<input id="lecThumb" name="lecThumb" type="file" accept="image/*">
             	<button id="next-btn">다음으로</button>
             </form>

@@ -23,7 +23,45 @@ public class CourseService {
 		return lerctureOriginalFileName;
 		} //샘플동영상 재생
 
+	//건우		
+	//섹션의 개수 파악
+	public int getSectionCount(int CourseNo) {
+		Connection conn = getConnection();
+		int SectionCount = cDao.getSectionCount(conn,CourseNo);
+		close(conn);
+		return SectionCount;
+	}
+	
+	//섹션불러오기
+	public ArrayList<Section> SectionList(int courseNo){
+		Connection conn = getConnection();
+		ArrayList<Section> result = cDao.getSectionList(conn, courseNo);
+		if(result != null) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	//렉쳐 불러오기
+	public ArrayList<Lecture> LectureList(int sectionNo) {
+		Connection conn = getConnection();
+		ArrayList<Lecture> result = cDao.getLectureList(conn, sectionNo);
+		if(result != null) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 	//건우
+	public Course getCourse(int courseNumber) {
+		Connection conn = getConnection();
+		Course course = cDao.getCourse(conn, courseNumber);
+		close(conn);
+		return course;
 	public ArrayList<Course> CourseLoad( int courseNo, Course course){
 		return null;}
 

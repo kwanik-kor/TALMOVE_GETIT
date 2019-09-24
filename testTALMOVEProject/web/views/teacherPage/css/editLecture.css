@@ -5,8 +5,11 @@
     min-height: 700px;
     margin: 20px auto;
 }
+ul {
+    padding: 0px;
+}
 
-ui {
+ul li {
     list-style: none;
 }
 
@@ -36,7 +39,7 @@ ui {
     font-weight: 400;
 }
 
-#name_zone span {
+#name_zone input[text] {
     font-size: 18px;
     color: #00a8ff;
 }
@@ -45,14 +48,14 @@ ui {
     background: #f6f6fa;
     border: 0.5px solid gray;
     padding: 10px 5px;
+    min-height:400px;
 }
 
 #info_zone {
-
     padding: 1px;
 }
 
-div#info_zone div {
+div#info_zone>div{
     background: #fff;
     border: 0.5px solid gray;
     height: 35px;
@@ -62,7 +65,6 @@ div#info_zone div {
 
 #info_zone span {
     color: #00a8ff;
-
 }
 
 /*#1*/
@@ -80,11 +82,28 @@ div.sect_name {
     background: #fff;
 }
 
-div.sect_name > span {
+
+div.sect_name > input {
     float: left;
+    height:  inherit;
     padding-left: 10px;
     overflow: inherit;
-    width: 80%;
+    width: 78%;
+}
+#body_left input:hover{
+    outline: none;
+}
+/*input 기본-readOnly*/
+#body_left input:read-only{
+    border:none;
+    color: inherit;
+}
+/*수정기능 동작중*/
+#body_left input{
+    background: none;
+    color: #e84118;
+    border-style: none;
+    outline-style: none;
 }
 
 div.sect_zone {
@@ -93,52 +112,57 @@ div.sect_zone {
     padding-top: 8px;
 }
 
-.sect_zone:nth-last-child(2) {
-    border-bottom: 1.5px dashed gray;
-}
 
 .sect_zone li {
     background-color: #fff;
     border: 0.5px solid gray;
     margin: 2px 3px;
     height: 30px;
-    line-height: 30px;
+    line-height: 35px;
     text-align: left;
     padding-left: 20px;
     overflow: hidden;
+    font-size: 12px;
 }
 
-.sect_zone li > span {
+.sect_zone li > input {
     float: left;
     width: 83%;
     overflow: inherit;
+    line-height: inherit;
+    padding: 0px;
+    height: inherit;
+    
 }
 
-.sect_name .modi-btn {
+.sect_name .modi-btn, .sect_name .del-btn {
     line-height: 40px;
     width: 20px;
     height: 20px;
+    font-size: 14px;
+    margin-right: 1px;
+
 }
 
-.modi-btn {
+.modi-btn, .del-btn {
     float: right;
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
+    font-size: 14px;
     border: none;
     background: none;
-    top: 3px;
     line-height: 30px;
     cursor: pointer;
     color: #dcdde1;
     opacity: 0.71;
-
+    margin-right: 10px;
 }
 
 button:focus {
     outline: none;
 }
 
-.modi-btn:hover {
+.modi-btn:hover,.del-btn:hover {
     color: #192a56;
 }
 
@@ -158,15 +182,19 @@ button:focus {
 }
 
 /*---커서---*/
-[onclick] {
+#body_left input:read-only,#lectureIntro,.create_nclass,.create_nsect,button{
     cursor: pointer;
-
 }
 
-[onclick]:hover {
+.sect_name:hover,ul li:hover, #lectureIntro:hover{
     background: #fefcfc;
-    border-color: #ff502f;
-    color: #ff502f;
+    border-color: #ff626f;
+    color: #ff626f;
+}
+.create_nclass:hover,.create_nsect:hover{
+        background: #fcfcfa;
+    border-color: #487eb0;
+    color: #00a8ff;
 }
 
 /*---right-page---*/
@@ -174,6 +202,10 @@ button:focus {
     text-align: left;
     font-size: 18px;
 
+}
+
+#editor {
+    text-align: center;
 }
 
 .ck-editor__editable {
@@ -188,9 +220,11 @@ button:focus {
 #document-zone {
     margin-top: 20px;
 }
-#page-save{
+
+#page-save {
     width: 100%;
 }
+
 #page-save button {
     overflow: hidden;
     box-shadow: 0px;
