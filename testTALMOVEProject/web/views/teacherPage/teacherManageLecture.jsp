@@ -94,6 +94,7 @@
                     </div>
                     <div class="course-admin-bottom clearfix">
                         <h3>강좌 삭제</h3>
+                        <input type="hidden" class="cothumb" value="<%= c.getThumbnailRfileName() %>">
                         <input type="hidden" class="copenyn" value="<%= c.getOpenYN() %>">
                         <input type="hidden" class="cdelno" name="cno" value="<%= c.getCourseNo() %>">
                         <button class="delBtn">강좌 삭제하기</button>
@@ -112,11 +113,13 @@
 	        setTimeout(function(){
 	            $('.modal-course').eq(index).addClass('is-open'); 
 	        });
+	        $('body').css('overflow-y', 'hidden');
 	    });
 	    $('.closeBtn').on('click', function(){
             var index = $('.closeBtn').index(this);
             $('.modal-course').eq(index).removeClass('is-visible');
             $('.modal-course').eq(index).removeClass('is-open');
+            $('body').css('overflow-y', 'scroll');
         });
 	    
 	    $('.1stC').on('change', function(){
@@ -168,8 +171,9 @@
 	    	}else{
 	    		var del = confirm("정말로 강의를 삭제하시겠습니까? 삭제 후엔 복구되지 않습니다.");
 	    		if(del){
+	    			var cothumb = $('.cothumb').eq(index).val();
 	    			var cno = $('.cdelno').eq(index).val();
-	    			location.href="/testt/coursedel?cno="+cno;
+	    			location.href="/testt/coursedel?cno="+cno+"&cothumb="+cothumb;
 	    		}else{
 	    			return false;
 	    		}
