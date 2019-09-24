@@ -80,13 +80,22 @@
 /* 	border-radius:  */
 	padding: 1%
 	}
+
 .message { 
+	cursor:pointer;
 	margin:30px 10px; 
 	   border:1px solid lightgray;
    border-radius:5px;
 	padding: 2%;
 	list-style:none;
-	}
+	}	
+
+.message:hover,
+.message:active{
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+} 		
+	
+	
 .imgBox { 
 	display:inline-block;
 	
@@ -102,8 +111,10 @@
 	
 	}	
 .sendMessageBox img { 
-	width:70px; 
-	height:50px; 
+/* 	width:70px; 
+	height:50px;  */
+		width:10%; 
+	height:10%; 
 	border-radius:50%; 
 	display:inline-block;
 	margin-bottom: -15px;
@@ -145,7 +156,7 @@
          color:#fff; 
          padding:5px;
  		float: left;
-         cursor:pointer;
+ 
          }
 .balloon:after { 
 	content: ''; 
@@ -159,8 +170,10 @@
              }
 
 #count { 
+	width: 15px;
+	height: 100%;
 	display:inline-block; 
-	background-color:red; 
+	background-color:#f54977; 
 	color:#fff; 
 	border-radius:50%; 
 	padding:0px 9px;
