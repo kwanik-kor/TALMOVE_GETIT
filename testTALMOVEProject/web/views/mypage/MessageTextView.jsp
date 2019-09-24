@@ -28,7 +28,13 @@
 	<section class="section-top">
 		<div class="row" id="pannel">
 			<div id="pfpreview">
-				<img class="pfimg" src="../../resources/img/customer-1.jpg">
+			
+		      	<% if(loginUser.getUserOImageName() != null) { %>       
+			    	<img class="pfimg" src="/testt/views/mypage/images/fileimg/<%= loginUser.getUserOImageName() %>">
+                <% }else{ %> 
+             		<img class="pfimg" src="../../resources/img/customer-1.jpg">
+            	<% } %>
+				
 			</div>
 			<h2 id="teacher-name">
 				<span><%=loginUser.getUserName()%></span> 님 마이페이지

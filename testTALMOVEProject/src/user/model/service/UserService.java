@@ -79,4 +79,17 @@ public class UserService {
 		}
 		return result;
 	}
+	
+	public int deleteUser(String uemail) {
+		Connection conn = getConnection();
+		int result = udao.deleteUser(conn, uemail);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
 }
