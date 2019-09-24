@@ -157,5 +157,38 @@ public class CourseDao {
 			return courseList;
 		}
 
+		public int setCourseOpen(Connection conn, int courseNo, int price) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String query = "UPDATE COURSE SET OPEN_YN = 'Y', PRICE = ? WHERE COURSE_NO = ?";
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, price);
+				pstmt.setInt(2, courseNo);
+				result = pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			return result;
+		}
+
+		public int deleteCourse(Connection conn, int courseNo) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String query = "DELETE FROM COURSE WHERE COURSE_NO = ?";
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, courseNo);
+				result = pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			return result;
+		}
+
 
 }
