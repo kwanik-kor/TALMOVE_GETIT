@@ -27,9 +27,13 @@
     <section class="section-top">
         <div class="row" id="pannel">
             <div id="pfpreview">
-                <img class="pfimg" src="../../resources/img/customer-1.jpg">
+            	<% if(loginTeacher.getTeacherRimageName() != null){ %>
+            	<img class="pfimg" src="/testt/resources/tprofile_upfiles/<%= loginTeacher.getTeacherRimageName() %>">
+            	<% }else{ %>
+                <img class="pfimg" src="../../resources/img/defaultUser.jpg">
+                <% } %>
             </div>
-            <h2 id="teacher-name"><span>장관익</span> 선생님 정보</h2>
+            <h2 id="teacher-name"><span><%= loginTeacher.getTeacherName() %></span> 선생님 정보</h2>
         </div>
     </section>
     <section class="section-middle clearfix">

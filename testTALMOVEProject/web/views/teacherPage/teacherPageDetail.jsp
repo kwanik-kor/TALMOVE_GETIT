@@ -47,11 +47,11 @@
     <section class="section-middle clearfix">
         <div class="left-side">
             <ul class="tmenu">
-                <li><a class="active-menu" href="teacherPageDetail.jsp">강사정보</a></li>
+                <li><a class="active-menu" href="/testt/views/teacherPage/teacherPageDetail.jsp">강사정보</a></li>
                 <li><a href="/testt/gtcourse">강좌관리</a></li>
-                <li><a href="teacherReferenceData.jsp">수강생정보</a></li>
-                <li><a href="teacherIncomeDetail.jsp">수익내역</a></li>
-                <li><a href="teacherComment.jsp">댓글</a></li>
+                <li><a href="/testt/views/teacherPage/teacherReferenceData.jsp">수강생정보</a></li>
+                <li><a href="/testt/views/teacherPage/teacherIncomeDetail.jsp">수익내역</a></li>
+                <li><a href="/testt/views/teacherPage/teacherComment.jsp">댓글</a></li>
             </ul>
         </div>
         <div class="right-side">
@@ -64,6 +64,7 @@
                     	<% }else{ %>
                         <img id="editImg" class="pfimg" src="../../resources/img/defaultUser.jpg" alt="">
                         <% } %>
+                        <input type="hidden">
                         <label for="pffile">사진변경<input type="file" id="pffile" name="pffile" accept="image/*"></label>    
                     </div>
                     <div class="right-top-right">
@@ -136,6 +137,7 @@
 		            }).then(function(resp){
 		            	const blobUrl = window.URL.createObjectURL(resp);
 		                $('#editImg').attr("src", blobUrl);
+		                console.log(resp);
 		                console.log($('#pffile').val());
 		                console.log($('#editImg').attr("src"));
 		                $('.modal-crop').removeClass('is-open');
