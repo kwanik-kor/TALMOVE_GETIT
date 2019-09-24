@@ -1,0 +1,286 @@
+@charset "UTF-8";
+
+.clearfix {zoom: 1}
+.clearfix:after {
+    content: '.';
+    clear: both;
+    display: block;
+    min-height: 0;
+    visibility: hidden;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}
+
+#courseintro {
+	background: rgb(63, 63, 63);
+	width: 100%;
+	height: 340px;
+	color: white;
+	font-weight: bold;
+	padding: 3% 0 0 5%;
+}
+
+#coursename {
+	font-size: 2rem;
+}
+
+.coursecomment {
+	margin-top: 1%;
+}
+
+#dvideo {
+	width: 70%;
+}
+
+#dvideo video {
+	width: 80%;
+	height: 400px;
+	padding: 80px 0 0 80px;
+	float: left;
+}
+
+#priceinfo {
+	border: 1px solid lightgray;
+	width: 30%;
+	margin: 80px 0 0 80px;
+	height: 500px;
+	float: left;
+	border-radius: 13px;
+}
+
+#price {
+	font-size: 3rem;
+	font-weight: bold;
+	padding-left: 8%;
+}
+
+#addcart {
+	background: red;
+	border: 0;
+	width: 80%;
+	height: 60px;
+	border-radius: 8px;
+	color: white;
+	font-size: 1rem;
+	font-weight: bold;
+	margin-left:9%;
+}
+
+#direct {
+	background: white;
+	margin: 8% 0 0 9%;
+	border: 1px solid black;
+	width: 80%;
+	height: 60px;
+	border-radius: 8px;
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+#videoimage {
+	float: left;
+	margin: 10% 0 0 9%;
+}
+
+#videonum {
+	float: left;
+	color: gray;
+	font-weight: bold;
+	padding: 5% 0 0 2%;
+}
+
+#fileimage {
+	float: left;
+	clear: both;
+	margin: 5% 0 0 10%;
+}
+
+#filenum {
+	float: left;
+	color: gray;
+	font-weight: bold;
+	padding-left: 3.5%;
+}
+
+#comment {
+	width: 50%;
+	margin-left: 6%;
+	height: 200px;
+	float: left;
+	margin-top: -50px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+
+#pco {
+	font-size: 2rem;
+	font-weight: bold;
+	padding-left: 4%;
+}
+
+#ulco {
+	font-size: 1.2rem;
+	padding-left: 4%;
+}
+
+#lectureList {
+	width: 50%;
+	margin-left: 6%;
+	float: left;
+	margin-top: 50px;
+}
+
+#lectureList hr {
+	border: 0.8px solid lightgray;
+}
+
+#lectlist {
+	font-weight: bold;
+	font-size: 2rem;
+}
+
+.secname {
+	padding: 7px;
+	font-weight: bold;
+}
+
+.secmin {
+	float: left;
+}
+
+.secundo {
+	margin: 10px 0 0 93px;
+}
+
+#secmore {
+	text-align: center;
+	padding: 10px;
+}
+
+.hide1, .hide2 {
+	display: none;
+}
+
+.dropdown1, .dropdown2 {
+	cursor: pointer;
+}
+
+#teacherinfo {
+	width: 56%;
+	margin-left: 6%;
+	height: 200px;
+	float: left;
+	margin-top: 50px;
+}
+
+#infoleft {
+	width: 20%;
+	float: left;
+}
+
+#infoleft img {
+	width: 75%;
+	margin-top: 17px;
+}
+
+#title {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.tp{font-size:0.6rem;}
+
+.boldfont {
+	font-weight: bold;
+}
+
+#tname {
+	color: blue;
+	font-weight: bold;
+	font-size: 1.5rem;
+	margin-top:39px;
+}
+
+#gradu {
+	margin-top: 60px;
+	font-size: 0.9rem;
+}
+
+#tco {
+	font-size:0.9rem;
+	margin-top: 20px;
+}
+
+#review {
+	width: 55%;
+	margin-left: 6%;
+	height: 200px;
+	float: left;
+	margin-top: 121px;
+}
+
+#rtitle {
+	font-size: 1.8rem;
+	font-weight: bold;
+}
+
+#review img {
+	width: 14%;
+	float: left;
+}
+
+#talkbubble {
+	margin-left: 39px;
+	float: left;
+	width: 592px;
+	height: 143px;
+	background-color:skyblue;
+}
+
+#rco {
+	margin-left: 35px;
+	margin-top: 20px;
+}
+
+.rname {
+	color: black;
+	font-size: 1.3rem;
+	font-weight: bold;
+	float: left;
+	margin:0;
+	margin-right:15px;
+}
+
+.rday {
+	color: gray;
+	padding-top: 4px;
+	margin:0;
+}
+
+.rstar {
+	color: rgb(244, 193, 80);
+	clear: both;
+	font-size: 1.3rem;
+	margin:0;
+	margin-top:10px;
+}
+
+.rre {
+	padding-top: 10px;
+	margin:0;
+}
+
+span.star-prototype, span.star-prototype > * {
+    height: 16px; 
+    background: url(/testt/views/course/img/YsyS5y8.png) 0 -16px repeat-x;
+    width: 80px;
+    display: inline-block;
+}
+ 
+span.star-prototype > * {
+    background-position: 0 0;
+    max-width:80px; 
+}

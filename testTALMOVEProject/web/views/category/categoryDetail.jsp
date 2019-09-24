@@ -130,10 +130,10 @@
 		<div class="row">
 		<% for(Course course : list){ %>
 		<div class="class clearfix">
-            <div class="image-place"><img src="/testt/resources/img/sample_thumbnail2.jpg"></div>
+            <div class="image-place"><a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><img src="/testt/resources/img/sample_thumbnail2.jpg"></a></div>
             <div class="comment">
                 <ul id="ulcomment_1">
-                    <li class="co_1"><p><%= course.getCourseName() %></p></li>
+                    <li class="co_1"><a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><%= course.getCourseName() %></a></li>
                     <li class="co_2"><ul class="detail"><li>19개의 강의</li><li>33분</li></ul></li>
                     <li class="co_3"><p><%= course.getDescription() %></p></li>
                 </ul>
@@ -176,6 +176,7 @@
 		    </li>
 		  </ul>
 		</div>
+		<div></div>
 	</section>
 	
 	<%@ include file="../common/footer.jsp" %>
