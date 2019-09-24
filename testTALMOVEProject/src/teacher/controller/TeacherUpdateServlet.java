@@ -49,6 +49,9 @@ public class TeacherUpdateServlet extends HttpServlet {
 		loginTeacher.setTeacherIntro(tintro);
 		String oFileName = mrequest.getFilesystemName("pffile");
 		if(oFileName != loginTeacher.getTeacherOimageName()) {
+			if(loginTeacher.getTeacherRimageName() != null) {
+				new File(request.getSession().getServletContext().getRealPath("/resources/tprofile_upfiles") + "/" + loginTeacher.getTeacherRimageName()).delete();
+			}
 			loginTeacher.setTeacherOimageName(oFileName);
 			if(oFileName != null) {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
