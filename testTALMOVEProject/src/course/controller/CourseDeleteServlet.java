@@ -1,5 +1,6 @@
 package course.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -20,8 +21,10 @@ public class CourseDeleteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int courseNo = Integer.parseInt(request.getParameter("cno"));
+		String thumbnailRfileName = request.getParameter("cothumb");
 		int result = new CourseService().deleteCourse(courseNo);
 		if(result > 0) {
+			new File(request.getSession().getServletContext().getRealPath("/resources/course_upfiles") + "/" + thumbnailRfileName).delete();
 			response.sendRedirect("/testt/gtcourse");
 		}else {
 			response.sendRedirect("/testt/gtcourse");

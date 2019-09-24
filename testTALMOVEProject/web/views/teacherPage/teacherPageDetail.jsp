@@ -34,7 +34,11 @@
     <section class="section-top">
         <div class="row" id="pannel">
             <div id="pfpreview">
-                <img class="pfimg" src="../../resources/img/customer-1.jpg">
+            	<% if(loginTeacher.getTeacherRimageName() != null){ %>
+            	<img class="pfimg" src="/testt/resources/tprofile_upfiles/<%= loginTeacher.getTeacherRimageName() %>">
+            	<% }else{ %>
+                <img class="pfimg" src="../../resources/img/defaultUser.jpg">
+                <% } %>
             </div>
             <h2 id="teacher-name"><span><%= loginTeacher.getTeacherName() %></span> 선생님 정보</h2>
         </div>
@@ -53,26 +57,30 @@
         <div class="right-side">
             <h2>강사정보</h2>
             <div class="right-top">
-                <form action="">
+                <form action="/testt/teaup.ed" method="post" enctype="multipart/form-data">
                     <div class="right-top-left clearfix">
-                        <img id="editImg" class="pfimg" src="../../resources/img/customer-1.jpg" alt="">
+                    	<% if(loginTeacher.getTeacherRimageName() != null){ %>
+                    	<img id="editImg" class="pfimg" src="/testt/resources/tprofile_upfiles/<%= loginTeacher.getTeacherRimageName() %>" alt="">
+                    	<% }else{ %>
+                        <img id="editImg" class="pfimg" src="../../resources/img/defaultUser.jpg" alt="">
+                        <% } %>
                         <label for="pffile">사진변경<input type="file" id="pffile" name="pffile" accept="image/*"></label>    
                     </div>
                     <div class="right-top-right">
-                        <label for="">선생님 이름</label>
-                        <input type="text" id="tname" value="<%= loginTeacher.getTeacherName() %>" name="tname">
-                        <label for="">선생님 메일</label>
+                        <label for="tname">선생님 이름</label>
+                        <input type="text" id="tname" name="tname" value="<%= loginTeacher.getTeacherName() %>" name="tname">
+                        <label for="temail">선생님 메일</label>
                         <input type="email" id="temail" value="<%= loginUser.getUserEmail() %>" readonly>
-                        <label for="">이력</label>
+                        <label for="tcareer">이력</label>
                         <% if(loginTeacher.getTeacherCareer() != null){ %>
-                        <input type="text" placeholder="학력, 경력 등" value="<%= loginTeacher.getTeacherCareer() %>">
+                        <input type="text" id="tcareer" name="tcareer" placeholder="학력, 경력 등" value="<%= loginTeacher.getTeacherCareer() %>">
                         <% }else{ %>
-                        <input type="text" placeholder="학력, 경력 등">
+                        <input type="text" id="tcareer" name="tcareer" placeholder="학력, 경력 등">
                         <% } %>
                     </div>
                     
                     <div id="edit-zone">
-                        <textarea id="content" value="<%= loginTeacher.getTeacherIntro() %>"></textarea>
+                        <textarea id="content" name="tintro"><%= loginTeacher.getTeacherIntro() %></textarea>
                     </div>
                     <button id="savebtn">저장하기</button>
                 </form>
@@ -122,11 +130,13 @@
 		        
 		        $('.change-img').on('click', function(){
 		            $('.crop-main').croppie('result', {
-		                type: 'base64',
+		                type: 'blob',
 		                format: 'jpeg',
 		                size: {width: 300, height: 300}
 		            }).then(function(resp){
-		                $('#editImg').attr("src", resp);
+		            	const blobUrl = window.URL.createObjectURL(resp);
+		                $('#editImg').attr("src", blobUrl);
+		                console.log($('#pffile').val());
 		                console.log($('#editImg').attr("src"));
 		                $('.modal-crop').removeClass('is-open');
 		                $('.modal-crop').removeClass('is-visible');
