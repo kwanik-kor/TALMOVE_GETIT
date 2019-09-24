@@ -39,22 +39,8 @@ public class getTeacherCoursesServlet extends HttpServlet {
 		request.setAttribute("courseList", courseList);
 		request.setAttribute("tagList", tagList);
 		request.setAttribute("ctList", ctList);
+		request.setAttribute("caList", caList);
 		view.forward(request, response);
-		
-		for(Course c : courseList) {
-			int upper = 0;
-			for(Category ca : caList) {
-				if(c.getCategoryNo() == ca.getCategoryNo()) {
-					System.out.println(c.getCourseName() + ": " + ca.getCategoryName());
-					upper = ca.getCategoryUpper();
-				}
-			}
-			for(Category ca : caList) {
-				if(upper == ca.getCategoryNo()) {
-					System.out.println(ca.getCategoryName());
-				}
-			}
-		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
