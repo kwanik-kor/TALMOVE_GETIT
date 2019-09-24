@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="teacher.model.vo.Teacher, course.model.vo.Course, tag.model.vo.Tag, java.util.ArrayList" %>
+<%@ page import="teacher.model.vo.Teacher, course.model.vo.Course, tag.model.vo.Tag, course_tag.model.vo.CourseTag, java.util.ArrayList" %>
 <%
 	Teacher loginTeacher = (Teacher)session.getAttribute("loginTeacher");
 	ArrayList<Course> clist = (ArrayList<Course>)request.getAttribute("courseList");
 	ArrayList<Tag> tlist = (ArrayList<Tag>)request.getAttribute("tagList");
+	ArrayList<CourseTag> ctList = (ArrayList<CourseTag>)request.getAttribute("ctList");
 %>
 <!DOCTYPE html>
 <html>
@@ -74,13 +75,19 @@
                         <form class="course-info" action="">
                             <label for="">강좌명</label> <input type="text" name="courseName" value="<%= c.getCourseName() %>">
                             <label for="">강좌소개</label> <input type="text" name="description" value="<%= c.getDescription() %>">
-                            <label for="">태그</label> <input type="text">
+                            <label for="">태그</label> <input class="tag-input" type="text" placeholder="태그를 입력해주세요(최대 15개)">
                             <div class="tag-wrapper">
-                                <div class="plus-tag">
-                                    <div class="tags">
-							    	<p class="tagName">ㅇㅇ</p>
-							    	<p class="del-tag" onclick="deleteTag(this);">&times;</p>
-							    </div>
+                            	<div class="plus-tag">
+                            	<% for(CourseTag ct : ctList){ %>
+                            		<% for(Tag t : tlist){ %>
+                            			<% if(c.getCourseNo() == ct.getCourseNo() && ct.getTagId() == t.getTagId()){ %>
+		                                    <div class="tags">
+										    	<p class="tagName"><%= t.getTagName() %></p>
+										    	<p class="del-tag" onclick="deleteTag(this);">&times;</p>
+										    </div>
+		                                <% } %>
+                            		<% } %>
+                            	<% } %>
                                 </div>
                             </div>
 				            
@@ -115,7 +122,7 @@
                     </div>
                 </div>
             </div>
-            <% } %>
+            <% } %>	
         </div>
     </section>
     <%@ include file="../common/footer.jsp" %>
@@ -193,6 +200,41 @@
 	    		}
 	    	}
 	    });
+	    
+	    $('.tag-input').keyup(function(){
+	    	var index = $('.tag-input').index(this);
+	    	if(window.event.keyCode == 13){
+	    		if($(this).val() != ""){
+	    			addTag(index);
+	    		}
+	    	}
+	    	if(window.event.keyCode == 32){
+	    		if($(this).val() == " "){
+	    			alert("내용을 입력해주세용");
+	    			$(this).val('');
+	    		}else{
+	    			addTag(index);
+	    		}
+	    	}
+	    });
+	    
+	    function addTag(index){
+	    	var tagCnt = $('.plus-tag').eq(index).children('.tags').length;
+	    	if(tagCnt < 15){
+	    		var tag = "<div class='tags'><p class='tagName'>";
+	    		var tagInput = $('.tag-input').eq(index).val();
+	    		tag += tagInput + "</p><p class='del-tag' onclick='deleteTag(this);'>&times;</p></div>";
+	    		$('.plus-tag').eq(index).html($('.plus-tag').eq(index).html() + tag);
+	    		$('.tag-input').eq(index).val('');
+	    	}else{
+	    		alert("태그는 15개 까지 입력할 수 있습니다!");
+	    	}
+	    }
+	    
+	    function deleteTag(del){
+	    	var indexNo = $('.del-tag').index(del);
+	    	$('.tags').eq(indexNo).remove();
+	    }
     </script>
 </body>
 
