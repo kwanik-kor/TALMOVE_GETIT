@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="teacher.model.vo.Teacher, course.model.vo.Course, java.util.ArrayList" %>
+<%@ page import="teacher.model.vo.Teacher, course.model.vo.Course, tag.model.vo.Tag, java.util.ArrayList" %>
 <%
 	Teacher loginTeacher = (Teacher)session.getAttribute("loginTeacher");
 	ArrayList<Course> clist = (ArrayList<Course>)request.getAttribute("courseList");
+	ArrayList<Tag> tlist = (ArrayList<Tag>)request.getAttribute("tagList");
 %>
 <!DOCTYPE html>
 <html>
@@ -74,6 +75,15 @@
                             <label for="">강좌명</label> <input type="text" name="courseName" value="<%= c.getCourseName() %>">
                             <label for="">강좌소개</label> <input type="text" name="description" value="<%= c.getDescription() %>">
                             <label for="">태그</label> <input type="text">
+                            <div class="tag-wrapper">
+                                <div class="plus-tag">
+                                    <div class="tags">
+							    	<p class="tagName">ㅇㅇ</p>
+							    	<p class="del-tag" onclick="deleteTag(this);">&times;</p>
+							    </div>
+                                </div>
+                            </div>
+				            
                             <label for="">카테고리</label>
                             <select class="1stC" name="bank" style="text-align: center;" required>
                                 <option value="">1차 카테고리</option>
