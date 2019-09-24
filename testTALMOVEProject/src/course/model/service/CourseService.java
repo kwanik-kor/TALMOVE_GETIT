@@ -90,5 +90,27 @@ public class CourseService {
 		close(conn);
 		return courseList;
 	}
+	public int setCourseOpen(int courseNo, int price) {
+		Connection conn = getConnection();
+		int result = cDao.setCourseOpen(conn, courseNo, price);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	public int deleteCourse(int courseNo) {
+		Connection conn = getConnection();
+		int result = cDao.deleteCourse(conn, courseNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 
 }
