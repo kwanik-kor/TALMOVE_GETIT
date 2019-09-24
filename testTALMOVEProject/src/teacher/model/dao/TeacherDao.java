@@ -84,5 +84,26 @@ public class TeacherDao {
 		return teacher;
 	}
 
+	public int upTeacherInfo(Connection conn, Teacher loginTeacher) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "UPDATE TEACHER SET TEACHER_NAME = ?, TEACHER_CAREER = ?, TEACHER_INTRO = ?, TEACHER_OIMAGE_NAME = ?, TEACHER_RIMAGE_NAME = ? WHERE TEACHER_NO = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, loginTeacher.getTeacherName());
+			pstmt.setString(2, loginTeacher.getTeacherCareer());
+			pstmt.setString(3, loginTeacher.getTeacherIntro());
+			pstmt.setString(4, loginTeacher.getTeacherOimageName());
+			pstmt.setString(5, loginTeacher.getTeacherRimageName());
+			pstmt.setInt(6, loginTeacher.getTeacherNo());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 
 }

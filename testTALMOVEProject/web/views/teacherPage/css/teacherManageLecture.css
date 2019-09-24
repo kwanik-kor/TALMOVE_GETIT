@@ -1,116 +1,233 @@
-@charset "utf-8";
+@charset "UTF-8";
 
-div.block {
-    position: relative;
-    float: left;
-    padding: 7px 1px 2px 1px;
-    border: 1px solid gray;
-    border-radius: 7px;
-    width: 315px;
-    height: 380px;
-    margin: 5px 3px 0px 7px;
-    padding: 3px;
-    font-size: 15px;
-    border-bottom-style: outset;
-    border-right-style: outset;
-    box-shadow: 1.5px 1px;
-}
-
-
-.block-img {
-    display: block;
-    margin: 0px auto;
-    width: inherit-1px;
-    height: 230px;
-    border-radius: 7px;
-    background-color: #2d2c46;
-    background-image: url("../img/%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.png");
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.block-text {
-    position: absolute;
-    float: left;
-    margin: 3px 2px 1px 2px;
-    width: inherit;
-    height: 140px;
-    display: flex;
-}
-
-.block .detailbtn {
-    position: absolute;
-    overflow: hidden;
-    height: 25px;
-    font: 8px;
-    top: 75px;
-    left: 245px;
-}
-
-.block button {
-    background: none;
-    color: #63beeb;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 600;
-    height: 17px;
-    padding: 0px;
-    box-shadow: 0px;
-    border-style: none;
-    border-radius: 2px;
-
-}
-
-.block button:nth-of-type(2) {
-    position: absolute;
-    overflow: hidden;
-    color: #d33d5b;
-    height: 25px;
-    font: 8px;
-    top: 100px;
-    left: 245px;
-}
-
-button:hover {
-    border-right-style: outset;
-    border: 0.5px solid gray;
-    box-shadow: 0.7px 0.5px;
-    font-weight: 900;
-}
-
-label {
-    position: relative;
-    text-align: center;
-    margin-left: 37px;
-    padding-top: 70px;
+.course{
+    display: inline-block;
     width: 300px;
-
+    border: 1px solid #c9c9c9;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    float: left;
+    margin-right: 15px;
 }
 
-#make-newlecture {
-    border: 0.7px solid #353b48;
-    color: #63beeb;
+.newCourse{
+    display: inline-block;
+    text-decoration: none;
+    margin-top: 27px;
+    color: #00a8ff;
+    width: 130px;
+    height: 35px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
     text-align: center;
-    width: 400px;
-    ;
-    height: 350px;
-    font-weight: 600;
-    font-size: 18px;
-    border-radius: 2px;
-    padding: 14px 100px 14px 100px;
+    line-height: 35px;
+    border-radius: 5px;
+    transition: background 0.2s ease;
+}
+
+.newCourse:hover{
+    background: #cceeff;
+}
+
+.course img{
+    width: 100%;
+    height: 184px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.course-content{
+    width: 100%;
+    height: 120px;
+}
+.course-content h3{
+    font-size: 0.9rem;
+    width: 90%;
+    margin-left: 5%;
+}
+.openYN{
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 300;
+    margin-left: 5%;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.openYN ~span{
+    font-size: 0.8rem;
+}
+.course-content a{
+    display: inline-block;
+    float: right;
+    text-decoration: none;
+    color: #00a8ff;
+    font-size: 0.8rem;
+    font-weight: 400;
+    margin-right: 5px;
+    margin-top: 15px;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background 0.15s ease;
+}
+
+a.lecAdmin{
+    color: #e84393;
+}
+a.lecAdmin:hover{
+    background: #e0d4da;
+}
+a.lecEdit:hover{
+    background:#cceeff;
+}
+
+/* course modal */
+.modal-course {
+    display: none;
+    position: fixed;
+    z-index: 99;
+    padding-top: 5%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    opacity: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    transition: all .2s linear;
+}
+
+.modal-course-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
     border-radius: 10px;
-    text-decoration: none;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    width: 700px;
+}    
+
+.is-visible {
+    display: block;
+}
+.is-open{
+    opacity: 1;
 }
 
-#make-newlecture:visited {
-    text-decoration: none;
+.course-admin-top, .course-admin-middle, .course-admin-bottom{
+    width: 90%;
+    margin: 0 auto;
+}
+.course-admin-top, .course-admin-middle{
+    border-bottom: 1px solid #d3d3d3;
 }
 
-#make-newlecture:hover{
-    background: c7f0db;
-    border-right-style: outset;
-    box-shadow: 1.5px 1.2px;
+.modal-course-content h3{
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #00a8ff;
 }
-.divide {
-    margin-top: 60px;
+
+.course-info input[type="file"]{
+    background: #fff;
+    border: 0;
 }
+form.course-info img{
+    width: 70%;
+    margin: 10px 15%;
+    height: auto;
+}
+
+form.course-info label, form.course-info input, select,
+form.course-price label, form.course-price input{
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+form.course-info input,
+form.course-price input{
+    font-size: 0.7rem;
+    height: 30px;
+    padding: 5px;
+}
+.course-info label, .course-price label{
+    width: 20%;
+    font-size: 0.9rem;
+}
+
+.course-info input, .course-price input{
+    width: 70%;
+}
+
+.course-info select{
+    width: 30%;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    line-height: 1rem;
+    padding: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.course-info button,
+.openBtn,
+.delBtn{
+    display: inline-block;
+    position: relative;
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+    background: #fff;
+    cursor: pointer;
+    margin-top: 15px;
+    padding: 10px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+button.saveBtn{
+    margin-left: 81%;
+    color: #00a8ff;
+}
+button.cancelBtn{
+    margin-left: 5px;
+    color: #e84393;
+}
+.saveBtn:hover,
+.openBtn:hover{
+    background: #e6f6ff;
+}
+.cancelBtn:hover,
+.delBtn:hover{
+    background: #e2ccd7;
+}
+.openBtn{
+    float: right;
+    color: #00a8ff;
+}
+.delBtn{
+    float: right;
+    color: #e84393;
+}
+
+.course-admin-bottom h3{
+    color: #e84393;
+}
+.course-admin-top h3{
+    display: inline-block;
+}
+.closeBtn{
+    display: inline-block;
+    float: right;
+    border: 0;
+    background: #fff;
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+.course-content a{
+	cursor: pointer;
+}
+

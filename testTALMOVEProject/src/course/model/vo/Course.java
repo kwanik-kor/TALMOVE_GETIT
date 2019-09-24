@@ -15,6 +15,7 @@ public class Course implements Serializable{
 	private int price;
 	private int purchaseCount;
 	
+	public Course() {}
 	
 	public Course(int courseNo, int teacherNo, int categoryNo, String courseName, String thumbnailOfileName,
 			String thumbnailRfileName, String description, String openYN, int price, int purchaseCount) {

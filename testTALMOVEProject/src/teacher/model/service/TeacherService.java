@@ -60,5 +60,17 @@ public class TeacherService {
 		return teacher;
 	}
 
+	public int upTeacherInfo(Teacher loginTeacher) {
+		Connection conn = getConnection();
+		int result = tDao.upTeacherInfo(conn, loginTeacher);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
 	
 }
