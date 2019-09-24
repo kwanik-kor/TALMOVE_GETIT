@@ -1,15 +1,14 @@
 package category.model.dao;
 
-import static common.JDBCTemplate.close;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import category.model.vo.Category;
 import course.model.vo.Course;
+
+import static common.JDBCTemplate.*;
 
 public class CategoryDao {
 	public ArrayList<Course> selectSortPurchaseCounrt(Connection conn, String sortKeyword){
@@ -57,30 +56,6 @@ public class CategoryDao {
 			close(pstmt);
 		}
 		
-		return clist;
-	}
-
-	public ArrayList<Category> getAllCategoryList(Connection conn) {
-		ArrayList<Category> clist = new ArrayList<Category>();
-		Statement stmt = null;
-		ResultSet rset = null;
-		String query = "SELECT * FROM CATEGORY";
-		try {
-			stmt = conn.createStatement();
-			rset = stmt.executeQuery(query);
-			while(rset.next()) {
-				Category c = new Category();
-				c.setCategoryNo(rset.getInt("category_no"));
-				c.setCategoryName(rset.getString("category_name"));
-				c.setCategoryUpper(rset.getInt("category_upper"));
-				clist.add(c);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(stmt);
-		}
 		return clist;
 	}
 

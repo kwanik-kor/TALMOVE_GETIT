@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="teacher.model.vo.Teacher, course.model.vo.Course, tag.model.vo.Tag, category.model.vo.Category ,course_tag.model.vo.CourseTag, java.util.ArrayList" %>
+<%@ page import="teacher.model.vo.Teacher, course.model.vo.Course, tag.model.vo.Tag, java.util.ArrayList" %>
 <%
 	Teacher loginTeacher = (Teacher)session.getAttribute("loginTeacher");
 	ArrayList<Course> clist = (ArrayList<Course>)request.getAttribute("courseList");
 	ArrayList<Tag> tlist = (ArrayList<Tag>)request.getAttribute("tagList");
-	ArrayList<CourseTag> ctList = (ArrayList<CourseTag>)request.getAttribute("ctList");
-	ArrayList<Category> caList = (ArrayList<Category>)request.getAttribute("caList");
 %>
 <!DOCTYPE html>
 <html>
@@ -26,7 +24,6 @@
     <link type="text/css" rel="stylesheet" href="/testt/views/teacherPage/css/common.css">
     <link type="text/css" rel="stylesheet" href="/testt/views/teacherPage/css/teacherManageLecture.css">
     <script src="https://kit.fontawesome.com/08d0951667.js"></script>
-    <script type="text/javascript" src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
 </head>
 
 <body>
@@ -76,20 +73,14 @@
                         <h3>강좌 정보 수정</h3><button class="closeBtn">&times;</button>
                         <form class="course-info" action="">
                             <label for="">강좌명</label> <input type="text" name="courseName" value="<%= c.getCourseName() %>">
-                            <label for="">강좌한줄소개</label> <input type="text" name="description" value="<%= c.getDescription() %>">
-                            <label for="">태그</label> <input class="tag-input" type="text" placeholder="태그를 입력해주세요(최대 15개)">
+                            <label for="">강좌소개</label> <input type="text" name="description" value="<%= c.getDescription() %>">
+                            <label for="">태그</label> <input type="text">
                             <div class="tag-wrapper">
-                            	<div class="plus-tag">
-                            	<% for(CourseTag ct : ctList){ %>
-                            		<% for(Tag t : tlist){ %>
-                            			<% if(c.getCourseNo() == ct.getCourseNo() && ct.getTagId() == t.getTagId()){ %>
-		                                    <div class="tags">
-										    	<p class="tagName"><%= t.getTagName() %></p>
-										    	<p class="del-tag" onclick="deleteTag(this);">&times;</p>
-										    </div>
-		                                <% } %>
-                            		<% } %>
-                            	<% } %>
+                                <div class="plus-tag">
+                                    <div class="tags">
+							    	<p class="tagName">ㅇㅇ</p>
+							    	<p class="del-tag" onclick="deleteTag(this);">&times;</p>
+							    </div>
                                 </div>
                             </div>
 				            
@@ -101,31 +92,8 @@
                             </select>
                             <select class="2ndC" name="bank" style="text-align: center;" required>
                                 <option value="">2차 카테고리</option>
-                                <%
-                                int upper = 0;
-                                for(Category ca : caList){
-                                	if(c.getCategoryNo() == ca.getCategoryNo()){
-                                		upper = ca.getCategoryUpper();
-                                %>
-                                	<option value="<%= c.getCategoryNo() %>" selected><%= ca.getCategoryName() %></option>
-                                <% 
-                                	}
-                                }
-                                for(Category ca : caList){
-                                	if(upper == ca.getCategoryNo()){
-                                %>
-                                <script type="text/javascript">
-                                	$('.1stC').children('option').val("<%= ca.getCategoryName() %>").prop("selected", true);
-                                </script>
-                                <%
-                                	}
-                                }
-                                %>
                             </select>
-                            <label>썸네일</label>
-                            <div class="thumbdiv">
-                            	<label class="thumblabel" for="thumbimg">사진 변경</label><input id="thumbimg" type="file">
-                            </div>
+                            <label for="">썸네일</label><input type="file">
                             <img src="/testt/resources/course_upfiles/<%= c.getThumbnailRfileName() %>" alt="thumbnailImage">
                             <button class="saveBtn">저장</button><button class="cancelBtn">취소</button>
                         </form>
@@ -147,11 +115,11 @@
                     </div>
                 </div>
             </div>
-            <% } %>	
+            <% } %>
         </div>
     </section>
     <%@ include file="../common/footer.jsp" %>
-    
+    <script type="text/javascript" src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript">
 	    $('.lecAdmin').on('click', function(){
 	    	var index = $('.lecAdmin').index(this);
@@ -225,41 +193,6 @@
 	    		}
 	    	}
 	    });
-	    
-	    $('.tag-input').keyup(function(){
-	    	var index = $('.tag-input').index(this);
-	    	if(window.event.keyCode == 13){
-	    		if($(this).val() != ""){
-	    			addTag(index);
-	    		}
-	    	}
-	    	if(window.event.keyCode == 32){
-	    		if($(this).val() == " "){
-	    			alert("내용을 입력해주세용");
-	    			$(this).val('');
-	    		}else{
-	    			addTag(index);
-	    		}
-	    	}
-	    });
-	    
-	    function addTag(index){
-	    	var tagCnt = $('.plus-tag').eq(index).children('.tags').length;
-	    	if(tagCnt < 15){
-	    		var tag = "<div class='tags'><p class='tagName'>";
-	    		var tagInput = $('.tag-input').eq(index).val();
-	    		tag += tagInput + "</p><p class='del-tag' onclick='deleteTag(this);'>&times;</p></div>";
-	    		$('.plus-tag').eq(index).html($('.plus-tag').eq(index).html() + tag);
-	    		$('.tag-input').eq(index).val('');
-	    	}else{
-	    		alert("태그는 15개 까지 입력할 수 있습니다!");
-	    	}
-	    }
-	    
-	    function deleteTag(del){
-	    	var indexNo = $('.del-tag').index(del);
-	    	$('.tags').eq(indexNo).remove();
-	    }
     </script>
 </body>
 
