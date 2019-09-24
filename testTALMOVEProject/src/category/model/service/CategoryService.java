@@ -118,12 +118,12 @@ public class CategoryService {
 		return llist;
 	}
 
-	public ArrayList<Teacher> teachherView(int courseNo) {
+	/*public ArrayList<Teacher> teachherView(int courseNo) {
 		Connection conn = getConnection();
 		ArrayList<Teacher> tlist = cDao.teacherView(conn, courseNo);
 		close(conn);
 		return tlist;
-	}
+	}*/
 
 }
 

@@ -417,7 +417,7 @@ public class CategoryDao {
 		return llist;
 	}
 
-	public ArrayList<Teacher> teacherView(Connection conn, int courseNo) {
+	/*public ArrayList<Teacher> teacherView(Connection conn, int courseNo) {
 		ArrayList<Teacher> tlist = new ArrayList<Teacher>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -433,6 +433,9 @@ public class CategoryDao {
 			while(rset.next()) {
 				Teacher teacher = new Teacher();
 				
+				teacher.setTeacherNo(rset.getInt("teacher_no"));
+				teacher.setUserNo(rset.getInt("user_no"));
+				teacher.setTeacherName(rset.getString("teacher_name"));
 				TEACHER_NO
 				USER_NO
 				TEACHER_NAME
@@ -451,6 +454,6 @@ public class CategoryDao {
 			close(pstmt);
 		}
 		return tlist;
-	}
+	}*/
 	
 }

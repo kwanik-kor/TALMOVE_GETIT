@@ -65,7 +65,7 @@ public class CourseDetailViewServlet extends HttpServlet {
 		ArrayList<Lecture> llist = cservice.lectureView(courseNo);
 		
 		//강사 정보
-		ArrayList<Teacher> tlist = cservice.teachherView(courseNo);
+//		ArrayList<Teacher> tlist = cservice.teachherView(courseNo);
 		
 		RequestDispatcher view = null;
 	     response.setContentType("text/html; charset=utf-8");
