@@ -1,9 +1,10 @@
 package tag.model.dao;
 
-import static common.JDBCTemplate.*;
+import static common.JDBCTemplate.close;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import tag.model.vo.Tag;
@@ -59,6 +60,30 @@ public class TagDao {
 		}
 		
 		return result;
+	}
+
+	public ArrayList<Tag> getTagListByTNo(Connection conn, int teacherNo) {
+		ArrayList<Tag> tagList = new ArrayList<Tag>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT TAG_ID, TAG_NAME FROM TAG WHERE TAG_ID IN (SELECT TAG_ID FROM COURSE_TAG WHERE COURSE_NO IN(SELECT COURSE_NO FROM COURSE WHERE TEACHER_NO = ?))";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, teacherNo);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Tag t = new Tag();
+				t.setTagId(rset.getInt("tag_id"));
+				t.setTagName(rset.getString("tag_name"));
+				tagList.add(t);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return tagList;
 	}
 
 }

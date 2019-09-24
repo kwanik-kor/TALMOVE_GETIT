@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="user.model.vo.User, message.model.vo.Message, java.util.ArrayList" %>
+<%
+	User loginUser = (User)session.getAttribute("loginUser");
+/* 	Message message = (Message)session.getAttribute("message"); */
+	//forwarding 된 request 객체에 저장한 정보 꺼내기
+	ArrayList<Message> msglist = (ArrayList<Message>)request.getAttribute("list");		
+%>	
+
+
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,13 +34,20 @@
 </head>
 
 <body>
-	<%@ include file="../common/gnb.jsp"%>
+	<%-- <%@ include file="../common/gnb.jsp"%> --%>
 
 	<section class="section-top">
 		<div class="row" id="pannel">
 			<div id="pfpreview">
-				<img class="pfimg" src="../../resources/img/customer-1.jpg">
+				
+		      	<% if(loginUser.getUserOImageName() != null) { %>       
+			    	<img class="pfimg" src="/testt/views/mypage/images/fileimg/<%= loginUser.getUserOImageName() %>">
+                <% }else{ %> 
+             		<img class="pfimg" src="../../resources/img/customer-1.jpg">
+            	<% } %>
+				
 			</div>
+			
 			<h2 id="teacher-name">
 				<span><%=loginUser.getUserName()%></span> 님 마이페이지
 			</h2>
@@ -72,11 +89,61 @@
 
 				<!-- 메시지영역 -->
 				<div id="messageArea">
-
-					<div class="message">
+					
+					<% for(Message m : msglist){ %>
+					<div class="message" onclick="location.href='/testt/views/mypage/MessageTextView.jsp'">
 						<!--               <div class="imgBox">
                               <img src="/testt/views/mypage/images/absence_08.jpg">
                            </div> -->
+		<%-- 				<% if(m.getMsgRecipient() == loginUser.getUserEmail()) { %> --%>
+						<div class="sendMessageBox">
+								<form>
+								<img class="msgpfimg" src="/testt/views/mypage/images/fileimg/absence_08.jpg<%-- <%= loginUser.getUserOImageName() %> --%>">
+								<%-- <input type="hidden" name="sendermail"  value="<%= loginUser.getUserEmail() %>"> --%>
+								<!-- 이메일로 가져오기 -->
+								</form>
+								<form>
+								<span	id="personName"><%= m.getMsgSender() %></span> 
+								<span id="star">★</span>
+								<p id="sendDate"><%= m.getMsgDate() %><!-- 19/09/13 --></p>
+								<div class="balloon">
+									Hello~~~~~~~~~~~~~~~~~
+									<%= m.getMsgContent()%>
+								</div>
+								<!--                      클릭시 1:1 메시지창으로 -->
+								<p id="count"><!-- 3 --><%= m.getMsgReadCount()%></p>
+								</form>
+							
+						</div>
+<%-- 						<% } %>	 --%>
+
+					</div>
+					<% } %>	
+					<!-- 
+					<div class="message">
+					
+						              <div class="imgBox">
+                              <img src="/testt/views/mypage/images/absence_08.jpg">
+                           </div>
+
+						<div class="sendMessageBox">
+							<img src="/testt/views/mypage/images/absence_08.jpg"> 
+							<span	id="personName">Chris Haroun</span> 
+							<span id="star">★</span>
+							<p id="sendDate">19/09/13</p>
+							<div class="balloon"
+								onclick="location.href='/testt/views/mypage/MessageTextView.jsp'">
+								Hello~~~~~~~~~~~~~~~~~</div>
+							                     클릭시 1:1 메시지창으로
+							<p id="count">3</p>
+						</div>
+
+					</div>
+
+					<div class="message">
+						              <div class="imgBox">
+                              <img src="/testt/views/mypage/images/absence_08.jpg">
+                           </div>
 
 						<div class="sendMessageBox">
 							<img src="/testt/views/mypage/images/absence_08.jpg"> <span
@@ -85,15 +152,16 @@
 							<div class="balloon"
 								onclick="location.href='/testt/views/mypage/MessageTextView.jsp'">
 								Hello~~~~~~~~~~~~~~~~~</div>
-							<!--                      클릭시 1:1 메시지창으로 -->
+							                     클릭시 1:1 메시지창으로
 							<p id="count">3</p>
 						</div>
 
 					</div>
+
 					<div class="message">
-						<!--               <div class="imgBox">
+						              <div class="imgBox">
                               <img src="/testt/views/mypage/images/absence_08.jpg">
-                           </div> -->
+                           </div>
 
 						<div class="sendMessageBox">
 							<img src="/testt/views/mypage/images/absence_08.jpg"> <span
@@ -102,16 +170,16 @@
 							<div class="balloon"
 								onclick="location.href='/testt/views/mypage/MessageTextView.jsp'">
 								Hello~~~~~~~~~~~~~~~~~</div>
-							<!--                      클릭시 1:1 메시지창으로 -->
+							                     클릭시 1:1 메시지창으로
 							<p id="count">3</p>
 						</div>
 
 					</div>
 
 					<div class="message">
-						<!--               <div class="imgBox">
+						              <div class="imgBox">
                               <img src="/testt/views/mypage/images/absence_08.jpg">
-                           </div> -->
+                           </div>
 
 						<div class="sendMessageBox">
 							<img src="/testt/views/mypage/images/absence_08.jpg"> <span
@@ -120,60 +188,12 @@
 							<div class="balloon"
 								onclick="location.href='/testt/views/mypage/MessageTextView.jsp'">
 								Hello~~~~~~~~~~~~~~~~~</div>
-							<!--                      클릭시 1:1 메시지창으로 -->
+							                     클릭시 1:1 메시지창으로
 							<p id="count">3</p>
 						</div>
 
-					</div>
-
-					<div class="message">
-						<!--               <div class="imgBox">
-                              <img src="/testt/views/mypage/images/absence_08.jpg">
-                           </div> -->
-
-						<div class="sendMessageBox">
-							<img src="/testt/views/mypage/images/absence_08.jpg"> <span
-								id="personName">Chris Haroun</span> <span id="star">★</span>
-							<p id="sendDate">19/09/13</p>
-							<div class="balloon"
-								onclick="location.href='/testt/views/mypage/MessageTextView.jsp'">
-								Hello~~~~~~~~~~~~~~~~~</div>
-							<!--                      클릭시 1:1 메시지창으로 -->
-							<p id="count">3</p>
-						</div>
-
-					</div>
-
-					<div class="message">
-						<!--               <div class="imgBox">
-                              <img src="/testt/views/mypage/images/absence_08.jpg">
-                           </div> -->
-
-						<div class="sendMessageBox">
-							<img src="/testt/views/mypage/images/absence_08.jpg"> <span
-								id="personName">Chris Haroun</span> <span id="star">★</span>
-							<p id="sendDate">19/09/13</p>
-							<div class="balloon"
-								onclick="location.href='/testt/views/mypage/MessageTextView.jsp'">
-								Hello~~~~~~~~~~~~~~~~~</div>
-							<!--                      클릭시 1:1 메시지창으로 -->
-							<p id="count">3</p>
-						</div>
-
-					</div>
-	<!-- 				<div class="message">
-						<div class="imgBox">
-							<img src="/testt/views/mypage/images/absence_08.jpg">
-						</div>
-						<div class="sendMessageBox">
-							<span id="personName">Chris Haroun</span> <span id="star">★</span>
-							<p id="sendDate">19/09/13</p>
-							<div class="balloon"
-								onclick="location.href='/testt/views/mypage/MessageTextView.jsp'">
-								Hello~~~~~~~~~~~~~~~~~</div>
-							<p id="count">3</p>
-						</div>
 					</div> -->
+
 				</div>
 
 			</div>
@@ -185,46 +205,6 @@
 
 		</div>
 	</section>	
-		<script type="text/javascript">
-			var pf_file;
-			$(document).ready(function() {
-				$("#filebutton").on("change", handleImgFileSelect);
-			});
-
-			function handleImgFileSelect(e) {
-				var upfiles = e.target.files;
-				var upfilesArr = Array.prototype.slice.call(upfiles);
-
-				upfilesArr.forEach(function(f) {
-					if (!f.type.match("image.*")) {
-						alert("확장자는 이미지 확장자만 가능합니다.");
-
-					} else {
-						pf_file = f;
-
-						var reader = new FileReader();
-						reader.onload = function(e) {
-							$(".fileimg").attr("src", e.target.result);
-						}
-						reader.readAsDataURL(f);
-					}
-				});
-			} //handleImgFileSelect
-
-			$(document).ready(function() {
-				//div message 하위의  div balloon  클릭했을때
-				$("#msgmenu").click(function() {
-					var submenu = $(this).next("ul");
-
-					// submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
-					if (submenu.is(":visible")) {
-						submenu.slideUp();
-					} else {
-						submenu.slideDown();
-					}
-				});
-			}); // sidebar 클릭시
-		</script>
 	
 			<%@ include file="../common/footer.jsp" %>
 

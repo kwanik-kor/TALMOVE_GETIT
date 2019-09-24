@@ -25,7 +25,13 @@
 	<section class="section-top">
 		<div class="row" id="pannel">
 			<div id="pfpreview">
-				<img class="pfimg" src="../../resources/img/customer-1.jpg">
+			
+		      	<% if(loginUser.getUserOImageName() != null) { %>       
+			    	<img class="pfimg" src="/testt/views/mypage/images/fileimg/absence_08.jpg<%= loginUser.getUserOImageName() %>">
+                <% }else{ %> 
+             		<img class="pfimg" src="../../resources/img/customer-1.jpg">
+            	<% } %>
+				
 			</div>
 			<h2 id="teacher-name">
 				<span><%=loginUser.getUserName()%></span> 님 마이페이지
@@ -107,8 +113,9 @@
                            </div> -->
 
 						<div class="sendMessageBox">
-							<img src="/testt/views/mypage/images/absence_08.jpg"> <span
-								id="personName">Chris Haroun</span> <span id="star">★</span>
+							<img src="/testt/views/mypage/images/absence_08.jpg"> 
+							<span	id="personName">Chris Haroun</span> 
+							<span id="star">★</span>
 							<p id="sendDate">19/09/13</p>
 							<div class="balloon"
 								onclick="location.href='/testt/views/mypage/MessageTextView.jsp'">
@@ -180,45 +187,7 @@
 		</div>
 	</section>
 				<%@ include file="../common/footer.jsp" %>	
-		<script type="text/javascript">
-			var pf_file;
-			$(document).ready(function() {
-				$("#filebutton").on("change", handleImgFileSelect);
-			});
-
-			function handleImgFileSelect(e) {
-				var upfiles = e.target.files;
-				var upfilesArr = Array.prototype.slice.call(upfiles);
-
-				upfilesArr.forEach(function(f) {
-					if (!f.type.match("image.*")) {
-						alert("확장자는 이미지 확장자만 가능합니다.");
-
-					} else {
-						pf_file = f;
-
-						var reader = new FileReader();
-						reader.onload = function(e) {
-							$(".fileimg").attr("src", e.target.result);
-						}
-						reader.readAsDataURL(f);
-					}
-				});
-			} //handleImgFileSelect
-
-			$(document).ready(function() {
-				//div message 하위의  div balloon  클릭했을때
-				$("#msgmenu").click(function() {
-					var submenu = $(this).next("ul");
-
-					// submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
-					if (submenu.is(":visible")) {
-						submenu.slideUp();
-					} else {
-						submenu.slideDown();
-					}
-				});
-			}); // sidebar 클릭시
+	
 		</script>
 
 
