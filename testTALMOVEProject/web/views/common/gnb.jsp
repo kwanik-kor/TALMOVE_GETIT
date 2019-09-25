@@ -41,23 +41,23 @@
                     <li>카테고리</li>
                     <a onclick="setTimeout(toggleList('business'),200);"><li>비즈니스<i id="business-list" class="fa fa-chevron-down list-down"></i></li></a>
                     <ul class="toggle-business">
-                        <a href="/testt/ccourse?page=1&category=비즈니스"><li>비즈니스 전체보기</li></a>
-                        <a href="/testt/ccourse?page=1&category=커뮤니케이션"><li>커뮤니케이션</li></a>
-                        <a href="/testt/ccourse?page=1&category=경영"><li>경영</li></a>
-                        <a href="/testt/ccourse?page=1&category=판매"><li>판매</li></a>
-                        <a href="/testt/ccourse?page=1&category=전략"><li>전략</li></a>
-                        <a href="/testt/ccourse?page=1&category=운영"><li>운영</li></a>
+                        <a href="/testt/views/category/categoryDetail.jsp?category='비즈니스'"><li>비즈니스 전체보기</li></a>
+                        <a href="/testt/views/category/categoryDetail.jsp?category='커뮤니케이션'"><li>커뮤니케이션</li></a>
+                        <a href="/testt/views/category/categoryDetail.jsp?category='경영'"><li>경영</li></a>
+                        <a href="/testt/views/category/categoryDetail.jsp?category='판매'"><li>판매</li></a>
+                        <a href="/testt/views/category/categoryDetail.jsp?category='전략'"><li>전략</li></a>
+                        <a href="/testt/views/category/categoryDetail.jsp?category='운영'"><li>운영</li></a>
                     </ul>
                     <a onclick="toggleList('programming');"><li>프로그래밍<i id ="programming-list" class="fa fa-chevron-down list-down"></i></li></a>
                     <ul class="toggle-programming">
-                        <a href="/testt/ccourse?page=1&category=프로그래밍"><li>프로그래밍 전체보기</li></a>
-                        <a href="/testt/ccourse?page=1&category=프로그래밍 이론"><li>프로그래밍 이론</li></a>
-                        <a href="/testt/ccourse?page=1&category=프로그래밍 언어"><li>프로그래밍 언어</li></a>
-                        <a href="/testt/ccourse?page=1&category=웹"><li>웹</li></a>
-                        <a href="/testt/ccourse?page=1&category=모바일"><li>모바일</li></a>
-                        <a href="/testt/ccourse?page=1&category=게임"><li>게임</li></a>
-                        <a href="/testt/ccourse?page=1&category=DB"><li>DB</li></a>
-                        <a href="/testt/ccourse?page=1&category=데이터과학"><li>데이터과학</li></a>
+                        <a href="/testt/views/category/categoryDetail.jsp?category='프로그래밍'"><li>프로그래밍 전체보기</li></a>
+                        <a href="/testt/views/category/categoryDetail.jsp?category='프로그래밍 이론'"><li>프로그래밍 이론</li></a>
+                        <a href="/testt/views/category/categoryDetail.jsp?category='프로그래밍 언어'"><li>프로그래밍 언어</li></a>
+                        <a href="/testt/views/category/categoryDetail.jsp?category='웹'"><li>웹</li></a>
+                        <a href="/testt/views/category/categoryDetail.jsp?category='모바일'"><li>모바일</li></a>
+                        <a href="/testt/views/category/categoryDetail.jsp?category='게임'"><li>게임</li></a>
+                        <a href="/testt/views/category/categoryDetail.jsp?category='DB'"><li>DB</li></a>
+                        <a href="/testt/views/category/categoryDetail.jsp?category='데이터과학'"><li>데이터과학</li></a>
                     </ul>
                 </ul>
             </div>
@@ -71,22 +71,22 @@
                             <a id="programming" href="#">프로그래밍</a>
                             <div class="dropdown-contentSub">
                                 <div class="is-visible drop-business">
-                                    <a href="/testt/ccourse?page=1&category=비즈니스">비즈니스 전체보기</a>
-			                        <a href="/testt/ccourse?page=1&category=커뮤니케이션">커뮤니케이션</a>
-			                        <a href="/testt/ccourse?page=1&category=경영">경영</a>
-			                        <a href="/testt/ccourse?page=1&category=판매">판매</a>
-			                        <a href="/testt/ccourse?page=1&category=전략">전략</a>
-			                        <a href="/testt/ccourse?page=1&category=운영">운영</a>    
+                                    <a href="/testt/views/category/categoryDetail.jsp?category='비즈니스'">비즈니스 전체보기</a>
+			                        <a href="/testt/views/category/categoryDetail.jsp?category='커뮤니케이션'">커뮤니케이션</a>
+			                        <a href="/testt/views/category/categoryDetail.jsp?category='경영'">경영</a>
+			                        <a href="/testt/views/category/categoryDetail.jsp?category='판매'">판매</a>
+			                        <a href="/testt/views/category/categoryDetail.jsp?category='전략'">전략</a>
+			                        <a href="/testt/views/category/categoryDetail.jsp?category='운영'">운영</a>    
                                 </div>
                                 <div class="drop-programming">
-                                    <a href="/testt/ccourse?page=1&category=프로그래밍">프로그래밍 전체보기</a>
-			                        <a href="/testt/ccourse?page=1&category=프로그래밍 이론">프로그래밍 이론</a>
-			                        <a href="/testt/ccourse?page=1&category=프로그래밍 언어">프로그래밍 언어</a>
-			                        <a href="/testt/ccourse?page=1&category=웹">웹</a>
-			                        <a href="/testt/ccourse?page=1&category=모바일">모바일</a>
-			                        <a href="/testt/ccourse?page=1&category=게임">게임</a>
-			                        <a href="/testt/ccourse?page=1&category=DB">DB</a>
-			                        <a href="/testt/ccourse?page=1&category=데이터과학">데이터과학</a> 
+                                    <a href="/testt/views/category/categoryDetail.jsp?category='프로그래밍'">프로그래밍 전체보기</a>
+			                        <a href="/testt/views/category/categoryDetail.jsp?category='프로그래밍 이론'">프로그래밍 이론</a>
+			                        <a href="/testt/views/category/categoryDetail.jsp?category='프로그래밍 언어'">프로그래밍 언어</a>
+			                        <a href="/testt/views/category/categoryDetail.jsp?category='웹'">웹</a>
+			                        <a href="/testt/views/category/categoryDetail.jsp?category='모바일'">모바일</a>
+			                        <a href="/testt/views/category/categoryDetail.jsp?category='게임'">게임</a>
+			                        <a href="/testt/views/category/categoryDetail.jsp?category='DB'">DB</a>
+			                        <a href="/testt/views/category/categoryDetail.jsp?category='데이터과학'">데이터과학</a> 
                                 </div>
                             </div>
                         </div>

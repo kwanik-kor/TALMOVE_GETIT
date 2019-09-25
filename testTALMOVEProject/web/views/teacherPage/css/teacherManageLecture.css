@@ -129,10 +129,6 @@ a.lecEdit:hover{
     color: #00a8ff;
 }
 
-.course-info input[type="file"]{
-    background: #fff;
-    border: 0;
-}
 form.course-info img{
     width: 70%;
     margin: 10px 15%;
@@ -270,4 +266,32 @@ button.cancelBtn{
 }
 .tags:hover .del-tag{
     display: inline-block;
+}
+
+.thumbdiv{
+	display: inline-block;
+	width: 70%;
+}
+
+input[type="file"]{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -2px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.thumblabel{
+    cursor: pointer;
+    color: #00a8ff;
+    text-align: center;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    padding: 5px;
+}
+.thumblabel:hover{
+    background: #e6f6ff;
 }
