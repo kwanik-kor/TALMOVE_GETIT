@@ -112,5 +112,18 @@ public class CourseService {
 		close(conn);
 		return result;
 	}
+	
+	
+	public ArrayList<Course>myCourse(int userNo){	
+		CourseDao cDao = new CourseDao();
+
+		Connection conn = getConnection();
+		ArrayList<Course> list = cDao.myCourse(conn, userNo);
+		System.out.println("myCourseList service에서 확인 " + list.size());
+		close(conn);
+		
+		return list;
+	}
+	
 
 }
