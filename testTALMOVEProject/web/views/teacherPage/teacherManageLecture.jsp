@@ -96,35 +96,32 @@
                             <label for="">카테고리</label>
                             <select class="1stC" name="bank" style="text-align: center;" required>
                                 <option value="">1차 카테고리</option>
-                                <option value="비즈니스">비즈니스</option>
-                                <option value="프로그래밍">프로그래밍</option>
+                                <% if(c.getCategoryNo() <= 7){ %>
+                                	<option value="비즈니스" selected>비즈니스</option>
+                                	<option value="프로그래밍">프로그래밍</option>
+                                <% }else{%>
+                                	<option value="비즈니스">비즈니스</option>
+                                	<option value="프로그래밍" selected>프로그래밍</option>
+                                <% } %>
+                                
                             </select>
                             <select class="2ndC" name="bank" style="text-align: center;" required>
                                 <option value="">2차 카테고리</option>
                                 <%
-                                int upper = 0;
                                 for(Category ca : caList){
                                 	if(c.getCategoryNo() == ca.getCategoryNo()){
-                                		upper = ca.getCategoryUpper();
                                 %>
                                 	<option value="<%= c.getCategoryNo() %>" selected><%= ca.getCategoryName() %></option>
                                 <% 
                                 	}
                                 }
-                                for(Category ca : caList){
-                                	if(upper == ca.getCategoryNo()){
                                 %>
-                                <script type="text/javascript">
-                                	$('.1stC').children('option').val("<%= ca.getCategoryName() %>").prop("selected", true);
-                                </script>
-                                <%
-                                	}
-                                }
-                                %>
+                                
                             </select>
                             <label>썸네일</label>
                             <div class="thumbdiv">
-                            	<label class="thumblabel" for="thumbimg">사진 변경</label><input id="thumbimg" type="file">
+                            	<input type="hidden" id="oimgname" value="<%= c.getThumbnailOfileName() %>">
+                            	<label class="thumblabel" for="thumbimg">사진 변경</label><input id="thumbimg" name="changeThumb" type="file">
                             </div>
                             <img src="/testt/resources/course_upfiles/<%= c.getThumbnailRfileName() %>" alt="thumbnailImage">
                             <button class="saveBtn">저장</button><button class="cancelBtn">취소</button>
@@ -167,10 +164,24 @@
             $('.modal-course').eq(index).removeClass('is-open');
             $('body').css('overflow-y', 'scroll');
         });
-	    
+	    $('.cancelBtn').on('click', function(){
+	    	var index = $('.cancelBtn').index(this);
+	    	var cancel = confirm("취소 시 변경사항이 저장되지 않습니다.");
+	    	if(cancel){
+	    		$('.modal-course').eq(index).removeClass('is-visible');
+	    		$('.modal-course').eq(index).removeClass('is-open');
+	    		$('body').css('overflow-y', 'scroll');
+	    		location.reload();
+	    	}
+	    });
+	   	
 	    $('.1stC').on('change', function(){
-    		if($(this).val() != ""){
+	    	var index = $('.1stC').index(this);
+	    	
+    		if($('.1stC').eq(index).val() != ""){
+    			
     			var cateName = $(this).val();
+    			
     			$.ajax({
     				url: "/testt/gcateli.ed",
     				data: {categoryName: cateName},
@@ -184,7 +195,7 @@
     					for(var i in json.clist){
     						values += "<option value='" + json.clist[i].cNo + "'>" + decodeURIComponent(json.clist[i].cName).replace(/\+/gi, " ") + "</option>";
     					}
-    					$('.2ndC').html(values);
+    					$('.2ndC').eq(index).html(values);
     				},
     				error: function(jqXHR, textStatus, errorThrown){
     			        console.log("error : " + jqXHR + ", " + textStatus + ", " + errorThrown);
