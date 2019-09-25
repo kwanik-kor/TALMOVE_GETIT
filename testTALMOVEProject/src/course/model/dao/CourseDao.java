@@ -190,5 +190,26 @@ public class CourseDao {
 			return result;
 		}
 
+		public int cBasicUpdate(Connection conn, Course course) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String query = "UPDATE COURSE SET CATEGORY_NO = ?, COURSE_NAME = ?, THUMBNAIL_OFILENAME = ?, THUMBNAIL_RFILENAME = ?, DESCRIPTION = ? WHERE COURSE_NO = ?";
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, course.getCategoryNo());
+				pstmt.setString(2, course.getCourseName());
+				pstmt.setString(3, course.getThumbnailOfileName());
+				pstmt.setString(4, course.getThumbnailRfileName());
+				pstmt.setString(5, course.getDescription());
+				pstmt.setInt(6, course.getCourseNo());
+				result = pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			return result;
+		}
+
 
 }
