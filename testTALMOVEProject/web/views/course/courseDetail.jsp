@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="course.model.vo.Course, java.util.ArrayList, section.model.vo.Section, lecture.model.vo.Lecture"%>
+    pageEncoding="UTF-8" import="course.model.vo.Course, java.util.ArrayList, section.model.vo.Section, lecture.model.vo.Lecture, teacher.model.vo.Teacher"%>
 <%
 	ArrayList<Course> list = ((ArrayList<Course>)request.getAttribute("list"));
 	int studentCount = ((Integer)request.getAttribute("studentCount"));
@@ -9,6 +9,7 @@
 	int fileCount = ((Integer)request.getAttribute("fileCount"));
 	ArrayList<Section> slist = ((ArrayList<Section>)request.getAttribute("slist"));
 	ArrayList<Lecture> llist = ((ArrayList<Lecture>)request.getAttribute("llist"));
+	ArrayList<Teacher> tlist = ((ArrayList<Teacher>)request.getAttribute("tlist"));
 %> 
 <!DOCTYPE html>
 <html>
@@ -84,6 +85,7 @@
 		<div id="teacherinfo">
 			<div id="infoleft">
 				<p id="title">강사 정보</p>
+				<% for(Teacher teacher : tlist){ %>
 				<img src="/testt/views/course/img/관익.png">
 				<p class="tp"><span class="boldfont">4.6</span> 강사평점</p>
 				<p class="tp"><span class="boldfont">1427</span> 개의 리뷰</p>
@@ -91,13 +93,11 @@
 				<p class="tp"><span class="boldfont">3</span> 강좌</p>
 			</div>
 			<div id="inforight">
-				<p id="tname">장관익</p>
-				<p id="gradu">한국외대 졸업<br>
-					KH정보교육원 수료예정</p>
-				<p id="tco">장관익 강사는 한국외대에서 프론트앤드를 접하며 프로그래밍에입문하였다.<br>
-				KH정보교육원에서 체계적인 교육을 받은 후 현재
-				TALMOVE의 프로그래밍<br>강사로 활발히 활동중이다.</p>
+				<p id="tname"><%= teacher.getTeacherName() %></p>
+				<p id="gradu"><%= teacher.getTeacherCareer() %></p>
+				<p id="tco"><%= teacher.getTeacherIntro() %></p>
 			</div>
+			<% } %>
 		</div>
 	
 		<div id="review" class="clearfix">

@@ -65,7 +65,7 @@ public class CourseDetailViewServlet extends HttpServlet {
 		ArrayList<Lecture> llist = cservice.lectureView(courseNo);
 		
 		//강사 정보
-//		ArrayList<Teacher> tlist = cservice.teachherView(courseNo);
+		ArrayList<Teacher> tlist = cservice.teachherView(courseNo);
 		
 		RequestDispatcher view = null;
 	     response.setContentType("text/html; charset=utf-8");
@@ -79,6 +79,7 @@ public class CourseDetailViewServlet extends HttpServlet {
 	    	 request.setAttribute("fileCount", fileCount);
 	    	 request.setAttribute("slist", slist);
 	    	 request.setAttribute("llist", llist);
+	    	 request.setAttribute("tlist", tlist);
 	    	 view.forward(request, response);
 	     }else {
 	    	 view = request.getRequestDispatcher("views/common/Error.jsp");

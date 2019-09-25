@@ -417,7 +417,7 @@ public class CategoryDao {
 		return llist;
 	}
 
-	/*public ArrayList<Teacher> teacherView(Connection conn, int courseNo) {
+	public ArrayList<Teacher> teacherView(Connection conn, int courseNo) {
 		ArrayList<Teacher> tlist = new ArrayList<Teacher>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -436,14 +436,11 @@ public class CategoryDao {
 				teacher.setTeacherNo(rset.getInt("teacher_no"));
 				teacher.setUserNo(rset.getInt("user_no"));
 				teacher.setTeacherName(rset.getString("teacher_name"));
-				TEACHER_NO
-				USER_NO
-				TEACHER_NAME
-				TEACHER_CAREER
-				TEACHER_INTRO
-				USER_OIMAGE_NAME
-				USER_RIMAGE_NAME
-				TEACHER_ACCOUNT_NUMBER
+				teacher.setTeacherCareer(rset.getString("teacher_career"));
+				teacher.setTeacherIntro(rset.getString("teacher_intro"));
+				teacher.setTeacherOimageName(rset.getString("user_oimage_name"));
+				teacher.setTeacherRimageName(rset.getString("user_rimage_name"));
+				teacher.setTeacherAccountnumber(rset.getInt("teacher_account_number"));
 				
 				tlist.add(teacher);
 			} 
@@ -454,6 +451,6 @@ public class CategoryDao {
 			close(pstmt);
 		}
 		return tlist;
-	}*/
+	}
 	
 }
