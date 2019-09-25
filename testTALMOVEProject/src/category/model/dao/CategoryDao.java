@@ -440,7 +440,7 @@ public class CategoryDao {
 				teacher.setTeacherIntro(rset.getString("teacher_intro"));
 				teacher.setTeacherOimageName(rset.getString("user_oimage_name"));
 				teacher.setTeacherRimageName(rset.getString("user_rimage_name"));
-				teacher.setTeacherAccountnumber(rset.getString("teacher_account_number"));
+				teacher.setTeacherAccountnumber(rset.getInt("teacher_account_number"));
 				
 				tlist.add(teacher);
 			} 
