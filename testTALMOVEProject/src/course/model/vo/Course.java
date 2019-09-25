@@ -14,6 +14,8 @@ public class Course implements Serializable{
 	private String openYN; //공개 비공개
 	private int price;
 	private int purchaseCount;
+	private String teacherName;
+	private int categoryUpper;
 	
 	public Course() {}
 	
@@ -44,8 +46,45 @@ public class Course implements Serializable{
 		this.price = price;
 	}
 
+	
 
 
+	public Course(int courseNo, int teacherNo, int categoryNo, String courseName, String thumbnailOfileName,
+			String thumbnailRfileName, String description, String openYN, int price, int purchaseCount,
+			String teacherName) {
+		super();
+		this.courseNo = courseNo;
+		this.teacherNo = teacherNo;
+		this.categoryNo = categoryNo;
+		this.courseName = courseName;
+		this.thumbnailOfileName = thumbnailOfileName;
+		this.thumbnailRfileName = thumbnailRfileName;
+		this.description = description;
+		this.openYN = openYN;
+		this.price = price;
+		this.purchaseCount = purchaseCount;
+		this.teacherName = teacherName;
+	}
+
+	
+	
+	public Course(int courseNo, int teacherNo, int categoryNo, String courseName, String thumbnailOfileName,
+			String thumbnailRfileName, String description, String openYN, int price, int purchaseCount,
+			String teacherName, int categoryUpper) {
+		super();
+		this.courseNo = courseNo;
+		this.teacherNo = teacherNo;
+		this.categoryNo = categoryNo;
+		this.courseName = courseName;
+		this.thumbnailOfileName = thumbnailOfileName;
+		this.thumbnailRfileName = thumbnailRfileName;
+		this.description = description;
+		this.openYN = openYN;
+		this.price = price;
+		this.purchaseCount = purchaseCount;
+		this.teacherName = teacherName;
+		this.categoryUpper = categoryUpper;
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -111,6 +150,25 @@ public class Course implements Serializable{
 		this.purchaseCount = purchaseCount;
 	}
 	
+	
+	public String getTeacherName() {
+		return teacherName;
+	}
+
+	public void setTeacherName(String teacherName) {
+		this.teacherName = teacherName;
+	}
+
+	
+	
+	public int getCategoryUpper() {
+		return categoryUpper;
+	}
+
+	public void setCategoryUpper(int categoryUpper) {
+		this.categoryUpper = categoryUpper;
+	}
+
 	@Override
 	public String toString() {
 		return "Course [courseNo=" + courseNo + ", teacherNo=" + teacherNo + ", categoryNo=" + categoryNo
