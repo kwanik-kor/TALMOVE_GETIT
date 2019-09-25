@@ -1,5 +1,3 @@
-/admin/
-/cart/
 /category/
 /comment/
 /common/
@@ -15,3 +13,5 @@
 /teacher/
 /user/
 /util/
+/cart/
+/onCourse/

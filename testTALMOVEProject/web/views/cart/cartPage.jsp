@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
-<%@ page import="cart.model.vo.Cart, java.util.ArrayList" %>
+<%@ page import="cart.model.vo.Cart, java.util.ArrayList, user.model.vo.User" %>
 
-<%
-	//forwarding 된 request 객체에 저장한 정보 꺼내기
-	ArrayList<Cart> list = (ArrayList<Cart>)request.getAttribute("list");
-%>  
 
 <!DOCTYPE html>
 <html>
@@ -25,11 +21,22 @@ pageEncoding="UTF-8"%>
 	<link href="/testt/views/cart/css/cart.css" rel="stylesheet">
 	<title>장바구니 | 탈무브</title>
 	<script src="https://kit.fontawesome.com/08d0951667.js"></script>
+	
+	 <%
+	//forwarding 된 request 객체에 저장한 정보 꺼내기
+		ArrayList<Cart> carts = 
+		(ArrayList<Cart>) request.getAttribute("carts");
+	 System.out.println("jsp 확인" + carts);
+		%>
+		
+			
 </head>
 
 <body>
 	<%@ include file="/views/common/gnb.jsp" %>
-	
+	<%-- <input type="hidden" name="userNo" value="<%=user.getUserNo()%>">
+  --%> 
+  <input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>">
 	<section class="cart-pay-top">
         <div class="link-top">
             <a href="/testt/index.jsp">Home</a><span>장바구니</span>    
@@ -38,60 +45,103 @@ pageEncoding="UTF-8"%>
 	</section>
 	
     <div class="list-count">
-  		<p>n개의 항목이 담겨있음</p>
+  		<p> <%=carts.size() %> 개의 항목이 담겨있음</p>
     </div>
 
     <section class="contents_box clearfix">
         <div class="shopping-cart">
-            <div class="item clearfix">
+          
+          
+           <!--  만약을 대비한 샘플 데이터 
+           <div class="item clearfix">
                 <div class="buttons">
                     <span class="delete-btn"></span>
                 </div>
-                <img src="../../resources/img/sample_thumbnail2.jpg" />
+                <img src="/testt/resources/img/sample_thumbnail3.jpg" />
                 <div class="description">
                     <span class="Lname">Bootstrap 4 & 3 Framework Tutorial </span><br>
                     <span class="Tname">By 박건우</span>
                 </div>
                 <div class="price">
-                    ￦ 30000
+             	 ￦ <span class="num">30000</span>
                 </div>
             </div>
-            <div class="item clearfix">
-                <div class="buttons">
-                    <span class="delete-btn"></span>
-                </div>
-                <img src="../../resources/img/sample_thumbnail2.jpg" />
-                <div class="description">
-                    <span class="Lname">Bootstrap 4 & 3 Framework Tutorial </span><br>
-                    <span class="Tname">By 박건우</span>
-                </div>
-                <div class="price">
-                    ￦ 30000
-                </div>
-            </div>
-            <div class="item clearfix">
-                <div class="buttons">
-                    <span class="delete-btn"></span>
-                </div>
-                <img src="../../resources/img/sample_thumbnail2.jpg" />
-                <div class="description">
-                    <span class="Lname">Bootstrap 4 & 3 Framework Tutorial </span><br>
-                    <span class="Tname">By 박건우</span>
-                </div>
-                <div class="price">
-                    ￦ 30000
-                </div>
-            </div>
+       -->
+           
+              <!-- DB용 -->
+              
+            
+        
+  <% for(int i = 0; i < carts.size(); i++){ 
+  			Cart cart = carts.get(i); %>
+  <%--  <input type="hidden" name="cartNo" value="<%=cart.getCartNo()%>">--%>
+       
+         <script>
+       //삭제확인창
+         function button_event(){
+         if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+        	 location.href='/testt/cdel?cartNo=<%=cart.getCartNo()%>&&userNo=<%=loginUser.getUserNo()%>'
+         }else{   //취소
+             return;
+         }
+         }
+
+       </script>  
+       
+       
+        <div class="item">
+           
+          <div class="buttons" >
+             <span class="delete-btn" onclick="button_event(); ">
+             </span>
+            
+          </div>
+
+          
+           <img src="/testt/resources/img/sample_thumbnail4.jpg" />
+          
+          <div class="description">
+            <span class="Lname"><%=cart.getCourseName() %></span><br />
+            <span class="Tname"><%=cart.getTeacherName() %></span>
+            
+          </div>
+
+          <div class="price" >
+    		 ￦ <span class="num"><%=cart.getPrice() %></span>
+          </div>
+        
+        </div><!-- /DB용 -->
+        <% } %>
+
+
         </div>
         
         <div class="box_detail">
             <div class="box_detail_total">
                 Total :
+                <strong id="totalPrice"></strong>
+
+
+      
             </div>
             <div class ="box_detail_price">
-                &#8361; 90000 
+   <%-- 
+            <input type="hidden"    
+            <%! int sum = 0; %>
+            <% for(Cart cart : carts){  %>
+  			<%= sum = sum + cart.getPrice()   %>
+  			<%  } %> >
+                &#8361; <%= sum %>
+                --%>
+            <% int sum = 0; %>
+            <% for(Cart cart : carts){  
+  			 sum = sum + cart.getPrice();   %>
+  			<%  } %> 
+                &#8361; <%= sum %>
             </div>
-            <a href="/testt/views/payment/paymentPage.jsp" class="paybtn">결제하기</a> <br>
+            
+            
+            <a href="/testt/plist?userNo=<%=loginUser.getUserNo()%>" class="paybtn">결제하기</a> <br>
             <a href="/testt/index.jsp" class="paybtn"><i class="icon-right"></i>
             쇼핑 계속하기</a>
         </div>
@@ -100,8 +150,13 @@ pageEncoding="UTF-8"%>
 
 	<%@ include file="/views/common/footer.jsp" %>
 
+    
+       
+
+
     <!-- COMMON SCRIPTS -->
     <script type="text/javascript" src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/testt/views/cart/cart.js"></script>
     <script type="text/javascript" src="/testt/resources/js/main.js"></script>
   </body>
 </html>

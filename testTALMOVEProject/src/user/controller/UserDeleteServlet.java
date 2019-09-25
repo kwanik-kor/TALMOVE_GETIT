@@ -1,4 +1,4 @@
-package course.controller;
+package user.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AddCardServlet
+ * Servlet implementation class UserDeleteServlet
  */
-@WebServlet("/addcart")
-public class AddCartServlet extends HttpServlet {
+@WebServlet("/userdel")
+public class UserDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddCartServlet() {
+    public UserDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
