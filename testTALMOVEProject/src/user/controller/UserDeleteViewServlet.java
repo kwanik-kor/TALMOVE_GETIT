@@ -1,4 +1,4 @@
-package cart.controller;
+package user.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ProductOrderServlet
+ * Servlet implementation class UserDeleteViewServlet
  */
-@WebServlet("/pcart")
-public class ProductOrderServlet extends HttpServlet {
+@WebServlet("/userdelv")
+public class UserDeleteViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductOrderServlet() {
+    public UserDeleteViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

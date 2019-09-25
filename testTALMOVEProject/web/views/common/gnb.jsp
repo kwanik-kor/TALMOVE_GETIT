@@ -112,8 +112,8 @@
                         <% }else{ %>
                         <li><button onclick="location.href='/testt/views/teacherPage/teacherPageDetail.jsp'">강사</button></li>
                         <% } %>
-                        <li><button onclick="location.href='/testt/views/myCourse/myCourse.jsp'">내강좌</button></li>
-                        <li><button onclick="location.href='/testt/views/cart/cartPage.jsp'">장바구니</button></li>
+                        <li><button onclick="location.href='/testt/mclist?userNo=<%=loginUser.getUserNo() %>'">내강좌</button></li>
+                    	<li><button onclick="location.href='/testt/cartl?userNo=<%=loginUser.getUserNo()%>'">장바구니</button></li>
                         <div class="mydrop">
                             <li><button><%= loginUser.getUserName() %></button></li>
                             <div class="mydrop-content">

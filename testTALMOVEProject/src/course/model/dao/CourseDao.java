@@ -189,6 +189,57 @@ public class CourseDao {
 			}
 			return result;
 		}
+		
+		
+		//영찬
+		public ArrayList<Course>myCourse(Connection conn, int userNo){
+			ArrayList<Course> myCourse = new ArrayList<Course>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String query = "SELECT O.COURSE_NO, C.THUMBNAIL_OFILENAME, C.THUMBNAIL_RFILENAME, C.COURSE_NAME, T.TEACHER_NAME " 
+							+ "FROM ON_COURSE O " 
+							+ "LEFT OUTER JOIN COURSE C " 
+							+ "ON (O.COURSE_NO = C.COURSE_NO ) " 
+							+ "LEFT JOIN TEACHER T " 
+							+ "ON (C.TEACHER_NO = T.TEACHER_NO) " 
+							+ "WHERE O.USER_NO = ? ";
+
+					try {
+						pstmt = conn.prepareStatement(query);
+						pstmt.setInt(1, userNo);
+
+			
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					Course course = new Course();
+					
+					
+					course.setCourseNo(rset.getInt(1));
+					course.setThumbnailOfileName(rset.getString(2));
+					course.setThumbnailRfileName(rset.getString(3));
+					course.setCourseName(rset.getString(4));
+					course.setTeacherName(rset.getString(5));
+					
+					
+					myCourse.add(course);
+					System.out.println("dao에 대한 확인 " + myCourse.size());
+				}
+			
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			return myCourse;
+			
+			
+		}
+		
 
 
 }
