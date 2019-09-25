@@ -11,12 +11,12 @@ public class Teacher implements Serializable{
 	private String teacherIntro;
 	private String teacherOimageName;
 	private String teacherRimageName;
-	private String teacherAccountnumber;
+	private int teacherAccountnumber;
 	
 	public Teacher() {}
 	
 	public Teacher(int teacherNo, int userNo, String teacherName, String teacherCareer, String teacherIntro,
-			String teacherOimageName, String teacherRimageName, String teacherAccountnumber) {
+			String teacherOimageName, String teacherRimageName, int teacherAccountnumber) {
 		super();
 		this.teacherNo = teacherNo;
 		this.userNo = userNo;
@@ -99,12 +99,12 @@ public class Teacher implements Serializable{
 	}
 
 
-	public String getTeacherAccountnumber() {
+	public int getTeacherAccountnumber() {
 		return teacherAccountnumber;
 	}
 
 
-	public void setTeacherAccountnumber(String teacherAccountnumber) {
+	public void setTeacherAccountnumber(int teacherAccountnumber) {
 		this.teacherAccountnumber = teacherAccountnumber;
 	}
 
