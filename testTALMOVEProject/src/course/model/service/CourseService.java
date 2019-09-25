@@ -112,6 +112,17 @@ public class CourseService {
 		close(conn);
 		return result;
 	}
+	public int cBasicUpdate(Course course) {
+		Connection conn = getConnection();
+		int result = cDao.cBasicUpdate(conn, course);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 	
 	
 	public ArrayList<Course>myCourse(int userNo){	
