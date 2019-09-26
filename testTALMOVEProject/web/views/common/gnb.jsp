@@ -94,10 +94,16 @@
                 </div>
                 <div class="gnb-search">
                     <form action="">
-                        <input type="search" placeholder="검색" maxlength="30">
+                        <input type="text" placeholder="검색" name="search" class="search" maxlength="30" autocomplete=off>
                         <button><i class="fas fa-search"></i></button>
                     </form>
+                    <div class="search-result">
+	                	<ul class="searchwords">
+	                	<!-- 키워드목록 -->
+	                	</ul>
+	                </div>
                 </div>
+                
                 <div class="gnb-unlogin-nav">
                 <% if(loginUser == null){ %>
                 	<ul class="unlogin-nav">

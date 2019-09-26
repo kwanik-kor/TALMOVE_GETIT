@@ -456,6 +456,52 @@ function topFunction(){
     document.documentElement.scrollTop = 0;
 }
 
+/* search */
+$('.search').keyup(function(){
+	console.log($(this).val());
+	$.ajax({
+		url: "/testt/searchco.ed",
+		data: {keyword: $(this).val()},
+		type: "post",
+		dataType: "json",
+		success: function(data){
+			var jsonStr = JSON.stringify(data);
+			var json = JSON.parse(jsonStr);
+			var values = "";
+			for(var i in json.clist){
+				var a = decodeURIComponent(json.clist[i].cname).replace(/\+/gi, " ");
+				var b = $('.search').val();
+				var value = "<li class='searchword'>";
+				
+				if(a.includes(b)){
+					value += a.substr(0,a.indexOf(b)) + "<span style='font-weight:bold;'>" + a.substr(a.indexOf(b), b.length) +"</span>" + a.substr(a.indexOf(b) + b.length, a.length) + "</li>";
+				}else{
+					value += a + "</li>";
+				}
+				
+				
+				values += value;
+			}
+			if(json.length != 0){
+				$('.searchwords').html(values);
+				$('.search-result').addClass('is-visible');
+			}
+			$('.searchword').on('click', function(){
+				$('.search').val($(this).text());
+			});
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			console.log("error : " + jqXHR + ", " + textStatus + ", " + errorThronwn);
+		}
+	});
+});
+
+$('.search').on('blur', function(){
+	setTimeout(function(){
+		$('.search-result').removeClass('is-visible');
+	}, 250);
+});
+
 
 
 

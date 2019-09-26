@@ -262,5 +262,32 @@ public class CourseDao {
 			return result;
 		}
 
+		public ArrayList<String> getSearchedCourseName(Connection conn, String[] keywords) {
+			ArrayList<String> clist = new ArrayList<String>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String query = "SELECT DISTINCT COURSE_NAME FROM COURSE LEFT OUTER JOIN COURSE_TAG USING(COURSE_NO) LEFT OUTER JOIN TAG USING(TAG_ID) WHERE COURSE_NAME LIKE '%'||?||'%' OR DESCRIPTION LIKE '%'||?||'%' OR TAG_NAME LIKE '%'||?||'%'";
+			try {
+				pstmt = conn.prepareStatement(query);
+				for(int i = 0; i<keywords.length; i++) {
+					pstmt.setString(1, keywords[i]);
+					pstmt.setString(2, keywords[i]);
+					pstmt.setString(3, keywords[i]);
+					rset = pstmt.executeQuery();
+					while(rset.next()) {
+						String s = "";
+						s = rset.getString("course_name");
+						clist.add(s);
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			return clist;
+		}
+
 
 }

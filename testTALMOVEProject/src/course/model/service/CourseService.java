@@ -126,14 +126,17 @@ public class CourseService {
 	
 	
 	public ArrayList<Course>myCourse(int userNo){	
-		CourseDao cDao = new CourseDao();
-
 		Connection conn = getConnection();
 		ArrayList<Course> list = cDao.myCourse(conn, userNo);
-		System.out.println("myCourseList service에서 확인 " + list.size());
 		close(conn);
 		
 		return list;
+	}
+	public ArrayList<String> getSearchedCourseName(String[] keywords) {
+		Connection conn = getConnection();
+		ArrayList<String> clist = cDao.getSearchedCourseName(conn, keywords);
+		close(conn);
+		return clist;
 	}
 	
 
