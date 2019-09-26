@@ -90,7 +90,7 @@ var modal = document.getElementById("enroll-form");
 var loginBtn = document.getElementById("login-btn");
 var signupBtn = document.getElementById("signup-btn");
 
-loginBtn.onclick = function(){
+$('#login-btn').on('click', function(){
     $('.modal-form').addClass('is-visible');
     
     setTimeout(function () {
@@ -101,9 +101,9 @@ loginBtn.onclick = function(){
     document.getElementById('form-signup').style.display = "none";
     document.getElementById('login-tab').style.borderBottom = "2px solid #00a8ff";
     document.getElementById('signup-tab').style.borderBottom = "0";
-}
+});
 
-signupBtn.onclick = function(){
+$('#signup-btn').on('click', function(){
     $('.modal-form').addClass('is-visible');
     
     setTimeout(function () {
@@ -114,7 +114,7 @@ signupBtn.onclick = function(){
     document.getElementById('form-signup').style.display = "block";
     document.getElementById('login-tab').style.borderBottom = "0";
     document.getElementById('signup-tab').style.borderBottom = "2px solid #00a8ff";
-}
+});
 
 function changeTab(tabName, tabName2){
     var i;
@@ -458,7 +458,6 @@ function topFunction(){
 
 /* search */
 $('.search').keyup(function(){
-	console.log($(this).val());
 	$.ajax({
 		url: "/testt/searchco.ed",
 		data: {keyword: $(this).val()},
