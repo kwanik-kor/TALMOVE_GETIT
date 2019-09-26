@@ -1,3 +1,5 @@
+/admin/
+/cart/
 /category/
 /comment/
 /common/
@@ -5,6 +7,7 @@
 /course_tag/
 /lecture/
 /message/
+/onCourse/
 /payment/
 /reply/
 /review/
@@ -13,5 +16,3 @@
 /teacher/
 /user/
 /util/
-/cart/
-/onCourse/

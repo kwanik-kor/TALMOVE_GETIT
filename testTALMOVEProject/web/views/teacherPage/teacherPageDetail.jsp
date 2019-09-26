@@ -65,7 +65,7 @@
                         <img id="editImg" class="pfimg" src="../../resources/img/defaultUser.jpg" alt="">
                         <% } %>
                         <input type="hidden">
-                        <label for="pffile">사진변경<input type="file" id="pffile" name="pffile" accept="image/*"></label>    
+                        <label for="pffile">사진변경<input type="file" id="pffile" name="pffile" accept="image/*"></label>
                     </div>
                     <div class="right-top-right">
                         <label for="tname">선생님 이름</label>
@@ -137,9 +137,9 @@
 		            }).then(function(resp){
 		            	const blobUrl = window.URL.createObjectURL(resp);
 		                $('#editImg').attr("src", blobUrl);
+		                
 		                console.log(resp);
-		                console.log($('#pffile').val());
-		                console.log($('#editImg').attr("src"));
+		                
 		                $('.modal-crop').removeClass('is-open');
 		                $('.modal-crop').removeClass('is-visible');
 		            });
