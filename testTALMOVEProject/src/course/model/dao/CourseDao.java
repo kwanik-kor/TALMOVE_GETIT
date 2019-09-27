@@ -289,5 +289,42 @@ public class CourseDao {
 			return clist;
 		}
 
+		public ArrayList<Course> getSearchedCourse(Connection conn, String[] keywords) {
+			ArrayList<Course> clist = new ArrayList<Course>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String query = "SELECT * FROM COURSE LEFT OUTER JOIN COURSE_TAG USING(COURSE_NO) LEFT OUTER JOIN TAG USING(TAG_ID) WHERE (COURSE_NAME LIKE '%'||?||'%' OR DESCRIPTION LIKE '%'||?||'%' OR TAG_NAME LIKE '%'||?||'%') AND OPEN_YN = 'Y'";
+			try {
+				pstmt = conn.prepareStatement(query);
+				for(int i = 0; i < keywords.length; i++) {
+					pstmt.setString(1, keywords[i]);
+					pstmt.setString(2, keywords[i]);
+					pstmt.setString(3, keywords[i]);
+					rset = pstmt.executeQuery();
+					while(rset.next()) {
+						Course c = new Course();
+						c.setCourseNo(rset.getInt("course_no"));
+						c.setTeacherNo(rset.getInt("teacher_no"));
+						c.setCategoryNo(rset.getInt("category_no"));
+						c.setCourseName(rset.getString("course_name"));
+						c.setThumbnailOfileName(rset.getString("thumbnail_ofilename"));
+						c.setThumbnailRfileName(rset.getString("thumbnail_rfilename"));
+						c.setDescription(rset.getString("description"));
+						c.setOpenYN(rset.getString("open_yn"));
+						c.setPrice(rset.getInt("price"));
+						c.setPurchaseCount(rset.getInt("purchase_count"));
+						clist.add(c);
+					}
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			return clist;
+		}
+
 
 }

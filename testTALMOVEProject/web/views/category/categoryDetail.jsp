@@ -17,7 +17,7 @@
 	<meta charset="UTF-8">
 	<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 	<meta name="viewport" content="width:device-width, initial-scale=1.0">
-	<title>탈무브 | </title>
+	<title><%= category %> | 탈무브</title>
 	<link rel="stylesheet" href="/testt/vendors/css/normalize.css">
     <link rel="stylesheet" href="/testt/vendors/css/bootstrap-grid.css">
 	<link href="/testt/views/category/css/categoryDetail.css" rel="stylesheet">

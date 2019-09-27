@@ -478,7 +478,6 @@ $('.search').keyup(function(){
 					value += a + "</li>";
 				}
 				
-				
 				values += value;
 			}
 			if(json.length != 0){

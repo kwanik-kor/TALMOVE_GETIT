@@ -138,6 +138,12 @@ public class CourseService {
 		close(conn);
 		return clist;
 	}
+	public ArrayList<Course> getSearchedCourse(String[] keywords) {
+		Connection conn = getConnection();
+		ArrayList<Course> clist = cDao.getSearchedCourse(conn, keywords);
+		close(conn);
+		return clist;
+	}
 	
 
 }

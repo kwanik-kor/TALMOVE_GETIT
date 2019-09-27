@@ -19,10 +19,10 @@ import course.model.service.CourseService;
 import course.model.vo.Course;
 
 @WebServlet("/searchco.ed")
-public class SearchCourseServlet extends HttpServlet {
+public class SearchCourseNameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public SearchCourseServlet() {
+    public SearchCourseNameServlet() {
         super();
     }
 

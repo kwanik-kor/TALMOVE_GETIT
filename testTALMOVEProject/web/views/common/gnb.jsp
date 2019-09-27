@@ -93,8 +93,9 @@
                     </div>
                 </div>
                 <div class="gnb-search">
-                    <form action="">
-                        <input type="text" placeholder="검색" name="search" class="search" maxlength="30" autocomplete=off>
+                    <form action="/testt/searchcourses.ed" method="get">
+                    	<input type="hidden" name="page" value="1">
+                        <input type="text" placeholder="검색" name="keyword" class="search" maxlength="30" autocomplete=off>
                         <button><i class="fas fa-search"></i></button>
                     </form>
                     <div class="search-result">
