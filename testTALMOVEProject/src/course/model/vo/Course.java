@@ -34,9 +34,6 @@ public class Course implements Serializable{
 		this.purchaseCount = purchaseCount;
 	}
 	
-	
-	
-	
 	public Course(String thumbnailOfileName, String thumbnailRfileNameint, int courseNo, String courseName, int price) {
 		super();
 		this.thumbnailOfileName = thumbnailOfileName;
@@ -45,9 +42,6 @@ public class Course implements Serializable{
 		this.courseName = courseName;
 		this.price = price;
 	}
-
-	
-
 
 	public Course(int courseNo, int teacherNo, int categoryNo, String courseName, String thumbnailOfileName,
 			String thumbnailRfileName, String description, String openYN, int price, int purchaseCount,
@@ -65,8 +59,6 @@ public class Course implements Serializable{
 		this.purchaseCount = purchaseCount;
 		this.teacherName = teacherName;
 	}
-
-	
 	
 	public Course(int courseNo, int teacherNo, int categoryNo, String courseName, String thumbnailOfileName,
 			String thumbnailRfileName, String description, String openYN, int price, int purchaseCount,
@@ -176,8 +168,22 @@ public class Course implements Serializable{
 				+ thumbnailRfileName + ", description=" + description + ", openYN=" + openYN + ", price=" + price
 				+ ", purchaseCount=" + purchaseCount + "]";
 	}
+	
+	@Override
+	public int hashCode() {
+		return (this.courseNo + this.courseName.hashCode());
+	}
 
-
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Course) {
+			Course temp = (Course)obj;
+			if(this.courseNo == temp.courseNo && this.courseName.equals(temp.courseName)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	
 	
