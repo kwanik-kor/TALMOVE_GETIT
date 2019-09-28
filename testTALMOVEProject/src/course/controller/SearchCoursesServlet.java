@@ -2,7 +2,10 @@ package course.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,7 +24,42 @@ public class SearchCoursesServlet extends HttpServlet {
     public SearchCoursesServlet() {
         super();
     }
-
+    private ArrayList<Course> sortCourseList(ArrayList<Course> clist, String sort){
+    	if(sort.equals("popular")) {
+    		clist = sortByPopular(clist);
+    	}else if(sort.equals("price-asc")) {
+    		clist = sortByPriceAsc(clist);
+    	}
+    	return clist;
+    }
+    private ArrayList<Course> sortByPriceAsc(ArrayList<Course> clist){
+    	Collections.sort(clist, new Comparator<Course>() {
+			@Override
+			public int compare(Course c1, Course c2) {
+				if(c1.getPrice() < c2.getPrice()) {
+					return -1;
+				}else if(c1.getPrice() > c2.getPrice()) {
+					return 1;
+				}
+				return 0;
+			}
+    	});
+    	return clist;
+    }
+    private ArrayList<Course> sortByPopular(ArrayList<Course> clist){
+    	Collections.sort(clist, new Comparator<Course>() {
+			@Override
+			public int compare(Course c1, Course c2) {
+				if(c1.getPurchaseCount() > c2.getPurchaseCount()) {
+					return -1;
+				}else if(c1.getPurchaseCount() < c2.getPurchaseCount()) {
+					return 1;
+				}
+				return 0;
+			}
+    	});
+    	return clist;
+    }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int currentPage = Integer.parseInt(request.getParameter("page"));
 		String keyword = request.getParameter("keyword");
@@ -29,6 +67,30 @@ public class SearchCoursesServlet extends HttpServlet {
 		ArrayList<Course> clist = new CourseService().getSearchedCourse(keywords);
 		HashSet<Course> distinct = new HashSet<Course>(clist);
 		clist = new ArrayList<Course>(distinct);
+		//sort : featured / popular / price-asc
+		//priceRange : all / free / paid
+		String sort = request.getParameter("sort");
+		String priceRange = request.getParameter("priceRange");
+		
+		if(priceRange.equals("free")) {
+			for(Iterator<Course> it = clist.iterator(); it.hasNext();) {
+				Course c = it.next();
+				if(c.getPrice() != 0) {
+					it.remove();
+				}
+			}
+			clist = sortCourseList(clist, sort);
+		}else if(priceRange.equals("paid")) {
+			for(Iterator<Course> it = clist.iterator(); it.hasNext();) {
+				Course c = it.next();
+				if(c.getPrice() == 0) {
+					it.remove();
+				}
+			}
+			clist = sortCourseList(clist, sort);
+		}else {
+			clist = sortCourseList(clist, sort);
+		}
 		
 		int limit = 10;
 		int listCount = clist.size();
@@ -48,6 +110,8 @@ public class SearchCoursesServlet extends HttpServlet {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("listCount", listCount);
+		request.setAttribute("sort", sort);
+		request.setAttribute("priceRange", priceRange);
 		view.forward(request, response);
 	}
 

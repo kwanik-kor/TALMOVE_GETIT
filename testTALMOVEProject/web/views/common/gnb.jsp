@@ -95,6 +95,8 @@
                 <div class="gnb-search">
                     <form action="/testt/searchcourses.ed" method="get">
                     	<input type="hidden" name="page" value="1">
+                    	<input type="hidden" name="sort" value="featured">
+                    	<input type="hidden" name="priceRange" value="all">
                         <input type="text" placeholder="검색" name="keyword" class="search" maxlength="30" autocomplete=off>
                         <button><i class="fas fa-search"></i></button>
                     </form>

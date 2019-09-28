@@ -264,3 +264,34 @@ label.radioCon{
     border-radius: 50%;
     background: #fff;
 }
+
+/* paging */
+.page-wrapper{
+    text-align: center;
+}
+ul.page{
+    display: block;
+    list-style: none;
+    padding: 0;
+    width: 40%;
+    margin: 30px auto;
+}
+.page-item{
+    display: inline-block;
+    text-align: center;
+    color: #00a8ff;
+    margin: 0 10px;
+}
+
+.page-link{
+    text-decoration: none;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #00a8ff;
+}
+
+.active-page{
+    background: #00a8ff;
+    color: #fff;
+}
