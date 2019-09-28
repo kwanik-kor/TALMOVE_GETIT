@@ -9,6 +9,8 @@
 	int startPage = (Integer)request.getAttribute("startPage");
 	int endPage = (Integer)request.getAttribute("endPage");
 	int listCount = (Integer)request.getAttribute("listCount");
+	String priceRange = (String)request.getAttribute("priceRange");
+	String sort = (String)request.getAttribute("sort");
 %>
 <!DOCTYPE html>
 <html>
@@ -46,7 +48,7 @@
             }else{ 
             	for(Course c : clist){
             %>
-	            <div class="searched-class clearfix">
+	            <div class="searched-class clearfix" onclick="toCourseDetail(<%=c.getCourseNo() %>);">
 	                <img src="/testt/resources/course_upfiles/<%= c.getThumbnailRfileName() %>" class="thumbnail">
 	                <div class="class-content">
 	                    <h3><%= c.getCourseName() %></h3>
@@ -55,10 +57,37 @@
 	                    <p class="class-price">&#8361;<%= c.getPrice() %></p>
 	                </div>
 	            </div>
-            <% 
-            	} 
-            }	
-            %>
+            <% } %>
+            	<div class="page-wrapper">
+            		<ul class="page">
+            			<li class="page-item">
+            				<% if(currentPage <= 1){ %>
+            					<a class="page-link"><span>&laquo;</span></a>
+            				<% }else{ %>
+            					<a class="page-link" href="/testt/searchcourses.ed?page=1&keyword=<%= keyword %>&sort=<%= sort %>&priceRange=<%= priceRange %>"><span>&laquo;</span></a>
+            				<% } %>
+            			</li>
+            			<% 
+            			for(int p = startPage; p <= endPage; p++){
+            				if(p == currentPage){
+            			%>
+            				<li class="page-item"><a class="page-link active-page"><%= p %></a></li>
+            				<% }else{ %>
+            				<li class="page-item"><a class="page-link" href="/testt/searchcourses.ed?page=<%= p %>&keyword=<%= keyword %>&sort=<%= sort %>&priceRange=<%= priceRange %>"><%= p %></a></li>
+            			<% 
+            				}
+            			}
+            			%>
+            			<li class="page-item">
+            				<% if(currentPage >= maxPage){ %>
+            					<a class="page-link"><span>&raquo;</span></a>
+            				<% }else{ %>
+            					<a class="page-link" href="/testt/searchcourses.ed?page=<%= maxPage %>&keyword=<%= keyword %>&sort=<%= sort %>&priceRange=<%= priceRange %>"><span>&raquo;</span></a>
+            				<% } %>
+            			</li>
+            		</ul>
+            	</div>
+            <% } %>
         </section>
         <section class="section-sortStandard">
             <div class="fixed-area">
@@ -66,20 +95,27 @@
                     <h3><%= listCount %>개의 검색결과</h3>
                 </div>
                 <div class="sortStandard-middle">
+                	<input type="hidden" value="<%= sort %>" id="sortVal">
+                	<% if(sort.equals("featured")){ %>
                     <label>정렬</label><input type="text" id="sort-standard" name="sort" value="탈무브 추천순" readonly><p>▼</p>
+                    <% }else if(sort.equals("price-asc")){ %>
+                    <label>정렬</label><input type="text" id="sort-standard" name="sort" value="낮은 가격순" readonly><p>▼</p>
+                    <% }else{ %>
+                    <label>정렬</label><input type="text" id="sort-standard" name="sort" value="인기순" readonly><p>▼</p>
+                    <% } %>
                     <div class="sort-option">
                         <ul class="sort-options">
-                            <li class="active-option">탈무브 추천순</li>
-                            <li>낮은 가격순</li>
-                            <li>인기순</li>
+                            <li class="featured">탈무브 추천순</li>
+                            <li class="price-asc">낮은 가격순</li>
+                            <li class="popular">인기순</li>
                         </ul>
                     </div>
                 </div>
                 <div class="sortStandard-bottom">
                     <p>가격필터</p>
-                    <label class="radioCon" for="filAll">전체<input id="filAll" type="radio"><span class="checkmark"></span></label>
-                    <label class="radioCon" for="filFree">무료<input id="filFree" type="radio"><span class="checkmark"></span></label>
-                    <label class="radioCon" for="filCost">유료<input id="filCost" type="radio"><span class="checkmark"></span></label>
+                    <label class="radioCon" for="filAll">전체<input id="all" type="radio" value="all"><span class="checkmark"></span></label>
+                    <label class="radioCon" for="filFree">무료<input id="free" type="radio" value="free"><span class="checkmark"></span></label>
+                    <label class="radioCon" for="filCost">유료<input id="paid" type="radio" value="paid"><span class="checkmark"></span></label>
                 </div>
             </div>       
         </section>
@@ -89,6 +125,11 @@
     <script type="text/javascript" src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="/testt/resources/js/main.js"></script>
     <script type="text/javascript">
+    	$(function(){
+    		$('.search').val("<%= keyword %>");
+    		$('.<%= sort %>').addClass("active-option");
+    		$('input#<%= priceRange %>').attr('checked', true);
+    	});
         $(window).scroll(function(e){
             if($(this).scrollTop() > 315){
                $('.fixed-area').addClass('fix-sort');
@@ -108,10 +149,43 @@
                 sortflag = 0;
             }
         });
-        $(function(){
-        	$("input[type='radio']").eq(0).attr('checked', true);
+        
+        function toCourseDetail(courseNo){
+        	location.href = "/testt/coursedetail?courseNo="+courseNo;
+        }
+        
+        /* page, keyword, filter, sort 값 네개 보내야함 */
+        $(".radioCon").on('click', function(){
+        	var index = $(".radioCon").index(this);
+        	var sort = $('#sortVal').val();
+        	var filter = $('input[type="radio"]').eq(index).val();
+        	sortFilter(sort, filter);
         });
         
+        $('.sort-options li').on('click', function(){
+        	var index = $('.sort-options li').index(this);
+        	var filter;
+        	$('input[type="radio"]').each(function(){
+        		if($(this).is(":checked")){
+        			filter = $(this).val();
+        		}
+        	});
+        	
+        	var sort;
+        	if(index == 0){
+        		sort = "featured";
+        	}else if(index == 1){
+        		sort = "price-asc";
+        	}else{
+        		sort = "popular";
+        	}
+        	
+        	sortFilter(sort, filter);
+        });
+        
+        function sortFilter(sort, filter){
+			location.href="/testt/searchcourses.ed?page=<%= currentPage %>&keyword=<%= keyword %>&sort="+sort+"&priceRange="+filter;
+        }
     </script>
 </body>
 </html>
