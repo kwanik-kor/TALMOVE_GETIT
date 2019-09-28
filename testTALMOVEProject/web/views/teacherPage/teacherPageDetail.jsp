@@ -64,7 +64,8 @@
                     	<% }else{ %>
                         <img id="editImg" class="pfimg" src="../../resources/img/defaultUser.jpg" alt="">
                         <% } %>
-                        <input type="hidden">
+                        <input type="hidden" name="oimage" value="<%= loginTeacher.getTeacherOimageName() %>">
+                        <input type="hidden" name="rimage" value="<%= loginTeacher.getTeacherRimageName() %>">
                         <label for="pffile">사진변경<input type="file" id="pffile" name="pffile" accept="image/*"></label>
                     </div>
                     <div class="right-top-right">
