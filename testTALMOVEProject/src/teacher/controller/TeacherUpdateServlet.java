@@ -47,33 +47,37 @@ public class TeacherUpdateServlet extends HttpServlet {
 		loginTeacher.setTeacherName(tname);
 		loginTeacher.setTeacherCareer(tcareer);
 		loginTeacher.setTeacherIntro(tintro);
+		String originFileName = mrequest.getParameter("oimage");
+		String originRenameFileName = mrequest.getParameter("rimage");
 		String oFileName = mrequest.getFilesystemName("pffile");
-		if(oFileName != loginTeacher.getTeacherOimageName()) {
-			if(loginTeacher.getTeacherRimageName() != null) {
-				new File(request.getSession().getServletContext().getRealPath("/resources/tprofile_upfiles") + "/" + loginTeacher.getTeacherRimageName()).delete();
-			}
-			loginTeacher.setTeacherOimageName(oFileName);
-			if(oFileName != null) {
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-				String rFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "." + oFileName.substring(oFileName.lastIndexOf('.') + 1);
-				File oFile = new File(savePath + "/" + oFileName);
-				File rFile = new File(savePath + "/" + rFileName);
-				
-				if(!oFile.renameTo(rFile)) {
-					int read = -1;
-					byte[] buf = new byte[1024];
-					
-					FileInputStream fin = new FileInputStream(oFile);
-					FileOutputStream fout = new FileOutputStream(rFile);
-					
-					while((read = fin.read(buf, 0, buf.length)) != -1) {
-						fout.write(buf, 0, read);
-					}
-					fin.close();
-					fout.close();
-					oFile.delete();
+		if(originFileName != "") {
+			if(oFileName != loginTeacher.getTeacherOimageName()) {
+				if(loginTeacher.getTeacherRimageName() != null) {
+					new File(request.getSession().getServletContext().getRealPath("/resources/tprofile_upfiles") + "/" + loginTeacher.getTeacherRimageName()).delete();
 				}
-				loginTeacher.setTeacherRimageName(rFileName);
+				loginTeacher.setTeacherOimageName(oFileName);
+				if(oFileName != null) {
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+					String rFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "." + oFileName.substring(oFileName.lastIndexOf('.') + 1);
+					File oFile = new File(savePath + "/" + oFileName);
+					File rFile = new File(savePath + "/" + rFileName);
+					
+					if(!oFile.renameTo(rFile)) {
+						int read = -1;
+						byte[] buf = new byte[1024];
+						
+						FileInputStream fin = new FileInputStream(oFile);
+						FileOutputStream fout = new FileOutputStream(rFile);
+						
+						while((read = fin.read(buf, 0, buf.length)) != -1) {
+							fout.write(buf, 0, read);
+						}
+						fin.close();
+						fout.close();
+						oFile.delete();
+					}
+					loginTeacher.setTeacherRimageName(rFileName);
+				}
 			}
 		}
 		int result = new TeacherService().upTeacherInfo(loginTeacher);
