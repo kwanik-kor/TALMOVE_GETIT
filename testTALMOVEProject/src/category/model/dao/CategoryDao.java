@@ -401,8 +401,8 @@ public class CategoryDao {
 				lecture.setCourseName(rset.getString("course_name"));
 				lecture.setSectionName(rset.getString("section_name"));
 				lecture.setLectureName(rset.getString("lecture_name"));
-				lecture.setLerctureOFileName(rset.getString("lecture_original_filename"));
-				lecture.setLerctureRFileName(rset.getString("lecture_rename_filename"));
+				lecture.setLectureOFileName(rset.getString("lecture_original_filename"));
+				lecture.setLectureRFileName(rset.getString("lecture_rename_filename"));
 				lecture.setAttachmentOfileName(rset.getString("attachment_ofilename"));
 				lecture.setAttachmentRfileName(rset.getString("attachment_rfilename"));
 				lecture.setLectureContent(rset.getString("lecture_content"));
