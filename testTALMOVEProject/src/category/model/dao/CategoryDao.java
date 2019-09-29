@@ -28,6 +28,7 @@ public class CategoryDao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, category);
+			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
 				Course course = new Course();
@@ -43,6 +44,7 @@ public class CategoryDao {
 				course.setPrice(rset.getInt("price"));
 				course.setPurchaseCount(rset.getInt("purchase_count"));
 				
+				list.add(course);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
