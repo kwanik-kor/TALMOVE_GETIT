@@ -4,16 +4,24 @@
 
 #eimage{
 	float:left;
-	width:7%;
-	margin-left:30px;
-	
+	width:5%;
+	margin-left:3%;
+
 	radius: 50%;
-	border-radius: 50%
+ 	border-radius: 20%; 
+	border:2px solid #888888;
+
 	}
-#emailadd{
-	margin-left:124px;
+	
+#eimage:hover,
+/* #eimage:active{
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+} */
+
+#mrecipient{
+	margin-left:11%;
 	width:70%;
-	margin-top:-50px;
+	margin-top:-4.3%;
 	float:left;
 	clear:both;
 	margin-bottom:20px;
@@ -23,15 +31,39 @@
 
 	
 	}
-
-#emailadd ::placeholder {
-	font-size: 85%;
-	padding-left: 10%
+	/* 
+input::placeholder {
+	font-size: 70%;
+	padding-left: 0%; 파이어폭스에서 뿌옇게 나오는 현상을 방지하기 위한 css
+}
+input::-webkit-input-placeholder {
+	font-size: 70%;
+	padding-left: 0%;
+}
+IE
+input:-ms-input-placeholder {
+	font-size: 70%;
+	padding-left: 0%;
+}	
+	 */
+#mrecipient::placeholder { /* 적용이 안됨.... */
+	font-size: 70%;
+	padding-left: 2%;
 } 
+/* 
+.email_list input::placeholder { 적용이 안됨....
+	font-size: 85%;
+	padding-left: 15%;
+}  */
 	
 .note-editor.note-frame{clear:both;margin-left:123px;}
-#description{clear:both;}
-#ptip{font-size:0.5rem;margin-left:122px;margin-top:-18px;}
+#p_content{
+	clear:both;
+/* 	rows:5; 
+	cols:60; */
+	
+	}
+#ptip{font-size:0.5rem;margin-left:0%;margin-top:-18px;}
 
 
 .ebtn{

@@ -1,16 +1,14 @@
 @charset "UTF-8";
 
-
-
-#messagediv { 
-/* 	float:left;  */
-	display:inline-block; 
- 	width: 79%; 
-/* 	padding:55px; */
-
-    padding: 3px 10px 3px 10px;
-    margin-left: 20px;`
-	}  
+#messagediv {
+	/* 	float:left;  */
+	display: inline-block;
+	width: 79%;
+	/* 	padding:55px; */
+	padding: 3px 10px 3px 10px;
+	margin-left: 20px;
+	`
+}
 /* #allMessage { 
 	text-align:center; 
 	font-size:33px; 
@@ -24,6 +22,230 @@
    margin-top:25px;
    font-weight:600;
 	} */
+#searchForm {
+	padding-top: 0%;
+}
+
+#searchForm select {
+	height: 30px;
+	float: left;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	font-size: 85%;
+	padding-left: 1%
+}
+
+#searchForm #searchInput {
+	margin-right: 3%;
+	float: right;
+}
+
+#searchForm #searchInput input {
+	height: 30px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+
+#searchForm #searchInput	::placeholder {
+	font-size: 85%;
+	padding-left: 1%
+}
+
+.schbtn {
+	cursor: pointer;
+	border: 0;
+	border-radius: 5px;
+	color: #fff;
+	/* 	padding: 10px 15px; */
+	font-size: 0.8rem;
+	transition: background 0.1s ease;
+	outline: none;
+	background: #00a8ff;
+	width: 15%
+}
+
+.schbtn:hover, .schbtn:active {
+	background: #0097e6;
+}
+
+#messageArea {
+	margin: 8% 5% 0% 0%;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	/* 	border-radius:  */
+	padding: 1%
+}
+
+.message {
+	margin: 30px 10px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	padding: 2%;
+	list-style: none;
+}
+/* .message:hover,
+.message:active{
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+} 		
+	 */
+.imgBox {
+	display: inline-block;
+}
+
+.sendMessageBox {
+	display: inline-block;
+	width: 95%;
+	font-size: 30px;
+	padding-left: 2%;
+	margin-top: 0%;
+	font-weight: bold;
+}
+
+.sendMessageBox img {
+	width: 10%;
+	height: 10%;
+	border-radius: 50%;
+	display: inline-block;
+	margin-bottom: -15px;
+}
+
+.sendMessageBox #personName {
+	/* 	display:inline-block; 
+	padding-left:15px; 
+	float:left;  */
+	font-size: 1.2rem;
+	padding: 8%;
+}
+
+.sendMessageBox .mstar {
+	/* 		display:inline-block;
+	padding-left:15px;  */
+	padding: 2%;
+	cursor: pointer;
+	/* border: 1px solid gray; */
+}
+
+/* .sendMessageBox .mstar:hover, 
+.sendMessageBox .mstar:active {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+} */
+/*  a:link { color: red; text-decoration: none;}
+ a:visited { color: black; text-decoration: none;}
+ a:hover { color: blue; text-decoration: underline;} */
+a:link {
+	text-decoration: none;
+	color: black;
+}
+
+a:visited {
+	text-decoration: none;
+	color: black;
+}
+
+a:active {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	text-decoration: none;
+	color: black;
+}
+
+.sendMessageBox #sendDate {
+	display: inline-block;
+	float: right;
+	padding: 0;
+	margin: 0;
+	font-size: 16px;
+	color: #8c8c8c;
+	line-height: 30px;
+}
+
+.balloon {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	background: #4b9af1;
+	height: 30px;
+	width: 100%;
+	margin: -1% 0% 0% 1%;
+	border-radius: 8px;
+	padding-top: 0.8%;
+	padding-left: 1%;
+	font-weight: normal;
+	font-size: 0.9rem;
+	color: #fff;
+	float: left;
+	margin-bottom: 15px;
+	margin-top: 10px;
+}
+.balloon:hover,
+.balloon:active {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
+
+.balloon p {
+	margin-top: 0%;
+	padding-top: 0%;
+	padding-left: 0%;
+} /* 
+.balloon :hover,
+.balloon:active{
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+} 		        */
+.balloon:after {
+	content: '';
+	position: absolute;
+	border-top: 10px solid #4b9af1;
+	border-right: 5px solid transparent;
+	border-left: 5px solid transparent;
+	bottom: -9px;
+	left: 5px;
+	cursor: pointer;
+}
+
+#count {
+	width: 5%;
+	height: 25px;
+	display: inline-block;
+	background-color: #f54977;
+	color: #fae3ea;
+	/* 	border: 1px solid #ed0e51;  */
+	border-radius: 50%;
+	/* 	padding:0px 9px; */
+	padding-left: 1.8%;
+	padding-top: 0.9%;
+	font-size: 0.9rem;
+}
+/* @charset "UTF-8";
+
+
+
+#messagediv { 
+	float:left; 
+	display:inline-block; 
+ 	width: 79%; 
+	padding:55px;
+
+    padding: 3px 10px 3px 10px;
+    margin-left: 20px;`
+	}  
+#allMessage { 
+	text-align:center; 
+	font-size:33px; 
+	font-weight:bold; 
+	margin: 0 auto; 
+	margin: 0 600px; 
+	padding:40px 0;
+		
+	    font-size: 3rem;
+   text-align:center;
+   margin-top:25px;
+   font-weight:600;
+	}
 #searchForm {
 	padding-top:  0%;
 	
@@ -59,7 +281,7 @@
 	border: 0;
 	border-radius: 5px;
 	color: #fff;
-/* 	padding: 10px 15px; */
+	padding: 10px 15px;
 	font-size: 0.8rem;
 	transition: background 0.1s ease;
 	outline: none;
@@ -79,16 +301,23 @@
    border:1px solid lightgray;
    border-radius:5px;
 	
-/* 	border-radius:  */
+	border-radius: 
 	padding: 1%
 	}
 .message { 
+	cursor:pointer;
 	margin:30px 10px; 
 	   border:1px solid lightgray;
    border-radius:5px;
 	padding: 2%;
 	list-style:none;
 	}
+.message:hover,
+.message:active{
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+} 		
+	
+	
 .imgBox { 
 	display:inline-block;
 	
@@ -103,24 +332,26 @@
 	font-weight:bold;
 	
 	}	
+
+	
 .sendMessageBox img { 
-	width:70px; 
-	height:50px; 
+	width:10%; 
+	height:10%; 
 	border-radius:50%; 
 	display:inline-block;
 	margin-bottom: -15px;
 	}
 
 .sendMessageBox #personName { 
-/* 	display:inline-block; 
+	display:inline-block; 
 	padding-left:15px; 
-	float:left;  */
+	float:left; 
 	padding: 8%;
 
 	}
 .sendMessageBox #star { 
-/* 		display:inline-block;
-	padding-left:15px;  */
+		display:inline-block;
+	padding-left:15px; 
 	padding: 2%;
 	}
 
@@ -147,7 +378,7 @@
          color:#fff; 
          padding:5px;
  		float: left;
-         cursor:pointer;
+         
          }
 .balloon:after { 
 	content: ''; 
@@ -161,10 +392,16 @@
              }
 
 #count { 
+		width: 5%;
+	height: 25px; 
 	display:inline-block; 
-	background-color:red; 
-	color:#fff; 
+	 	background-color:#f54977;  
+	color:#fae3ea; 
+	border: 1px solid #ed0e51; 
 	border-radius:50%; 
 	padding:0px 9px;
-font-size:23px;
+	padding-left:1.8%;	
+	padding-top: 0.9%;
+font-size: 0.9rem;
 }             
+ */

@@ -41,8 +41,8 @@ public class CourseBasicSetupServlet extends HttpServlet {
 		
 		String savePath = request.getSession().getServletContext().getRealPath("/resources/course_upfiles");
 		MultipartRequest mrequest = new MultipartRequest(request, savePath, 1024*1024*10, "UTF-8", new DefaultFileRenamePolicy());
-        
 		Teacher loginTeacher = (Teacher)request.getSession(false).getAttribute("loginTeacher");
+		
 		Course course = new Course();
 		String tags = mrequest.getParameter("tags");
 		String courseName = mrequest.getParameter("lectureName");
@@ -50,9 +50,6 @@ public class CourseBasicSetupServlet extends HttpServlet {
 		course.setCategoryNo(Integer.parseInt(mrequest.getParameter("categoryNo")));
 		course.setCourseName(courseName);
 		course.setDescription(mrequest.getParameter("lecIntro"));
-		System.out.println("넘겨받은 des"+mrequest.getParameter("lecIntro"));
-		System.out.println("넘겨받은 des2"+request.getParameter("lecIntro"));
-		System.out.println(course.getDescription());
 		String oFileName = mrequest.getFilesystemName("lecThumb");
 		course.setThumbnailOfileName(oFileName);
 		if(oFileName != null) {
@@ -89,14 +86,9 @@ public class CourseBasicSetupServlet extends HttpServlet {
 		Course registedCourse = courseService.getCourseByName(courseName);
 		int courseTagResult = tagservice.insertTagCourse(registedCourse.getCourseNo(), tagList);
 		
-        
-        
 		if(result > 0 && courseTagResult > 0) {
-			System.out.println("강좌 정보 등록 성공\n강좌_태그 테이블 정보 등록 성공");
-			view = request.getRequestDispatcher("/editPageLoad");
-			//request.setAttribute("course", registedCourse);
-            		//go to CourseLoadServlet
-          			 request.setAttribute("courseNo", registedCourse.getCourseNo());
+			view = request.getRequestDispatcher("views/teacherPage/editLecture.jsp");
+			request.setAttribute("course", registedCourse);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("index.jsp");

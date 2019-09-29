@@ -10,8 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import category.model.service.CategoryService;
+import category.model.vo.Category;
 import course.model.service.CourseService;
 import course.model.vo.Course;
+import course_tag.model.service.CourseTagService;
+import course_tag.model.vo.CourseTag;
+import tag.model.service.TagService;
+import tag.model.vo.Tag;
 import teacher.model.vo.Teacher;
 
 @WebServlet("/gtcourse")
@@ -25,8 +31,15 @@ public class getTeacherCoursesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Teacher loginTeacher = (Teacher)request.getSession(false).getAttribute("loginTeacher");
 		ArrayList<Course> courseList = new CourseService().getCourseListByTNo(loginTeacher.getTeacherNo());
+		ArrayList<Tag> tagList = new TagService().getTagListByTNo(loginTeacher.getTeacherNo());
+		ArrayList<CourseTag> ctList = new CourseTagService().getCourseTagList(loginTeacher.getTeacherNo());
+		ArrayList<Category> caList = new CategoryService().getAllCategoryList();
+		
 		RequestDispatcher view = request.getRequestDispatcher("views/teacherPage/teacherManageLecture.jsp");
 		request.setAttribute("courseList", courseList);
+		request.setAttribute("tagList", tagList);
+		request.setAttribute("ctList", ctList);
+		request.setAttribute("caList", caList);
 		view.forward(request, response);
 	}
 

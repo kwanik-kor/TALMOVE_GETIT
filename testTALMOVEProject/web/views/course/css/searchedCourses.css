@@ -1,0 +1,297 @@
+.clearfix {zoom: 1}
+.clearfix:after {
+    content: '.';
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.section-result-title{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+}
+
+.result-title{
+    margin: 0;
+    padding: 80px 0 40px 13%;
+}
+
+.title{
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+.keyword{
+    color: #00a8ff;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+/* 강좌 리스트 */
+.section-classList, .section-sortStandard{
+    margin: 0;
+}
+.wrapper{
+    display: flex;
+}
+.section-classList{
+    display: inline-block;
+    width: 62%;
+    height: auto;
+    float: left;
+    padding-left: 13%;
+}
+
+/* 검색 결과 없을 때 */
+.oopsimg{
+    display: block;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+.no-course{
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+}
+.no-course span{
+    color: #00a8ff;
+}
+/* 검색 결과 있을 때 */
+.searched-class{
+    width: 100%;
+    height: 140px;
+    margin: 15px 0;
+    cursor: pointer; 
+}
+
+.searched-class .thumbnail{
+    display: inline-block;
+    width: 30%;
+    height: 100%;
+    margin: 0;
+    float: left;
+}
+.class-content{
+    display: inline-block;
+    margin: 0;
+    width: 70%;
+    padding: 0 20px;
+}
+.class-content h3{
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 10px 0;
+    color: #1f1f1f;
+}
+.class-content .class-description{
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: #1f1f1f;
+    padding-right: 30px;
+    height: 33px;
+}
+
+.class-content .class-teacher{
+    font-size: 0.7rem;
+    font-weight: 300;
+    margin-bottom: 0;
+}
+
+.class-content .class-price{
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #00a8ff;
+    text-align: right;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-right: 30px;
+}
+
+/* 옵션 리스트 */
+.section-sortStandard{
+    min-height: 450px;
+}
+
+.section-sortStandard{
+    display: inline-block;
+    position: relative;
+    width: 38%;
+    border-left: 1px solid #d0d0d0;
+}
+.fixed-area{
+    display: block;
+    position: absolute;
+    top: 20px;
+    padding-left: 20px;
+}
+
+.fix-sort{
+    position: fixed;
+    top: 20px;
+    left: 62%;
+}
+
+.sortStandard-top{
+    margin-bottom: 30px;
+}
+.sortStandard-top h3{
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.sortStandard-middle{
+    margin-bottom: 50px;
+}
+.sortStandard-middle label{
+    display: block;
+    font-size: 0.7rem;
+}
+
+.sortStandard-middle input{
+    cursor: pointer;
+    outline: none;
+    width: 250px;
+    font-size: 0.9rem;
+    border: 0;
+    border-bottom: 1px solid #000;
+    margin-top: 5px;
+    padding-left: 7px;
+}
+
+.sortStandard-middle p{
+    display: inline-block;
+    position: absolute;
+    right: 5px;
+    top: 80px;
+    font-size: 0.5rem;
+    cursor: pointer;
+}
+
+.sort-option{
+    display: none;
+    position: absolute;
+    width: 250px;
+    z-index: 99;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    background: #fff;
+}
+.is-visible{
+    display: block;
+}
+
+.sort-options{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sort-options li{
+    padding: 10px 10px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #000;
+    cursor: pointer;
+}
+.sort-options li:hover{
+    background: #eaeaea;
+}
+.active-option{
+    color: #00a8ff !important;
+}
+
+.sortStandard-bottom p{
+    display: block;
+    font-size: 0.8rem;
+}
+
+label.radioCon{
+    cursor: pointer;
+    font-size: 0.8rem;
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    padding-top: 3px;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.sortStandard-bottom input[type="radio"]{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+.radioCon:hover .checkmark{
+    background-color: #ccc;
+}
+.radioCon input:checked ~ .checkmark{
+    background-color: #e84393;
+}
+
+.checkmark:after{
+    content:"";
+    position: absolute;
+    display: none;
+}
+
+.radioCon input:checked ~ .checkmark:after{
+    display: block;
+}
+
+.radioCon .checkmark:after{
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #fff;
+}
+
+/* paging */
+.page-wrapper{
+    text-align: center;
+}
+ul.page{
+    display: block;
+    list-style: none;
+    padding: 0;
+    width: 40%;
+    margin: 30px auto;
+}
+.page-item{
+    display: inline-block;
+    text-align: center;
+    color: #00a8ff;
+    margin: 0 10px;
+}
+
+.page-link{
+    text-decoration: none;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #00a8ff;
+}
+
+.active-page{
+    background: #00a8ff;
+    color: #fff;
+}
