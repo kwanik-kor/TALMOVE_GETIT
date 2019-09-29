@@ -1,5 +1,20 @@
 @charset "UTF-8";
 
+.list_none{
+	border: 10px solid;
+	width:90%;
+	height:400px;
+	margin:auto;
+	text-align: center;
+	
+	
+}
+
+.list_none > h2{
+	margin-top : 180px;
+}
+
+
 a.no-uline { text-decoration:none }
 
 
@@ -27,6 +42,10 @@ a.no-uline { text-decoration:none }
     box-shadow: none;
 }
 
+.card-block a.abcd{
+	text-decoration: none;
+	color: #000;
+}
 .card-img-top {
     display: block;
     width: 100%;
@@ -165,6 +184,7 @@ a:hover {
 
 h1.display-7{
 	font-weight: 800;
+	color: white;
 }
 
 h2.display-7{

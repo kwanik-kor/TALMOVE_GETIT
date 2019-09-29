@@ -9,6 +9,11 @@
     visibility: hidden;
 }
 
+
+button{
+	cursor: pointer;
+}
+
 a {
 	color: black;
 	text-decoration: none;
@@ -51,13 +56,13 @@ a {
 	border-radius: 13px;
 }
 
-#price {
+#price, #priceContent {
 	font-size: 3rem;
 	font-weight: bold;
 	padding-left: 8%;
 }
 
-#addcart {
+#addcart, .addcartN {
 	background: red;
 	border: 0;
 	width: 80%;
@@ -69,7 +74,7 @@ a {
 	margin-left:9%;
 }
 
-#direct {
+#direct, .directN {
 	background: white;
 	margin: 8% 0 0 9%;
 	border: 1px solid black;
@@ -216,12 +221,9 @@ a {
 #review {
 	width: 55%;
 	margin-left: 6%;
+	height: 200px;
 	float: left;
-	margin-top: 43px;
-}
-
-#reviewr{
-	margin-bottom:50px;
+	margin-top: 121px;
 }
 
 #rtitle {
@@ -263,7 +265,9 @@ a {
 }
 
 .rstar {
+	color: rgb(244, 193, 80);
 	clear: both;
+	font-size: 1.3rem;
 	margin:0;
 	margin-top:10px;
 }
@@ -271,12 +275,6 @@ a {
 .rre {
 	padding-top: 10px;
 	margin:0;
-}
-
-#noreview{
-	margin-bottom:78px;
-	margin-left:152px;
-	margin-top:66px;
 }
 
 span.star-prototype, span.star-prototype > * {

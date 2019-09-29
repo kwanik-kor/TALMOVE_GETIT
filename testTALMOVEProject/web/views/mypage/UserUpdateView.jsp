@@ -70,7 +70,7 @@
         			
         			
         			&nbsp;
-        			<input type="file" accept="image/*" id="filebutton" name="profileImg"/>
+        			<input type="file" accept="image/*" id="efilebutton" name="profileImg"/>
         			<input type="hidden" name="uemail" id="subBtn" value="<%= loginUser.getUserEmail() %>">
         			<br>
         			 <input class="upUserFile" type="submit" value="등록"> 

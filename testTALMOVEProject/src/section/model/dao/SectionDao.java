@@ -86,5 +86,27 @@ public class SectionDao {
 		return result;
 	}
 
+	public int getLastedCreateSectionNo(Connection conn, int no) {
+		int sectionNo=0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT SECTION_NO FROM SECTION WHERE COURSE_NO=? AND ROWNUM=1 ORDER BY SECTION_NO DESC";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				sectionNo=rset.getInt("section_no");
+				System.out.println(sectionNo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return sectionNo;
+	}
+
 
 }

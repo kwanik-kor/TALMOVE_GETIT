@@ -87,8 +87,9 @@ public class CourseBasicSetupServlet extends HttpServlet {
 		int courseTagResult = tagservice.insertTagCourse(registedCourse.getCourseNo(), tagList);
 		
 		if(result > 0 && courseTagResult > 0) {
-			view = request.getRequestDispatcher("views/teacherPage/editLecture.jsp");
-			request.setAttribute("course", registedCourse);
+			view = request.getRequestDispatcher("/editPageLoad");
+			System.out.println(registedCourse.getCourseNo());
+			request.setAttribute("courseNo", registedCourse.getCourseNo());
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("index.jsp");

@@ -35,6 +35,8 @@ pageEncoding="UTF-8"%>
             <% for(Payment payment : payments){  
   			 sum = sum + payment.getPrice();   %>
   			<%  } %> 	
+  			
+  			
 
 		
   </head>
@@ -70,7 +72,7 @@ pageEncoding="UTF-8"%>
         
   <% for(int i = 0; i < payments.size(); i++){ 
   			Payment payment = payments.get(i); %>
-  <%--  <input type="hidden" name="cartNo" value="<%=cart.getCartNo()%>">--%>
+ 
         <div class="item">
            
                    
@@ -136,7 +138,7 @@ pageEncoding="UTF-8"%>
              
               
               <input id="ckBox" type="checkbox" value="0" name="agree" 
-              onclick="el=document.getElementById('pay_btn');if(this.checked)el.disabled=false; else el.disabled=true;"/>
+              onclick="showHidden();"/>
               <label for="ckBox"><b>결제 약관에 동의합니다. </b></label>
               <br /><br />
 	          
@@ -145,17 +147,17 @@ pageEncoding="UTF-8"%>
             <div class ="box_detail_price">
           
                 &#8361; <%= sum %>
- 		
- 	<%-- 	<form action="/addonc" type="post">
- 		<input type="hidden" name="userNo" value="<%= loginUser.getUserNo()  %>">
-		<% for(int i = 0; i < payments.size(); i++){ 
-  			Payment payment = payments.get(i); %>
- 		<input type="hidden" name="courseName" value="<%= payment.getCourseName() %>">
- 		<% } %>
- 		</form>
-  --%>
+
             </div>
-	           <input id="pay_btn" type="button" value="결제하기" disabled="disabled" onclick="payTest();" />
+         
+            	 <% for(int i = 0; i < payments.size(); i++){ 
+	   			Payment payment = payments.get(i); %>
+	   			<% if(sum == 0){ %>
+	           <input class="to-nextBtn" id="pay_btn" type="button" value="결제하기" disabled="disabled" onclick="location.href='/testt/addonc?userNo=<%=loginUser.getUserNo()%>&courseNo=<%=payment.getCourseNo() %>'" />
+            	<% }else if(sum > 0){ %>
+            	  <input class="to-nextBtn" id="pay_btn" type="button" value="결제하기" disabled="disabled" onclick="payTest();" />
+            	 <% } %> 
+            <% }  %>
             </form>
           </div>
           <!-- /check box-->
@@ -179,11 +181,6 @@ function payTest(){
 	    pg : 'kakaopay',
 	    pay_method : 'card',
 	    merchant_uid : 'merchant_' + new Date().getTime(),
-	    
-	     <%-- `'<% for(int i = 0; i < payments.size(); i++){ %> 
-  				<% Payment payment = payments.get(i); %>
-		  		<%= payment.getCourseName() + ", " %>
-		      	<% }%>'`, --%>
 		
 		name : '강좌결제',	      	
 		      	
@@ -223,10 +220,10 @@ function payTest(){
 	    	 <% for(int i = 0; i < payments.size(); i++){ 
 	   			Payment payment = payments.get(i); %>
 	    	location.href='/testt/addonc?userNo=<%=loginUser.getUserNo()%>&courseNo=<%=payment.getCourseNo() %>'
+	    	
 	    			<% } %>
 	    	
-	    	//location.href='/testt/cdall?userNo=<%=loginUser.getUserNo()%>'		
-	    	
+	    	// location.href='/testt/cdall?userNo=<%=loginUser.getUserNo()%>'		 
 	    	//장바구니목록 전체 삭제하고, purchase 카운터 올리고 까지하면 얼추 될듯 		
 	    	//location.href='/testt/views/payment/paymentFinish.jsp'
 	    } else {
@@ -244,5 +241,18 @@ function payTest(){
     <script type="text/javascript"
       src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="/testt/views/payment/payment.js"></script>
+    <script>
+    function showHidden(){
+        if($("input:checkbox[id='ckBox']").is(":checked") == true) {
+            $('#pay_btn').attr('disabled', false);    
+        } else {
+            $('#pay_btn').attr('disabled', true);
+          
+        }    
+    }
+    
+ 
+
+    </script>
   </body>
 </html>

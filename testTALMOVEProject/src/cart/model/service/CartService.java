@@ -18,7 +18,7 @@ public class CartService {
 	public int addCart(int userNo, int courseNo) {
 		Connection conn = getConnection();
 		int result = cdao.addCart(conn, userNo, courseNo);
-		System.out.println("서비스로 넘어온 userNo" + userNo + " courseNo" + courseNo);
+		System.out.println("add cart 서비스로 넘어온 userNo" + userNo + " courseNo" + courseNo);
 		if(result > 0)
 			commit(conn);
 		else
@@ -57,21 +57,28 @@ public class CartService {
    
     //결제완료시 장바구니 전체 삭제 
 
-	
+	public int deleteCartAll(int userNo) {
+		Connection conn = getConnection();
+		int result = cdao.deleteCartAll(conn, userNo);
+		if(result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+	}
+
      
     	
-      
-    
-    
-    //  장바구니 동일한 상품 레코드 확인
-    public int countCart(int productId, String userId) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("productId", productId);
-        map.put("userId", userId);
-       // return sqlSession.selectOne("cart.countCart", map);
-		return 0;
-        
-    }
+
+
+	public int cartOverlap(int userNo, int courseNo) {
+		Connection conn = getConnection();
+		int result = cdao.cartOverlap(conn, userNo, courseNo);
+		System.out.println("cartOverlap 서비스로 넘어온 userNo" + userNo + " courseNo" + courseNo);
+		close(conn);
+		return result;
+	}
 
 
 

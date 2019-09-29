@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="/testt/resources/css/common/footer.css">
 <link rel="stylesheet" href="/testt/resources/css/queries.css">
 <link rel="stylesheet" href="css/myCourse.css">
-
+<link href="/testt/views/cart/css/cart_pay_common.css" rel="stylesheet" />
 
 <%
 	ArrayList<Course> course = 
@@ -32,17 +32,28 @@ System.out.println("myCourse jsp 확인" + course);
 </head>
 <body>
 	<%@ include file="../common/gnb.jsp"%>
-	<div class="jumbotron jumbotron-fluid">
-		<div class="container">
-			<h1 class="display-7">강의 듣기</h1>
-			<h2 class="display-7">내 강좌</h2>
-		</div>
-	</div>
+	
+		<section class="cart-pay-top">
+        <div class="link-top">
+      <a class="link_main" href="/testt/index.jsp"><!-- 홈으로 링크 검-->
+        <span>Home</span></a>
+      <span>내강좌 </span>
+       </div> <span class="link-title">내강좌</span>
+   
+    </section>
+
 
 	<div class="container">
 		<!-- 첫째줄4개 -->
+		
+		
+	
+  		
 		<div class="row">
-		  <% for(int i = 0; i < course.size(); i++){ 
+		<% if (course.size() == 0 ) { %>
+  		<div class="list_none" style="text-align: center; width:90%; height:400px; margin:auto;"><h2 style="margin-top : 180px;">내 강좌가 비어있습니다.</h2></div> 
+  			<% }else{ %> 
+		  		<% for(int i = 0; i < course.size(); i++){ 
   			Course myCourse = course.get(i); %>
 			<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
 				<div class="card">
@@ -50,9 +61,9 @@ System.out.println("myCourse jsp 확인" + course);
 						<img class="card-img-top"src="https://picsum.photos/100/50/?random">
 					</a>
 					<div class="card-block">
-						<a href="/testt/views/coursePlay/coursePlay.jsp">
-							<h6 class="card-title"> <%= myCourse.getCourseName() %> </h6>
-						</a>
+					
+							<h6 class="card-title" style="cursor:pointer" onclick='location.href="/testt/views/coursePlay/coursePlay.jsp"'><%= myCourse.getCourseName() %> </h6>
+						
 						<div class="meta">
 							<span id="name"><%= myCourse.getTeacherName() %></span>
 						</div>
@@ -73,10 +84,14 @@ System.out.println("myCourse jsp 확인" + course);
 							<a href="#">등급 남기기</a>
 						</div>
 					</div>
+				
 				</div>
+				
 			</div>
 				<% } %>
-					</div>
+						<% } %>
+					
+				</div>
 				</div>
 			
 		<!-- /둘째줄 -->
@@ -116,7 +131,7 @@ System.out.println("myCourse jsp 확인" + course);
 		</div>
 		<!-- /리뷰 모달 -->
 	</div>
-
+	<!-- <div style="min-height:400px"></div> -->	
 	<%@ include file="../common/footer.jsp"%>
 	<script src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
 	<script src="/testt/vendors/js/bootstrap.min.js"></script>

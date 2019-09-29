@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ page import="user.model.vo.User, message.model.vo.Message, java.util.ArrayList" %>
+<%
+/* 	User loginUser = (User)session.getAttribute("loginUser");  */
+/* 	Message message = (Message)session.getAttribute("message"); */
+	//forwarding 된 request 객체에 저장한 정보 꺼내기
+	ArrayList<Message> msgone = (ArrayList<Message>)request.getAttribute("list");		
+%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +26,14 @@
 	href="/testt/views/teacherPage/css/common.css">
 <link type="text/css" rel="stylesheet"
 	href="/testt/views/mypage/css/MessageTextView.css">
+	<script type="text/javascript"
+		src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="/testt/resources/js/main.js"></script>
+	<script type="text/javascript"
+		src="/testt/views/mypage/UserUpdateView.js"></script>
+	<script type="text/javascript" src="/testt/views/mypage/ckeditor/ckeditor.js"></script>
+
+
 <title>탈무브 | 마이페이지</title>
 </head>
 
@@ -44,13 +59,13 @@
 	<section class="section-middle clearfix">
 		<div class="left-side">
 			<ul class="tmenu">
-				<li><a class="active-menu"
+				<li><a
 					href="/testt/views/mypage/UserUpdateView.jsp">프로필</a></li>
 				<li id="msgmenu"><a>메시지</a></li>
 				<ul class="maghidemenu">
 					<li><a href="/testt/views/mypage/MessageNewSendView.jsp">새
 							메시지</a></li>
-					<li><a href="/testt/msglist?uemail=<%= loginUser.getUserEmail()%>">모든 메시지</a></li>
+					<li><a class="active-menu"  href="/testt/msglist?uemail=<%= loginUser.getUserEmail()%>">모든 메시지</a></li>
 					<li><a href="/testt/msgimp?uemail=<%= loginUser.getUserEmail()%>">중요
 							메시지</a></li>
 				</ul>
@@ -59,61 +74,81 @@
 		<div class="right-side">
 			<h2>모든 메시지(1:1 개인메시지)</h2>
 			<p id="msglistbt">
-				<a href="/testt/views/mypage/MessageListView.jsp">◀목록</a>
+				<a href="/testt/msglist?uemail=<%= loginUser.getUserEmail()%>">목록</a>
 			</p>
 			
-			<div id="msg1search">
+	<!-- !-- 		<div id="msg1search__">
 				<input type="text" placeholder="검색어 입력" id="sinput">
 				<button id="sbtn">검색</button>
-			</div>
-<!-- 			<br clear:="both"> -->
+			</div> -->
+
 			<div id="chatplace">
-		
+			<% String other = (String)request.getAttribute("other"); %>
+			<% String mdate = (String)request.getAttribute("mdate"); %>
+			
+			<a id="msgonename"></a>
 				<div id="chp">
 					<img src="/testt/views/mypage/images/absence_08.jpg" id="sendImage2">
-					<p id="sendName2">장관익</p>
-					<button id="starbtn2" onclick="colorchange();">☆</button>
-					<p id="sendDate2">19/09/13</p>
+					<p id="sendName2"><%= other %></p>
+			<!-- 		<button id="starbtn2" onclick="colorchange();">☆</button> -->
+					<p id="sendDate2"><%= mdate %></p>
 				</div>
 
 				<div id="chatdiv">
-					<div class="rightms">
-						<p class="rightdate">19/08/02</p>
-						<p class="rightco">
-							Thank you for signing up to my course!<br> Thanks a lot for
-							the supporting!
-						</p>
-					</div>
-					<div class="leftms">
-						<p class="leftdate">19/08/02</p>
-						<p class="leftco">
-							Thank you for signing up to my course!<br> Thanks a lot for
-							the supporting!
-						</p>
-					</div>
-					<div class="leftms">
-						<p class="leftdate">19/08/10</p>
-						<p class="leftco">
-							Thank you for signing up to my course!<br> Thanks a lot for
-							the supporting!
-						</p>
-					</div>
-					<div class="rightms">
-						<p class="rightdate">19/09/13</p>
-						<p class="rightco">
-							Thank you for signing up to my course!<br> Thanks a lot for
-							the supporting!
-						</p>
-					</div>
+					<% for(Message m : msgone) {%>
+						<% if (m.getMsgSender() == "jangsy@naver.com") { %>
+						<div class="rightms">
+							<p class="rightdate"><%= m.getMsgDate() %></p>
+							<p class="rightco">
+							<%= m.getMsgSender()%>
+							<%= other%>
+							<%= m.getMsgContent()%>
+						
+							</p>
+						</div>
+						<% } else {%>
+						<div class="leftms">
+							<p class="leftdate">	<%= m.getMsgDate() %></p>
+							<p class="leftco">
+							<%= m.getMsgSender()%>
+							<%= other%>
+							<%= m.getMsgContent()%>
+											</div>			
+						<% } %>
+					<% } %>
+						<div>
+							</div>
+		
+				
 				</div>
+	
 				
 				<div id="comment">
-					<form>
-						<textarea id="cotext" placeholder="보낼 메시지를 입력하세요"></textarea>
+					<form action="/testt/msgsend" method="post" >
+					
+					
+						<input type="hidden" name="recipientmail" value="<%=other%>" >
+
+						<input type="hidden" name="sendermail"  value="<%=loginUser.getUserEmail()%>">
+						<input type="hidden" name="senderNo"  value="<%=loginUser.getUserNo()%>">
+					
+						<textarea  rows="5" cols="40" class="form-control" id="m_cotext"  name="msgcontent" ></textarea>
+					<!-- 	<script type="text/javascript">
+ 						CKEDITOR.replace('p_content', {
+ 							height: 300,
+ 					
+ 							});
+ 						
+					</script> -->
+				<!-- 					<input type="submit" value="보내기" class="ebtn"  id="subbtn"  id="rbtn" style="margin-right: 3%;"> 
+					<input type="reset" value="작성취소" class="ebtn">
+					 -->
 						<input type="submit" value="보내기" id="subbtn"> <input
 							type="reset" value="취소" id="rbtn">
 					</form>
 				</div>
+		
+	
 		
 			</div>
 
@@ -121,15 +156,12 @@
 
 	</section>
 
-
+		<br>
+				<br>
+						<br>
 
 	<%@ include file="../common/footer.jsp"%>
 
-	<script type="text/javascript"
-		src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
-	<script type="text/javascript" src="/testt/resources/js/main.js"></script>
-	<script type="text/javascript"
-		src="/testt/views/mypage/UserUpdateView.js"></script>
 
 </body>
 </html>
