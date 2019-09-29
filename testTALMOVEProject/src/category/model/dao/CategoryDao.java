@@ -16,23 +16,28 @@ import section.model.vo.Section;
 import teacher.model.vo.Teacher;
 
 public class CategoryDao {
-	public ArrayList<Course> selectSortPurchaseCounrt(Connection conn, String category){
+	public ArrayList<Course> selectSortPurchaseCounrt(Connection conn, int currentPage, int limit, String category){
 		ArrayList<Course> list = new ArrayList<Course>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * " + 
-				"from course " + 
-				"join category using (category_no) " + 
-				"where category_name like ? " + 
-				"order by PURCHASE_COUNT desc;";
+		String query = "select * from(select rownum rnum, COURSE_NO, TEACHER_NO, CATEGORY_NO, COURSE_NAME, " + 
+				"THUMBNAIL_OFILENAME, THUMBNAIL_RFILENAME, DESCRIPTION, OPEN_YN, PRICE, PURCHASE_COUNT, teacher_name, category_upper " + 
+				"from(select * from course join category using (category_no) " + 
+				"join teacher using (teacher_no) where category_name like ? " + 
+				"order by purchase_count desc)) where rnum >= ? and rnum <= ?";
+		
+		int startRow = (currentPage -1) * limit + 1;
+		int endRow = startRow + limit - 1;
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, category);
-			rset = pstmt.executeQuery();
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			
+			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				Course course = new Course();
 				
@@ -46,26 +51,121 @@ public class CategoryDao {
 				course.setOpenYN(rset.getString("open_yn"));
 				course.setPrice(rset.getInt("price"));
 				course.setPurchaseCount(rset.getInt("purchase_count"));
+				course.setTeacherName(rset.getString("teacher_name"));
+				course.setCategoryUpper(rset.getInt("category_upper"));
 				
 				list.add(course);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+			} 
+		}catch(Exception e) {
+				e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
 		}
+
 		return list;
-		}  // 인기도 정렬
+	}  // 인기도 정렬
    
-   public ArrayList<Course> selectSortGoodReview(Connection conn, String sortKeyword){
-      return null;}  // 최고 평점 정렬
    
-   public ArrayList<Course> selectSortRowPrice(Connection conn, String sortKeyword){
-      return null;}  // 최저가 정렬
+   public ArrayList<Course> selectSortRowPrice(Connection conn, int currentPage, int limit, String category){
+	   ArrayList<Course> list = new ArrayList<Course>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from(select rownum rnum, COURSE_NO, TEACHER_NO, CATEGORY_NO, COURSE_NAME, " + 
+				"THUMBNAIL_OFILENAME, THUMBNAIL_RFILENAME, DESCRIPTION, OPEN_YN, PRICE, PURCHASE_COUNT, teacher_name, category_upper " + 
+				"from(select * from course join category using (category_no) " + 
+				"join teacher using (teacher_no) where category_name like ? " + 
+				"order by price)) where rnum >= ? and rnum <= ?";
+		
+		int startRow = (currentPage -1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, category);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Course course = new Course();
+				
+				course.setCourseNo(rset.getInt("course_no"));
+				course.setTeacherNo(rset.getInt("teacher_no"));
+				course.setCategoryNo(rset.getInt("category_no"));
+				course.setCourseName(rset.getString("course_name"));
+				course.setThumbnailOfileName(rset.getString("thumbnail_ofilename"));
+				course.setThumbnailRfileName(rset.getString("thumbnail_rfilename"));
+				course.setDescription(rset.getString("description"));
+				course.setOpenYN(rset.getString("open_yn"));
+				course.setPrice(rset.getInt("price"));
+				course.setPurchaseCount(rset.getInt("purchase_count"));
+				course.setTeacherName(rset.getString("teacher_name"));
+				course.setCategoryUpper(rset.getInt("category_upper"));
+				
+				list.add(course);
+			} 
+		}catch(Exception e) {
+				e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return list;
+    }  // 최저가 정렬
    
-   public ArrayList<Course> selectSortHighPrice(Connection conn, String sortKeyword){
-      return null;}  // 최고가 정렬
+   public ArrayList<Course> selectSortHighPrice(Connection conn, int currentPage, int limit, String category){
+	   ArrayList<Course> list = new ArrayList<Course>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from(select rownum rnum, COURSE_NO, TEACHER_NO, CATEGORY_NO, COURSE_NAME, " + 
+				"THUMBNAIL_OFILENAME, THUMBNAIL_RFILENAME, DESCRIPTION, OPEN_YN, PRICE, PURCHASE_COUNT, teacher_name, category_upper " + 
+				"from(select * from course join category using (category_no) " + 
+				"join teacher using (teacher_no) where category_name like ? " + 
+				"order by price desc)) where rnum >= ? and rnum <= ?";
+		
+		int startRow = (currentPage -1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, category);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Course course = new Course();
+				
+				course.setCourseNo(rset.getInt("course_no"));
+				course.setTeacherNo(rset.getInt("teacher_no"));
+				course.setCategoryNo(rset.getInt("category_no"));
+				course.setCourseName(rset.getString("course_name"));
+				course.setThumbnailOfileName(rset.getString("thumbnail_ofilename"));
+				course.setThumbnailRfileName(rset.getString("thumbnail_rfilename"));
+				course.setDescription(rset.getString("description"));
+				course.setOpenYN(rset.getString("open_yn"));
+				course.setPrice(rset.getInt("price"));
+				course.setPurchaseCount(rset.getInt("purchase_count"));
+				course.setTeacherName(rset.getString("teacher_name"));
+				course.setCategoryUpper(rset.getInt("category_upper"));
+				
+				list.add(course);
+			} 
+		}catch(Exception e) {
+				e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return list;
+    }  // 최고가 정렬
 
    public ArrayList<Course> selectList(Connection conn, int currentPage, int limit, String category) {
 		ArrayList<Course> list = new ArrayList<Course>();
@@ -591,5 +691,276 @@ public class CategoryDao {
 		}
 
 		return flist;
+	}
+
+
+	public ArrayList<Course> UppercourseListView(Connection conn, int currentPage, int limit, String category) {
+		ArrayList<Course> list = new ArrayList<Course>();
+		
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * " + 
+				"from course " + 
+				"join category using (category_no) " +
+				"join teacher using (teacher_no) " +
+				"where category_upper = 1";
+		
+		int startRow = (currentPage -1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()) {
+				Course course = new Course();
+				
+				course.setCourseNo(rset.getInt("course_no"));
+				course.setTeacherNo(rset.getInt("teacher_no"));
+				course.setCategoryNo(rset.getInt("category_no"));
+				course.setCourseName(rset.getString("course_name"));
+				course.setThumbnailOfileName(rset.getString("thumbnail_ofilename"));
+				course.setThumbnailRfileName(rset.getString("thumbnail_rfilename"));
+				course.setDescription(rset.getString("description"));
+				course.setOpenYN(rset.getString("open_yn"));
+				course.setPrice(rset.getInt("price"));
+				course.setPurchaseCount(rset.getInt("purchase_count"));
+				course.setTeacherName(rset.getString("teacher_name"));
+				course.setCategoryUpper(rset.getInt("category_upper"));
+				
+				list.add(course);
+			} 
+		}catch(Exception e) {
+				e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+
+		return list;
+	}
+
+
+	public int getUppderListCount(Connection conn) {
+		int listCount = 0;
+	      Statement stmt = null;
+	      ResultSet rset = null;
+	      
+	      String query = "select count(*) from course " + 
+	      		"join category using (category_no) where category_upper = 1";
+	      
+	      try {
+	    	  stmt = conn.createStatement();
+	    	  rset = stmt.executeQuery(query);
+	    			  
+	         
+	         if(rset.next()) {
+	            listCount = rset.getInt(1);
+	         } 
+	      } catch(Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(rset);
+	         close(stmt);
+	      }
+	      return listCount;
+	}
+
+
+	public ArrayList<Course> UpperstarCourse(Connection conn) {
+		ArrayList<Course> flist = new ArrayList<Course>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from(select rownum rnum, COURSE_NO, TEACHER_NO, CATEGORY_NO, COURSE_NAME, " + 
+				"THUMBNAIL_OFILENAME, THUMBNAIL_RFILENAME, DESCRIPTION, OPEN_YN, PRICE, PURCHASE_COUNT, teacher_name " + 
+				"from(select * from course join category using (category_no) " + 
+				"join teacher using (teacher_no) " + 
+				"where category_upper = 1 order by PURCHASE_COUNT desc)) " + 
+				"where rnum >= ? and rnum <= ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, 1);
+			pstmt.setInt(2, 4);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Course course = new Course();
+				
+				course.setCourseNo(rset.getInt("course_no"));
+				course.setTeacherNo(rset.getInt("teacher_no"));
+				course.setCategoryNo(rset.getInt("category_no"));
+				course.setCourseName(rset.getString("course_name"));
+				course.setThumbnailOfileName(rset.getString("thumbnail_ofilename"));
+				course.setThumbnailRfileName(rset.getString("thumbnail_rfilename"));
+				course.setDescription(rset.getString("description"));
+				course.setOpenYN(rset.getString("open_yn"));
+				course.setPrice(rset.getInt("price"));
+				course.setPurchaseCount(rset.getInt("purchase_count"));
+				course.setTeacherName(rset.getString("teacher_name"));
+				
+				flist.add(course);
+			} 
+		}catch(Exception e) {
+				e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return flist;
+	}
+
+
+	public ArrayList<Course> ProUppercourseListView(Connection conn, int currentPage, int limit, String category) {
+ArrayList<Course> list = new ArrayList<Course>();
+		
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * " + 
+				"from course " + 
+				"join category using (category_no) " +
+				"join teacher using (teacher_no) " +
+				"where category_upper = 2";
+		
+		int startRow = (currentPage -1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()) {
+				Course course = new Course();
+				
+				course.setCourseNo(rset.getInt("course_no"));
+				course.setTeacherNo(rset.getInt("teacher_no"));
+				course.setCategoryNo(rset.getInt("category_no"));
+				course.setCourseName(rset.getString("course_name"));
+				course.setThumbnailOfileName(rset.getString("thumbnail_ofilename"));
+				course.setThumbnailRfileName(rset.getString("thumbnail_rfilename"));
+				course.setDescription(rset.getString("description"));
+				course.setOpenYN(rset.getString("open_yn"));
+				course.setPrice(rset.getInt("price"));
+				course.setPurchaseCount(rset.getInt("purchase_count"));
+				course.setTeacherName(rset.getString("teacher_name"));
+				course.setCategoryUpper(rset.getInt("category_upper"));
+				
+				list.add(course);
+			} 
+		}catch(Exception e) {
+				e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+
+		return list;
+	}
+
+
+	public int getProUpperListCount(Connection conn) {
+		int listCount = 0;
+	      Statement stmt = null;
+	      ResultSet rset = null;
+	      
+	      String query = "select count(*) from course " + 
+	      		"join category using (category_no) where category_upper = 2";
+	      
+	      try {
+	    	  stmt = conn.createStatement();
+	    	  rset = stmt.executeQuery(query);
+	    			  
+	         
+	         if(rset.next()) {
+	            listCount = rset.getInt(1);
+	         } 
+	      } catch(Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(rset);
+	         close(stmt);
+	      }
+	      return listCount;
+	}
+
+
+	public ArrayList<Course> ProUpperstarCourse(Connection conn) {
+ArrayList<Course> flist = new ArrayList<Course>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from(select rownum rnum, COURSE_NO, TEACHER_NO, CATEGORY_NO, COURSE_NAME, " + 
+				"THUMBNAIL_OFILENAME, THUMBNAIL_RFILENAME, DESCRIPTION, OPEN_YN, PRICE, PURCHASE_COUNT, teacher_name " + 
+				"from(select * from course join category using (category_no) " + 
+				"join teacher using (teacher_no) " + 
+				"where category_upper = 2 order by PURCHASE_COUNT desc)) " + 
+				"where rnum >= ? and rnum <= ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, 1);
+			pstmt.setInt(2, 4);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Course course = new Course();
+				
+				course.setCourseNo(rset.getInt("course_no"));
+				course.setTeacherNo(rset.getInt("teacher_no"));
+				course.setCategoryNo(rset.getInt("category_no"));
+				course.setCourseName(rset.getString("course_name"));
+				course.setThumbnailOfileName(rset.getString("thumbnail_ofilename"));
+				course.setThumbnailRfileName(rset.getString("thumbnail_rfilename"));
+				course.setDescription(rset.getString("description"));
+				course.setOpenYN(rset.getString("open_yn"));
+				course.setPrice(rset.getInt("price"));
+				course.setPurchaseCount(rset.getInt("purchase_count"));
+				course.setTeacherName(rset.getString("teacher_name"));
+				
+				flist.add(course);
+			} 
+		}catch(Exception e) {
+				e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return flist;
+	}
+
+
+	public String videoPlay(Connection conn, int courseNo) {
+		String videoSrc = null;
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      
+	      String query = "select * from (select rownum rnum, lecture_original_filename, "
+	      		+ "course_no from lecture join course using (course_name)) " + 
+	      		"where course_no = ? and rnum = 1;";
+	      
+	      try {
+	         pstmt = conn.prepareStatement(query);
+	         pstmt.setInt(1, courseNo);
+	         
+	         rset = pstmt.executeQuery();
+	         
+	         if(rset.next()) {
+	            videoSrc = rset.getString("lecture_original_filename");
+	         } 
+	      } catch(Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(rset);
+	         close(pstmt);
+	      }
+	      System.out.println(videoSrc);
+	      return videoSrc;
 	}
 }

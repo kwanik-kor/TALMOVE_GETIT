@@ -99,6 +99,7 @@
     
     <section>
 		<!-- 모든 강좌 -->
+		<input type="hidden" id="category" value="<%= category %>">
 		<h3 class="row class-title">모든 <%= category %> 강좌</h3>
 		<div class="row">
 		<% for(Course course : list){ %>
@@ -184,8 +185,6 @@
             submenu.css('display', 'none');
         }
     });
-	
-	
 	
 	</script>
 </body>

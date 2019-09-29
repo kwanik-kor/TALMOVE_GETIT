@@ -19,24 +19,28 @@ import course.model.vo.Course;
 public class CategoryService {
 	private CategoryDao cDao = new CategoryDao();
 	
-	public ArrayList<Course> selectSortPurchaseCounrt(String category){
+	public ArrayList<Course> selectSortPurchaseCounrt(int currentPage, int limit, String category){
 		Connection conn = getConnection();
-		ArrayList<Course> list = cDao.selectSortPurchaseCounrt(conn, category);
+		ArrayList<Course> list = cDao.selectSortPurchaseCounrt(conn, currentPage, limit, category);
 		close(conn);
 		return list;
 	}  // 인기도 정렬
 	
-	public ArrayList<Course> selectSortGoodReview(String sortKeyword){
-		return null;}  // 최고 평점 정렬
 	
-	public ArrayList<Course> selectSortRowPrice(String sortKeyword){
-		return null;}  // 최저가 정렬
+	public ArrayList<Course> selectSortRowPrice(int currentPage, int limit, String category){
+		Connection conn = getConnection();
+		ArrayList<Course> list = cDao.selectSortRowPrice(conn, currentPage, limit, category);
+		close(conn);
+		return list;
+	}  // 최저가 정렬
 	
-	public ArrayList<Course> selectSortHighPrice(String sortKeyword){
-		return null;}  // 최고가 정렬
+	public ArrayList<Course> selectSortHighPrice(int currentPage, int limit, String category){
+		Connection conn = getConnection();
+		ArrayList<Course> list = cDao.selectSortHighPrice(conn, currentPage, limit, category);
+		close(conn);
+		return list;
+	}  // 최고가 정렬
 	
-	public ArrayList<Course> categoryCourseListView(int categoryNo){
-		return null;}  // 카테고리 별 강좌 뷰
 
 	public ArrayList<Course> courseListView(int currentPage, int limit, String category) {
 		Connection conn = getConnection();
@@ -149,6 +153,62 @@ public class CategoryService {
 		ArrayList<Course> flist = cDao.starCourse(conn, category);
 		close(conn);
 		return flist;
+	}
+
+
+	public ArrayList<Course> UppercourseListView(int currentPage, int limit, String category) {
+		Connection conn = getConnection();
+		ArrayList<Course> list = cDao.UppercourseListView(conn, currentPage, limit, category);
+		close(conn);
+		return list;
+	}
+
+
+	public int getUpperListCount() {
+		Connection conn = getConnection();
+		int UppderListCount = cDao.getUppderListCount(conn);
+		close(conn);
+		return UppderListCount;
+	}
+
+
+	public ArrayList<Course> UpperstarCourse() {
+		Connection conn = getConnection();
+		ArrayList<Course> flist = cDao.UpperstarCourse(conn);
+		close(conn);
+		return flist;
+	}
+
+
+	public ArrayList<Course> ProUppercourseListView(int currentPage, int limit, String category) {
+		Connection conn = getConnection();
+		ArrayList<Course> list = cDao.ProUppercourseListView(conn, currentPage, limit, category);
+		close(conn);
+		return list;
+	}
+
+
+	public int getProUpperListCount() {
+		Connection conn = getConnection();
+		int UppderListCount = cDao.getProUpperListCount(conn);
+		close(conn);
+		return UppderListCount;
+	}
+
+
+	public ArrayList<Course> ProUpperstarCourse() {
+		Connection conn = getConnection();
+		ArrayList<Course> flist = cDao.ProUpperstarCourse(conn);
+		close(conn);
+		return flist;
+	}
+
+
+	public String videoPlay(int courseNo) {
+		Connection conn = getConnection();
+		String videoSrc = cDao.videoPlay(conn, courseNo);
+		close(conn);
+		return videoSrc;
 	}
 
 
