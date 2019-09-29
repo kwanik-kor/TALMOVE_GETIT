@@ -401,8 +401,8 @@ public class CategoryDao {
 				lecture.setCourseName(rset.getString("course_name"));
 				lecture.setSectionName(rset.getString("section_name"));
 				lecture.setLectureName(rset.getString("lecture_name"));
-				lecture.setLectureOFileName(rset.getString("lecture_original_filename"));
-				lecture.setLectureRFileName(rset.getString("lecture_rename_filename"));
+				lecture.setLerctureOFileName(rset.getString("lecture_original_filename"));
+				lecture.setLerctureRFileName(rset.getString("lecture_rename_filename"));
 				lecture.setAttachmentOfileName(rset.getString("attachment_ofilename"));
 				lecture.setAttachmentRfileName(rset.getString("attachment_rfilename"));
 				lecture.setLectureContent(rset.getString("lecture_content"));
@@ -439,8 +439,8 @@ public class CategoryDao {
 				teacher.setTeacherName(rset.getString("teacher_name"));
 				teacher.setTeacherCareer(rset.getString("teacher_career"));
 				teacher.setTeacherIntro(rset.getString("teacher_intro"));
-				teacher.setTeacherOimageName(rset.getString("teacher_oimage_name"));
-				teacher.setTeacherRimageName(rset.getString("teacher_rimage_name"));
+				teacher.setTeacherOimageName(rset.getString("user_oimage_name"));
+				teacher.setTeacherRimageName(rset.getString("user_rimage_name"));
 				teacher.setTeacherAccountnumber(rset.getInt("teacher_account_number"));
 				
 				tlist.add(teacher);
