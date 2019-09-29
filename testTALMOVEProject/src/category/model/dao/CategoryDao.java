@@ -218,7 +218,7 @@ public class CategoryDao {
          while(rset.next()) {
             Course course = new Course();
             
-            course.setCategoryNo(rset.getInt("course_no"));
+            course.setCourseNo(rset.getInt("course_no"));
             course.setTeacherNo(rset.getInt("teacher_no"));
             course.setCategoryNo(rset.getInt("category_no"));
             course.setCourseName(rset.getString("course_name"));
