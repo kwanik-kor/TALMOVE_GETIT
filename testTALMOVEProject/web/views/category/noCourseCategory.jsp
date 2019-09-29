@@ -1,70 +1,92 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String category = ((String)request.getAttribute("category"));
+	String categoryUpper = ((String)request.getAttribute("categoryUpper"));
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>강의 없을때 </title>
-<link href="/testt/views/category/css/noCourseCategory.css" rel="stylesheet">
-<script type="text/javascript" src="/tal/resources/js/jquery-3.4.1.min.js"></script>
-<script type="text/javascript">
-// html dom 이 다 로딩된 후 실행된다.
+	<meta charset="UTF-8">
+	<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+	<meta name="viewport" content="width:device-width, initial-scale=1.0">
+	<title>탈무브 | </title>
+	<link rel="stylesheet" href="/testt/vendors/css/normalize.css">
+    <link rel="stylesheet" href="/testt/vendors/css/bootstrap-grid.css">
+	<link href="/testt/views/category/css/noCourseCategory.css" rel="stylesheet">
+	<link rel="stylesheet" href="/testt/resources/css/style.css">
+    <link rel="stylesheet" href="/testt/resources/css/common/footer.css">
+    <link rel="stylesheet" href="/testt/resources/css/common/gnb.css">
+    <link rel="stylesheet" href="/testt/resources/css/queries.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/08d0951667.js"></script>
+	<script type="text/javacsript" src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript">
 
-$(document).ready(function(){
-    $(".menua").click(function(){
-       
-        var submenu = $(this).next("ul");
+	</script>
 
-        if( submenu.is(":visible") ){
-            submenu.slideUp();
-        }else{
-            submenu.slideDown();
-        }
-    });
-});
-
-
-</script>
 </head>
 <body>
-<header></header>
+	<%@ include file="../common/gnb.jsp" %>	
 <section>
-
+<section>
 <!-- 카테고리명 -->
-<div id="d1">
-<p id="category_1">비즈니스</p><p id="category_2">커뮤니케이션</p>
-</div>
-
+	<div class="category-title">
+		    <% if(categoryUpper != null){ %>
+		    <p id="category-1"><%= categoryUpper %></p>
+		<% }else{ %>
+			<p id="category-1"></p>
+		<% } %>
+		    <p id="category-2"><%= category %></p>
+	</div>
 
 <!-- 메뉴 바 -->
-<div id="d2">
-<div class="dropdown">
-<a class="menua" >비즈니스▼</a>
-<ul class="hide">
-<li><a href="#">비즈니스</a></li><hr>
-<li><a href="#">프로그래밍</a></li>
-</ul>
-</div>
-<div id="dlist">
-<ul id="list">
-<li><a href="#">커뮤니케이션</a></li>
-<li><a href="#">경영</a></li>
-<li><a href="#">판매</a></li>
-<li><a href="#">전략</a></li>
-<li><a href="#">운영</a></li>
-</ul>
-</div>
-</div>
-
+<div class="category-menu">
+		    <ul class="categories">
+		       <li><a id="upcat">비즈니스<i class="fas fa-chevron-down"></i></a></li>
+		       <ul class="dropdown-upcat">
+		           <li><a href="#">비즈니스</a></li>
+		           <li><a href="#">프로그래밍</a></li>
+		       </ul>
+		       <li><a href="#">커뮤니케이션</a></li>
+		       <li><a href="#">경영</a></li>
+		       <li><a href="#">판매</a></li>
+		       <li><a href="#">전략</a></li>
+		       <li><a href="#">운영</a></li>
+		    </ul>
+		</div>
+</section>
+<section>
 <div id="noco">
 <p id="nocop">빠른 시일 내에 좋은 강좌로<br>
 찾아 뵙겠습니다 :)</p>
 </div>
-
+</section>
 
 </section>
-<footer></footer>
+
+	<%@ include file="../common/footer.jsp" %>
+	
+<script type="text/javascript" src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/testt/resources/js/main.js"></script>
+<script type="text/javascript">
+// html dom 이 다 로딩된 후 실행된다.
+
+$('#upcat').click(function(){
+        var submenu = $('.dropdown-upcat');
+        var icon = $('#upcat i');
+        if(icon.hasClass('fa-chevron-down')){
+            icon.removeClass('fa-chevron-down');
+            icon.addClass('fa-chevron-up');
+            submenu.css('display', 'block');
+        }else{
+            icon.removeClass('fa-chevron-up');
+            icon.addClass('fa-chevron-down');
+            submenu.css('display', 'none');
+        }
+    });
 
 
+</script>
 </body>
 </html>
