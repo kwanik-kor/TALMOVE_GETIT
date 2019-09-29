@@ -155,40 +155,7 @@ public class CourseService {
 		close(conn);
 		return result;
 	}
-	public Course getCourseByName(String courseName) {
-		Connection conn = getConnection();
-		Course course = cDao.getCourseByName(conn, courseName);
-		close(conn);
-		return course;
-	}
-	public ArrayList<Course> getCourseListByTNo(int teacherNo) {
-		Connection conn = getConnection();
-		ArrayList<Course> courseList = cDao.getCourseListByTNo(conn, teacherNo);
-		close(conn);
-		return courseList;
-	}
-	public int setCourseOpen(int courseNo, int price) {
-		Connection conn = getConnection();
-		int result = cDao.setCourseOpen(conn, courseNo, price);
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		return result;
-	}
-	public int deleteCourse(int courseNo) {
-		Connection conn = getConnection();
-		int result = cDao.deleteCourse(conn, courseNo);
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		return result;
-	}
+	
 	public int cBasicUpdate(Course course) {
 		Connection conn = getConnection();
 		int result = cDao.cBasicUpdate(conn, course);
