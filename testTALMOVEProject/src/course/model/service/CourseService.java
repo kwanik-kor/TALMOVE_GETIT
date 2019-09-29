@@ -90,40 +90,7 @@ public class CourseService {
 		close(conn);
 		return course;
 	}
-	public Course getCourseByName(String courseName) {
-		Connection conn = getConnection();
-		Course course = cDao.getCourseByName(conn, courseName);
-		close(conn);
-		return course;
-	}
-	public ArrayList<Course> getCourseListByTNo(int teacherNo) {
-		Connection conn = getConnection();
-		ArrayList<Course> courseList = cDao.getCourseListByTNo(conn, teacherNo);
-		close(conn);
-		return courseList;
-	}
-	public int setCourseOpen(int courseNo, int price) {
-		Connection conn = getConnection();
-		int result = cDao.setCourseOpen(conn, courseNo, price);
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		return result;
-	}
-	public int deleteCourse(int courseNo) {
-		Connection conn = getConnection();
-		int result = cDao.deleteCourse(conn, courseNo);
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		return result;
-	}
+	
 	public ArrayList<Lecture> getLectureBySectionNo(int no) {
 		Connection conn = getConnection();
 		ArrayList<Lecture> list = cDao.getLectureBySectionNo(conn, no);
@@ -155,6 +122,7 @@ public class CourseService {
 		close(conn);
 		return result;
 	}
+	
 	public Course getCourseByName(String courseName) {
 		Connection conn = getConnection();
 		Course course = cDao.getCourseByName(conn, courseName);
@@ -202,13 +170,6 @@ public class CourseService {
 	}
 	
 	
-	public ArrayList<Course>myCourse(int userNo){	
-		Connection conn = getConnection();
-		ArrayList<Course> list = cDao.myCourse(conn, userNo);
-		close(conn);
-		
-		return list;
-	}
 	public ArrayList<String> getSearchedCourseName(String[] keywords) {
 		Connection conn = getConnection();
 		ArrayList<String> clist = cDao.getSearchedCourseName(conn, keywords);
@@ -220,6 +181,28 @@ public class CourseService {
 		ArrayList<Course> clist = cDao.getSearchedCourse(conn, keywords);
 		close(conn);
 		return clist;
+	}
+	public ArrayList<Course>myCourse(int userNo){	
+		CourseDao cDao = new CourseDao();
+
+		Connection conn = getConnection();
+		ArrayList<Course> list = cDao.myCourse(conn, userNo);
+		System.out.println("myCourseList service에서 확인 " + list.size());
+		close(conn);
+		
+		return list;
+	}
+	
+	public int updatePurchaseCount(int courseNo) {
+		Connection conn = getConnection();
+		int result = cDao.updatePurchaseCount(conn, courseNo);
+		if(result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+		
 	}
 	
 

@@ -11,21 +11,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import cart.model.service.CartService;
 import cart.model.vo.Cart;
-import onCourse.model.service.OnCourseService;
 
-
-
-@WebServlet("/addcart")
-public class AddCartServlet extends HttpServlet {
+/**
+ * Servlet implementation class DirectCartListServlet
+ */
+@WebServlet("/dclist")
+public class DirectCartListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
-    public AddCartServlet() {
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public DirectCartListServlet() {
         super();
-     
+      
     }
 
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 회원가입 처리용 컨트롤러
 		//1. 전송온 값에 한글이 있으면, 반드시 인코딩 처리함
@@ -40,8 +41,8 @@ public class AddCartServlet extends HttpServlet {
 		int courseNo = (Integer.parseInt(request.getParameter("courseNo")));
 		cart.setUserNo(userNo);
 		cart.setCourseNo(courseNo);
-		System.out.println("addcart서블릿 userNo는 " + userNo);
-		System.out.println("addcart서블릿 courseNo는 " + courseNo);
+		System.out.println("dclist서블릿 userNo는 " + userNo);
+		System.out.println("dclist서블릿 courseNo는 " + courseNo);
 		
 		
 		//3. 서비스로 객체 전달하고, 처리된 결과 받기
@@ -55,17 +56,14 @@ public class AddCartServlet extends HttpServlet {
 			//강좌 상세페이지에서 어떻게 구성하느냐에따라서 링크 다르게 작성할것 
 			System.out.println("장바구니 담기 성공 ");
 			RequestDispatcher view = 
-			request.getRequestDispatcher("/coursedetail?courseNo=<%= course.getCourseNo() %>");
-			view.forward(request, response);
+				request.getRequestDispatcher("/plist?userNo=<%=loginUser.getUserNo()%>");
+				view.forward(request, response);
 		}else {
 			//실패시
 			RequestDispatcher view = 
 				request.getRequestDispatcher("/coursedetail?courseNo=<%= course.getCourseNo() %>");
+			request.setAttribute("message", "실패!");
 			view.forward(request, response);
-			
-			/*	RequestDispatcher view = 
-					request.getRequestDispatcher("/coursedetail?courseNo=<%= course.getCourseNo() %>");
-			view.forward(request, response);*/
 		}
 		
 		

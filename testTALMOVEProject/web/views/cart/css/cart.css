@@ -1,5 +1,20 @@
 @charset "UTF-8";
 
+
+.list_none{
+	
+	width:90%;
+	height:400px;
+	margin:auto;
+	text-align: center;
+	
+	
+}
+
+.list_none > h2{
+	margin-top : 180px;
+}
+
 .list-count{
     width: 100%;
     padding-left: 13%;

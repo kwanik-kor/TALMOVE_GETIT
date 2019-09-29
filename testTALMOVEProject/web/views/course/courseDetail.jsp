@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="course.model.vo.Course, java.util.ArrayList, section.model.vo.Section, lecture.model.vo.Lecture, teacher.model.vo.Teacher,review.model.vo.Review"%>
+    pageEncoding="UTF-8" import="course.model.vo.Course, java.util.ArrayList, section.model.vo.Section, lecture.model.vo.Lecture, teacher.model.vo.Teacher"%>
 <%
 	ArrayList<Course> list = ((ArrayList<Course>)request.getAttribute("list"));
 	int studentCount = ((Integer)request.getAttribute("studentCount"));
@@ -10,7 +10,6 @@
 	ArrayList<Section> slist = ((ArrayList<Section>)request.getAttribute("slist"));
 	ArrayList<Lecture> llist = ((ArrayList<Lecture>)request.getAttribute("llist"));
 	ArrayList<Teacher> tlist = ((ArrayList<Teacher>)request.getAttribute("tlist"));
-	ArrayList<Review> rlist = ((ArrayList<Review>)request.getAttribute("rlist"));
 %> 
 <!DOCTYPE html>
 <html>
@@ -39,6 +38,7 @@
 	
 	<section class="clearfix">
 	<% for(Course course : list){ %>
+	<input type="hidden" id="courseNoName" value="<%= course.getCourseNo() %>">
 		<div id="courseintro">
 			<p id="coursename"><%= course.getCourseName() %></p>
 			<p class="coursecomment"><%= course.getDescription() %></p>
@@ -51,9 +51,19 @@
 			</div>
 
 		<div id="priceinfo">
-			<p id="price">￦<%= course.getPrice() %></p>
-			<button id="addcart"><a href="#">장바구니에 추가</a></button><br>
-			<button id="direct"><a href="#">강의 수강하기</a></button><br>
+		<% if(loginUser == null){ %>
+       
+			<p id="price"><div id="priceContent">￦<%= course.getPrice() %></div></p>
+			<button id="login-btn" class="addcartN" onclick="location.href='/testt/views/loginEnroll/login.jsp'">장바구니추가</button><br>
+			<button id="login-btn" class="directN" onclick="location.href='/testt/views/loginEnroll/login.jsp'">강의 수강하기</button><br>
+			 <% }else if(course.getPrice() == 0){ %>
+			 <p id="price"><div id="priceContent">무료</div></p>
+			<button id="direct" onclick="location.href='/testt/addonc?userNo=<%=loginUser.getUserNo()%>&courseNo=<%=course.getCourseNo() %>'">강좌 수강하기</button><br>
+			<% }else{ %>
+			 <p id="price"><div id="priceContent">￦<%= course.getPrice() %></div></p>
+			<button id="addcart" onclick="location.href='/testt/addcart?userNo=<%= (loginUser == null ? 0 : loginUser.getUserNo()) %>&courseNo=<%= course.getCourseNo() %>'">장바구니추가</button><br>
+			<button id="direct" onclick="location.href='/testt/dclist?userNo=<%=loginUser.getUserNo()%>&courseNo=<%= course.getCourseNo() %>'">강좌 수강하기</button><br>
+			<% } %>
 			<img id="videoimage" src="/testt/views/course/img/video.png"><p id="videonum"><%=videoCount %>개의 동영상</p><br>
 			<img id="fileimage" src="/testt/views/course/img/file.png"><p id="filenum"><%= fileCount %>개의 자료</p>
 		</div>
@@ -88,6 +98,10 @@
 				<p id="title">강사 정보</p>
 				<% for(Teacher teacher : tlist){ %>
 				<img src="/testt/views/course/img/관익.png">
+				<p class="tp"><span class="boldfont">4.6</span> 강사평점</p>
+				<p class="tp"><span class="boldfont">1427</span> 개의 리뷰</p>
+				<p class="tp"><span class="boldfont">2,000,000</span> 명의 수강생</p>
+				<p class="tp"><span class="boldfont">3</span> 강좌</p>
 			</div>
 			<div id="inforight">
 				<p id="tname"><%= teacher.getTeacherName() %></p>
@@ -99,32 +113,151 @@
 	
 		<div id="review" class="clearfix">
 			<p id="rtitle">강좌 리뷰</p>
-			<% if(rlist.size() > 0){
-			for(Review r : rlist){ %>
-			<div id="reviewr" class="clearfix" >
+			<div class="clearfix" >
 				<img src="/testt/views/course/img/제목 없음.jpg">
 				<div class="clearfix" id="talkbubble">
 					<div class="clearfix" id="rco">
-						<p class="rname"><%= r.getReviewUserName() %></p><p class="rday"><%= r.getReviewDate() %></p>
-						<p class="rstar"><span class="star-prototype"><%= r.getRating() %></span></p>
-						<p class="rre"><%= r.getReviewContent()%></p>
+						<p class="rname">황지우</p><p class="rday">08.30</p>
+						<p class="rstar">★★★★★</p>
+						<p class="rre">이 강의를 듣고 네이버에 취업되었습니다
+						정말 감사합니다</p>
 					</div>
 				</div>
 			</div>
-			<% }}else{ %>
-			<p id="noreview">등록된 리뷰가 없습니다</p>
-			<% } %>
+			<br>
+			<div>
+				<img src="/testt/views/course/img/제목 없음.jpg">
+				<div class="clearfix" id="talkbubble">
+					<div class="clearfix" id="rco">
+						<p class="rname">박건우</p><p class="rday">08.01</p>
+						<p class="rstar">★★★★★</p>
+						<p class="rre">이 강의를 듣고 구글에 취업되고 말았습니다 감사합니다</p>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	
 </section>
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<%@ include file="../common/footer.jsp" %>
 
 <script type="text/javascript" src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="/testt/resources/js/main.js"></script>
+
+<script type="text/javascript">
+	$(function (){
+		$("#addcart").click(function(){
+			alert("장바구니에 추가되었습니다");
+		});
+	});
+
+
+
+	$(function(){
+		$("document").ready(function(){
+
+			var cNo = $("#courseNoName").val()
+			
+			$.ajax({
+				url: "/testt/coverlap",
+				data: { courseNo : cNo },
+				type: "get",
+				dataType: "json",
+				success: CartSucceeded,
+			    error: AjaxFailed
+			});	
+					
+			function CartSucceeded(data){
+		 $("#addcart, #direct").off();
+		 $("#addcart").html("장바구니에 추가");
+		 $("#direct").html("강좌 수강하기");
+			$("#addcart, #direct").click(function(){
+				var result = confirm('이미 담겨있는 강좌입니다. 장바구니로 이동하시겠습니까?'); 
+				if(result) { 
+					
+					location.href = '/testt/cartl?userNo=<%= (loginUser == null ? 0 : loginUser.getUserNo()) %>'
+				} else { 
+					location.href = '/testt/coursedetail?courseNo=' + $('#courseNoName').val();
+					}
+	
+					
+				<%-- alert("이미 담겨있는 강좌입니다.");
+				 location.href = '/testt/mclist?userNo=<%= (loginUser == null ? 0 : loginUser.getUserNo()) %>'  --%>
+					 
+					})
+					
+					
+					
+			}
+		
+			
+					
+			function AjaxFailed(jqXHR, textStatus, errorThrown){
+				<%-- 	$("#addcart").html($("#addcart").text() + 
+							
+					decodeURIComponent(data.cartContent).replace(/\+/gi, " ")
+							), 
+				 $("#addcart").on("click", function(){
+					alert("장바구니에 추가되었습니다");
+					 location.href = '/testt/addcart?userNo=<%= (loginUser == null ? 0 : loginUser.getUserNo()) %>&courseNo=' + $('#courseNoName').val();
+					})  --%>	 
+				}
+			
+			
+			
+			
+			//$.ajax() 사용
+			$.ajax({
+				url: "/testt/occheck",
+				data: { courseNo : cNo },
+				type: "get",
+				dataType: "json",
+				success: AjaxSucceeded,
+			    error: AjaxFailed
+			});	
+					
+			function AjaxSucceeded(data){
+			$("#priceContent, #direct").remove();
+			$("#price").html("<h6>이미 보유한 강좌입니다.</h6>");
+			$("#addcart").off().empty();		
+			$("#addcart").html($("#addcart").text() + 
+						
+			decodeURIComponent(data.cartContent).replace(/\+/gi, " ")
+				
+			), 	
+			$("#addcart").click(function(){
+				
+				 location.href = '/testt/mclist?userNo=<%= (loginUser == null ? 0 : loginUser.getUserNo()) %>' 
+					 
+					})	
+			}
+		
+			
+					
+			function AjaxFailed(jqXHR, textStatus, errorThrown){
+				<%-- 	$("#addcart").html($("#addcart").text() + 
+							
+					decodeURIComponent(data.cartContent).replace(/\+/gi, " ")
+							), 
+				 $("#addcart").on("click", function(){
+					alert("장바구니에 추가되었습니다");
+					 location.href = '/testt/addcart?userNo=<%= (loginUser == null ? 0 : loginUser.getUserNo()) %>&courseNo=' + $('#courseNoName').val();
+					})  --%>	 
+				}
+				
+		
+			
+		});  //test4 button click
+	});  //document ready
+	</script>
+	
+
+
 <script type="text/javascript">
 // html dom 이 다 로딩된 후 실행된다.
+
+
 
 $(document).ready(function(){
     $(".dropdown1").click(function(){
@@ -157,6 +290,39 @@ $.fn.generateStars = function() {
 
 // 숫자 평점을 별로 변환하도록 호출하는 함수
 $('.star-prototype').generateStars();
+
+/* $.ajax({
+    url: "coursedetail",
+    type: "get",
+    dataType: "json",
+    success: function(data){
+       console.log("btop3 request success : " 
+             + data);
+       //객체를 문자열로 변환 처리함
+       var jsonStr = JSON.stringify(data);
+       //문자열을 배열 객체로 바꿈
+       var json = JSON.parse(jsonStr);
+       
+       var values = "";
+       for(var i in json.list){
+             values += "<tr><td>" + json.list[i].bnum + 
+                   "</td><td><a href='bdetail?bnum=" 
+                   + json.list[i].bnum + "'>" + 
+                   decodeURIComponent(json.list[i].btitle).replace(/\+/gi, " ")
+                   + "</a></td><td>" + json.list[i].rcount
+                   + "</td></tr>";
+       } //for in
+       
+       //테이블에 추가
+       $("#toplist").html($("#toplist").html() + values);
+       
+    },
+    error: function(jqXHR, textStatus, errorThrown){
+       console.log("error : " + jqXHR + ", " + 
+             textStatus + ", " + errorThrown);
+    }
+ });  //ajax btop3 */
+
 
 </script>
 </body>
