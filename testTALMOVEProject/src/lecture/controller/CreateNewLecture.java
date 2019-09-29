@@ -35,7 +35,9 @@ public class CreateNewLecture extends HttpServlet {
 		System.out.println("넘어온 값 : " +no+", "+name);
 		Lecture lecture = new Lecture();
 		LectureService lservice = new LectureService();
-		lservice.lectureCreate(no,name);
+		int lectureNo = lservice.lectureCreate(no,name);
+		if(lectureNo ==0) System.out.println("객체생성실패");
+		
 	}
 
 	/**

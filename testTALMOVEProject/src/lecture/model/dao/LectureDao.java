@@ -214,5 +214,28 @@ public class LectureDao {
 		}
 		return result;
 	}
+
+
+	public int getLastedCreateLectureNo(Connection conn, int no) {
+		ArrayList<Lecture> list = new ArrayList<Lecture>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int lectureNo=0;
+		String query = "SELECT LECTURE_NO FROM LECTURE	WHERE SECTION_NO=? AND ROWNUM=1 ORDER BY LECTURE_NO DESC "; 
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				lectureNo=(rset.getInt("lecture_no"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return lectureNo;
+	}
 	
 }

@@ -240,12 +240,17 @@
                         no:sectionNo.trim(),
                         name:courseName
                     },
-                    type: "post",
+                    type: "get",
+                    success: function(data) {
+                    	
+                    }
+                    }
                     error: function(jqXHR, textStatus, errorThrown) {
                         console.log("error : " + textStatus);
                     }
                 });
             clickon();
+            getLectureForm();
         });
     }
     function saveLecture(){
@@ -295,6 +300,7 @@
                 }
             });
             clickon();
+            getLectureForm();
         });
     }
 
@@ -327,6 +333,7 @@
                     };
               })
                 clickon();
+                getLectureForm();
             } else {
                 alert("섹션넘버 : "+$(this).parent().prev('.insect-sectNo').val());
                 sectionNumber = $(this).parent().prev('.insect-sectNo').val();
@@ -349,6 +356,7 @@
                     };
               })
             	onclick();
+                getLectureForm();
             };
             function renameSection(sectionNumber,afterName){
 	            $.ajax({
@@ -438,13 +446,13 @@
             }
             
        		
-        
+            getLectureForm();
     });
     }
 	function getLectureForm(){
 		$("li").click(function (){
-			alert("dddddd");
-			alert($(this).children(".inventory").attr('id') );
+			alert("렉쳐번호받기");
+			alert("렉쳐번호 : "+$(this).children(".inventory").attr('id') );
 			
 			//해당번호의 렉쳐정보 받아오기
 			$.ajax({

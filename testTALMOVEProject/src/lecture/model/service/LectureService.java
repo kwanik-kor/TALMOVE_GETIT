@@ -50,18 +50,20 @@ public class LectureService {
 	}
 
 	//건우 렉쳐생성
-	public void lectureCreate(int no, String name) {
+	public int lectureCreate(int no, String name) {
 		Connection conn = getConnection();
+		int lectureNo=0;
 		int result = ldao.lectureCreate(conn,no,name);
 		if(result>0) {
 			commit(conn);
 			System.out.println( "렉쳐 생성 완료");
+			lectureNo=ldao.getLastedCreateLectureNo(conn, no);
 		}else {
 			System.out.println("생성실패");
 			rollback(conn);
 		}close(conn);
 		
-		
+		return lectureNo;
 	}
 
 
