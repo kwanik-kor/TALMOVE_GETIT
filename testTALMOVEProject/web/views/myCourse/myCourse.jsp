@@ -56,7 +56,7 @@
 			<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
 				<div class="card">
 					<a href="/testt/cplay.ed?courseNo=<%= myCourse.getCourseNo() %>"> <!--  강좌번호로 페이징처리될꺼고  -->
-						<img class="card-img-top"src="https://picsum.photos/100/50/?random">
+						<img class="card-img-top"src="/testt/resources/course_upfiles/<%= myCourse.getThumbnailRfileName() %>">
 					</a>
 					<div class="card-block">
 					

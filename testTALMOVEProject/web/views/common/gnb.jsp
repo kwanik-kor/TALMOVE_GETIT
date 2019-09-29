@@ -128,7 +128,6 @@
                             <div class="mydrop-content">
                                 <a href="/testt/views/mypage/UserUpdateView.jsp"><i class="fas fa-user-circle"></i>프로필</a>
                                 <a href="/testt/msglist?uemail=<%= loginUser.getUserEmail()%>"><i class="far fa-envelope"></i>메시지</a>
-                                <a href="#"><i class="far fa-credit-card"></i>결제내역</a>
                                 <hr>
                                 <a href="/testt/logout"><i class="fa fa-sign-out-alt"></i>로그아웃</a>
                             </div>
