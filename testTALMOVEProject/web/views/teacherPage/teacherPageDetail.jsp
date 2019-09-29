@@ -64,9 +64,8 @@
                     	<% }else{ %>
                         <img id="editImg" class="pfimg" src="../../resources/img/defaultUser.jpg" alt="">
                         <% } %>
-                        <input type="hidden" name="oimage" value="<%= loginTeacher.getTeacherOimageName() %>">
-                        <input type="hidden" name="base64img" id="base64img">
-                        <label for="pffile">사진변경<input type="file" id="pffile" name="pffile" accept="image/*"></label>
+                        <input type="hidden">
+                        <label for="pffile">사진변경<input type="file" id="pffile" name="pffile" accept="image/*"></label>    
                     </div>
                     <div class="right-top-right">
                         <label for="tname">선생님 이름</label>
@@ -132,16 +131,15 @@
 		        
 		        $('.change-img').on('click', function(){
 		            $('.crop-main').croppie('result', {
-		                type: 'base64',
+		                type: 'blob',
 		                format: 'jpeg',
 		                size: {width: 300, height: 300}
 		            }).then(function(resp){
-		            	/* const blobUrl = window.URL.createObjectURL(resp);
-		                $('#editImg').attr("src", blobUrl); */
+		            	const blobUrl = window.URL.createObjectURL(resp);
+		                $('#editImg').attr("src", blobUrl);
 		                console.log(resp);
-		                $('#base64img').val(resp);
-		             	
-		                $('#editImg').attr("src", resp);
+		                console.log($('#pffile').val());
+		                console.log($('#editImg').attr("src"));
 		                $('.modal-crop').removeClass('is-open');
 		                $('.modal-crop').removeClass('is-visible');
 		            });
@@ -156,7 +154,6 @@
 		    reader.readAsDataURL(input.files[0]);
 		}
     }
-    
     
     window.onclick = function(event){
         if(event.target == modalCrop){

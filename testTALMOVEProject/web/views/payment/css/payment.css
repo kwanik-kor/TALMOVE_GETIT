@@ -9,17 +9,6 @@ h5 {
   margin-bottom: 15px;
 }
 
-
-.list-count{
-    width: 100%;
-    padding-left: 13%;
-    margin: 40px 0;
-}
-.list-count p{
-    font-size: 1rem;
-    font-weight: 600;
-}
-
 .payment_box {
   display: flex;
   /*
@@ -66,17 +55,10 @@ h5 {
 
 
 .item {
-    display: block;
-    margin-left: 18%;
-    margin-bottom: 15px;
-    height: 100px;
-}
-
-.item:after{
-    content: "";
-    display: block;
-    /*border-bottom: 1px solid #b2b2b2;*/
-    width: 90%;
+  padding: 20px 30px;
+  height: 20%;
+  display: flex;
+  border-bottom: 1px solid #e1e8ee;
 }
 
 .title {
@@ -90,25 +72,16 @@ h5 {
 }
 
 /* Product Image */
-.item img {
-    display: inline-block;
-    float: left;
-    height: 100%;
-    width: auto;
-    border-radius: 5px;
-    margin-bottom: 0;
+img{
+  margin-right: 80px;
 }
 
 /* Product Description */
 .description {
-    display: inline-block;
-    float: left;
-    width: 50%;
-    height: 100%;
-    padding-top: 20px;
-    margin: 0 20px 0 30px;
-}
+  padding-top: 10px;
 
+  width: 500px;
+}
 
 .description span:first-child {
   margin-bottom: 5px;
@@ -119,21 +92,17 @@ h5 {
   color: #86939e;
 }
 
-.Lname, .Tname {
+.Lname,
+.title,
+.Tname {
   font-weight: bold;
 }
-.Lname{font-size: 1rem; }
-.Tname{font-size: 0.6rem;}
-
-
 
 .price {
-    display: inline-block;
-    font-size: 1rem;
-    font-weight: bold;
-    width: 10%;
-    height: 100%;
-    padding-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-right: 80px;
 }
 
 .box_left h6 {
@@ -182,7 +151,7 @@ h5 {
 }
 
 #btn_group button {
-  width: 120px;
+  width: 80px;
   border: 1px solid skyblue;
   background-color: rgba(0, 0, 0, 0);
   color: skyblue;

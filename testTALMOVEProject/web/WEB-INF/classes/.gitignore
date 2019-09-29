@@ -1,11 +1,23 @@
+<<<<<<< HEAD
+/course_tag/
+/onCourse/
+=======
+>>>>>>> parent of c145cda... Merge branch 'master' into geonwoo
+/admin/
+/cart/
+/category/
+/comment/
+/common/
 /course/
+/lecture/
+/message/
+/payment/
+/reply/
+/review/
+/section/
+/tag/
 /teacher/
 /user/
-/message/
-/cart/
-/payment/
-/category/
-/lecture/
-/section/
+/util/
 /onCourse/
 /tag/

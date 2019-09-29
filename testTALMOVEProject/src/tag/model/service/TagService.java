@@ -43,12 +43,5 @@ public class TagService {
 		return result;
 	}
 
-	public ArrayList<Tag> getTagListByTNo(int teacherNo) {
-		Connection conn = getConnection();
-		ArrayList<Tag> result = tDao.getTagListByTNo(conn, teacherNo);
-		close(conn);
-		return result;
-	}
-
 
 }

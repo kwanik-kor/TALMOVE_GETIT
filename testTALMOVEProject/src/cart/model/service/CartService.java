@@ -1,66 +1,38 @@
 package cart.model.service;
-import java.sql.Connection;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import java.util.Map;
-import static common.JDBCTemplate.*;
-import cart.model.dao.CartDao;
+
 import cart.model.vo.Cart;
 
-
-
 public class CartService {
-	private CartDao cdao = new CartDao();
 	
+	//지우
+	public Cart addCart( Cart cart)  {
+		return null;} //장바구니 추가
+	 
 	
-	
-	
-	public int addCart(int userNo, int courseNo) {
-		Connection conn = getConnection();
-		int result = cdao.addCart(conn, userNo, courseNo);
-		System.out.println("서비스로 넘어온 userNo" + userNo + " courseNo" + courseNo);
-		if(result > 0)
-			commit(conn);
-		else
-			rollback(conn);
-		close(conn);
-		return result;
-	}
+	//영찬
+	// 장바구니 목록
 
-	
-	
-	
-	public ArrayList<Cart> getCart(int userNo) {
-		Connection conn = getConnection();
-		 ArrayList<Cart> carts = cdao.cartList(conn, userNo);
-	            System.out.println("sevrvice에 확인 " + carts.size());
-	    		close(conn);
-	       
-	        return carts;
-	    }
-
-	
-
- 
+    public ArrayList<Cart> listCart(int userId) {
+        
+    	return listCart(userId);
+    }
     //  장바구니 삭제
   
-    public int deleteCart(int cartNo, int userNo) {
-    	Connection conn = getConnection();
-		int result = cdao.deleteCart(conn, cartNo, userNo);
-		if(result > 0)
-			commit(conn);
-		else
-			rollback(conn);
-		close(conn);
-		return result;
-	}
-   
-    //결제완료시 장바구니 전체 삭제 
+    public int delete(int userNo, int cartNo) {
+       return 0;
+    }
+    //  장바구니 금액 합계
 
-	
-     
+    public int sumMoney(int userId) {
+        int total = 0;
     	
-      
+        return total;
+        		}
     
     
     //  장바구니 동일한 상품 레코드 확인
@@ -72,19 +44,6 @@ public class CartService {
 		return 0;
         
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
     
     //결제페이지로 객체 전송 
 

@@ -23,14 +23,12 @@
 <body>
  <%@ include file="/views/common/gnb.jsp" %>
 
-
-<section class="cart-pay-top">
 		  <div class="link_bar">
 
-           <span class="link-title"> 결제 완료</span>
+            <h3> 결제 완료</h3>
 
      </div>
-	</section>
+
         <div class="thanks">
         
 		<div class="content_box">
@@ -41,7 +39,7 @@
 
             <hr>
             <div class="btn_go_lecture">
-                <a href='/testt/mclist?userNo=<%=loginUser.getUserNo() %>' class="btn_1 ">내 강좌 페이지로 이동</a>
+                <a href="/testt/index.jsp" class="btn_1 ">내 강좌 페이지로 이동</a>
             </div>
         </div>
 

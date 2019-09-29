@@ -15,7 +15,6 @@
     margin-bottom: 40px;
 }
 .shopping-cart {
-	
     display: block;
     flex-direction: column;
     width: 70%;
@@ -26,11 +25,10 @@
 }
 
 .box_detail {
-	
     display: block;
     width: 30%;
     padding: 25px 25px 15px;
-    float: right;
+    float: left;
 }
 
 .item {
@@ -43,7 +41,7 @@
 .item:after{
     content: "";
     display: block;
-    /*border-bottom: 1px solid #b2b2b2;*/
+    border-bottom: 1px solid #b2b2b2;
     width: 90%;
 }
 
@@ -119,7 +117,6 @@
 }
 
 .paybtn {
-
     width: 230px;
     background: #00a8ff;
     border-radius: 5px;

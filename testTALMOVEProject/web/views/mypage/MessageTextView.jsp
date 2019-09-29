@@ -28,13 +28,7 @@
 	<section class="section-top">
 		<div class="row" id="pannel">
 			<div id="pfpreview">
-			
-		      	<% if(loginUser.getUserOImageName() != null) { %>       
-			    	<img class="pfimg" src="/testt/views/mypage/images/fileimg/<%= loginUser.getUserOImageName() %>">
-                <% }else{ %> 
-             		<img class="pfimg" src="../../resources/img/customer-1.jpg">
-            	<% } %>
-				
+				<img class="pfimg" src="../../resources/img/customer-1.jpg">
 			</div>
 			<h2 id="teacher-name">
 				<span><%=loginUser.getUserName()%></span> 님 마이페이지
@@ -50,8 +44,9 @@
 				<ul class="maghidemenu">
 					<li><a href="/testt/views/mypage/MessageNewSendView.jsp">새
 							메시지</a></li>
-					<li><a href="/testt/msglist?uemail=<%= loginUser.getUserEmail()%>">모든 메시지</a></li>
-					<li><a href="/testt/msgimp?uemail=<%= loginUser.getUserEmail()%>">중요
+					<li><a href="/testt/views/mypage/MessageListView.jsp">모든
+							메시지</a></li>
+					<li><a href="/testt/views/mypage/MessageImportantListView.jsp">중요
 							메시지</a></li>
 				</ul>
 			</ul>

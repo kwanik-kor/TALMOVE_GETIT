@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-a.no-uline { text-decoration:none }
-
-
 .card {
     font-size: 1em;
     overflow: hidden;
@@ -18,7 +15,6 @@ a.no-uline { text-decoration:none }
 }
 
 .card-block {
-
     font-size: 1em;
     position: relative;
     margin: 0;
@@ -34,11 +30,9 @@ a.no-uline { text-decoration:none }
 }
 
 .card-title {
- text-decoration: none !important;
-    font-size: 10px;
+    font-size: 0.9em;
     font-weight: 700;
     line-height: 1.2857em;
- 
 }
 
 .card-footer {
