@@ -36,7 +36,6 @@ public class CategoryCourseListViewServlet extends HttpServlet {
 		 int currentPage = Integer.parseInt(request.getParameter("page"));
 		 String category = request.getParameter("category");
 
-	     System.out.println("카테고리명 : " + category);
 	     int limit = 10;
 	     
 	     CategoryService cservice = new CategoryService();
@@ -46,10 +45,12 @@ public class CategoryCourseListViewServlet extends HttpServlet {
 	     
 	     // 총 목록 갯수 조회
 	     int listCount = cservice.getListCount(category);
-	     System.out.println("총 몇개 : " + listCount);
 	     
 	     // 현재 페이지에 출력할 게시글 목록 조회
 	     ArrayList<Course> list = cservice.courseListView(currentPage, limit, category);
+	     
+	     // 인기 강좌
+	     ArrayList<Course> flist = cservice.starCourse(category);
 	     
 	     int maxPage = (int)((double)listCount / limit + 0.9);
 	     int startPage = (((int)((double)currentPage / limit + 0.9))-1) * limit + 1;
@@ -58,7 +59,6 @@ public class CategoryCourseListViewServlet extends HttpServlet {
 	     if(maxPage < endPage) {
 	    	 endPage = maxPage;
 	     }
-	     
 	     
 	     RequestDispatcher view = null;
 	     response.setContentType("text/html; charset=utf-8");
@@ -72,9 +72,13 @@ public class CategoryCourseListViewServlet extends HttpServlet {
 	    	 request.setAttribute("endPage", endPage);
 	    	 request.setAttribute("listCount", listCount);
 	    	 request.setAttribute("categoryUpper", categoryUpper);
+	    	 request.setAttribute("flist", flist);
 	    	 view.forward(request, response);
-	     }else {
-	    	 view = request.getRequestDispatcher("views/common/Error.jsp");
+	     }else{
+	    	 view = request.getRequestDispatcher("/views/category/noCourseCategory.jsp");
+	    	 request.setAttribute("category", category);
+	    	 request.setAttribute("categoryUpper", categoryUpper);
+	    	 view.forward(request, response);
 	     }
 		
 		

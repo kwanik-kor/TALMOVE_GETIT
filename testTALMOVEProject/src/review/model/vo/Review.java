@@ -13,6 +13,7 @@ public class Review implements Serializable{
 	private  String reviewContent;
 	private  Date reviewDate;
 	private  Date modifiedReviewDate;
+	private String reviewUserName;
 	
 	
 	public Review(int reviewNo, int courseNo, int userNo, int rating, String reviewContent, Date reviewDate,
@@ -26,6 +27,23 @@ public class Review implements Serializable{
 		this.reviewDate = reviewDate;
 		this.modifiedReviewDate = modifiedReviewDate;
 	}
+	
+	public Review() {}
+	
+	
+	public Review(int reviewNo, int courseNo, int userNo, int rating, String reviewContent, Date reviewDate,
+			Date modifiedReviewDate, String reviewUserName) {
+		super();
+		this.reviewNo = reviewNo;
+		this.courseNo = courseNo;
+		this.userNo = userNo;
+		this.rating = rating;
+		this.reviewContent = reviewContent;
+		this.reviewDate = reviewDate;
+		this.modifiedReviewDate = modifiedReviewDate;
+		this.reviewUserName = reviewUserName;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -71,6 +89,15 @@ public class Review implements Serializable{
 	public void setModifiedReviewDate(Date modifiedReviewDate) {
 		this.modifiedReviewDate = modifiedReviewDate;
 	}
+	
+	public String getReviewUserName() {
+		return reviewUserName;
+	}
+
+	public void setReviewUserName(String reviewUserName) {
+		this.reviewUserName = reviewUserName;
+	}
+
 	@Override
 	public String toString() {
 		return "Review [reviewNo=" + reviewNo + ", courseNo=" + courseNo + ", userNo=" + userNo + ", rating=" + rating
