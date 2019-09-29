@@ -69,8 +69,7 @@
             <div class="row">
             <% for(Course course : flist){ %>
                 <div class="course-card">
-                  <img src="/testt/resources/course_upfiles/<%= course.getThumbnailRfileName() %>" class="card-img-top">
-                  <a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><img src="/testt/resources/img/sample_<%= course.getThumbnailOfileName() %>" class="card-img-top"></a>
+                  <a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><img src="/testt/resources/img/sample_thumbnail3.jpg" class="card-img-top"></a>
                   <div class="card-body">
                      <ul class="cardlist">
                        <li class="cli_1"><%= course.getCourseName() %></li>
@@ -100,11 +99,12 @@
     
     <section>
 		<!-- 모든 강좌 -->
+		<input type="hidden" id="category" value="<%= category %>">
 		<h3 class="row class-title">모든 <%= category %> 강좌</h3>
 		<div class="row">
 		<% for(Course course : list){ %>
 		<div class="class clearfix">
-            <div class="image-place"><a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><img src="/testt/resources/course_upfiles/<%= course.getThumbnailRfileName() %>"></a></div>
+            <div class="image-place"><a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><img src="/testt/resources/img/sample_<%= course.getThumbnailOfileName() %>"></a></div>
             <div class="comment">
                 <ul id="ulcomment_1">
                     <li class="co_1"><a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><%= course.getCourseName() %></a></li>
@@ -185,9 +185,7 @@
             submenu.css('display', 'none');
         }
     });
-	
-	
-	
+
 	</script>
 </body>
 </html>

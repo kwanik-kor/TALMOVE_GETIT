@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="course.model.vo.Course, java.util.ArrayList, section.model.vo.Section, lecture.model.vo.Lecture, teacher.model.vo.Teacher"%>
+    pageEncoding="UTF-8" import="course.model.vo.Course, java.util.ArrayList, section.model.vo.Section, lecture.model.vo.Lecture, teacher.model.vo.Teacher, review.model.vo.Review"%>
 <%
 	ArrayList<Course> list = ((ArrayList<Course>)request.getAttribute("list"));
 	int studentCount = ((Integer)request.getAttribute("studentCount"));
@@ -10,6 +10,8 @@
 	ArrayList<Section> slist = ((ArrayList<Section>)request.getAttribute("slist"));
 	ArrayList<Lecture> llist = ((ArrayList<Lecture>)request.getAttribute("llist"));
 	ArrayList<Teacher> tlist = ((ArrayList<Teacher>)request.getAttribute("tlist"));
+	ArrayList<Review> rlist = ((ArrayList<Review>)request.getAttribute("rlist"));
+	String videoSrc = ((String)request.getAttribute("videoSrc"));
 %> 
 <!DOCTYPE html>
 <html>
@@ -47,7 +49,7 @@
 		</div>
 		<div id="coursedetail">
 			<div id="dvideo">
-				<video src="" controls></video>
+				<video src="<%= videoSrc %>" controls></video>
 			</div>
 
 		<div id="priceinfo">
@@ -77,32 +79,20 @@
 		<div id="lectureList">
 			<p id="lectlist">강의 목차</p>
 			<hr><hr>
-			<% for(Section section : slist){ %>
-			<div id="sec1">
-				<p class="secname"><a class="dropdown1"><%= section.getSectionName() %>&nbsp;▼</a></p>
-				<hr>
 				<% for(Lecture lecture : llist){ %>
 				<div class="hide1">
-					<p class="secmin">(6:46)</p>
+					<!-- <p class="secmin">(6:46)</p> -->
 					<p class="secundo"><%= lecture.getLectureName() %></p><br>
 					<hr>
 				</div>
 				<% } %>
-			</div>
-			<% } %>
 			<hr>	
 		</div>
 	
 		<div id="teacherinfo">
-			<div id="infoleft">
 				<p id="title">강사 정보</p>
 				<% for(Teacher teacher : tlist){ %>
 				<img src="/testt/views/course/img/관익.png">
-				<p class="tp"><span class="boldfont">4.6</span> 강사평점</p>
-				<p class="tp"><span class="boldfont">1427</span> 개의 리뷰</p>
-				<p class="tp"><span class="boldfont">2,000,000</span> 명의 수강생</p>
-				<p class="tp"><span class="boldfont">3</span> 강좌</p>
-			</div>
 			<div id="inforight">
 				<p id="tname"><%= teacher.getTeacherName() %></p>
 				<p id="gradu"><%= teacher.getTeacherCareer() %></p>
@@ -114,32 +104,22 @@
 		<div id="review" class="clearfix">
 			<p id="rtitle">강좌 리뷰</p>
 			<div class="clearfix" >
+			<% for(Review r : rlist){ %>
 				<img src="/testt/views/course/img/제목 없음.jpg">
 				<div class="clearfix" id="talkbubble">
 					<div class="clearfix" id="rco">
-						<p class="rname">황지우</p><p class="rday">08.30</p>
-						<p class="rstar">★★★★★</p>
-						<p class="rre">이 강의를 듣고 네이버에 취업되었습니다
-						정말 감사합니다</p>
+						<p class="rname"><%= r.getReviewUserName() %></p><p class="rday"><%= r.getReviewDate() %></p>
+						<p><span class="star-prototype"><%= r.getRating() %></span></p>
+						<p class="rre"><%= r.getReviewContent() %></p>
 					</div>
 				</div>
-			</div>
-			<br>
-			<div>
-				<img src="/testt/views/course/img/제목 없음.jpg">
-				<div class="clearfix" id="talkbubble">
-					<div class="clearfix" id="rco">
-						<p class="rname">박건우</p><p class="rday">08.01</p>
-						<p class="rstar">★★★★★</p>
-						<p class="rre">이 강의를 듣고 구글에 취업되고 말았습니다 감사합니다</p>
-					</div>
-				</div>
+			<% } %>
 			</div>
 		</div>
 	</div>
 	
 </section>
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<%@ include file="../common/footer.jsp" %>
 
 <script type="text/javascript" src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
@@ -291,39 +271,11 @@ $.fn.generateStars = function() {
 // 숫자 평점을 별로 변환하도록 호출하는 함수
 $('.star-prototype').generateStars();
 
-/* $.ajax({
-    url: "coursedetail",
-    type: "get",
-    dataType: "json",
-    success: function(data){
-       console.log("btop3 request success : " 
-             + data);
-       //객체를 문자열로 변환 처리함
-       var jsonStr = JSON.stringify(data);
-       //문자열을 배열 객체로 바꿈
-       var json = JSON.parse(jsonStr);
-       
-       var values = "";
-       for(var i in json.list){
-             values += "<tr><td>" + json.list[i].bnum + 
-                   "</td><td><a href='bdetail?bnum=" 
-                   + json.list[i].bnum + "'>" + 
-                   decodeURIComponent(json.list[i].btitle).replace(/\+/gi, " ")
-                   + "</a></td><td>" + json.list[i].rcount
-                   + "</td></tr>";
-       } //for in
-       
-       //테이블에 추가
-       $("#toplist").html($("#toplist").html() + values);
-       
-    },
-    error: function(jqXHR, textStatus, errorThrown){
-       console.log("error : " + jqXHR + ", " + 
-             textStatus + ", " + errorThrown);
-    }
- });  //ajax btop3 */
+
 
 
 </script>
 </body>
 </html>
+</html>
+

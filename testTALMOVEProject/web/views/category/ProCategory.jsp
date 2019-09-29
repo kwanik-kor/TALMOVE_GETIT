@@ -10,7 +10,6 @@
 	int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 	String categoryUpper = ((String)request.getAttribute("categoryUpper"));
 	ArrayList<Course> flist = (ArrayList<Course>)request.getAttribute("flist");
-	ArrayList<Course> pist = (ArrayList<Course>)request.getAttribute("plist");
 %>
 <!DOCTYPE html>
 <html>
@@ -49,16 +48,18 @@
 		<!-- 메뉴 바 -->
 		<div class="category-menu">
 		    <ul class="categories">
-		       <li><a id="upcat">비즈니스<i class="fas fa-chevron-down"></i></a></li>
+		       <li><a id="upcat">프로그래밍<i class="fas fa-chevron-down"></i></a></li>
 		       <ul class="dropdown-upcat">
 		           <li><a a href="/testt/cupperview?page=1&category=비즈니스">비즈니스</a></li>
 		           <li><a href="/testt/pcaupview?page=1&category=프로그래밍">프로그래밍</a></li>
 		       </ul>
-		       <li><a href="/testt/ccourse?page=1&category=커뮤니케이션">커뮤니케이션</a></li>
-		       <li><a href="/testt/ccourse?page=1&category=경영">경영</a></li>
-		       <li><a href="/testt/ccourse?page=1&category=판매">판매</a></li>
-		       <li><a href="/testt/ccourse?page=1&category=전략">전략</a></li>
-		       <li><a href="/testt/ccourse?page=1&category=운영">운영</a></li>
+		       <li><a href="/testt/pccourse?page=1&category=프로그래밍 이론">프로그래밍 이론</a></li>
+		       <li><a href="/testt/pccourse?page=1&category=프로그래밍 언어">프로그래밍 언어</a></li>
+		       <li><a href="/testt/pccourse?page=1&category=웹">웹</a></li>
+		       <li><a href="/testt/pccourse?page=1&category=모바일">모바일</a></li>
+		       <li><a href="/testt/pccourse?page=1&category=게임">게임</a></li>
+		       <li><a href="/testt/pccourse?page=1&category=DB">DB</a></li>
+		       <li><a href="/testt/pccourse?page=1&category=데이터 보안">데이터 보안</a></li>
 		    </ul>
 		</div>
     </section>
@@ -69,7 +70,6 @@
             <div class="row">
             <% for(Course course : flist){ %>
                 <div class="course-card">
-                  <img src="/testt/resources/course_upfiles/<%= course.getThumbnailRfileName() %>" class="card-img-top">
                   <a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><img src="/testt/resources/img/sample_<%= course.getThumbnailOfileName() %>" class="card-img-top"></a>
                   <div class="card-body">
                      <ul class="cardlist">
@@ -100,11 +100,12 @@
     
     <section>
 		<!-- 모든 강좌 -->
+		<input type="hidden" id="category" value="<%= category %>">
 		<h3 class="row class-title">모든 <%= category %> 강좌</h3>
 		<div class="row">
 		<% for(Course course : list){ %>
 		<div class="class clearfix">
-            <div class="image-place"><a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><img src="/testt/resources/course_upfiles/<%= course.getThumbnailRfileName() %>"></a></div>
+            <div class="image-place"><a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><img src="/testt/resources/img/sample_<%= course.getThumbnailOfileName() %>"></a></div>
             <div class="comment">
                 <ul id="ulcomment_1">
                     <li class="co_1"><a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><%= course.getCourseName() %></a></li>
@@ -185,9 +186,7 @@
             submenu.css('display', 'none');
         }
     });
-	
-	
-	
+
 	</script>
 </body>
 </html>

@@ -1,8 +1,6 @@
 package category.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -12,38 +10,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
 import category.model.service.CategoryService;
 import course.model.vo.Course;
 
 /**
- * Servlet implementation class CourseSortServlet
+ * Servlet implementation class ProCategoryCourseListViewServlet
  */
-@WebServlet("/selsort")
-public class CourseSortServlet extends HttpServlet {
+@WebServlet("/pccourse")
+public class ProCategoryCourseListViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ProCategoryCourseListViewServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public CourseSortServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int currentPage = Integer.parseInt(request.getParameter("page"));
 		 String category = request.getParameter("category");
-		 String sortName = request.getParameter("sortName");
-		 
-		 System.out.println(sortName + category + currentPage);
 
 	     int limit = 10;
 	     
@@ -54,16 +44,9 @@ public class CourseSortServlet extends HttpServlet {
 	     
 	     // 총 목록 갯수 조회
 	     int listCount = cservice.getListCount(category);
-	     ArrayList<Course> list = null;
-	     // 현재 페이지에 출력할 게시글 목록 조회
-	     if(sortName.equals("pop")) {
-	    	 list = cservice.selectSortPurchaseCounrt(currentPage, limit, category);
-	     }else if(sortName.equals("row")) {
-	    	 list = cservice.selectSortRowPrice(currentPage, limit, category);
-	     }else {
-	    	 list = cservice.selectSortHighPrice(currentPage, limit, category);
-	     }
 	     
+	     // 현재 페이지에 출력할 게시글 목록 조회
+	     ArrayList<Course> list = cservice.courseListView(currentPage, limit, category);
 	     
 	     // 인기 강좌
 	     ArrayList<Course> flist = cservice.starCourse(category);
@@ -79,7 +62,7 @@ public class CourseSortServlet extends HttpServlet {
 	     RequestDispatcher view = null;
 	     response.setContentType("text/html; charset=utf-8");
 	     if(list.size() > 0) {
-	    	 view = request.getRequestDispatcher("/views/category/categoryDetail.jsp");
+	    	 view = request.getRequestDispatcher("/views/category/ProCategory.jsp");
 	    	 request.setAttribute("list", list);
 	    	 request.setAttribute("category", category);
 	    	 request.setAttribute("currentPage", currentPage);
@@ -91,20 +74,17 @@ public class CourseSortServlet extends HttpServlet {
 	    	 request.setAttribute("flist", flist);
 	    	 view.forward(request, response);
 	     }else{
-	    	 view = request.getRequestDispatcher("/views/category/noCourseCategory.jsp");
+	    	 view = request.getRequestDispatcher("/views/category/proNoCourse.jsp");
 	    	 request.setAttribute("category", category);
 	    	 request.setAttribute("categoryUpper", categoryUpper);
 	    	 view.forward(request, response);
 	     }
-
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

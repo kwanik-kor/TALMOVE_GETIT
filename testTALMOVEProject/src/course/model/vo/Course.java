@@ -16,9 +16,31 @@ public class Course implements Serializable{
 	private int purchaseCount;
 	private String teacherName;
 	private int categoryUpper;
+	private String lectureOriginalFilename;
 	
 	public Course() {}
 	
+	
+	public Course(int courseNo, int teacherNo, int categoryNo, String courseName, String thumbnailOfileName,
+			String thumbnailRfileName, String description, String openYN, int price, int purchaseCount,
+			String teacherName, int categoryUpper, String lectureOriginalFilename) {
+		super();
+		this.courseNo = courseNo;
+		this.teacherNo = teacherNo;
+		this.categoryNo = categoryNo;
+		this.courseName = courseName;
+		this.thumbnailOfileName = thumbnailOfileName;
+		this.thumbnailRfileName = thumbnailRfileName;
+		this.description = description;
+		this.openYN = openYN;
+		this.price = price;
+		this.purchaseCount = purchaseCount;
+		this.teacherName = teacherName;
+		this.categoryUpper = categoryUpper;
+		this.lectureOriginalFilename = lectureOriginalFilename;
+	}
+
+
 	public Course(int courseNo, int teacherNo, int categoryNo, String courseName, String thumbnailOfileName,
 			String thumbnailRfileName, String description, String openYN, int price, int purchaseCount) {
 		super();
@@ -160,6 +182,18 @@ public class Course implements Serializable{
 	public void setCategoryUpper(int categoryUpper) {
 		this.categoryUpper = categoryUpper;
 	}
+	
+	
+
+	public String getLectureOriginalFilename() {
+		return lectureOriginalFilename;
+	}
+
+
+	public void setLectureOriginalFilename(String lectureOriginalFilename) {
+		this.lectureOriginalFilename = lectureOriginalFilename;
+	}
+
 
 	@Override
 	public String toString() {

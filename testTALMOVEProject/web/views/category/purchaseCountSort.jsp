@@ -10,7 +10,6 @@
 	int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 	String categoryUpper = ((String)request.getAttribute("categoryUpper"));
 	ArrayList<Course> flist = (ArrayList<Course>)request.getAttribute("flist");
-	ArrayList<Course> pist = (ArrayList<Course>)request.getAttribute("plist");
 %>
 <!DOCTYPE html>
 <html>
@@ -52,13 +51,15 @@
 		       <li><a id="upcat">비즈니스<i class="fas fa-chevron-down"></i></a></li>
 		       <ul class="dropdown-upcat">
 		           <li><a a href="/testt/cupperview?page=1&category=비즈니스">비즈니스</a></li>
-		           <li><a href="/testt/pcaupview?page=1&category=프로그래밍">프로그래밍</a></li>
+		           <li><a id="pbtn" href="#">프로그래밍</a></li>
 		       </ul>
-		       <li><a href="/testt/ccourse?page=1&category=커뮤니케이션">커뮤니케이션</a></li>
-		       <li><a href="/testt/ccourse?page=1&category=경영">경영</a></li>
-		       <li><a href="/testt/ccourse?page=1&category=판매">판매</a></li>
-		       <li><a href="/testt/ccourse?page=1&category=전략">전략</a></li>
-		       <li><a href="/testt/ccourse?page=1&category=운영">운영</a></li>
+		       <li><a href="#">커뮤니케이션</a></li>
+		       <li><a href="#">경영</a></li>
+		       <li><a href="#">판매</a></li>
+		       <li><a href="#">전략</a></li>
+		       <li><a href="#">운영</a></li>
+		       <li><a href="#"></a></li>
+		       <li><a href="#"></a></li>
 		    </ul>
 		</div>
     </section>
@@ -69,8 +70,7 @@
             <div class="row">
             <% for(Course course : flist){ %>
                 <div class="course-card">
-                  <img src="/testt/resources/course_upfiles/<%= course.getThumbnailRfileName() %>" class="card-img-top">
-                  <a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><img src="/testt/resources/img/sample_<%= course.getThumbnailOfileName() %>" class="card-img-top"></a>
+                  <a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><img src="/testt/resources/img/sample_thumbnail3.jpg" class="card-img-top"></a>
                   <div class="card-body">
                      <ul class="cardlist">
                        <li class="cli_1"><%= course.getCourseName() %></li>
@@ -90,7 +90,7 @@
             <ul class="categories">
                 <li><a id="upcat2">정렬<i class="fas fa-chevron-down"></i></a></li>
                 <ul class="dropdown-upcat2">
-                    <li><a href="/testt/selsort?page=1&category=<%= category %>&sortName=pop">인기도</a></li>
+                    <li><a href="/testt/selsort?category=<%= category %>">인기도</a></li>
                     <li><a href="/testt/selsort?page=1&category=<%= category %>&sortName=row">최저가</a></li>
                     <li><a href="/testt/selsort?page=1&category=<%= category %>&sortName=high">최고가</a></li>
                 </ul>
@@ -100,11 +100,12 @@
     
     <section>
 		<!-- 모든 강좌 -->
+		<input type="hidden" id="category" value="<%= category %>">
 		<h3 class="row class-title">모든 <%= category %> 강좌</h3>
 		<div class="row">
 		<% for(Course course : list){ %>
 		<div class="class clearfix">
-            <div class="image-place"><a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><img src="/testt/resources/course_upfiles/<%= course.getThumbnailRfileName() %>"></a></div>
+            <div class="image-place"><a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><img src="/testt/resources/img/sample_<%= course.getThumbnailOfileName() %>"></a></div>
             <div class="comment">
                 <ul id="ulcomment_1">
                     <li class="co_1"><a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><%= course.getCourseName() %></a></li>
@@ -187,7 +188,50 @@
     });
 	
 	
-	
+	/* $(function(){
+		$("document").ready(function(){
+			$("#purchase").click(function(){
+				var ca = $("#category").val();
+			$.ajax({
+				url: "/testt/selsort",
+				type: "get",
+				data : {category : ca},
+				dataType: "json",
+				success: function(data){
+					//객체를 문자열로 변환 처리함
+					var jsonStr = JSON.stringify(data);
+					//문자열을 배열 객체로 바꿈
+					var json = JSON.parse(jsonStr);
+				
+					var values = "";
+					for(var i in json.list){
+						values += "<div class='image-place'><a href='/testt/coursedetail?courseNo='" + json.list[i].courseNo + "><img src='/testt/resources/img/sample_'" + json.list[i].fileName + "></a></div>"
+					            +"<div class='comment'>"
+				                +"<ul id='ulcomment_1'>"
+				                    +"<li class='co_1'><a href='/testt/coursedetail?courseNo='" + json.list[i].courseNo +  ">" +  decodeURIComponent(json.list[i].courseName).replace(/\+/gi, " ") +"></a></li>"
+				                    +"<li class='co_2'><ul class='detail'><li>19개의 강의</li><li>33분</li></ul></li>"
+				                    +"<li class='co_3'><p>" + json.list[i].description + "></p></li>"
+				                +"</ul>"
+				                +"<ul id='ulcomment_2'>"
+				                    +"<li class='rco_1'><p>￦" + decodeURIComponent(json.list[i].price).replace(/\+/gi, " ") + "></p></li>"
+				                    +"<li class='rco_2'><p><span class='ystar'>★★☆☆☆</span> 2.0</p></li>"
+				                    +"<li class='rco_3'><p>(12개의 리뷰)</p></li>"
+				                +"</ul>"
+				            +"</div>";
+					} //for in
+				
+					//테이블에 추가
+					$(".clearfix").html($(".clearfix").html() + values);
+				
+				},
+				error: function(jqXHR, textStatus, errorThrown){
+					console.log("error : " + jqXHR + ", " + 
+							textStatus + ", " + errorThrown);
+				}
+			}) 
+			})
+		})
+	}); */
 	</script>
 </body>
 </html>
