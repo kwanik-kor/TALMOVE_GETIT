@@ -39,11 +39,13 @@ public class PageLoadServlet extends HttpServlet {
 		Course course = new Course();
 		Teacher teacher = new Teacher();
 		int courseNumber =0;
+		System.out.println("1번 "+Integer.parseInt(request.getParameter("courseNo")));
+		System.out.println("2번 "+(Integer)request.getAttribute("courseNo"));
 		if(request.getParameter("courseNo")!=null) {
 			courseNumber= Integer.parseInt(request.getParameter("courseNo"));
 		}else {
 			courseNumber= (Integer)request.getAttribute("courseNo");
-		}
+		}			
 		System.out.println("코스넘버 : "+ courseNumber);
 
 		//코스번호로 선생님이름, 코스객체
@@ -63,6 +65,7 @@ public class PageLoadServlet extends HttpServlet {
 			request.setAttribute("teacherName", teacher.getTeacherName() );
 			request.setAttribute("courseName", course.getCourseName());
 			request.setAttribute("courseDescription", course.getDescription());
+			request.setAttribute("courseNumber", courseNumber);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/common/Error.jsp");

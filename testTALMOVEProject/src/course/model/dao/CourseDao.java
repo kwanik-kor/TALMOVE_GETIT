@@ -8,7 +8,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import course.model.vo.Course;
+import lecture.model.vo.Lecture;
 import payment.model.vo.Payment;
+import section.model.vo.Section;
 
 public class CourseDao {
 		public CourseDao() {}
@@ -111,6 +113,7 @@ public class CourseDao {
 			}
 			System.out.println("코스넘버 리턴 :"+course.getCourseNo());
 			return course;
+		}
 		public ArrayList<Course> CourseLoad(Connection conn, int courseNo, Course course){
 			return null;}
 
@@ -277,6 +280,47 @@ public class CourseDao {
 			}
 			return result;
 		}
+
+		public ArrayList<Lecture> getLectureList(Connection conn, int sectionNo) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		public ArrayList<Lecture> getLectureBySectionNo(Connection conn, int no) {
+
+			ArrayList<Lecture> list = new ArrayList<Lecture>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String query = "SELECT * FROM LECTURE WHERE SECTION_NO=?";
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, no);
+				rset = pstmt.executeQuery();
+				while(rset.next()) {
+					Lecture lecture = new Lecture();
+					lecture.setLectureNo(rset.getInt("lecture_no"));
+					lecture.setSectionNo(rset.getInt("section_no"));
+					lecture.setCourseName(rset.getString("course_name"));
+					lecture.setSectionName(rset.getString("section_name"));
+					lecture.setLectureName(rset.getString("lecture_name"));
+					lecture.setLectureOFileName(rset.getString("lecture_original_filename"));
+					lecture.setLectureRFileName(rset.getString("lecture_rename_filename"));
+					lecture.setAttachmentOfileName(rset.getString("attachment_ofilename"));
+					lecture.setAttachmentRfileName(rset.getString("attachment_rfilename"));
+					lecture.setLectureContent(rset.getString("lecture_content"));
+					list.add(lecture);
+
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			return list;
+		}
+
+	
 	
 
 }

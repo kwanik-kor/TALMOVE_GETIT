@@ -1,13 +1,14 @@
 package course.model.service;
 
 import static common.JDBCTemplate.*;
-
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import course.model.dao.CourseDao;
 import course.model.vo.Course;
+import lecture.model.vo.Lecture;
 import payment.model.vo.Payment;
+import section.model.vo.Section;
 
 public class CourseService {
 	
@@ -62,6 +63,7 @@ public class CourseService {
 		Course course = cDao.getCourse(conn, courseNumber);
 		close(conn);
 		return course;
+	}
 	public ArrayList<Course> CourseLoad( int courseNo, Course course){
 		return null;}
 
@@ -149,6 +151,12 @@ public class CourseService {
 		}
 		close(conn);
 		return result;
+	}
+	public ArrayList<Lecture> getLectureBySectionNo(int no) {
+		Connection conn = getConnection();
+		ArrayList<Lecture> list = cDao.getLectureBySectionNo(conn, no);
+		close(conn);
+		return list;
 	}
 
 }

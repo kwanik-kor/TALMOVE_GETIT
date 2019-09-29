@@ -7,6 +7,7 @@
 	String teacherName = (String)request.getAttribute("teacherName");
 	String courseName = (String)request.getAttribute("courseName");
 	String courseDescription = (String)request.getAttribute("courseDescription");
+	int courseNumber = (int)(request.getAttribute("courseNumber"));
 %>
 <!DOCTYPE html>
 <html>
@@ -31,8 +32,17 @@
     <script src="https://kit.fontawesome.com/08d0951667.js"></script>
     <link type="text/css" rel="stylesheet" href="/testt/views/teacherPage/css/dist/dropzone.css">
     <script src="/testt/views/teacherPage/css/dist/dropzone.js"></script>
+    
     <script type="text/javascript" src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
-    <title>강사</title>
+    <script src="//fast.wistia.com/assets/external/api.js" async></script>
+    
+    <link rel="stylesheet" href="//fast.wistia.com/assets/external/uploader.css" />
+    <script src = "https://fast.wistia.com/embed/medias/epo27h3ur4.jsonp" async></script>
+            <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+            
+            
+            
+    <title>TALMOVE l 강좌 편집</title>
 
 
 
@@ -46,7 +56,7 @@
     <section id="outline">
         <div id="body_left">
             <div id="name_zone">
-                <span><%= teacherName %></span>님의 수업
+                <span><%= teacherName %></span>님의 수업 
             </div>
             <div id="list">
                 <div id="contents">
@@ -58,13 +68,56 @@
                             <span>강좌 소개</span>
                         </div>
                     </div>
+                    <% for(Section s : SectionList ){%>
+                    <!--#1. 섹션 추가-->
+                    <div class="sect_zone">
+                        <div class="sect_name">
+                            <input type="text" class="placeSectionName" placeholder="SECTION NAME" value=" <%= s.getSectionName() %>" readOnly>
+                            <input type="hidden" class="insect-sectNo" value=" <%= s.getSectionNo() %>">
+                            <div>
+                                <button class="del-btn"><i class="fas fa-times"></i></button>
+                                <button class="modi-btn"><i class="fa fa-pen"></i></button>
+                            </div>
+                        </div>
+                        <!--#2. 클래스추가-->
 
-                    <!--
-                    <div class="create_nclass">
-                        새 수업 생성
+                        <ul class="ajax-zone" id="<%= s.getSectionNo()%>">
+                        </ul>
+
+
+                        <div class="create_nclass">새 수업</div>
                     </div>
-                    -->
+                    <!--#1-->
 
+                    <script type="text/javascript">
+                        $(function() {
+                            $.ajax({
+                                url: "/testt/test1.do",
+                                data: {
+                                    no: <%= s.getSectionNo() %>
+                                },
+                                type: "get",
+                                dataType: "json",
+                                success: function(data) {
+                                    var jsonStr = JSON.stringify(data);
+                                    var json = JSON.parse(jsonStr);
+                                    for (var i in json.list) {
+                                        $("ul#<%= s.getSectionNo()%>.ajax-zone").html($("ul#<%= s.getSectionNo()%>.ajax-zone").html() +
+                                            '<li><input type="text" class="lectureNameShow" placeholder="CLASS NAME" value="' +
+                                            decodeURIComponent(json.list[i].LectureName).replace(/\+/gi, " ") +
+                                            '" readOnly><div class="inventory" id="' +
+                                            json.list[i].LectureNo+
+                                            '" ><button class="del-btn"><i class="fas fa-times"></i></button><button class="modi-btn"><i class="fa fa-pen"></i></button></div></li>');
+
+                                    }
+
+                                }
+                            });
+                        });
+                    </script>
+
+
+                    <%} %>
                 </div>
                 <div class="create_nsect">
                     새강좌 생성
@@ -73,25 +126,74 @@
         </div>
 
         <div id="body_right">
-            <form>
-                <div id="blank_zone">
-                    강의 편집
-                </div>
-                <div>
-                    <div name="content" id="editor">
-                        <%= courseDescription %>
-                    </div>
-                </div>
-                <div id="document-zone">
-                    <span>첨부파일</span>
-                    <div class="fallback">
-                        <input name="file" type="file" multiple />
-                    </div>
-                </div>
-            </form>
-            <div id="page-save">
-                <button type="submit">SAVE</button>
+        
+            <div id="blank_zone">
+            <form id ="lectureDetail-info"  action="/testt/attach-upload.do" enctype="multipart/form-data">
+                강의 편집
             </div>
+            <div id="videoUploadZone"></div>
+            <input type="hidden" id="checkVideo" value="null" name="videoHash">
+			<input type="hidden"  id="lectureNo" value="" name="lectureNo">
+            
+           <!--  <% // if ((String temp =%>$('#checkVideo').value()<% //) ==null) { %>  -->
+            
+               <script>
+           
+                var videoHash = ""
+                {
+                    window._wapiq = window._wapiq || [];
+                    _wapiq.push(function(W) {
+                        window.wistiaUploader = new W.Uploader({
+                            accessToken: "444b3a939c84d07c96a501e139b41e58f25f3ed09fb263f093f6ed2dcc7520c4",
+                            dropIn: "videoUploadZone",
+                            projectId: "yl105easn1",
+                            beforeUpload: function() {
+                                wistiaUploader.setFileName('myfile');
+                            }
+
+                        });
+                        wistiaUploader.bind('uploadsuccess', function(file, media) {
+                            console.log('', media.id);
+                            $("#videoUploadZone").val(function mo(){
+                            	videoHash=media.id;
+                            	$("#checkVideo").val(videoHash);
+                            	alert("비디오해쉬 : "+videoHash);
+                            	alert($("#checkVideo").val());
+                            });
+                        });
+                    });
+                }
+				</script>	
+ 
+           				
+
+            <div>
+                <textarea name="content" id="editor" placeholder="WELCOME TO TALMOVE!" >
+				</textarea>
+            </div>
+            
+            <div id="document-zone">
+	               <span>첨부파일</span>
+		              <div id="attach-docu">
+							
+
+		                <input id="file" name="file" type="file" >
+	               </div>
+			             
+
+            </div>
+            <div id="page-save">
+            <input type="button" id="saveLecture" value="SAVE">
+            <script>
+            	
+		           	$("#saveLecture").click(function(){
+			            	saveLecture();
+                  });
+                </script>
+        </div>
+            
+       
+        
 
         </div>
 
@@ -101,100 +203,277 @@
 </body>
 
 <script>
-    ClassicEditor
-        .create(document.querySelector('#editor'))
-        .then(editor => {
-            console.log(editor);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-</script>
-<script>
-    $(document).ready(function() {
-        createClass();
+    window.onload=function(){
+        createLecture();
         createSection();
         clickon();
+        getLectureForm();
+        editorGo();
+	 };
 
-    });
-
-    function callcall() {
-        transToServ.action = "/testt/pnewc"; //호출명
-
-        transToServ.method = "post"; //POST방식 
-
-        transToServ.submit();
-
+    function test() {
+        alert("테스트함수실행");
     }
-/*
-    function callLectureName() {
-        $.ajax({
-                url: "plload",
-                data: {
-                    no: $(".sect_name").val()
-                },
-                type: "get",
-                dataType: "json",
-                success: function(data) {
-                    alert("ajax 성공");
-                    console.log("ajax 실행시작");
-                    //객체를 문자열로 변환 처리함
-                    var jsonStr = JSON.stringify(data);
-                    //문자열을 배열 객체로 바꿈
-                    var json = JSON.parse(jsonStr);
 
-                    var values = "";
-                    for (var i in json.list) {
+    function editorGo(){
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });	
+    	}
 
-                        values += '<ul><li><input type="text" placeholder="CLASS NAME" value="d" readOnly><div>button class="del-btn"><i class="fas fa-times"></i></button>"<button class="modi-btn"><i class="fa fa-pen"></i></button><div></li></ul>;';
-                        $("#editor").html($("#editor").html() + values());
 
-                    }
-                }
-            }
-        }
-    }
-*/
-    function createClass() {
+    function createLecture() {
         $('.create_nclass').click(function() {
-            var kt = '<ul><li class="df"> <input type="text" placeholder="CLASS NAME" readOnly>   <div>   <button class="del-btn"><i class="fas fa-times"></i></button>   <button class="modi-btn"><i class="fa fa-pen"></i></button> </div>  </li>   </ul>';
+            var kt = '<ul><li class="df"> <input type="text" placeholder="CLASS NAME" value="new class"readOnly>   <div>   <button class="del-btn"><i class="fas fa-times"></i></button>   <button class="modi-btn"><i class="fa fa-pen"></i></button> </div>  </li>   </ul>';
             $(this).prev().append(kt);
+            alert("");
+            var sectionNo=$(this).prevAll(".sect_name").children('.insect-sectNo').val();
+            var courseName="<%= courseName %>";
+            $.ajax({
+                    url: "/testt/createNewLecture.do",
+                    data: {
+                        no:sectionNo.trim(),
+                        name:courseName
+                    },
+                    type: "post",
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log("error : " + textStatus);
+                    }
+                });
             clickon();
-            alert($(this).prevAll(".sect_name").attr("value"));
-            callcall();
         });
+    }
+    function saveLecture(){
+       						alert("동작실행");
+	                        var formData = new FormData();
+	                        formData.append("lectureNo", $("#lectureNo").val());
+	                        console.log(formData.get("lectureNo"));
+	                        formData.append("videoHash", $("#checkVideo").val());
+	                        formData.append("content", $(".ck").children("p").html());
+	                        formData.append("courseNumber",  <%= courseNumber %>);
+	                        formData.append("file",$('input[name=file]')[0].files[0]);
+	                        console.log(formData.get("videoHash"));
+	                        console.log(formData.get("content"));
+	                        console.log(formData.get("courseNumber"));
+	                        alert("저장종료 아작스실행");
+			            	$.ajax({
+	                            url: "/testt/attach-upload.do",
+	                           type: "post",
+	                           enctype:"multipart/form-data",
+	                           processData : false,    
+	                           contentType : false,  
+	                            data : formData,
+	                            sucsess:function(){
+	                                alert("성공");
+	                            },
+	                            error:function(error){
+	                            	alert("파일업로드에 실패하였습니다. 재실행 해주세요");
+	                            	console.log(error);
+	                            	console.log(error.status);
+	                            }
+	                            });
     }
 
     function createSection() {
         $('.create_nsect').click(function() {
-            var kt = '<!--#1. 섹션 추가--><div class="sect_zone"><div class="sect_name"><input type="text" placeholder="SECTION NAME" readOnly><div><button class="del-btn"><i class="fas fa-times"></i></button><button class="modi-btn"><i class="fa fa-pen"></i></button></div></div><!--#2. 클래스추가--><ul><li><input type="text" placeholder="CLASS NAME" readOnly><div><button class="del-btn"><i class="fas fa-times"></i></button><button class="modi-btn"><i class="fa fa-pen"></i></button></div></li><!--#2--></ul><div class="create_nclass">새 수업</div></div><!--#1-->'
+            var kt = '<!--#1. 섹션 추가--><div class="sect_zone"><div class="sect_name"><input type="text" placeholder="SECTION NAME" value="NEW SECTION" readOnly><div><button class="del-btn"><i class="fas fa-times"></i></button><button class="modi-btn"><i class="fa fa-pen"></i></button></div></div></ul><div class="create_nclass">새 수업</div></div><!--#1-->'
             $("#contents").last().append(kt);
-            createClass();
+            alert("<%= courseNumber%>"); 
+            $.ajax({
+                url: "/testt/createNewSection.do",
+                data: {
+                    no:<%= courseNumber%>
+                },
+                type: "post",
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log("error : " + textStatus);
+                }
+            });
             clickon();
         });
     }
 
     function clickon() {
         $('.modi-btn').click(function() {
-            $(this).parent().prev("input").attr("readOnly", false);
-            $(this).parent().prev("input").focus();
-            $(this).parent().prev("input").attr("readOnly", false).keydown(function() {
-                if (event.which == 13) {
-                    $(this).attr("readOnly", true);
-                };
-            });
+                        alert("클릭입력");
+            var sectionNumber = null;
+            var lectureNumber = null;
+            var currentName=$(this).parent().prevAll("inp   ut.placeSectionName").val();
+            var afterName="";
+            
+            if ($(this).parent(".inventory").attr('id') != null) {
+                alert("렉쳐넘버 : "+$(this).parent(".inventory").attr('id'));
+                lectureNumber = $(this).parent(".inventory").attr('id');
+                alert($(this).parent().prev("input").val());
+                sectionNumber = $(this).parent().prev('.insect-sectNo').val();
+                
+                $(this).parent().prevAll("input").attr("readOnly", false);
+                $(this).parent().prevAll("input").focus();
+                $(this).parent().prevAll("input").attr("readOnly", false).keydown(function() {
+                    if (event.which == 13) {
+                    	afterName=$(this).val();
+                        if (lectureNumber != null) {
+                            alert("렉쳐번호로 수정 진입");
+                            alert($(this).val());
+                        	currentName= $(this).val()
+                        	renameLecture(lectureNumber,currentName);
+                        }
+                        $(this).attr("readOnly", true);
+                    };
+              })
+                clickon();
+            } else {
+                alert("섹션넘버 : "+$(this).parent().prev('.insect-sectNo').val());
+                sectionNumber = $(this).parent().prev('.insect-sectNo').val();
+                alert($(this).parent().prevAll("input.placeSectionName").val());
+                $(this).parent().prevAll("input.placeSectionName").attr("readOnly", false);
+                $(this).parent().prevAll("input.placeSectionName").focus();
+                $(this).parent().prevAll("input.placeSectionName").attr("readOnly", false).keydown(function() {
+                    if (event.which == 13) {
+                    	afterName=$(this).val();
+                        if (lectureNumber != null) {
+                            //렉쳐넘버로 렉쳐명변경 ajax
+                        } else {
+                        	alert("섹션번호로 수정 진입");
+                        	alert($(this).val());
+                        	currentName= $(this).val();
+                        	alert(currentName);
+                        	renameSection(sectionNumber,currentName);
+                        }
+                        $(this).attr("readOnly", true);
+                    };
+              })
+            	onclick();
+            };
+            function renameSection(sectionNumber,afterName){
+	            $.ajax({
+	                url: "/testt/sectionRename.do",
+	                data: {
+	                    no:sectionNumber.trim(),
+	                    name:afterName
+	                },
+	                type: "get",
+	                dataType: "json",
+	                success: function(data) {
+	                	alert("ajax성공");
+					}
+                });
+            }
+            function renameLecture(lectureNumber,afterName){
+            	 $.ajax({
+ 	                url: "/testt/lectureRename.do",
+ 	                data: {
+ 	                    no:lectureNumber.trim(),
+ 	                    name:afterName
+ 	                },
+ 	                type: "get",
+ 	                dataType: "json",
+ 	                success: function(data) {
+ 	                	alert("ajax성공");
+                     }
 
-        });
+                 });
+            }
+            });
+            
+
+        
 
         $('.del-btn').click(function() {
+            var sectionNumber = null;
+            var lectureNumber = null;
+            if ($(this).parent(".inventory").attr('id') != null) {
+                alert($(this).parent(".inventory").attr('id'));
+                lectureNumber = $(this).parent(".inventory").attr('id')
+            } else {
+                alert('section no = '+$(this).parent().prev('.insect-sectNo').val());
+                sectionNumber = $(this).parent().prev('.insect-sectNo').val();
+            }
+            if (lectureNumber != null) {
+                lectureDelete(lectureNumber);
+            } else {
+            	alert("실행");
+            	sectionDelete(sectionNumber); 
+            	//하위 렉쳐 모두 삭제됨
+            	
+            }
+            alert("dd");
             if ((this).closest("li")) {
                 (this).closest("li").remove();
             } else {
                 $(this).parents(".sect_zone").remove();
             }
-        });
-
+            function lectureDelete(lectureNumber) {
+                $(function() {
+                    $.ajax({
+                        url: "/testt/lectureDelete.do",
+                        data: {
+                            no: lectureNumber.trim()
+                        },
+                        type: "post",
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log("error : " + textStatus);
+                        }
+                    });
+                });
+            }
+            function sectionDelete(sectionNumber) {
+                $(function() {
+                    $.ajax({
+                        url: "/testt/sectionDelete.do",
+                        data: {
+                            no:sectionNumber.trim()
+                        },
+                        type: "post",
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log("error : " + textStatus);
+                        }
+                    });
+                });
+            }
+            
+       		
+        
+    });
     }
+	function getLectureForm(){
+		$("li").click(function (){
+			alert("dddddd");
+			alert($(this).children(".inventory").attr('id') );
+			
+			//해당번호의 렉쳐정보 받아오기
+			$.ajax({
+				url: "/testt/getLectureByAjax.do",
+				data: {no: $(this).children(".inventory").attr('id') },
+				type: "get",
+				dataType: "json",
+				success: function(data){
+						console.log($(".ck").html());
+						$(".ck").children("p").html(decodeURIComponent(data.lectureContent).replace(/\+/gi, " "));
+						$("#lectureNo").val(data.lectureNo);
+						if(decodeURIComponent(data.lectureOFileName)!=null ){
+								$("#checkVideo").val(decodeURIComponent(data.lectureOFileName).replace(/\+/gi, " "));
+								alert("비디오해쉬존재");
+						}
+						console.log(decodeURIComponent(data.attachmentOfileName).replace(/\+/gi, " "));
+						//$("#file").val(decodeURIComponent(data.attachmentOfileName).replace(/\+/gi, " "));
+						//console.log(decodeURIComponent(data.attachmentOfileName).replace(/\+/gi, " "));
+						//본문에 뿌려줌	//"'"+decodeURIComponent(data.lectureContent).replace(/\+/gi, " ")+"'"	
+					//ck-blurred ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline
+				},
+				error: function(jqXHR, textStatus, errorThrown){
+					console.log("error : " + textStatus);
+				}
+			});
+		});
+		
+	}
+
 </script>
 
 

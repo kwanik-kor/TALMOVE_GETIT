@@ -61,11 +61,10 @@
                     <div class="course-content">
                         <h3><%= c.getCourseName() %></h3>
                         <h4 class="openYN">강좌 공개 여부 : </h4><span><%= c.getOpenYN() %></span><br>
-<<<<<<< HEAD
+
                         <a class="lecAdmin" href="/testt/editPageLoad?courseNo=<%= c.getCourseNo() %>">강좌편집</a>
                         
                         <a class="lecEdit" href="#">강좌관리</a>
-=======
                         <a class="lecEdit">강좌편집</a>
                         <a class="lecAdmin">강좌관리</a>
                     </div>
@@ -107,6 +106,7 @@
                         <input type="hidden" class="copenyn" value="<%= c.getOpenYN() %>">
                         <input type="hidden" class="cdelno" name="cno" value="<%= c.getCourseNo() %>">
                         <button class="delBtn">강좌 삭제하기</button>
+
                     </div>
                 </div>
             </div>
