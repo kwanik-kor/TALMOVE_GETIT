@@ -31,9 +31,6 @@ public class LectureService {
 		return list;
 	}
 
-
-
-
 	public void lectureDelete(int lectureNo) {
 		Connection conn = getConnection();
 		int result = ldao.lectureDelete(conn,lectureNo);
@@ -44,8 +41,6 @@ public class LectureService {
 			System.out.println("삭제실패");
 			rollback(conn);
 		}close(conn);
-		
-		
 		
 	}
 
