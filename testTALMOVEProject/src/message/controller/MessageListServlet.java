@@ -35,8 +35,10 @@ public class MessageListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String uemail = request.getParameter("uemail");
+		
 		ArrayList<Message> msglist = 
-				new MessageService().selectList();
+				new MessageService().selectList(uemail);
 		
 		
 		RequestDispatcher view = null;
@@ -49,6 +51,8 @@ public class MessageListServlet extends HttpServlet {
 		}else {	         
         PrintWriter out= response.getWriter();
 			view = request.getRequestDispatcher("views/mypage/MessageListView.jsp");
+			request.setAttribute("list", msglist);
+			view.forward(request, response);
 	      /*   out.println("<script>");
 	         out.println("alert('다시 시도해주세요.')");
 

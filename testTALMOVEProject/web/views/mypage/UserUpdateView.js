@@ -1,8 +1,58 @@
-var pf_file;
-   $(document).ready(function(){
-       $("#filebutton").on("change", handleImgFileSelect);
-   });
-  
+
+$(document).ready(function(){
+	var star = $('.mstar');
+	var dataval;
+
+	$(".mstar").each(function(index){
+		$(this).click(function(){
+		/*alert("클릭됨" + $(this).prop("title"));*/
+		var startext = $(this).text();
+		var starFlag;
+		if(startext == "★"){
+			$(this).text("☆");
+			starFlag = 0;
+		} else {
+			$(this).text("★");
+			starFlag = 1;
+		}	
+
+		
+		$.ajax({
+			url:"/testt/chmsg",
+			rsync: false,
+			data: {msgno: $(this).prop("title"), starflag: starFlag},
+			type: "post",
+			success: function(data){
+		
+				if(data == "1") {
+/*		 		alert("ajax data 받아오기성공");*/
+		
+				
+				} else {
+					alert("ajax data 받아오기실패");
+				}
+					
+			},
+			error: function(jqXHR, textStatus, errorThrown){
+				console.log("error");
+			}
+			
+		}); //ajax
+		return false;
+		
+	});}); // star click
+	
+
+	
+}); //document ready
+   
+
+
+$(document).ready(function(){
+	   var pf_file;
+	   $("#filebutton").on("change", handleImgFileSelect);
+});
+$(document).ready(function(){
 function handleImgFileSelect(e) {
    var upfiles = e.target.files;
    var upfilesArr = Array.prototype.slice.call(upfiles);
@@ -21,8 +71,7 @@ function handleImgFileSelect(e) {
    });
 } //handleImgFileSelect
          
-
-// 회원탈퇴----------------
+});
 $(document).ready(function(){
    $("#msgmenu").click(function(){
       var submenu = $('.maghidemenu');
@@ -33,44 +82,7 @@ $(document).ready(function(){
       }
    });
 });
-$('.withdrawlBtn').on('click', function(){
-   var checked = $('#withdrawl-chk').prop('checked');
-   if(checked){
-      var r = confirm("정말로 탈퇴하시겠습니까?");
-      if(r){
-    	 /* alert("탈퇴를 취소하였습니다.");*/
-    	  $.ajax({
-    	         url: "/testt//udelete.ed",
-    	         async: false,
-    	         data: {uemail: $('#user-email').val()},
-    	         type: "post",
-    	         success: function(data){
-    	            if(data == "1"){
-    	            	alert("탈퇴 되었습니다.");
-    	            /*
-    	            	response.sendRedirect("/testt/logout");*/
-    	            	/*window.location.href = "/testt/logout";*/
-    	        		window.location.href = "index.jsp";
-    	        		/*이동/로그아웃이 안됨..*/
-    	            }else{
-    	            	alert("탈퇴에 실패하였습니다.");
-    	            }
-    	         },
-    	         error: function(jqXHR, textStatus, errorThrown){
-    	              console.log("error : " + jqXHR + ", " + textStatus + ", " + errorThrown);
-    	          }
-    	      });
-      }else{
-			alert("탈퇴를 취소하였습니다.");
-			window.location.href = "UserUpdateView.jsp";
-      }
-   }else{
-      alert("탈퇴 약관에 동의해 주십시오.");
-   }
-});
-
-// 회원탈퇴 -----------------------
-
+$(document).ready(function(){
 var uPwdNow = {
    input: $('#upwdNow'),
    fo: $('#upwdNow-focus')
@@ -239,3 +251,4 @@ $('.newPwdBtn').on('click', function(){
 });
 
 
+});

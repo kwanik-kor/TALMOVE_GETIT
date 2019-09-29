@@ -56,15 +56,14 @@
 	<section class="section-middle clearfix">
 		<div class="left-side">
 			<ul class="tmenu">
-				<li><a class="active-menu"
+				<li><a
 					href="/testt/views/mypage/UserUpdateView.jsp">프로필</a></li>
 				<li id="msgmenu"><a>메시지</a></li>
 				<ul class="maghidemenu">
-					<li><a href="/testt/views/mypage/MessageNewSendView.jsp">새
+					<li><a class="active-menu" href="/testt/views/mypage/MessageNewSendView.jsp">새
 							메시지</a></li>
-					<li><a href="/testt/views/mypage/MessageListView.jsp">모든
-							메시지</a></li>
-					<li><a href="/testt/views/mypage/MessageImportantListView.jsp">중요
+					<li><a href="/testt/msglist?uemail=<%= loginUser.getUserEmail()%>">모든 메시지</a></li>
+					<li><a href="/testt/msgimp?uemail=<%= loginUser.getUserEmail()%>">중요
 							메시지</a></li>
 				</ul>
 			</ul>

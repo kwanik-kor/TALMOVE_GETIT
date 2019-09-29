@@ -16,4 +16,28 @@ public class CourseTagService {
 		close(conn);
 		return ctList;
 	}
+
+	public int insertTags(int courseNo, String[] tags) {
+		Connection conn = getConnection();
+		int result = ctDao.insertTags(conn, courseNo, tags);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	public int clearTags(int courseNo) {
+		Connection conn = getConnection();
+		int result = ctDao.clearTags(conn, courseNo);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }

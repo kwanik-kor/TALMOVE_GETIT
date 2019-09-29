@@ -1,13 +1,18 @@
 package course.model.service;
 
-import static common.JDBCTemplate.*;
+import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import course.model.dao.CourseDao;
 import course.model.vo.Course;
+import lecture.model.vo.Lecture;
 import payment.model.vo.Payment;
+import section.model.vo.Section;
 
 public class CourseService {
 	
@@ -57,6 +62,78 @@ public class CourseService {
 
 	public int VideoDelete( int courseNo,Course course, Object video){
 		return courseNo;}
+//건우		
+	//섹션의 개수 파악
+	public int getSectionCount(int CourseNo) {
+		Connection conn = getConnection();
+		int SectionCount = cDao.getSectionCount(conn,CourseNo);
+		close(conn);
+		return SectionCount;
+	}
+	
+	//섹션불러오기
+	public ArrayList<Section> SectionList(int courseNo){
+		Connection conn = getConnection();
+		ArrayList<Section> result = cDao.getSectionList(conn, courseNo);
+		if(result != null) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	public Course getCourse(int courseNumber) {
+		Connection conn = getConnection();
+		Course course = cDao.getCourse(conn, courseNumber);
+		close(conn);
+		return course;
+	}
+	public Course getCourseByName(String courseName) {
+		Connection conn = getConnection();
+		Course course = cDao.getCourseByName(conn, courseName);
+		close(conn);
+		return course;
+	}
+	public ArrayList<Course> getCourseListByTNo(int teacherNo) {
+		Connection conn = getConnection();
+		ArrayList<Course> courseList = cDao.getCourseListByTNo(conn, teacherNo);
+		close(conn);
+		return courseList;
+	}
+	public int setCourseOpen(int courseNo, int price) {
+		Connection conn = getConnection();
+		int result = cDao.setCourseOpen(conn, courseNo, price);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	public int deleteCourse(int courseNo) {
+		Connection conn = getConnection();
+		int result = cDao.deleteCourse(conn, courseNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	public ArrayList<Lecture> getLectureBySectionNo(int no) {
+		Connection conn = getConnection();
+		ArrayList<Lecture> list = cDao.getLectureBySectionNo(conn, no);
+		close(conn);
+		return list;
+	}
+
+	//렉쳐 불러오기
+
+
 	
 	//학열
 	public ArrayList<Course>selectCourse (int courseNo){
@@ -112,5 +189,38 @@ public class CourseService {
 		close(conn);
 		return result;
 	}
+	public int cBasicUpdate(Course course) {
+		Connection conn = getConnection();
+		int result = cDao.cBasicUpdate(conn, course);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	
+	public ArrayList<Course>myCourse(int userNo){	
+		Connection conn = getConnection();
+		ArrayList<Course> list = cDao.myCourse(conn, userNo);
+		close(conn);
+		
+		return list;
+	}
+	public ArrayList<String> getSearchedCourseName(String[] keywords) {
+		Connection conn = getConnection();
+		ArrayList<String> clist = cDao.getSearchedCourseName(conn, keywords);
+		close(conn);
+		return clist;
+	}
+	public ArrayList<Course> getSearchedCourse(String[] keywords) {
+		Connection conn = getConnection();
+		ArrayList<Course> clist = cDao.getSearchedCourse(conn, keywords);
+		close(conn);
+		return clist;
+	}
+	
 
 }

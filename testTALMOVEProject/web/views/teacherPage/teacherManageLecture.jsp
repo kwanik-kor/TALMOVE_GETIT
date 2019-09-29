@@ -65,7 +65,7 @@
                     <div class="course-content">
                         <h3><%= c.getCourseName() %></h3>
                         <h4 class="openYN">강좌 공개 여부 : </h4><span><%= c.getOpenYN() %></span><br>
-                        <a class="lecEdit">강좌편집</a>
+                        <a class="lecEdit" href="/testt/editPageLoad?courseNo=<%= c.getCourseNo() %>">강좌편집</a>
                         <a class="lecAdmin">강좌관리</a>
                     </div>
                 </div>
@@ -74,7 +74,8 @@
                 <div class="modal-course-content">
                    	 <div class="course-admin-top">
                         <h3>강좌 정보 수정</h3><button class="closeBtn">&times;</button>
-                        <form class="course-info" action="">
+                        <form class="course-info" action="/testt/cbupdate.ed" enctype="multipart/form-data" method="post">
+                        	<input type="hidden" name="courseNo" value="<%= c.getCourseNo() %>">
                             <label for="">강좌명</label> <input type="text" name="courseName" value="<%= c.getCourseName() %>">
                             <label for="">강좌한줄소개</label> <input type="text" name="description" value="<%= c.getDescription() %>">
                             <label for="">태그</label> <input class="tag-input" type="text" placeholder="태그를 입력해주세요(최대 15개)">
@@ -86,6 +87,7 @@
 		                                    <div class="tags">
 										    	<p class="tagName"><%= t.getTagName() %></p>
 										    	<p class="del-tag" onclick="deleteTag(this);">&times;</p>
+										    	<input type="hidden" name="tagName" value="<%= t.getTagName() %>">
 										    </div>
 		                                <% } %>
                             		<% } %>
@@ -94,7 +96,7 @@
                             </div>
 				            
                             <label for="">카테고리</label>
-                            <select class="1stC" name="bank" style="text-align: center;" required>
+                            <select class="1stC" name="1stC" style="text-align: center;" required>
                                 <option value="">1차 카테고리</option>
                                 <% if(c.getCategoryNo() <= 7){ %>
                                 	<option value="비즈니스" selected>비즈니스</option>
@@ -105,7 +107,7 @@
                                 <% } %>
                                 
                             </select>
-                            <select class="2ndC" name="bank" style="text-align: center;" required>
+                            <select class="2ndC" name="2ndC" style="text-align: center;" required>
                                 <option value="">2차 카테고리</option>
                                 <%
                                 for(Category ca : caList){
@@ -116,16 +118,17 @@
                                 	}
                                 }
                                 %>
-                                
                             </select>
                             <label>썸네일</label>
                             <div class="thumbdiv">
-                            	<input type="hidden" id="oimgname" value="<%= c.getThumbnailOfileName() %>">
-                            	<label class="thumblabel" for="thumbimg">사진 변경</label><input id="thumbimg" name="changeThumb" type="file">
+                            	<input type="hidden" id="oimgname" name="oimagename" value="<%= c.getThumbnailOfileName() %>">
+                            	<input type="hidden" id="rimgname" name="rimagename" value="<%= c.getThumbnailRfileName() %>">
+                            	<label class="thumblabel" for="thumbimg">사진 변경</label><input id="thumbimg" name="changeThumb" type="file" accept="image/*">
                             </div>
-                            <img src="/testt/resources/course_upfiles/<%= c.getThumbnailRfileName() %>" alt="thumbnailImage">
-                            <button class="saveBtn">저장</button><button class="cancelBtn">취소</button>
+                            <img class="thumbPre" src="/testt/resources/course_upfiles/<%= c.getThumbnailRfileName() %>" alt="thumbnailImage">
+                            <button class="saveBtn" type="submit">저장</button><button class="cancelBtn">취소</button>
                         </form>
+                        
                     </div>
                     <div class="course-admin-middle clearfix">
                         <h3>강좌 공개</h3>
@@ -160,9 +163,13 @@
 	    });
 	    $('.closeBtn').on('click', function(){
             var index = $('.closeBtn').index(this);
-            $('.modal-course').eq(index).removeClass('is-visible');
-            $('.modal-course').eq(index).removeClass('is-open');
-            $('body').css('overflow-y', 'scroll');
+            var cancel = confirm("창을 닫으면 변경사항이 저장되지 않습니다.");
+            if(cancel){
+	    		$('.modal-course').eq(index).removeClass('is-visible');
+	    		$('.modal-course').eq(index).removeClass('is-open');
+	    		$('body').css('overflow-y', 'scroll');
+	    		location.reload();
+	    	}
         });
 	    $('.cancelBtn').on('click', function(){
 	    	var index = $('.cancelBtn').index(this);
@@ -172,7 +179,13 @@
 	    		$('.modal-course').eq(index).removeClass('is-open');
 	    		$('body').css('overflow-y', 'scroll');
 	    		location.reload();
+	    		return false;
 	    	}
+	    });
+	    $('input[type="text"]').keydown(function(){
+	    	if(event.keyCode === 13){
+	    		event.preventDefault();
+	    	};
 	    });
 	   	
 	    $('.1stC').on('change', function(){
@@ -237,12 +250,15 @@
 	    	}
 	    });
 	    
+	    
+	    
 	    $('.tag-input').keyup(function(){
 	    	var index = $('.tag-input').index(this);
 	    	if(window.event.keyCode == 13){
 	    		if($(this).val() != ""){
 	    			addTag(index);
 	    		}
+	    		event.preventDefault();
 	    	}
 	    	if(window.event.keyCode == 32){
 	    		if($(this).val() == " "){
@@ -259,7 +275,7 @@
 	    	if(tagCnt < 15){
 	    		var tag = "<div class='tags'><p class='tagName'>";
 	    		var tagInput = $('.tag-input').eq(index).val();
-	    		tag += tagInput + "</p><p class='del-tag' onclick='deleteTag(this);'>&times;</p></div>";
+	    		tag += tagInput + "</p><p class='del-tag' onclick='deleteTag(this);'>&times;</p></div><input type='hidden' name='tagName' value='" + tagInput + "'>";
 	    		$('.plus-tag').eq(index).html($('.plus-tag').eq(index).html() + tag);
 	    		$('.tag-input').eq(index).val('');
 	    	}else{
@@ -271,7 +287,22 @@
 	    	var indexNo = $('.del-tag').index(del);
 	    	$('.tags').eq(indexNo).remove();
 	    }
+	    
+	    $('.thumblabel').on('click', function(){
+    		var index = $('.thumblabel').index(this);
+    		$('#thumbimg').on('change', function(){ readFile(this, index);});
+    	});
+    	function readFile(input, index){
+    		if(input.files && input.files[0]){
+    			var reader = new FileReader();
+    			reader.onload = function(e){
+    				$('.thumbPre').eq(index).attr('src', e.target.result);
+    			}
+    			reader.readAsDataURL(input.files[0]);
+    		}
+    	}
     </script>
+    
 </body>
 
 </html>

@@ -93,11 +93,20 @@
                     </div>
                 </div>
                 <div class="gnb-search">
-                    <form action="">
-                        <input type="search" placeholder="검색" maxlength="30">
+                    <form action="/testt/searchcourses.ed" method="get">
+                    	<input type="hidden" name="page" value="1">
+                    	<input type="hidden" name="sort" value="featured">
+                    	<input type="hidden" name="priceRange" value="all">
+                        <input type="text" placeholder="검색" name="keyword" class="search" maxlength="30" autocomplete=off>
                         <button><i class="fas fa-search"></i></button>
                     </form>
+                    <div class="search-result">
+	                	<ul class="searchwords">
+	                	<!-- 키워드목록 -->
+	                	</ul>
+	                </div>
                 </div>
+                
                 <div class="gnb-unlogin-nav">
                 <% if(loginUser == null){ %>
                 	<ul class="unlogin-nav">
@@ -112,8 +121,8 @@
                         <% }else{ %>
                         <li><button onclick="location.href='/testt/views/teacherPage/teacherPageDetail.jsp'">강사</button></li>
                         <% } %>
-                        <li><button onclick="location.href='/testt/views/myCourse/myCourse.jsp'">내강좌</button></li>
-                        <li><button onclick="location.href='/testt/views/cart/cartPage.jsp'">장바구니</button></li>
+                        <li><button onclick="location.href='/testt/mclist?userNo=<%=loginUser.getUserNo() %>'">내강좌</button></li>
+                    	<li><button onclick="location.href='/testt/cartl?userNo=<%=loginUser.getUserNo()%>'">장바구니</button></li>
                         <div class="mydrop">
                             <li><button><%= loginUser.getUserName() %></button></li>
                             <div class="mydrop-content">
