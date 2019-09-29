@@ -22,8 +22,11 @@ public class CategoryDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from course join category using (course_no) order by PURCHASE_COUNT "
-				+ "where category_name like ?";
+		String query = "select * " + 
+				"from course " + 
+				"join category using (category_no) " + 
+				"where category_name like ? " + 
+				"order by PURCHASE_COUNT desc;";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
