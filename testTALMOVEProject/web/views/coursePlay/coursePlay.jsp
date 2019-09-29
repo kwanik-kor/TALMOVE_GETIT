@@ -12,6 +12,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/testt/vendors/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/testt/views/coursePlay/css/coursePlay.css">
+	<link rel="shortcut icon" type="image/x-icon" href="/testt/resources/img/titlelogo.png">
 	<script src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
 	<script src="/testt/vendors/js/bootstrap.min.js"></script>
 	<script src="https://kit.fontawesome.com/08d0951667.js"></script>

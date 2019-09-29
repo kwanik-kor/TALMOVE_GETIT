@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="/testt/resources/css/common/gnb.css">
     <link rel="stylesheet" href="/testt/resources/css/queries.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="/testt/resources/img/titlelogo.png">
 	<script src="https://kit.fontawesome.com/08d0951667.js"></script>
 	<script type="text/javacsript" src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript">

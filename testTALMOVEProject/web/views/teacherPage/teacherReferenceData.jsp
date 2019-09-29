@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/testt/resources/css/common/gnb.css">
     <link rel="stylesheet" href="/testt/resources/css/queries.css">
     <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/testt/resources/img/titlelogo.png">
 </head>
 
 <body>

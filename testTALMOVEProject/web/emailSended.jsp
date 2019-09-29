@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="resources/css/common/footer.css">
     <link rel="stylesheet" href="resources/css/emailSended.css">
     <link rel="stylesheet" href="resources/css/queries.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/testt/resources/img/titlelogo.png">
     <title>탈무브 | 인증메일이 전송되었습니다</title>
     <script src="https://kit.fontawesome.com/08d0951667.js"></script>
 </head>

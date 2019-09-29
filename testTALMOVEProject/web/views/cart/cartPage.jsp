@@ -23,6 +23,7 @@ Integer courseNo = (Integer)session.getAttribute("courseNo");
 	<link rel="stylesheet" href="/testt/resources/css/queries.css">
 	<link href="/testt/views/cart/css/cart_pay_common.css" rel="stylesheet" />
 	<link href="/testt/views/cart/css/cart.css" rel="stylesheet">
+	<link rel="shortcut icon" type="image/x-icon" href="/testt/resources/img/titlelogo.png">
 	<title>장바구니 | 탈무브</title>
 	<script src="https://kit.fontawesome.com/08d0951667.js"></script>
 	

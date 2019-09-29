@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="/testt/resources/css/common/gnb.css">
     <link rel="stylesheet" href="/testt/resources/css/queries.css">
     <link href="/testt/views/teacherPage/css/editLecture.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="/testt/resources/img/titlelogo.png">
     <script src="https://kit.fontawesome.com/08d0951667.js"></script>
     <meta charset="UTF-8">
     <script src="https://kit.fontawesome.com/08d0951667.js"></script>

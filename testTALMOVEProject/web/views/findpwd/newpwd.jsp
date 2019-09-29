@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/testt/resources/css/common/footer.css">
     <link rel="stylesheet" href="/testt/views/findpwd/findpwd.css">
     <link rel="stylesheet" href="/testt/resources/css/queries.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/testt/resources/img/titlelogo.png">
     <title>탈무브 | 비밀번호를 다시 설정해주세요</title>
     <script src="https://kit.fontawesome.com/08d0951667.js"></script>
 </head>
