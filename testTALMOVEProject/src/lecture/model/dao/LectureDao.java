@@ -239,5 +239,38 @@ public class LectureDao {
 		}
 		return lectureNo;
 	}
+
+
+	public ArrayList<Lecture> getLectureByCourseName(Connection conn, String courseName) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Lecture> llist = new ArrayList<Lecture>();
+		String query = "SELECT * FROM LECTURE WHERE COURSE_NAME = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, courseName);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Lecture l = new Lecture();
+				l.setLectureNo(rset.getInt("lecture_no"));
+				l.setSectionNo(rset.getInt("section_no"));
+				l.setCourseName(rset.getString("course_name"));
+				l.setSectionName(rset.getString("section_name"));
+				l.setLectureName(rset.getString("lecture_name"));
+				l.setLectureOFileName(rset.getString("lecture_original_filename"));
+				l.setLectureRFileName(rset.getString("lecture_rename_filename"));
+				l.setAttachmentOfileName(rset.getString("attachment_ofilename"));
+				l.setAttachmentRfileName(rset.getString("attachment_rfilename"));
+				l.setLectureContent(rset.getString("lecture_content"));
+				llist.add(l);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return llist;
+	}
 	
 }

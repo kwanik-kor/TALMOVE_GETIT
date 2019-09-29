@@ -83,15 +83,20 @@ public class LectureService {
 
 
 	public void updateLectureContent(Lecture lecture , int courseNo) {
-		System.out.println("진입");
 		Connection conn = getConnection();
 		int result = ldao.updateLectureContent(conn,lecture, courseNo);
 		if(result > 0) {
 			commit(conn);
-			System.out.println("성공");}
-		else {
+		}else {
 			rollback(conn);
-			System.out.println("실패");
-		}close(conn);
+		}
+		close(conn);
+	}
+
+	public ArrayList<Lecture> getLectureByCourseName(String courseName) {
+		Connection conn = getConnection();
+		ArrayList<Lecture> llist = ldao.getLectureByCourseName(conn, courseName);
+		close(conn);
+		return llist;
 	}
 }

@@ -55,12 +55,12 @@
   			Course myCourse = course.get(i); %>
 			<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
 				<div class="card">
-					<a href="/testt/cplay?courseNo=<%= myCourse.getCourseNo() %>"> <!--  강좌번호로 페이징처리될꺼고  -->
+					<a href="/testt/cplay.ed?courseNo=<%= myCourse.getCourseNo() %>"> <!--  강좌번호로 페이징처리될꺼고  -->
 						<img class="card-img-top"src="https://picsum.photos/100/50/?random">
 					</a>
 					<div class="card-block">
 					
-							<h6 class="card-title" style="cursor:pointer" onclick='location.href="/testt/cplay?courseNo=<%= myCourse.getCourseNo() %>"'><%= myCourse.getCourseName() %> </h6>
+							<h6 class="card-title" style="cursor:pointer" onclick='location.href="/testt/cplay.ed?courseNo=<%= myCourse.getCourseNo() %>"'><%= myCourse.getCourseName() %> </h6>
 						
 						<div class="meta">
 							<span id="name"><%= myCourse.getTeacherName() %></span>
