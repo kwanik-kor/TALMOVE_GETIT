@@ -1,6 +1,7 @@
 package onCourse.controller;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import onCourse.model.service.OnCourseService;
 import onCourse.model.vo.OnCourse;
@@ -44,12 +46,22 @@ public class AddOncourseServlet extends HttpServlet {
 				OnCourseService onCourseService = new OnCourseService();
 				int result = onCourseService.addOnCourse(userNo, courseNo);
 				
+			/*	HttpSession session = request.getSession();
+				//세션 생성
+				session.setAttribute("userNo", userNo);
+				session.setAttribute("courseNo", courseNo);*/
+
+
+				
+				
 				//4. 받은 결과에 따라 뷰 선택해서 내보내기
 				if(result > 0) {
 					//성공시
-					
-					System.out.println("추가성공");
-					response.sendRedirect("views/payment/paymentFinish.jsp");
+					//response.sendRedirect("views/payment/paymentFinish.jsp");
+					System.out.println(" onCourse 추가성공");
+					RequestDispatcher view = 
+							request.getRequestDispatcher("/uppcount?courseNo=<%= courseNo %>");
+						view.forward(request, response);
 				}else {
 					//실패시
 					RequestDispatcher view = 

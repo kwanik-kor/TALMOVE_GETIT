@@ -6,7 +6,9 @@ import static common.JDBCTemplate.getConnection;
 import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
+import cart.model.vo.Cart;
 import onCourse.model.dao.OnCourseDao;
 import onCourse.model.vo.OnCourse;
 
@@ -29,5 +31,12 @@ public class OnCourseService {
 	}
 
 	
-	
+	public int onCourseCheck(int userNo, int courseNo) {
+		Connection conn = getConnection();
+		int result = oDao.onCourseCheck(conn, userNo, courseNo);
+		System.out.println("onCourseCheck 서비스로 넘어온 userNo" + userNo + " courseNo" + courseNo);
+		close(conn);
+		return result;
+	}
+
 }

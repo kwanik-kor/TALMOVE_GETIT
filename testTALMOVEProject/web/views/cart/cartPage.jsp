@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
-<%@ page import="cart.model.vo.Cart, java.util.ArrayList, user.model.vo.User" %>
+<%@ page import="cart.model.vo.Cart, java.util.ArrayList, user.model.vo.User, onCourse.model.vo.OnCourse" %>
 
+<%
+Integer userNo = (Integer)session.getAttribute("userNo");
+Integer courseNo = (Integer)session.getAttribute("courseNo");
+%>
 
 <!DOCTYPE html>
 <html>
@@ -34,8 +38,7 @@ pageEncoding="UTF-8"%>
 
 <body>
 	<%@ include file="/views/common/gnb.jsp" %>
-	<%-- <input type="hidden" name="userNo" value="<%=user.getUserNo()%>">
-  --%> 
+
   <input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>">
 	<section class="cart-pay-top">
         <div class="link-top">
@@ -44,37 +47,23 @@ pageEncoding="UTF-8"%>
         <span class="link-title">장바구니</span>
 	</section>
 	
+	 <% if (carts.size() == 0 ) { %>
+  <div class="list_none"><h2>장바구니가 비어있습니다.</h2></div> 
+  <% }else{ %>  
     <div class="list-count">
-  		<p> <%=carts.size() %> 개의 항목이 담겨있음</p>
+  		<p> <%=carts.size() %> 개의 항목이 담겨있음 </p>
+  		
     </div>
 
     <section class="contents_box clearfix">
         <div class="shopping-cart">
-          
-          
-           <!--  만약을 대비한 샘플 데이터 
-           <div class="item clearfix">
-                <div class="buttons">
-                    <span class="delete-btn"></span>
-                </div>
-                <img src="/testt/resources/img/sample_thumbnail3.jpg" />
-                <div class="description">
-                    <span class="Lname">Bootstrap 4 & 3 Framework Tutorial </span><br>
-                    <span class="Tname">By 박건우</span>
-                </div>
-                <div class="price">
-             	 ￦ <span class="num">30000</span>
-                </div>
-            </div>
-       -->
            
-              <!-- DB용 -->
-              
+  
             
         
   <% for(int i = 0; i < carts.size(); i++){ 
   			Cart cart = carts.get(i); %>
-  <%--  <input type="hidden" name="cartNo" value="<%=cart.getCartNo()%>">--%>
+
        
          <script>
        //삭제확인창
@@ -113,9 +102,9 @@ pageEncoding="UTF-8"%>
         </div><!-- /DB용 -->
         <% } %>
 
-
+  
         </div>
-        
+    
         <div class="box_detail">
             <div class="box_detail_total">
                 Total :
@@ -125,14 +114,7 @@ pageEncoding="UTF-8"%>
       
             </div>
             <div class ="box_detail_price">
-   <%-- 
-            <input type="hidden"    
-            <%! int sum = 0; %>
-            <% for(Cart cart : carts){  %>
-  			<%= sum = sum + cart.getPrice()   %>
-  			<%  } %> >
-                &#8361; <%= sum %>
-                --%>
+
             <% int sum = 0; %>
             <% for(Cart cart : carts){  
   			 sum = sum + cart.getPrice();   %>
@@ -145,6 +127,7 @@ pageEncoding="UTF-8"%>
             <a href="/testt/index.jsp" class="paybtn"><i class="icon-right"></i>
             쇼핑 계속하기</a>
         </div>
+            <% } %>
     </section>
        
 
