@@ -69,8 +69,7 @@
             <div class="row">
             <% for(Course course : flist){ %>
                 <div class="course-card">
-                  <img src="/testt/resources/course_upfiles/<%= course.getThumbnailRfileName() %>" class="card-img-top">
-                  <a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><img src="/testt/resources/img/sample_<%= course.getThumbnailOfileName() %>" class="card-img-top"></a>
+                  <a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><img src="/testt/resources/course_upfiles/<%= course.getThumbnailRfileName() %>" class="card-img-top"></a>
                   <div class="card-body">
                      <ul class="cardlist">
                        <li class="cli_1"><%= course.getCourseName() %></li>
