@@ -217,12 +217,14 @@ public class LectureDao {
 
 
 	public int getLastedCreateLectureNo(Connection conn, int no) {
-		ArrayList<Lecture> list = new ArrayList<Lecture>();
+		int lectureNo=0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		int lectureNo=0;
-		String query = "SELECT LECTURE_NO FROM LECTURE	WHERE SECTION_NO=? AND ROWNUM=1 ORDER BY LECTURE_NO DESC "; 
-		try {
+		String query = "SELECT LECTURE_NO "+
+				"FROM LECTURE "+
+				"WHERE SECTION_NO=? AND ROWNUM=1 "+
+				"ORDER BY LECTURE_NO DESC "; 
+		try {	
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, no);
 			rset = pstmt.executeQuery();
