@@ -41,7 +41,6 @@ public class SearchCourseNameServlet extends HttpServlet {
 			jarr.add(jobj);
 		}
 		sendJson.put("clist", jarr);
-		
 		response.setContentType("application/json; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.write(sendJson.toJSONString());

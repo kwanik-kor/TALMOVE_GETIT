@@ -38,6 +38,7 @@
 	
 	<section class="clearfix">
 	<% for(Course course : list){ %>
+	<input type="hidden" id="courseNoName" value="<%= course.getCourseNo() %>">
 		<div id="courseintro">
 			<p id="coursename"><%= course.getCourseName() %></p>
 			<p class="coursecomment"><%= course.getDescription() %></p>
@@ -50,9 +51,19 @@
 			</div>
 
 		<div id="priceinfo">
-			<p id="price">￦<%= course.getPrice() %></p>
-			<button id="addcart"><a href="#">장바구니에 추가</a></button><br>
-			<button id="direct"><a href="#">강의 수강하기</a></button><br>
+		<% if(loginUser == null){ %>
+       
+			<p id="price"><div id="priceContent">￦<%= course.getPrice() %></div></p>
+			<button id="login-btn" class="addcartN" onclick="location.href='/testt/views/loginEnroll/login.jsp'">장바구니추가</button><br>
+			<button id="login-btn" class="directN" onclick="location.href='/testt/views/loginEnroll/login.jsp'">강의 수강하기</button><br>
+			 <% }else if(course.getPrice() == 0){ %>
+			 <p id="price"><div id="priceContent">무료</div></p>
+			<button id="direct" onclick="location.href='/testt/addonc?userNo=<%=loginUser.getUserNo()%>&courseNo=<%=course.getCourseNo() %>'">강좌 수강하기</button><br>
+			<% }else{ %>
+			 <p id="price"><div id="priceContent">￦<%= course.getPrice() %></div></p>
+			<button id="addcart" onclick="location.href='/testt/addcart?userNo=<%= (loginUser == null ? 0 : loginUser.getUserNo()) %>&courseNo=<%= course.getCourseNo() %>'">장바구니추가</button><br>
+			<button id="direct" onclick="location.href='/testt/dclist?userNo=<%=loginUser.getUserNo()%>&courseNo=<%= course.getCourseNo() %>'">강좌 수강하기</button><br>
+			<% } %>
 			<img id="videoimage" src="/testt/views/course/img/video.png"><p id="videonum"><%=videoCount %>개의 동영상</p><br>
 			<img id="fileimage" src="/testt/views/course/img/file.png"><p id="filenum"><%= fileCount %>개의 자료</p>
 		</div>
@@ -133,8 +144,120 @@
 
 <script type="text/javascript" src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="/testt/resources/js/main.js"></script>
+
+<script type="text/javascript">
+	$(function (){
+		$("#addcart").click(function(){
+			alert("장바구니에 추가되었습니다");
+		});
+	});
+
+
+
+	$(function(){
+		$("document").ready(function(){
+
+			var cNo = $("#courseNoName").val()
+			
+			$.ajax({
+				url: "/testt/coverlap",
+				data: { courseNo : cNo },
+				type: "get",
+				dataType: "json",
+				success: CartSucceeded,
+			    error: AjaxFailed
+			});	
+					
+			function CartSucceeded(data){
+		 $("#addcart, #direct").off();
+		 $("#addcart").html("장바구니에 추가");
+		 $("#direct").html("강좌 수강하기");
+			$("#addcart, #direct").click(function(){
+				var result = confirm('이미 담겨있는 강좌입니다. 장바구니로 이동하시겠습니까?'); 
+				if(result) { 
+					
+					location.href = '/testt/cartl?userNo=<%= (loginUser == null ? 0 : loginUser.getUserNo()) %>'
+				} else { 
+					location.href = '/testt/coursedetail?courseNo=' + $('#courseNoName').val();
+					}
+	
+					
+				<%-- alert("이미 담겨있는 강좌입니다.");
+				 location.href = '/testt/mclist?userNo=<%= (loginUser == null ? 0 : loginUser.getUserNo()) %>'  --%>
+					 
+					})
+					
+					
+					
+			}
+		
+			
+					
+			function AjaxFailed(jqXHR, textStatus, errorThrown){
+				<%-- 	$("#addcart").html($("#addcart").text() + 
+							
+					decodeURIComponent(data.cartContent).replace(/\+/gi, " ")
+							), 
+				 $("#addcart").on("click", function(){
+					alert("장바구니에 추가되었습니다");
+					 location.href = '/testt/addcart?userNo=<%= (loginUser == null ? 0 : loginUser.getUserNo()) %>&courseNo=' + $('#courseNoName').val();
+					})  --%>	 
+				}
+			
+			
+			
+			
+			//$.ajax() 사용
+			$.ajax({
+				url: "/testt/occheck",
+				data: { courseNo : cNo },
+				type: "get",
+				dataType: "json",
+				success: AjaxSucceeded,
+			    error: AjaxFailed
+			});	
+					
+			function AjaxSucceeded(data){
+			$("#priceContent, #direct").remove();
+			$("#price").html("<h6>이미 보유한 강좌입니다.</h6>");
+			$("#addcart").off().empty();		
+			$("#addcart").html($("#addcart").text() + 
+						
+			decodeURIComponent(data.cartContent).replace(/\+/gi, " ")
+				
+			), 	
+			$("#addcart").click(function(){
+				
+				 location.href = '/testt/mclist?userNo=<%= (loginUser == null ? 0 : loginUser.getUserNo()) %>' 
+					 
+					})	
+			}
+		
+			
+					
+			function AjaxFailed(jqXHR, textStatus, errorThrown){
+				<%-- 	$("#addcart").html($("#addcart").text() + 
+							
+					decodeURIComponent(data.cartContent).replace(/\+/gi, " ")
+							), 
+				 $("#addcart").on("click", function(){
+					alert("장바구니에 추가되었습니다");
+					 location.href = '/testt/addcart?userNo=<%= (loginUser == null ? 0 : loginUser.getUserNo()) %>&courseNo=' + $('#courseNoName').val();
+					})  --%>	 
+				}
+				
+		
+			
+		});  //test4 button click
+	});  //document ready
+	</script>
+	
+
+
 <script type="text/javascript">
 // html dom 이 다 로딩된 후 실행된다.
+
+
 
 $(document).ready(function(){
     $(".dropdown1").click(function(){

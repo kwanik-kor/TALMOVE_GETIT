@@ -105,7 +105,7 @@ public class MessageDao {
 		PreparedStatement pstmt = null;
 		String query = "INSERT INTO MESSAGE VALUES ("
 				+ "SEQ_MESSAGENO.NEXTVAL, "
-				+ "?, ?, ?, ?, DEFAULT, DEFAULT)";
+				+ "?, ?, ?, ?, DEFAULT, DEFAULT, DEFAULT)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);

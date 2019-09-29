@@ -9,6 +9,11 @@
     visibility: hidden;
 }
 
+
+button{
+	cursor: pointer;
+}
+
 a {
 	color: black;
 	text-decoration: none;
@@ -51,13 +56,13 @@ a {
 	border-radius: 13px;
 }
 
-#price {
+#price, #priceContent {
 	font-size: 3rem;
 	font-weight: bold;
 	padding-left: 8%;
 }
 
-#addcart {
+#addcart, .addcartN {
 	background: red;
 	border: 0;
 	width: 80%;
@@ -69,7 +74,7 @@ a {
 	margin-left:9%;
 }
 
-#direct {
+#direct, .directN {
 	background: white;
 	margin: 8% 0 0 9%;
 	border: 1px solid black;

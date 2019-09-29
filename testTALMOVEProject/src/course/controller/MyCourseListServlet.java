@@ -28,8 +28,11 @@ public class MyCourseListServlet extends HttpServlet {
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
         CourseService courseService = new CourseService();
         ArrayList<Course> course = courseService.myCourse(userNo);
+        System.out.println("서블릿에 확인 " + course);
 
-        RequestDispatcher view  = request.getRequestDispatcher("views/myCourse/myCourse.jsp");
+	
+
+	RequestDispatcher view  = request.getRequestDispatcher("views/myCourse/myCourse.jsp");
         request.setAttribute("course", course);
         view.forward(request, response);
 }

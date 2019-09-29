@@ -1,6 +1,9 @@
 package onCourse.model.vo;
 
-public class OnCourse {
+import java.io.Serializable;
+
+public class OnCourse implements Serializable{
+	private static final long serialVersionUID = 2200L; 
 	
 	private int userNo;
 	private int courseNo;
@@ -9,11 +12,7 @@ public class OnCourse {
 	public OnCourse() {}
 
 
-	public OnCourse(int userNo, int courseNo) {
-		super();
-		this.userNo = userNo;
-		this.courseNo = courseNo;
-	}
+
 
 
 	public int getUserNo() {
@@ -21,9 +20,15 @@ public class OnCourse {
 	}
 
 
+
+
+
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
+
+
+
 
 
 	public int getCourseNo() {
@@ -31,9 +36,23 @@ public class OnCourse {
 	}
 
 
+
+
+
 	public void setCourseNo(int courseNo) {
 		this.courseNo = courseNo;
 	}
+
+
+
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+
 
 
 	@Override

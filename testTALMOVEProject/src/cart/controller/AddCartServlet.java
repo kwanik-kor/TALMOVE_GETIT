@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cart.model.service.CartService;
 import cart.model.vo.Cart;
+import onCourse.model.service.OnCourseService;
 
 
 
@@ -38,27 +40,32 @@ public class AddCartServlet extends HttpServlet {
 		int courseNo = (Integer.parseInt(request.getParameter("courseNo")));
 		cart.setUserNo(userNo);
 		cart.setCourseNo(courseNo);
-		System.out.println("userNo는 " + userNo);
-		System.out.println("courseNo는 " + courseNo);
+		System.out.println("addcart서블릿 userNo는 " + userNo);
+		System.out.println("addcart서블릿 courseNo는 " + courseNo);
 		
 		
 		//3. 서비스로 객체 전달하고, 처리된 결과 받기
 		//PaymentService paymentService = new PaymentService();
-		OnCourseService onCourseService = new OnCourseService();
-		int result = onCourseService.addOnCourse(userNo, courseNo);
+		CartService cartService = new CartService();
+		int result = cartService.addCart(userNo, courseNo);
 		
 		//4. 받은 결과에 따라 뷰 선택해서 내보내기
 		if(result > 0) {
 			//성공시
 			//강좌 상세페이지에서 어떻게 구성하느냐에따라서 링크 다르게 작성할것 
 			System.out.println("장바구니 담기 성공 ");
-			//response.sendRedirect("views/payment/paymentFinish.jsp");
+			RequestDispatcher view = 
+			request.getRequestDispatcher("/coursedetail?courseNo=<%= course.getCourseNo() %>");
+			view.forward(request, response);
 		}else {
 			//실패시
 			RequestDispatcher view = 
-				request.getRequestDispatcher("views/cart/cartError.jsp");
-			request.setAttribute("message", "실패!");
+				request.getRequestDispatcher("/coursedetail?courseNo=<%= course.getCourseNo() %>");
 			view.forward(request, response);
+			
+			/*	RequestDispatcher view = 
+					request.getRequestDispatcher("/coursedetail?courseNo=<%= course.getCourseNo() %>");
+			view.forward(request, response);*/
 		}
 		
 		

@@ -1,21 +1,24 @@
 package section.model.vo;
 
-import java.io.Serializable;
+public class Section {
 
-public class Section implements Serializable{
-	private static final long serialVersionUID = 2000L;
-	
 	private int sectionNo;
 	private int courseNo;
 	private String sectionName;
+	
+	public Section(){};
+
+	@Override
+	public String toString() {
+		return "Section [sectionNo=" + sectionNo + ", courseNo=" + courseNo + ", sectionName=" + sectionName + "]";
+	}
+
 	public Section(int sectionNo, int courseNo, String sectionName) {
 		super();
 		this.sectionNo = sectionNo;
 		this.courseNo = courseNo;
 		this.sectionName = sectionName;
 	}
-	
-	public Section() {}
 
 	public int getSectionNo() {
 		return sectionNo;
@@ -40,6 +43,5 @@ public class Section implements Serializable{
 	public void setSectionName(String sectionName) {
 		this.sectionName = sectionName;
 	}
-	
 	
 }
