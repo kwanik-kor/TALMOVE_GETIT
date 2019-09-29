@@ -21,9 +21,7 @@
 
 
 <%
-	ArrayList<Course> course = 
-	(ArrayList<Course>) request.getAttribute("course");
-System.out.println("myCourse jsp 확인" + course);
+	ArrayList<Course> course = (ArrayList<Course>) request.getAttribute("course");
 %>
 
 
