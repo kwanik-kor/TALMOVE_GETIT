@@ -157,7 +157,7 @@ a {
 }
 
 .secundo {
-	margin: 10px 0 0 93px;
+	margin: 0;
 }
 
 #secmore {
@@ -166,7 +166,6 @@ a {
 }
 
 .hide1, .hide2 {
-	display: none;
 }
 
 .dropdown1, .dropdown2 {
@@ -189,6 +188,11 @@ a {
 #infoleft img {
 	width: 75%;
 	margin-top: 17px;
+}
+
+#inforight{
+	margin-left:152px;
+	margin-top:-197px;
 }
 
 #title {
@@ -230,6 +234,7 @@ a {
 #rtitle {
 	font-size: 1.8rem;
 	font-weight: bold;
+	margin-top:-50px;
 }
 
 #review img {
@@ -243,6 +248,7 @@ a {
 	width: 592px;
 	height: 143px;
 	background-color:skyblue;
+	margin-bottom:22px;
 }
 
 #rco {
@@ -274,7 +280,6 @@ a {
 }
 
 .rre {
-	padding-top: 10px;
 	margin:0;
 }
 

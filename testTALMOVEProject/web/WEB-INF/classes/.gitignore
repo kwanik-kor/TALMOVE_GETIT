@@ -1,3 +1,6 @@
+/admin/
+/cart/
+/category/
 /comment/
 /common/
 /course/
@@ -13,5 +16,3 @@
 /teacher/
 /user/
 /util/
-/cart/
-/category/

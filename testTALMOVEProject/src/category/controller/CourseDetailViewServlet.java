@@ -37,7 +37,6 @@ public class CourseDetailViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int courseNo = Integer.parseInt(request.getParameter("courseNo"));
-	
 		
 		CategoryService cservice = new CategoryService();
 		
@@ -71,6 +70,9 @@ public class CourseDetailViewServlet extends HttpServlet {
 		//리뷰 
 		ArrayList<Review> rlist = cservice.reviewView(courseNo);
 		
+		//동영상 플레이
+		String videoSrc = cservice.videoPlay(courseNo);
+		
 		RequestDispatcher view = null;
 	     response.setContentType("text/html; charset=utf-8");
 	     if(list.size() > 0) {
@@ -85,6 +87,7 @@ public class CourseDetailViewServlet extends HttpServlet {
 	    	 request.setAttribute("llist", llist);
 	    	 request.setAttribute("tlist", tlist);
 	    	 request.setAttribute("rlist", rlist);
+	    	 request.setAttribute("videoSrc", videoSrc);
 	    	 view.forward(request, response);
 	     }else {
 	    	 view = request.getRequestDispatcher("views/common/Error.jsp");

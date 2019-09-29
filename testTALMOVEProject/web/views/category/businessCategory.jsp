@@ -99,11 +99,11 @@
     
     <section>
 		<!-- 모든 강좌 -->
+		<input type="hidden" id="category" value="<%= category %>">
 		<h3 class="row class-title">모든 <%= category %> 강좌</h3>
 		<div class="row">
 		<% for(Course course : list){ %>
 		<div class="class clearfix">
-			
             <div class="image-place"><a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><img src="/testt/resources/course_upfiles/<%= course.getThumbnailRfileName() %>"></a></div>
             <div class="comment">
                 <ul id="ulcomment_1">
@@ -185,9 +185,7 @@
             submenu.css('display', 'none');
         }
     });
-	
-	
-	
+
 	</script>
 </body>
 </html>

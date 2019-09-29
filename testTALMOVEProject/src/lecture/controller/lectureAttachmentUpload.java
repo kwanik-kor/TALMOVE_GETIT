@@ -19,33 +19,30 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import lecture.model.service.LectureService;
 import lecture.model.vo.Lecture;
 
-/**
- * Servlet implementation class lectureAttachmentUpload
- */
 @WebServlet("/attach-upload.do")
 public class lectureAttachmentUpload extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public lectureAttachmentUpload() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		System.out.println("save버튼으로 서블렛진입");
+
 		RequestDispatcher view = null;
 		int maxSize = 1024 * 1024 * 10;
 		String savePath = request.getSession().getServletContext().getRealPath("/resources/lecture_upfiles");
 		MultipartRequest mrequest = new MultipartRequest(request, savePath, maxSize, "UTF-8",
 				new DefaultFileRenamePolicy());
 		Lecture lecture = new Lecture();
+
 		System.out.println("lectureNo : "+mrequest.getParameter("lectureNo"));
+
+		if(mrequest.getParameter("videoHash").length()!=0) { System.out.println("널널");}else {System.out.println("낫널낫널");}
+		int courseNo =Integer.parseInt(mrequest.getParameter("courseNumber"));
+
 		lecture.setLectureNo(Integer.parseInt(mrequest.getParameter("lectureNo")));
 		
 		System.out.println("content : "+mrequest.getParameter("content") );
@@ -65,7 +62,6 @@ public class lectureAttachmentUpload extends HttpServlet {
 		
 		String oFileName = mrequest.getFilesystemName("file");
 		lecture.setAttachmentOfileName(oFileName);
-		System.out.println(oFileName);
 		if(oFileName != null) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 			String rFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "." + oFileName.substring(oFileName.lastIndexOf('.') + 1);

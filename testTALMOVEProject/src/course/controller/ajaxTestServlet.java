@@ -17,29 +17,17 @@ import org.json.simple.JSONObject;
 import course.model.service.CourseService;
 import lecture.model.vo.Lecture;
 
-/**
- * Servlet implementation class ajaxTestServlet
- */
 @WebServlet("/test1.do")
 public class ajaxTestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public ajaxTestServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// ajax 통신으로 요청받은 결과로 문자열을 내보내는 컨트롤러
-		System.out.println("아작스 진입");
 		int no = Integer.parseInt((request.getParameter("no")));
-		System.out.println("넘어온 값 : " +no);
 		CourseService cservice = new CourseService();
 		ArrayList<Lecture> list = cservice.getLectureBySectionNo(no);
 		/*
@@ -69,7 +57,6 @@ public class ajaxTestServlet extends HttpServlet {
 			job.put("LectureName", URLEncoder.encode(lecture.getLectureName(),"UTF-8"));
 			job.put("LectureContent", URLEncoder.encode(lecture.getLectureContent(),"UTF-8"));
 			jarr.add(job);
-			System.out.println("인코딩 jarr: "+jarr.toString());
 		}
 		
 		/*

@@ -21,9 +21,7 @@
 <link href="/testt/views/cart/css/cart_pay_common.css" rel="stylesheet" />
 
 <%
-	ArrayList<Course> course = 
-	(ArrayList<Course>) request.getAttribute("course");
-System.out.println("myCourse jsp 확인" + course);
+	ArrayList<Course> course = (ArrayList<Course>) request.getAttribute("course");
 %>
 
 
@@ -57,12 +55,12 @@ System.out.println("myCourse jsp 확인" + course);
   			Course myCourse = course.get(i); %>
 			<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
 				<div class="card">
-					<a href="/testt/views/coursePlay/coursePlay.jsp"> <!--  강좌번호로 페이징처리될꺼고  -->
-						<img class="card-img-top"src="https://picsum.photos/100/50/?random">
+					<a href="/testt/cplay.ed?courseNo=<%= myCourse.getCourseNo() %>"> <!--  강좌번호로 페이징처리될꺼고  -->
+						<img class="card-img-top"src="/testt/resources/course_upfiles/<%= myCourse.getThumbnailRfileName() %>">
 					</a>
 					<div class="card-block">
 					
-							<h6 class="card-title" style="cursor:pointer" onclick='location.href="/testt/views/coursePlay/coursePlay.jsp"'><%= myCourse.getCourseName() %> </h6>
+							<h6 class="card-title" style="cursor:pointer" onclick='location.href="/testt/cplay.ed?courseNo=<%= myCourse.getCourseNo() %>"'><%= myCourse.getCourseName() %> </h6>
 						
 						<div class="meta">
 							<span id="name"><%= myCourse.getTeacherName() %></span>

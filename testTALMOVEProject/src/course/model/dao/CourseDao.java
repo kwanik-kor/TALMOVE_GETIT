@@ -377,7 +377,6 @@ public class CourseDao {
 				close(rset);
 				close(pstmt);
 			}
-			System.out.println("코스넘버 리턴 :"+course.getCourseNo());
 			return course;
 		}
 		

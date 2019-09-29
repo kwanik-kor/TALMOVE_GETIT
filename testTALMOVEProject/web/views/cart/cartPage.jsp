@@ -87,7 +87,7 @@ Integer courseNo = (Integer)session.getAttribute("courseNo");
           </div>
 
           
-           <img src="/testt/resources/img/sample_thumbnail4.jpg" />
+           <img src="/testt/resources/course_upfiles/<%= cart.getThumbnailRfileName() %>" />
           
           <div class="description">
             <span class="Lname"><%=cart.getCourseName() %></span><br />

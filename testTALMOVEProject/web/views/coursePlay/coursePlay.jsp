@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, course.model.vo.Course, lecture.model.vo.Lecture, section.model.vo.Section" %>
+<%
+	Course course = (Course)request.getAttribute("course");
+	ArrayList<Section> slist = (ArrayList<Section>)request.getAttribute("slist");
+	ArrayList<Lecture> llist = (ArrayList<Lecture>)request.getAttribute("llist");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/testt/vendors/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/coursePlay.css">
+	<link rel="stylesheet" href="/testt/views/coursePlay/css/coursePlay.css">
 	<script src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
 	<script src="/testt/vendors/js/bootstrap.min.js"></script>
 	<script src="https://kit.fontawesome.com/08d0951667.js"></script>
@@ -366,11 +372,7 @@
     </div>
   </div>
   </div>
-  <!-- /#wrapper -->
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Menu Toggle Script -->
   <script>
