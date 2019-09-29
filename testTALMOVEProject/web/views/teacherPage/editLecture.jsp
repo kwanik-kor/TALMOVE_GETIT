@@ -242,10 +242,8 @@
                     },
                     type: "get",
                     success: function(data) {
-                    	
-                    }
-                    }
-                    error: function(jqXHR, textStatus, errorThrown) {
+                    },
+              		 error: function(jqXHR, textStatus, errorThrown) {
                         console.log("error : " + textStatus);
                     }
                 });
