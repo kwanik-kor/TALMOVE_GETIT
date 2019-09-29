@@ -38,14 +38,7 @@
     
     <link rel="stylesheet" href="//fast.wistia.com/assets/external/uploader.css" />
     <script src = "https://fast.wistia.com/embed/medias/epo27h3ur4.jsonp" async></script>
-            <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
-            
-            
-     
-
-
-
-
+    <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
 </head>
 
 <body>
@@ -76,7 +69,7 @@
                             <input type="hidden" class="insect-sectNo" value=" <%= s.getSectionNo() %>">
                             <div>
                                 <button class="del-btn"><i class="fas fa-times"></i></button>
-                                <button class="modi-btn"><i class="fa fa-pen"></i></0>
+                                <button class="modi-btn"><i class="fa fa-pen"></i></button>
                             </div>
                         </div>
                         <!--#2. 클래스추가-->

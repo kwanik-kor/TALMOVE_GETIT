@@ -30,11 +30,9 @@ public class UpdatePurchaseCount extends HttpServlet {
 		Course course = new Course();
 		
 		int courseNo = (Integer.parseInt(request.getParameter("courseNo")));
-		System.out.println("UpdatePurchaseCount 서블릿에서 courseNo는 " + courseNo);
 		
 
 		course.setCourseNo(courseNo);
-		System.out.println("구매횟수증가 서블릿에 저장된 courseNo는 " + courseNo);
 
 		CourseService cService = new CourseService();
 		int result = cService.updatePurchaseCount(courseNo);
@@ -42,7 +40,6 @@ public class UpdatePurchaseCount extends HttpServlet {
 		if(result > 0) {
 			//성공시
 			//response.sendRedirect("views/payment/paymentFinish.jsp");
-			System.out.println("증가성공");
 			RequestDispatcher view = 
 					request.getRequestDispatcher("/cdall?userNo=<%=loginUser.getUserNo()%>");
 			
