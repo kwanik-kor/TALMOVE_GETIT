@@ -190,6 +190,11 @@ a {
 	margin-top: 17px;
 }
 
+#inforight{
+	margin-left:152px;
+	margin-top:-197px;
+}
+
 #title {
 	font-size: 1.5rem;
 	font-weight: bold;
@@ -229,6 +234,7 @@ a {
 #rtitle {
 	font-size: 1.8rem;
 	font-weight: bold;
+	margin-top:-50px;
 }
 
 #review img {
@@ -242,6 +248,7 @@ a {
 	width: 592px;
 	height: 143px;
 	background-color:skyblue;
+	margin-bottom:22px;
 }
 
 #rco {
@@ -273,7 +280,6 @@ a {
 }
 
 .rre {
-	padding-top: 10px;
 	margin:0;
 }
 

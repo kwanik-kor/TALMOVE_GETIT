@@ -96,45 +96,6 @@ public class CourseSortServlet extends HttpServlet {
 	    	 request.setAttribute("categoryUpper", categoryUpper);
 	    	 view.forward(request, response);
 	     }
-		
-		/*// 전송할 json 객체 생성
-		JSONObject sendJson = new JSONObject();
-		JSONArray jarr = new JSONArray();
-
-		// list 의 객체들을 하나씩 json 배열에 옮겨 저장 처리
-		for (Course course : list) {
-			// course 를 json 객체로 값 옮겨 저장
-			JSONObject job = new JSONObject();
-			job.put("courseNo", course.getCourseNo());
-			// json 에서 한글 깨짐 막으려면,
-			// java.net.URLEncoder 의 encode() 로 인코딩함
-			job.put("courseName", URLEncoder.encode(course.getCourseName(), "UTF-8"));
-			job.put("fileName", course.getThumbnailOfileName());
-			job.put("description", URLEncoder.encode(course.getDescription(),"UTF-8"));
-			job.put("price", course.getPrice());
-
-			jarr.add(job);
-		}
-		
-		//전송용 객체에 배열 저장
-		sendJson.put("list", jarr);
-		
-		response.setContentType("application/json; charset=utf-8");
-		PrintWriter out = response.getWriter();
-		out.write(sendJson.toJSONString());
-		out.flush();
-		out.close();*/
-
-		/*
-		 * if(sortName == "인기도") { ArrayList<Course> list =
-		 * cservice.selectSortPurchaseCounrt(); }else if(sortName == "최고평점") {
-		 * 
-		 * }else if(sortName == "최저가") {
-		 * 
-		 * }else {
-		 * 
-		 * }
-		 */
 
 	}
 
