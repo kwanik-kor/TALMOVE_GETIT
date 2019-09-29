@@ -103,6 +103,7 @@
 		<div class="row">
 		<% for(Course course : list){ %>
 		<div class="class clearfix">
+			
             <div class="image-place"><a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><img src="/testt/resources/course_upfiles/<%= course.getThumbnailRfileName() %>"></a></div>
             <div class="comment">
                 <ul id="ulcomment_1">
