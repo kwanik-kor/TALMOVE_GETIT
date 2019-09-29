@@ -6,30 +6,56 @@ import java.sql.Date;
 public class Message implements Serializable{
 	private static final long serialVersionUID = 1500L;
 
-	private	int msgNum; //메시지번호
+	private int msgNum; //메시지번호
 	private int userNum; //유저번호
 	private String msgSender; //보낸유저이메일
 	private String msgRecipient; //받는유저이메일
-	private String msgContentS; //보낸메시지내용
+	
+	private String msgContent; //메시지내용
+	/*	private String msgContentS; //보낸메시지내용
 	private String msgContentR; //받은메시지내용
-	private int msgReadCount; //조회수
-	private Date msgDate; //메시지날짜	
+*/	private int msgReadCount; //조회수
+	private Date msgDate; //메시지날짜	MESSAGE_TIME
+	private int msgstar; // 중요메시지
 	
+public String getMsgContent() {
+		return msgContent;
+	}
+
+
+	public void setMsgContent(String msgContent) {
+		this.msgContent = msgContent;
+	}
+
+
+
 	
+	 
 	public Message() {}
 
 
-	public Message(int msgNum, int userNum, String msgSender, String msgRecipient, String msgContentS,
-			String msgContentR, int msgReadCount, Date msgDate) {
+	public Message(int msgNum, int userNum, String msgSender, String msgRecipient, String msgContent,  /*String msgContentS,
+			String msgContentR, */int msgReadCount, Date msgDate, int msgStar) {
 		super();
 		this.msgNum = msgNum;
 		this.userNum = userNum;
 		this.msgSender = msgSender;
 		this.msgRecipient = msgRecipient;
-		this.msgContentS = msgContentS;
-		this.msgContentR = msgContentR;
+/*		this.msgContentS = msgContentS;
+		this.msgContentR = msgContentR;*/
 		this.msgReadCount = msgReadCount;
 		this.msgDate = msgDate;
+		this.msgstar = msgStar;
+	}
+
+
+	public int getMsgstar() {
+		return msgstar;
+	}
+
+
+	public void setMsgstar(int msgstar) {
+		this.msgstar = msgstar;
 	}
 
 
@@ -52,7 +78,7 @@ public class Message implements Serializable{
 		return msgRecipient;
 	}
 
-
+/*
 	public String getMsgContentS() {
 		return msgContentS;
 	}
@@ -62,7 +88,7 @@ public class Message implements Serializable{
 		return msgContentR;
 	}
 
-
+*/
 	public int getMsgReadCount() {
 		return msgReadCount;
 	}
@@ -92,7 +118,7 @@ public class Message implements Serializable{
 		this.msgRecipient = msgRecipient;
 	}
 
-
+/*
 	public void setMsgContentS(String msgContentS) {
 		this.msgContentS = msgContentS;
 	}
@@ -100,7 +126,7 @@ public class Message implements Serializable{
 
 	public void setMsgContentR(String msgContentR) {
 		this.msgContentR = msgContentR;
-	}
+	}*/
 
 
 	public void setMsgReadCount(int msgReadCount) {
@@ -116,10 +142,11 @@ public class Message implements Serializable{
 	@Override
 	public String toString() {
 		return "Message [msgNum=" + msgNum + ", userNum=" + userNum + ", msgSender=" + msgSender + ", msgRecipient="
-				+ msgRecipient + ", msgContentS=" + msgContentS + ", msgContentR=" + msgContentR + ", msgReadCount="
-				+ msgReadCount + ", msgDate=" + msgDate + "]";
+				+ msgRecipient + ", msgContent=" + msgContent + ", msgReadCount=" + msgReadCount + ", msgDate="
+				+ msgDate + ", msgstar=" + msgstar + "]";
 	}
-	
+
+
 	
 	
 }

@@ -97,6 +97,8 @@ public class CourseBasicSetupServlet extends HttpServlet {
 			//request.setAttribute("course", registedCourse);
             		//go to CourseLoadServlet
           			 request.setAttribute("courseNo", registedCourse.getCourseNo());
+			view = request.getRequestDispatcher("views/teacherPage/editLecture.jsp");
+			request.setAttribute("course", registedCourse);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("index.jsp");

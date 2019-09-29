@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ page import="user.model.vo.User, message.model.vo.Message, java.util.ArrayList" %>
+<%
+	/* User loginUser = (User)session.getAttribute("loginUser"); */
+/* 	Message message = (Message)session.getAttribute("message"); */
+	//forwarding 된 request 객체에 저장한 정보 꺼내기
+	ArrayList<Message> msgimplist = (ArrayList<Message>)request.getAttribute("list");		
+%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +32,13 @@
 	<section class="section-top">
 		<div class="row" id="pannel">
 			<div id="pfpreview">
-				<img class="pfimg" src="../../resources/img/customer-1.jpg">
+			
+	      	<% if(loginUser.getUserOImageName() != null) { %>       
+			    	<img class="pfimg" src="/testt/views/mypage/images/fileimg/<%= loginUser.getUserOImageName() %>">
+                <% }else{ %> 
+             		<img class="pfimg" src="../../resources/img/customer-1.jpg">
+            	<% } %>
+				
 			</div>
 			<h2 id="teacher-name">
 				<span><%=loginUser.getUserName()%></span> 님 마이페이지
@@ -35,51 +48,19 @@
 	<section class="section-middle clearfix">
 		<div class="left-side">
 			<ul class="tmenu">
-				<li><a class="active-menu"
+				<li><a
 					href="/testt/views/mypage/UserUpdateView.jsp">프로필</a></li>
 				<li id="msgmenu"><a>메시지</a></li>
 				<ul class="maghidemenu">
 					<li><a href="/testt/views/mypage/MessageNewSendView.jsp">새
 							메시지</a></li>
-					<li><a href="/testt/views/mypage/MessageListView.jsp">모든
-							메시지</a></li>
-					<li><a href="/testt/views/mypage/MessageImportantListView.jsp">중요
+					<li><a href="/testt/msglist?uemail=<%= loginUser.getUserEmail()%>">모든 메시지</a></li>
+				
+					<li><a class="active-menu" href="/testt/msgimp?uemail=<%= loginUser.getUserEmail()%>">중요
 							메시지</a></li>
 				</ul>
 			</ul>
 		</div>
-		<!-- <meta charset="UTF-8">
-<title>모든 메세지</title>
-<script src="//code.jquery.com/jquery.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
-<script src="https://kit.fontawesome.com/08d0951667.js"></script>
-<link href="/testt/views/mypage/css/MessageListView.css" rel="stylesheet">
-<script type="text/javascript" src="/testt/resources/js/jquery-3.4.1.min.js"></script>
-</head>
-<body>
-<div id="pannel">
-      <img class="fileimg" id="pfimg"  src="/testt/views/mypage/images/absence_08.jpg">
-        <p id="teacherPage"><span id="tname">장서영</span>님의 마이페이지</p>
-    </div>  
-   
-    <div id="left-tap">
-        <ul id="tap">
-        <li><a href="/testt/views/mypage/UserUpdateView.jsp">프로필</a></li>
-        <li id="msgmenu"><a>메시지</a></li>
-           <ul class="maghidemenu">
-                <li><a href="/testt/views/mypage/MessageNewSendView.jsp">새 메시지</a></li>
-                <li><a href="/testt/views/mypage/MessageListView.jsp">모든 메시지</a></li>
-                <li><a href="/testt/views/mypage/MessageImportantListView.jsp">중요 메시지</a></li>
-            </ul>
-        </ul>          
-    </div>
-           /사이드바
-         
-           본문
-         
-
-           <div id="right-page"> -->
-
 		<div class="right-side">
 			<h2>
 				<p id="allMessage"> 중요메시지</p>
@@ -100,125 +81,49 @@
 
 				<!-- 메시지영역 -->
 				<div id="messageArea">
-
+	<a id="mlistname"><% for(Message m : msgimplist){ %></a>
 					<div class="message">
-						<!--               <div class="imgBox">
-                              <img src="/testt/views/mypage/images/absence_08.jpg">
-                           </div> -->
-
+<!-- msgimplist
+ -->
 						<div class="sendMessageBox">
-							<img src="/testt/views/mypage/images/absence_08.jpg"> <span
-								id="personName">Chris Haroun</span> <span id="star">★</span>
-							<p id="sendDate">19/09/13</p>
-							<div class="balloon"
-								onclick="location.href='/testt/views/mypage/MessageTextView.jsp'">
-								Hello~~~~~~~~~~~~~~~~~</div>
-							<!--                      클릭시 1:1 메시지창으로 -->
-							<p id="count">3</p>
-						</div>
-
-					</div>
-					<div class="message">
-						<!--               <div class="imgBox">
-                              <img src="/testt/views/mypage/images/absence_08.jpg">
-                           </div> -->
-
-						<div class="sendMessageBox">
-							<img src="/testt/views/mypage/images/absence_08.jpg"> <span
-								id="personName">Chris Haroun</span> <span id="star">★</span>
-							<p id="sendDate">19/09/13</p>
-							<div class="balloon"
-								onclick="location.href='/testt/views/mypage/MessageTextView.jsp'">
-								Hello~~~~~~~~~~~~~~~~~</div>
-							<!--                      클릭시 1:1 메시지창으로 -->
-							<p id="count">3</p>
+								
+								<img class="msgpfimg" src="/testt/views/mypage/images/absence_08.jpg<%-- <%= loginUser.getUserOImageName() %> --%>">
+								<%-- <input type="hidden" name="sendermail"  value="<%= loginUser.getUserEmail() %>"> --%>
+								<!-- 이메일로 가져오기 -->
+							
+								<span	id="personName"><%= m.getMsgSender() %></span> 
+								<input type="hidden" name="msgno" id="msgno" value="<%= m.getMsgNum()%>">
+								
+								<% if(m.getMsgstar() == 0) { %> 
+								<a href="#" class="mstar"  title="<%= m.getMsgNum()%>">☆</a>
+								<% } else { %>
+								<a href="#" class="mstar" title="<%= m.getMsgNum()%>">★</a>
+								<% } %>											
+							
+								<p id="sendDate"><%= m.getMsgDate() %></p>
+	
+								<div class="balloon" >
+								
+									<%= m.getMsgContent()%>       
+								</div>
+							<p id="count"><%= m.getMsgReadCount()%></p>
+						
 						</div>
 
 					</div>
 
-					<div class="message">
-						<!--               <div class="imgBox">
-                              <img src="/testt/views/mypage/images/absence_08.jpg">
-                           </div> -->
-
-						<div class="sendMessageBox">
-							<img src="/testt/views/mypage/images/absence_08.jpg"> <span
-								id="personName">Chris Haroun</span> <span id="star">★</span>
-							<p id="sendDate">19/09/13</p>
-							<div class="balloon"
-								onclick="location.href='/testt/views/mypage/MessageTextView.jsp'">
-								Hello~~~~~~~~~~~~~~~~~</div>
-							<!--                      클릭시 1:1 메시지창으로 -->
-							<p id="count">3</p>
-						</div>
-
-					</div>
-
+					<% } %>	
 			
-	<!-- 				<div class="message">
-						<div class="imgBox">
-							<img src="/testt/views/mypage/images/absence_08.jpg">
-						</div>
-						<div class="sendMessageBox">
-							<span id="personName">Chris Haroun</span> <span id="star">★</span>
-							<p id="sendDate">19/09/13</p>
-							<div class="balloon"
-								onclick="location.href='/testt/views/mypage/MessageTextView.jsp'">
-								Hello~~~~~~~~~~~~~~~~~</div>
-							<p id="count">3</p>
-						</div>
-					</div> -->
 				</div>
-
 			</div>
-
-
 		</div>
-
-
-
 		</div>
+		<br>
+		<br>
+		<br>
 	</section>
 				<%@ include file="../common/footer.jsp" %>	
-		<script type="text/javascript">
-			var pf_file;
-			$(document).ready(function() {
-				$("#filebutton").on("change", handleImgFileSelect);
-			});
-
-			function handleImgFileSelect(e) {
-				var upfiles = e.target.files;
-				var upfilesArr = Array.prototype.slice.call(upfiles);
-
-				upfilesArr.forEach(function(f) {
-					if (!f.type.match("image.*")) {
-						alert("확장자는 이미지 확장자만 가능합니다.");
-
-					} else {
-						pf_file = f;
-
-						var reader = new FileReader();
-						reader.onload = function(e) {
-							$(".fileimg").attr("src", e.target.result);
-						}
-						reader.readAsDataURL(f);
-					}
-				});
-			} //handleImgFileSelect
-
-			$(document).ready(function() {
-				//div message 하위의  div balloon  클릭했을때
-				$("#msgmenu").click(function() {
-					var submenu = $(this).next("ul");
-
-					// submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
-					if (submenu.is(":visible")) {
-						submenu.slideUp();
-					} else {
-						submenu.slideDown();
-					}
-				});
-			}); // sidebar 클릭시
+	
 		</script>
 
 

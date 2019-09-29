@@ -42,7 +42,7 @@
                 <span id="lectureName"><%= lectureName %></span>은 어떤 수업인가요?
             </div>
             <div class="sub-text">
-	            <span>- 간단한 글귀로 강좌를 표현해 주세요!.<br></span>
+	            <span>- 간단한 글귀로 강좌를 표현해 주세요!<br></span>
 	            <span>- 해당 내용은 강좌를 검색하는 수강생들에게 나타납니다<br></span>
             </div>
             <div id="input-zone">
