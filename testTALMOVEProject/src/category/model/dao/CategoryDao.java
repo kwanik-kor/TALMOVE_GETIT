@@ -11,12 +11,35 @@ import java.util.ArrayList;
 import category.model.vo.Category;
 import course.model.vo.Course;
 import lecture.model.vo.Lecture;
+import review.model.vo.Review;
 import section.model.vo.Section;
 import teacher.model.vo.Teacher;
 
 public class CategoryDao {
-	public ArrayList<Course> selectSortPurchaseCounrt(Connection conn, String sortKeyword){
-		return null;}  // 인기도 정렬
+	public ArrayList<Course> selectSortPurchaseCounrt(Connection conn, String category){
+		ArrayList<Course> list = new ArrayList<Course>();
+		
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from course order by PURCHASE_COUNT";
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()) {
+				Course c = new Course();
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		return list;
+		}  // 인기도 정렬
 	
 	public ArrayList<Course> selectSortGoodReview(Connection conn, String sortKeyword){
 		return null;}  // 최고 평점 정렬
@@ -30,11 +53,6 @@ public class CategoryDao {
 	public ArrayList<Course> categoryCourseListView(Connection conn, int categoryNo){
 		return null;}  // 카테고리 별 강좌 뷰
 	
-	public int selectCourse(Connection conn, int courseNo){
-		return courseNo;}  // 강좌 선택
-	
-	public int pagePassing(Connection conn, int pageNo){
-		return pageNo;}  // 페이지 넘김
 
 	public ArrayList<Course> selectList(Connection conn, int currentPage, int limit, String category) {
 		ArrayList<Course> list = new ArrayList<Course>();
@@ -42,11 +60,12 @@ public class CategoryDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from(select rownum rnum, COURSE_NO, TEACHER_NO, CATEGORY_NO, COURSE_NAME, "
-				+ "THUMBNAIL_OFILENAME, THUMBNAIL_RFILENAME, DESCRIPTION, OPEN_YN, PRICE, PURCHASE_COUNT "
-				+ "from(select * from course order by course_no)) "
-				+ "join category using (category_no) "
-				+ "join teacher using (teacher_no) where category_name like ? and rnum >= ? and rnum <= ?";
+		String query = "select * from(select rownum rnum, COURSE_NO, TEACHER_NO, CATEGORY_NO, COURSE_NAME, " + 
+				"THUMBNAIL_OFILENAME, THUMBNAIL_RFILENAME, DESCRIPTION, OPEN_YN, PRICE, PURCHASE_COUNT, teacher_name, category_upper " + 
+				"from(select * from course join category using (category_no) " + 
+				"join teacher using (teacher_no) where category_name like ?" + 
+				"order by course_no)) " + 
+				"where rnum >= ? and rnum <= ?";
 		
 		int startRow = (currentPage -1) * limit + 1;
 		int endRow = startRow + limit - 1;
@@ -374,9 +393,6 @@ public class CategoryDao {
 			close(rset);
 			close(pstmt);
 		}
-		for(Section s : slist) {
-			System.out.println(s.getSectionName());
-		}
 		return slist;
 	}
 
@@ -439,8 +455,8 @@ public class CategoryDao {
 				teacher.setTeacherName(rset.getString("teacher_name"));
 				teacher.setTeacherCareer(rset.getString("teacher_career"));
 				teacher.setTeacherIntro(rset.getString("teacher_intro"));
-				teacher.setTeacherOimageName(rset.getString("user_oimage_name"));
-				teacher.setTeacherRimageName(rset.getString("user_rimage_name"));
+				teacher.setTeacherOimageName(rset.getString("teacher_oimage_name"));
+				teacher.setTeacherRimageName(rset.getString("teacher_rimage_name"));
 				teacher.setTeacherAccountnumber(rset.getInt("teacher_account_number"));
 				
 				tlist.add(teacher);
@@ -477,5 +493,87 @@ public class CategoryDao {
 		}
 		return clist;
 	}
-	
+
+	public ArrayList<Review> reviewView(Connection conn, int courseNo) {
+		ArrayList<Review> rlist = new ArrayList<Review>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from review join talmove_user using (user_no) where course_no = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, courseNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Review r = new Review();
+				
+				r.setReviewNo(rset.getInt("review_no"));
+				r.setCourseNo(rset.getInt("course_no"));
+				r.setUserNo(rset.getInt("user_no"));
+				r.setRating(rset.getInt("rating"));
+				r.setReviewContent(rset.getString("review_content"));
+				r.setReviewDate(rset.getDate("review_date"));
+				r.setModifiedReviewDate(rset.getDate("modified_review_date"));
+				r.setReviewUserName(rset.getString("user_name"));
+				
+				rlist.add(r);
+			} 
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return rlist;
+	}
+
+	public ArrayList<Course> starCourse(Connection conn, String category) {
+		ArrayList<Course> flist = new ArrayList<Course>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from(select rownum rnum, COURSE_NO, TEACHER_NO, CATEGORY_NO, COURSE_NAME, " + 
+				"THUMBNAIL_OFILENAME, THUMBNAIL_RFILENAME, DESCRIPTION, OPEN_YN, PRICE, PURCHASE_COUNT, teacher_name " + 
+				"from(select * from course join category using (category_no) " + 
+				"join teacher using (teacher_no) " + 
+				"where category_name like ? order by PURCHASE_COUNT desc)) " + 
+				"where rnum >= ? and rnum <= ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, category);
+			pstmt.setInt(2, 1);
+			pstmt.setInt(3, 4);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Course course = new Course();
+				
+				course.setCourseNo(rset.getInt("course_no"));
+				course.setTeacherNo(rset.getInt("teacher_no"));
+				course.setCategoryNo(rset.getInt("category_no"));
+				course.setCourseName(rset.getString("course_name"));
+				course.setThumbnailOfileName(rset.getString("thumbnail_ofilename"));
+				course.setThumbnailRfileName(rset.getString("thumbnail_rfilename"));
+				course.setDescription(rset.getString("description"));
+				course.setOpenYN(rset.getString("open_yn"));
+				course.setPrice(rset.getInt("price"));
+				course.setPurchaseCount(rset.getInt("purchase_count"));
+				course.setTeacherName(rset.getString("teacher_name"));
+				
+				flist.add(course);
+			} 
+		}catch(Exception e) {
+				e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return flist;
+	}
 }

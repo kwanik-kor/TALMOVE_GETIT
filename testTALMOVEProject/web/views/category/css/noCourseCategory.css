@@ -1,35 +1,121 @@
 @charset "UTF-8";
-
-*{ padding:0; margin:0;}
-html, body{font-family: 'Lato', 'Arial', sans-serif; width:100%;}
-section{width:100%;}
 a{text-decoration:none;color:black;}
-
-
-/* 카테고리명 */
-div#d1{
-   width:100%;
-   height:302px;
-   background:#dedede;
+.clearfix {zoom: 1}
+.clearfix:after {
+    content: '.';
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
 }
-p#category_1{font-size:50px;font-weight:bold;padding-top:50px;padding-left:100px;}
-p#category_2{font-size:28px;font-weight:bold;padding-left:100px;margin-top:5px;color:#00a8ff;}
+/* 카테고리명 */
+.category-title{    
+    width:100%;
+    height:250px;
+/*    background: linear-gradient(#0083b0, #00b4db);*/
+    background: #f4f4f4;
+    margin: 0;
+    box-shadow: inset 0px 7px 9px -7px rgba(0,0,0,0.2);
+}
+
+p#category-1{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.7rem;
+    font-weight:bold;
+    padding-top:120px;
+    padding-left:13%;
+}
+
+p#category-2{
+    font-size:1.7rem;
+    font-weight:bold;
+    padding-left:13%;
+    margin-top: 10px;
+    color:#00a8ff;
+}
 
 /* 메뉴바 */
-div#d2{
-   width:100%;
-   height:50px;  
-   background-color:#00a8ff;
-   font-weight:bold;
+div.category-menu,
+.order-courses{
+    display: block;
+    position: relative;
+    width:100%;
+    height: 50px;
+    background: linear-gradient(0.25turn, #56ccf2, #2f80ed);
+    font-weight: bold;
 }
-#d2 a:hover{color:white;}
-.dropdown{margin-top:12px;width:25%;float:left;}
-.dropdown .hide{display:none;}
-a.menua{margin-left:130px;cursor:pointer; font-size:1.3rem;margin-right:20px;font-weight:bold;}
-ul.hide{width:120px;margin-left:120px;list-style:none;background:rgb(63,63,63);margin-top:9px;position:absolute;z-index:99999999;text-align:center;}
-ul.hide li a{color:white;font-weight:normal;font-size:1rem;}
-ul.hide li{padding:10px;}
-ul#list li{margin-top:13px;float:left; margin-right:10%;font-size:1.3rem;list-style:none;}
+.category-menu a,
+.order-courses a{
+    font-size: 0.9rem;
+    color: #2c2c2c;
+    transition: color 0.2s ease;
+}
+.category-menu li:hover a,
+.order-courses li:hover a{
+    color:#fff;
+}
 
-#noco{width:100%;height:576px;}
-#nocop{text-align:center;font-size:3.5rem;font-weight:bold;padding-top:176px;}
+.categories{
+    position: relative;
+    margin-top: 0;
+    height: 100%;
+    list-style: none;
+    padding-left: 13%;
+}
+
+.categories li{
+    display: inline-block;
+    margin-right: 60px;
+    line-height: 50px;
+}
+#upcat i,
+#upcat2 i{
+    font-size: 0.7rem;
+    margin-left: 10px;
+}
+.dropdown-upcat,
+.dropdown-upcat2{
+    display: none;
+    position: absolute;
+    width: 150px;
+    top: 50px;
+    left: 180px;
+    list-style: none;
+    background: #2f3640;
+    padding: 0;
+    border-radius: 5px;
+}
+
+.dropdown-upcat li,
+.dropdown-upcat2 li{
+    display: block;
+    margin: 0;
+    padding: 10px 15px;
+    line-height: 25px;
+    border-radius: 5px;
+}
+
+.dropdown-upcat li a,
+.dropdown-upcat2 li a{
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 300;
+}
+
+.dropdown-upcat li:hover
+.dropdown-upcat2 li:hover{
+    background: #404957;
+    cursor: pointer;
+}
+.dropdown-upcat li:hover a,
+.dropdown-upcat2 li:hover a{
+    color: #00a8ff;
+}
+
+
+
+
+
+#noco{width:100%;height:420px;}
+#nocop{text-align:center;font-size:3rem;font-weight:bold;padding-top:115px;}

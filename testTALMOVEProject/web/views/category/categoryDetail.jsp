@@ -9,7 +9,7 @@
 	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 	int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 	String categoryUpper = ((String)request.getAttribute("categoryUpper"));
-	
+	ArrayList<Course> flist = (ArrayList<Course>)request.getAttribute("flist");
 %>
 <!DOCTYPE html>
 <html>
@@ -38,7 +38,11 @@
 	<section>
 		<!-- 카테고리명 -->
 		<div class="category-title">
+		<% if(categoryUpper != null){ %>
 		    <p id="category-1"><%= categoryUpper %></p>
+		<% }else{ %>
+			<p id="category-1"></p>
+		<% } %>
 		    <p id="category-2"><%= category %></p>
 		</div>
 		<!-- 메뉴 바 -->
@@ -46,14 +50,16 @@
 		    <ul class="categories">
 		       <li><a id="upcat">비즈니스<i class="fas fa-chevron-down"></i></a></li>
 		       <ul class="dropdown-upcat">
-		           <li><a href="#">비즈니스</a></li>
-		           <li><a href="#">프로그래밍</a></li>
+		           <li><a id="bbtn" href="#">비즈니스</a></li>
+		           <li><a id="pbtn" href="#">프로그래밍</a></li>
 		       </ul>
 		       <li><a href="#">커뮤니케이션</a></li>
 		       <li><a href="#">경영</a></li>
 		       <li><a href="#">판매</a></li>
 		       <li><a href="#">전략</a></li>
 		       <li><a href="#">운영</a></li>
+		       <li><a href="#"></a></li>
+		       <li><a href="#"></a></li>
 		    </ul>
 		</div>
     </section>
@@ -62,50 +68,19 @@
 		<div class="row">
             <p class="favorite-course"><span><%= category %></span> 분야의 인기 강좌</p>
             <div class="row">
+            <% for(Course course : flist){ %>
                 <div class="course-card">
                   <img src="/testt/resources/img/sample_thumbnail3.jpg" class="card-img-top">
                   <div class="card-body">
                      <ul class="cardlist">
-                       <li class="cli_1">모두를 위한 딥러닝 - Reinforcement Learning</li>
-                       <li class="cli_2">By. 이학열</li>
+                       <li class="cli_1"><%= course.getCourseName() %></li>
+                       <li class="cli_2">By. <%= course.getTeacherName() %></li>
                        <li class="cli_3"><span class="starpoint">★☆☆☆☆</span> 1.0(12)</li>
-                       <p class="cp">￦14,000</p>
+                       <p class="cp">￦<%= course.getPrice() %></p>
                     </ul>
                   </div>
                 </div>
-                <div class="course-card">
-                  <img src="/testt/resources/img/sample_thumbnail3.jpg" class="card-img-top">
-                  <div class="card-body">
-                     <ul class="cardlist">
-                       <li class="cli_1">모두를 위한 딥러닝 - Reinforcement Learning</li>
-                       <li class="cli_2">By. 이학열</li>
-                       <li class="cli_3"><span class="starpoint">★☆☆☆☆</span> 1.0(12)</li>
-                       <p class="cp">￦14,000</p>
-                    </ul>
-                  </div>
-                </div>
-                <div class="course-card">
-                  <img src="/testt/resources/img/sample_thumbnail4.jpg" class="card-img-top">
-                  <div class="card-body">
-                     <ul class="cardlist">
-                       <li class="cli_1">쉽게 배우는 해운 시황의 이해</li>
-                       <li class="cli_2">By. 이학열</li>
-                       <li class="cli_3"><span class="starpoint">★☆☆☆☆</span> 1.0(12)</li>
-                       <p class="cp">￦14,000</p>
-                    </ul>
-                  </div>
-                </div>
-                <div class="course-card">
-                  <img src="/testt/resources/img/sample_thumbnail2.jpg" class="card-img-top">
-                  <div class="card-body">
-                     <ul class="cardlist">
-                       <li class="cli_1">쉽게 배우는 해운 시황의 이해</li>
-                       <li class="cli_2">By. 이학열</li>
-                       <li class="cli_3"><span class="starpoint">★☆☆☆☆</span> 1.0(12)</li>
-                       <p class="cp">￦14,000</p>
-                    </ul>
-                  </div>
-                </div>
+               	<% } %>
             </div>
 		</div>
     </section>
@@ -115,10 +90,10 @@
             <ul class="categories">
                 <li><a id="upcat2">정렬<i class="fas fa-chevron-down"></i></a></li>
                 <ul class="dropdown-upcat2">
-                    <li><a href="#">인기도</a></li>
-                    <li><a href="#">최고평점</a></li>
-                    <li><a href="#">최저가</a></li>
-                    <li><a href="#">최고가</a></li>
+                    <li><a id="purchase">인기도</a></li>
+                    <li><a onclick="sortCourse('최고평점')">최고평점</a></li>
+                    <li><a onclick="sortCourse('최저가')">최저가</a></li>
+                    <li><a onclick="sortCourse('최고가')">최고가</a></li>
                 </ul>
             </ul>
         </div>
@@ -126,11 +101,12 @@
     
     <section>
 		<!-- 모든 강좌 -->
+		<input type="hidden" id="category" value="<%= category %>">
 		<h3 class="row class-title">모든 <%= category %> 강좌</h3>
 		<div class="row">
 		<% for(Course course : list){ %>
 		<div class="class clearfix">
-            <div class="image-place"><a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><img src="/testt/resources/img/sample_thumbnail2.jpg"></a></div>
+            <div class="image-place"><a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><img src="/testt/resources/img/sample_<%= course.getThumbnailOfileName() %>"></a></div>
             <div class="comment">
                 <ul id="ulcomment_1">
                     <li class="co_1"><a href="/testt/coursedetail?courseNo=<%= course.getCourseNo() %>"><%= course.getCourseName() %></a></li>
@@ -211,6 +187,52 @@
             submenu.css('display', 'none');
         }
     });
+	
+	
+	$(function(){
+		$("document").ready(function(){
+			$("#purchase").click(function(){
+				var ca = $("#category").val();
+			$.ajax({
+				url: "/testt/selsort",
+				type: "get",
+				data : {category : ca},
+				dataType: "json",
+				success: function(data){
+					//객체를 문자열로 변환 처리함
+					var jsonStr = JSON.stringify(data);
+					//문자열을 배열 객체로 바꿈
+					var json = JSON.parse(jsonStr);
+				
+					var values = "";
+					for(var i in json.list){
+						values += "<div class='image-place'><a href='/testt/coursedetail?courseNo='" + json.list[i].courseNo + "><img src='/testt/resources/img/sample_'" + json.list[i].fileName + "></a></div>"
+					            +"<div class='comment'>"
+				                +"<ul id='ulcomment_1'>"
+				                    +"<li class='co_1'><a href='/testt/coursedetail?courseNo='" + json.list[i].courseNo +  ">" + json.list[i].courseName +"></a></li>"
+				                    +"<li class='co_2'><ul class='detail'><li>19개의 강의</li><li>33분</li></ul></li>"
+				                    +"<li class='co_3'><p>" + json.list[i].description + "></p></li>"
+				                +"</ul>"
+				                +"<ul id='ulcomment_2'>"
+				                    +"<li class='rco_1'><p>￦" +json.list[i].price + "></p></li>"
+				                    +"<li class='rco_2'><p><span class='ystar'>★★☆☆☆</span> 2.0</p></li>"
+				                    +"<li class='rco_3'><p>(12개의 리뷰)</p></li>"
+				                +"</ul>"
+				            +"</div>";
+					} //for in
+				
+					//테이블에 추가
+					$(".clearfix").html($(".clearfix").html(values));
+				
+				},
+				error: function(jqXHR, textStatus, errorThrown){
+					console.log("error : " + jqXHR + ", " + 
+							textStatus + ", " + errorThrown);
+				}
+			}) 
+			})
+		})
+	});
 	</script>
 </body>
 </html>
