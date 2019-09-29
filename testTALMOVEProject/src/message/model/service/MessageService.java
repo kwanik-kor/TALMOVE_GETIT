@@ -77,9 +77,21 @@ public ArrayList<Message> selectSearchEmail(String uemail) {
 public int addReadCount(int msgNum){
 	return msgNum;}
 
-	//1:1 개인메시지 상세조회용
-public	Message selectOneEmailMessage(Connection conn, int msgNum){
-	return null;}
+
+//개인메시지 조회용
+public ArrayList<Message> msgone(String sendere, String recipe) {
+	Connection conn = getConnection();
+	ArrayList<Message> list = mdao.msgone(conn, sendere, recipe);
+	if(list.size() > 0)
+		commit(conn);
+	else
+		rollback(conn);
+	close(conn);
+	return list;
+}
+
+
+
 
 // 중요메시지 표시용
 public int starUpdate(int msgno, int starflag) {
@@ -105,7 +117,6 @@ public int checkMsg(int msgno) {
 	return importantFlag;
 	
 }
-
 
 
 

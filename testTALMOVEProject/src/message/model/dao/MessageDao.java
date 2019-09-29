@@ -94,11 +94,6 @@ public class MessageDao {
 	}
 
 
-	
-	//최근 메시지1개 출력용
-	public ArrayList<Message> selectTop1(Connection conn){
-		return null;}
-	
 	//새메세지 보내기 처리용
 	public int sendMessage(Connection conn, Message msg){
 		int result = 0;
@@ -171,8 +166,51 @@ public class MessageDao {
 		return msgNum;}
 	
 	//1:1 개인메시지 상세조회용
-	public Message selectOneEmailMessage(Connection conn, int msgNum){
-		return null;}
+
+	public ArrayList<Message> msgone(Connection conn, String sendere, String recipe) {
+		ArrayList<Message> list = new ArrayList<Message>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		System.out.println("servlet > dao");
+		/*String query = "select * from message where RECIPIENT = ?";*/
+		String query = "select * from message where (SENDER = ? and RECIPIENT = ? ) or (RECIPIENT = ? and SENDER = ? ) order by MESSAGE_TIME asc";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, recipe);
+			pstmt.setString(2, sendere);
+			pstmt.setString(3, recipe);
+			pstmt.setString(4, sendere);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Message message = new Message();
+				
+				message.setMsgNum(rset.getInt("MESSAGE_NO"));	
+				message.setUserNum(rset.getInt("USER_NO"));	
+				message.setMsgSender(rset.getString("SENDER"));				
+				message.setMsgRecipient(rset.getString("RECIPIENT"));
+
+				message.setMsgContent(rset.getString("MESSAGE_CONTENT"));
+				message.setMsgDate(rset.getDate("MESSAGE_TIME"));
+				message.setMsgReadCount(rset.getInt("MESSAGE_READCOUNTER"));
+				message.setMsgstar(rset.getInt("MESSAGE_STAR"));
+				
+				list.add(message);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+
+	
 
 	public int starCheck(Connection conn, int msgno) {
 		int result = 0;
@@ -272,8 +310,6 @@ public class MessageDao {
 		
 	}
 
-
-	
 	
 	
 }
