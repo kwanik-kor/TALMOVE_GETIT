@@ -12,6 +12,12 @@ public class Message implements Serializable{
 	private String msgRecipient; //받는유저이메일
 	
 	private String msgContent; //메시지내용
+	/*	private String msgContentS; //보낸메시지내용
+	private String msgContentR; //받은메시지내용
+*/	private int msgReadCount; //조회수
+	private Date msgDate; //메시지날짜	MESSAGE_TIME
+	private int msgstar; // 중요메시지
+	
 public String getMsgContent() {
 		return msgContent;
 	}
@@ -22,17 +28,14 @@ public String getMsgContent() {
 	}
 
 
-/*	private String msgContentS; //보낸메시지내용
-	private String msgContentR; //받은메시지내용
-*/	private int msgReadCount; //조회수
-	private Date msgDate; //메시지날짜	
+
 	
 	 
 	public Message() {}
 
 
 	public Message(int msgNum, int userNum, String msgSender, String msgRecipient, String msgContent,  /*String msgContentS,
-			String msgContentR, */int msgReadCount, Date msgDate) {
+			String msgContentR, */int msgReadCount, Date msgDate, int msgStar) {
 		super();
 		this.msgNum = msgNum;
 		this.userNum = userNum;
@@ -42,6 +45,17 @@ public String getMsgContent() {
 		this.msgContentR = msgContentR;*/
 		this.msgReadCount = msgReadCount;
 		this.msgDate = msgDate;
+		this.msgstar = msgStar;
+	}
+
+
+	public int getMsgstar() {
+		return msgstar;
+	}
+
+
+	public void setMsgstar(int msgstar) {
+		this.msgstar = msgstar;
 	}
 
 
@@ -128,10 +142,11 @@ public String getMsgContent() {
 	@Override
 	public String toString() {
 		return "Message [msgNum=" + msgNum + ", userNum=" + userNum + ", msgSender=" + msgSender + ", msgRecipient="
-				+ msgRecipient + ", msgContent=" + msgContent +
-				/* ", msgContentS=" + msgContentS + ", msgContentR=" + msgContentR +*/ ", msgReadCount="
-				+ msgReadCount + ", msgDate=" + msgDate + "]";
+				+ msgRecipient + ", msgContent=" + msgContent + ", msgReadCount=" + msgReadCount + ", msgDate="
+				+ msgDate + ", msgstar=" + msgstar + "]";
 	}
 
+
+	
 	
 }
