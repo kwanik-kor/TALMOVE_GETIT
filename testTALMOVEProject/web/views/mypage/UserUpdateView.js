@@ -1,4 +1,32 @@
-
+/*$(document).ready(function(){
+    var upload = document.querySelector('#filebutton');
+    var upload2 = document.querySelector('.pfimg');
+ 
+      FileReader 객체 생성 
+    var reader = new FileReader();
+ 
+         reader 시작시 함수 구현 
+    reader.onload = (function () {
+ 
+        this.image = document.createElement('img');
+        var vm = this;
+        
+        return function (e) {
+             base64 인코딩 된 스트링 데이터 
+            vm.image.src = e.target.result
+        }
+    })()
+ 
+    upload.addEventListener('change',function (e) {
+        var get_file = e.target.files;
+ 
+        if(get_file){
+            reader.readAsDataURL(get_file[0]);
+        }
+ 
+        preview.appendChild(image);
+    })
+});*/
 $(document).ready(function(){
 	var star = $('.mstar');
 	var dataval;
@@ -50,9 +78,9 @@ $(document).ready(function(){
 
 $(document).ready(function(){
 	   var pf_file;
-	   $("#filebutton").on("change", handleImgFileSelect);
+	   $("#efilebutton").on("change", handleImgFileSelect);
 });
-$(document).ready(function(){
+	
 function handleImgFileSelect(e) {
    var upfiles = e.target.files;
    var upfilesArr = Array.prototype.slice.call(upfiles);
@@ -71,7 +99,7 @@ function handleImgFileSelect(e) {
    });
 } //handleImgFileSelect
          
-});
+
 $(document).ready(function(){
    $("#msgmenu").click(function(){
       var submenu = $('.maghidemenu');
