@@ -1,15 +1,12 @@
 package section.model.vo;
 
-import java.io.Serializable;
+public class Section {
 
-public class Section implements Serializable{
-	private static final long serialVersionUID = 2000L;
-	
 	private int sectionNo;
 	private int courseNo;
 	private String sectionName;
 	
-	public Section(){}
+	public Section(){};
 
 	@Override
 	public String toString() {

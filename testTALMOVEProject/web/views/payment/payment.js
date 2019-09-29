@@ -78,6 +78,3 @@ function checkCheckBox(f) {
 }
 
 ///checkbox event
-
-
-

@@ -311,7 +311,6 @@ nav {
 /* gnb search bar */
 
 .gnb-search {
-	position: relative;
     width: 40%;
     height: 30px;
     margin-top: 17px;
@@ -344,34 +343,6 @@ nav {
 
 .gnb-search button i{
     color: #777777;
-}
-
-.search-result{
-	display: none;
-	position: absolute;
-	left: 0;
-	top: 30px;
-	z-index: 99;
-	background: #fff;
-	color: #777777;
-	width: 100%;
-	border-radius: 3px;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-}
-
-ul.searchwords{
-	list-style: none;
-	margin: 15px 0;
-	padding: 0;
-	font-size: 0.8rem;
-}
-
-li.searchword{
-	padding: 5px 15px;
-	cursor: pointer;
-}
-li.searchword:hover{
-	background: #eaeaea;
 }
 
 /* gnb unlogin list */

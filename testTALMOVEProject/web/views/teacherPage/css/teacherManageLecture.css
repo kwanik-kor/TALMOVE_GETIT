@@ -129,6 +129,10 @@ a.lecEdit:hover{
     color: #00a8ff;
 }
 
+.course-info input[type="file"]{
+    background: #fff;
+    border: 0;
+}
 form.course-info img{
     width: 70%;
     margin: 10px 15%;
@@ -226,72 +230,4 @@ button.cancelBtn{
 .course-content a{
 	cursor: pointer;
 }
-/* tag */
-.tag-wrapper {
-    display: inline-block;
-    width: 100%;
-    margin-bottom: 15px;
-}
-.plus-tag {
-    display: inline-block;
-    float: right;
-    width: 70%;
-    margin-right: 9%;
-}
 
-.tags {
-    position: relative;
-    float: left;
-    text-align: center;
-    color: #EE5A24;
-    font-size: 0.7rem;
-    line-height: 0.7rem;
-    border: 0.5px solid #EE5A24;
-    border-radius: 3px;
-    margin-right: 15px;
-    margin-bottom: 5px;
-    padding: 3px;
-    cursor: default;
-}
-.tags p{
-    margin: 0;
-}
-.del-tag{
-    display: none;
-    position: absolute;
-    top: 4px;
-    right: -13px;
-    height: 100%;
-    cursor: pointer;
-}
-.tags:hover .del-tag{
-    display: inline-block;
-}
-
-.thumbdiv{
-	display: inline-block;
-	width: 70%;
-}
-
-input[type="file"]{
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -2px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    border: 0;
-}
-
-.thumblabel{
-    cursor: pointer;
-    color: #00a8ff;
-    text-align: center;
-    border-radius: 3px;
-    font-size: 0.9rem;
-    padding: 5px;
-}
-.thumblabel:hover{
-    background: #e6f6ff;
-}
