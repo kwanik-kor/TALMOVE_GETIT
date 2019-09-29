@@ -39,8 +39,8 @@ public class PageLoadServlet extends HttpServlet {
 		Course course = new Course();
 		Teacher teacher = new Teacher();
 		int courseNumber =0;
-		System.out.println("1번 "+Integer.parseInt(request.getParameter("courseNo")));
-		System.out.println("2번 "+(Integer)request.getAttribute("courseNo"));
+		System.out.println("1번 "+(request.getParameter("courseNo")));
+		System.out.println("2번 "+request.getAttribute("courseNo"));
 		if(request.getParameter("courseNo")!=null) {
 			courseNumber= Integer.parseInt(request.getParameter("courseNo"));
 		}else {

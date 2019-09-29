@@ -8,18 +8,19 @@ import section.model.dao.SectionDao;
 public class SectionService {
 	SectionDao sdao = new SectionDao();
 
-	public void createNewSection(int no) {
+	public int createNewSection(int no) {
 		Connection conn = getConnection();
+		int sectionNo=0;
 		int result = sdao.createNewSection(conn,no);
 		if(result>0) {
 			commit(conn);
 			System.out.println( "렉쳐 생성 완료");
+			sectionNo=sdao.getLastedCreateSectionNo(conn, no);
 		}else {
 			System.out.println("생성실패");
 			rollback(conn);
 		}close(conn);
-		
-		
+	return sectionNo;
 	}
 	
 	public void sectionDelete(int no) {

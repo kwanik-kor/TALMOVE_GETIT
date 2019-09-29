@@ -1,6 +1,7 @@
 package section.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,8 +34,15 @@ public class CreateNewSection extends HttpServlet {
 		int no = Integer.parseInt(request.getParameter("no"));
 		System.out.println("courseNo : " +no);
 		SectionService sservice = new SectionService();
-		sservice.createNewSection(no);
-		System.out.println("서블렛종료");
+		int sectionNo=sservice.createNewSection(no);
+		if(sectionNo ==0) System.out.println("객체생성실패");
+		System.out.println("렉쳐넘버"+sectionNo);
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(sectionNo);
+		out.flush();
+		out.close();
 	}
 
 	/**

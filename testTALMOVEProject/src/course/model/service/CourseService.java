@@ -132,7 +132,17 @@ public class CourseService {
 	}
 
 	//렉쳐 불러오기
-
+	public ArrayList<Lecture> LectureList(int sectionNo) {
+		Connection conn = getConnection();
+		ArrayList<Lecture> result = cDao.getLectureList(conn, sectionNo);
+		if(result != null) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 
 	
 	//학열
