@@ -106,13 +106,13 @@
 							
 								<p id="sendDate"><%= m.getMsgDate() %></p>
 	
-								<div class="balloon" >
+								<div class="balloon" onclick="location.href='/testt/msg?sendere=<%= m.getMsgSender()%>&recipe=<%= m.getMsgRecipient()%>&mdate=<%= m.getMsgDate() %>'">
 								
 									<%= m.getMsgContent()%>       
 								</div>
 					
-								<p id="count"><%= m.getMsgReadCount()%></p>
-								
+							<%-- 	<p id="count"><%= m.getMsgReadCount()%></p>
+								 --%>
 		
 						</div>
 					</div>
@@ -122,11 +122,11 @@
 			</div>
 		</div>
 		</div>
-		<br>
-		<br>
-		<br>
-	</section>	
 	
+	</section>	
+			<br>
+				<br>
+						<br>
 			<%@ include file="../common/footer.jsp" %>
 
 	

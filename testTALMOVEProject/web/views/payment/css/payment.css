@@ -307,30 +307,23 @@ h5 {
 
 /* /Total Price */
 
-/* 결제버튼*/
+/* 결제버튼   #a0a0a0; */
 
 #pay_btn {
   width: 200px;
   box-shadow: inset 0px 1px 0px 0px #64b1ff;
-  background-color: #3f9fff;
+  background-color:  #00a8ff;
   border-radius: 5px;
-  border: 1px solid #64b1ff;
+  border: 1px solid ;
   display: inline-block;
-  cursor: pointer;
   color: white;
   font-family: Arial;
   font-size: 22px;
   font-weight: bold;
   padding: 15px 43px;
-  text-decoration: none;
-}
-#pay_btn:hover {
-  background-color: #007fbf;
 
-#pay_btn:active {
-  position: relative;
-  top: 1px;
 }
+
 
 /* /end결제버튼*/
 
@@ -339,6 +332,21 @@ footer {
   clear: both;
   color: white;
   margin-top: 100px;
+}
+
+.active-button{
+	
+    background-color: #00a8ff;
+    cursor: pointer;
+}
+
+.active-button:hover {
+  background-color: #007fbf;
+}
+
+.active-button:active {
+  position: relative;
+  top: 1px;
 }
 
 /* /footer*/

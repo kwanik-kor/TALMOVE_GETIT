@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import category.model.service.CategoryService;
 import course.model.vo.Course;
 import lecture.model.vo.Lecture;
+import review.model.vo.Review;
 import section.model.vo.Section;
 import teacher.model.vo.Teacher;
 
@@ -36,7 +37,7 @@ public class CourseDetailViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int courseNo = Integer.parseInt(request.getParameter("courseNo"));
-		System.out.println("강좌코드 : " + courseNo);
+	
 		
 		CategoryService cservice = new CategoryService();
 		
@@ -67,6 +68,9 @@ public class CourseDetailViewServlet extends HttpServlet {
 		//강사 정보
 		ArrayList<Teacher> tlist = cservice.teachherView(courseNo);
 		
+		//리뷰 
+		ArrayList<Review> rlist = cservice.reviewView(courseNo);
+		
 		RequestDispatcher view = null;
 	     response.setContentType("text/html; charset=utf-8");
 	     if(list.size() > 0) {
@@ -80,6 +84,7 @@ public class CourseDetailViewServlet extends HttpServlet {
 	    	 request.setAttribute("slist", slist);
 	    	 request.setAttribute("llist", llist);
 	    	 request.setAttribute("tlist", tlist);
+	    	 request.setAttribute("rlist", rlist);
 	    	 view.forward(request, response);
 	     }else {
 	    	 view = request.getRequestDispatcher("views/common/Error.jsp");

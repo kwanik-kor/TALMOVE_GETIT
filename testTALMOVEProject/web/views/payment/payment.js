@@ -69,15 +69,22 @@ window.onclick = function(event) {
 // 모달 끝...
 
 //checkbox event
+$("#ckBox[id='ckBox']").change(function(){
+    var checked = $(this).prop('checked');
+    if(checked){
+        $("#ckBox input[type='checkbox']").each(function(){
+            $(this).prop('checked', true);
+        });
+        $('.to-nextBtn').addClass('active-button');
+    }else{
+        $("#ckBox input[type='checkbox']").each(function(){
+            $(this).prop('checked', false);
+        });
+        $('.to-nextBtn').removeClass('active-button');
+    }
+});
 
-function checkCheckBox(f) {
-  if (f.agree.checked == false) {
-    alert("결제 약관에 동의 후 이용가능합니다");
-    return false;
-  } else return true;
-}
 
-///checkbox event
 
 
 

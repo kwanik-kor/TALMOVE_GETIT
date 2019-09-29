@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import category.model.dao.CategoryDao;
 import course.model.vo.Course;
 import lecture.model.vo.Lecture;
+import review.model.vo.Review;
 import section.model.vo.Section;
 import teacher.model.vo.Teacher;
 import category.model.vo.Category;
@@ -18,8 +19,12 @@ import course.model.vo.Course;
 public class CategoryService {
 	private CategoryDao cDao = new CategoryDao();
 	
-	public ArrayList<Course> selectSortPurchaseCounrt(String sortKeyword){
-		return null;}  // 인기도 정렬
+	public ArrayList<Course> selectSortPurchaseCounrt(String category){
+		Connection conn = getConnection();
+		ArrayList<Course> list = cDao.selectSortPurchaseCounrt(conn, category);
+		close(conn);
+		return list;
+	}  // 인기도 정렬
 	
 	public ArrayList<Course> selectSortGoodReview(String sortKeyword){
 		return null;}  // 최고 평점 정렬
@@ -131,6 +136,21 @@ public class CategoryService {
 		close(conn);
 		return clist;
 	}
+
+	public ArrayList<Review> reviewView(int courseNo) {
+		Connection conn = getConnection();
+		ArrayList<Review> rlist = cDao.reviewView(conn, courseNo);
+		close(conn);
+		return rlist;
+	}
+
+	public ArrayList<Course> starCourse(String category) {
+		Connection conn = getConnection();
+		ArrayList<Course> flist = cDao.starCourse(conn, category);
+		close(conn);
+		return flist;
+	}
+
 
 }
 

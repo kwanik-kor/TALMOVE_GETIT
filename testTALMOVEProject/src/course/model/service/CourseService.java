@@ -100,6 +100,7 @@ public class CourseService {
 	}
 
 	//렉쳐 불러오기
+
 	public ArrayList<Lecture> LectureList(int sectionNo) {
 		Connection conn = getConnection();
 		ArrayList<Lecture> result = cDao.getLectureList(conn, sectionNo);
@@ -111,6 +112,8 @@ public class CourseService {
 		close(conn);
 		return result;
 	}
+
+
 
 	
 	//학열
@@ -133,6 +136,7 @@ public class CourseService {
 		close(conn);
 		return result;
 	}
+	
 	public Course getCourseByName(String courseName) {
 		Connection conn = getConnection();
 		Course course = cDao.getCourseByName(conn, courseName);
@@ -180,13 +184,6 @@ public class CourseService {
 	}
 	
 	
-	public ArrayList<Course>myCourse(int userNo){	
-		Connection conn = getConnection();
-		ArrayList<Course> list = cDao.myCourse(conn, userNo);
-		close(conn);
-		
-		return list;
-	}
 	public ArrayList<String> getSearchedCourseName(String[] keywords) {
 		Connection conn = getConnection();
 		ArrayList<String> clist = cDao.getSearchedCourseName(conn, keywords);
@@ -198,6 +195,28 @@ public class CourseService {
 		ArrayList<Course> clist = cDao.getSearchedCourse(conn, keywords);
 		close(conn);
 		return clist;
+	}
+	public ArrayList<Course>myCourse(int userNo){	
+		CourseDao cDao = new CourseDao();
+
+		Connection conn = getConnection();
+		ArrayList<Course> list = cDao.myCourse(conn, userNo);
+		System.out.println("myCourseList service에서 확인 " + list.size());
+		close(conn);
+		
+		return list;
+	}
+	
+	public int updatePurchaseCount(int courseNo) {
+		Connection conn = getConnection();
+		int result = cDao.updatePurchaseCount(conn, courseNo);
+		if(result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+		
 	}
 	
 

@@ -1,8 +1,9 @@
 package payment.model.vo;
 
-import java.sql.Date;
+import java.io.Serializable;
 
-public class Payment {
+public class Payment implements Serializable{
+	private static final long serialVersionUID = 2300L; 
 	private int cartNo;
 	private int userNo;
 	private int courseNo;
@@ -13,8 +14,9 @@ public class Payment {
 	private int price;
 	
 	
-	public Payment() {};
-	
+	public Payment() {}
+
+
 	public Payment(int cartNo, int userNo, int courseNo, String teacherName, String courseName,
 			String thumbnailOfileName, String thumbnailRfileName, int price) {
 		super();
@@ -27,7 +29,8 @@ public class Payment {
 		this.thumbnailRfileName = thumbnailRfileName;
 		this.price = price;
 	}
-	
+
+
 	public int getCartNo() {
 		return cartNo;
 	}
@@ -108,15 +111,19 @@ public class Payment {
 	}
 
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Payment [cartNo=" + cartNo + ", userNo=" + userNo + ", courseNo=" + courseNo + ", teacherName="
 				+ teacherName + ", courseName=" + courseName + ", thumbnailOfileName=" + thumbnailOfileName
 				+ ", thumbnailRfileName=" + thumbnailRfileName + ", price=" + price + "]";
-	}
-
+	};
 	
-
+	
 	
 	
 }
