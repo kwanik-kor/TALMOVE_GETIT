@@ -39,29 +39,28 @@ public class lectureAttachmentUpload extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("save버튼으로 서블렛진입");
-		
-		
-		
-		
-		System.out.println("뭐");
-		
 		RequestDispatcher view = null;
-
 		int maxSize = 1024 * 1024 * 10;
 		String savePath = request.getSession().getServletContext().getRealPath("/resources/lecture_upfiles");
 		MultipartRequest mrequest = new MultipartRequest(request, savePath, maxSize, "UTF-8",
 				new DefaultFileRenamePolicy());
 		Lecture lecture = new Lecture();
 		System.out.println("lectureNo : "+mrequest.getParameter("lectureNo"));
+		lecture.setLectureNo(Integer.parseInt(mrequest.getParameter("lectureNo")));
+		
 		System.out.println("content : "+mrequest.getParameter("content") );
-		if(mrequest.getParameter("videoHash").length()!=0) { System.out.println("널널");}else {System.out.println("낫널낫널");}
-		System.out.println("vedioHash :"+mrequest.getParameter("videoHash"));
+		lecture.setLectureContent(mrequest.getParameter("content"));
+
+		System.out.println("비디오해쉬 :"+mrequest.getParameter("videoHash"));
+		if(mrequest.getParameter("videoHash")==null ||mrequest.getParameter("videoHash")=="undefined" ) {
+			System.out.println("videoHash=null");
+		}else {
+			lecture.setLectureOFileName(mrequest.getParameter("videoHash"));
+			System.out.println("vedioHash="+mrequest.getParameter("videoHash"));
+			}
 		System.out.println("courseNo : "+ mrequest.getParameter("courseNumber") );
 		int courseNo =Integer.parseInt(mrequest.getParameter("courseNumber"));
-		lecture.setLectureNo(Integer.parseInt(mrequest.getParameter("lectureNo")));
-		lecture.setLectureContent(mrequest.getParameter("content"));
-		if(mrequest.getParameter("videoHash").length()!=0)
-			lecture.setLectureOFileName(mrequest.getParameter("videoHash"));
+		
 	//	lecture.setAttachmentOfileName(mrequest.getParameter("attach-name"));
 		
 		String oFileName = mrequest.getFilesystemName("file");
@@ -81,14 +80,14 @@ public class lectureAttachmentUpload extends HttpServlet {
 				
 				FileInputStream fin = new FileInputStream(oFile);
 				FileOutputStream fout = new FileOutputStream(rFile);
-				System.out.println("노내");				while((read = fin.read(buf, 0, buf.length)) != -1) {
+				while((read = fin.read(buf, 0, buf.length)) != -1) {
 					fout.write(buf, 0, read);
 				}
-
+				System.out.println(lecture.toString());
 				fin.close();
 				fout.close();	
 				oFile.delete();
-
+				System.out.println("파일저장완료");
 			}
 		}
 				LectureService lservice = new LectureService();

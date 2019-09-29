@@ -188,6 +188,10 @@
             	
 		           	$("#saveLecture").click(function(){
 			            	saveLecture();
+                            alert("저장성공");
+                            clickon();
+                            getLectureForm();
+                            location.reload();
                   });
                 </script>
         </div>
@@ -262,6 +266,7 @@
 	                        console.log(formData.get("videoHash"));
 	                        console.log(formData.get("content"));
 	                        console.log(formData.get("courseNumber"));
+	                        getLectureForm();
 			            	$.ajax({
 	                            url: "/testt/attach-upload.do",
 	                           type: "post",
@@ -270,7 +275,7 @@
 	                           contentType : false,  
 	                            data : formData,
 	                            sucsess:function(){
-	                                alert("저장성공");
+
 	                            },
 	                            error:function(error){
 	                            	alert("파일업로드에 실패하였습니다. 재실행 해주세요");
@@ -308,7 +313,6 @@
 
     function clickon() {
         $('.modi-btn').click(function() {
-                        alert("클릭입력");
             var sectionNumber = null;
             var lectureNumber = null;
             var currentName=$(this).parent().prevAll("inp   ut.placeSectionName").val();
@@ -333,6 +337,7 @@
                 clickon();
                 getLectureForm();
             } else {
+            	
                 sectionNumber = $(this).parent().prev('.insect-sectNo').val();
                 $(this).parent().prevAll("input.placeSectionName").attr("readOnly", false);
                 $(this).parent().prevAll("input.placeSectionName").focus();
@@ -361,7 +366,9 @@
 	                type: "get",
 	                dataType: "json",
 	                success: function(data) {
-					}
+	                	alert("변경완료");
+	                }
+					
                 });
             }
             function renameLecture(lectureNumber,afterName){
@@ -374,7 +381,7 @@
  	                type: "get",
  	                dataType: "json",
  	                success: function(data) {
- 	                	alert("ajax성공");
+ 	                	alert("변경완료");
                      }
 
                  });
@@ -399,7 +406,6 @@
             	//하위 렉쳐 모두 삭제됨
             	
             }
-            alert("dd");
             if ((this).closest("li")) {
                 (this).closest("li").remove();
             } else {
@@ -413,6 +419,9 @@
                             no: lectureNumber.trim()
                         },
                         type: "post",
+                        success: function(data) {
+     	                	alert("삭제완료");
+                         },
                         error: function(jqXHR, textStatus, errorThrown) {
                             console.log("error : " + textStatus);
                         }
@@ -427,6 +436,9 @@
                             no:sectionNumber.trim()
                         },
                         type: "post",
+                        success: function(data) {
+     	                	alert("삭제완료");
+                         },
                         error: function(jqXHR, textStatus, errorThrown) {
                             console.log("error : " + textStatus);
                         }
@@ -446,14 +458,18 @@
 				type: "get",
 				dataType: "json",
 				success: function(data){
-						console.log($(".ck").html());
+
+	            		console.log("선택한 렉처번호 :" +data.lectureNo);
+						console.log("불러온 content :"+ $(".ck").html());
 						$(".ck").children("p").html(decodeURIComponent(data.lectureContent).replace(/\+/gi, " "));
 						$("#lectureNo").val(data.lectureNo);
-						if(decodeURIComponent(data.lectureOFileName).replace(/\+/gi, " ") !='undefined' ){
+						if(decodeURIComponent(data.lectureOFileName).replace(/\+/gi, " ") !='undefined' || decodeURIComponent(data.lectureOFileName).replace(/\+/gi, " ") != null ){
 								$("#checkVideo").val(decodeURIComponent(data.lectureOFileName).replace(/\+/gi, " "));
 						}else{
+							console.log("빈 값");
 						}
-						console.log(decodeURIComponent(data.attachmentOfileName).replace(/\+/gi, " "));
+					
+						console.log("dd +"+ decodeURIComponent(data.attachmentOfileName).replace(/\+/gi, " ") );
 						//$("#file").val(decodeURIComponent(data.attachmentOfileName).replace(/\+/gi, " "));
 						//console.log(decodeURIComponent(data.attachmentOfileName).replace(/\+/gi, " "));
 						//본문에 뿌려줌	//"'"+decodeURIComponent(data.lectureContent).replace(/\+/gi, " ")+"'"	
