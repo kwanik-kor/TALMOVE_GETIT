@@ -49,6 +49,8 @@ String uemail = request.getParameter("uemail");
 		}else {	         
         PrintWriter out= response.getWriter();
 			view = request.getRequestDispatcher("views/mypage/MessageImportantListView.jsp");
+			request.setAttribute("list", msgimp);
+			view.forward(request, response);
 	      /*   out.println("<script>");
 	         out.println("alert('다시 시도해주세요.')");
 
