@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,12 +39,65 @@ public class CourseSortServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		CategoryService cservice = new CategoryService();
-		String category = request.getParameter("category");
-		System.out.println(category);
-		ArrayList<Course> list = cservice.selectSortPurchaseCounrt(category);
+		int currentPage = Integer.parseInt(request.getParameter("page"));
+		 String category = request.getParameter("category");
+		 String sortName = request.getParameter("sortName");
+		 
+		 System.out.println(sortName + category + currentPage);
 
-		// 전송할 json 객체 생성
+	     int limit = 10;
+	     
+	     CategoryService cservice = new CategoryService();
+	     
+	     // 상위카테고리 조회
+	     String categoryUpper = cservice.getCategoryUpper(category);
+	     
+	     // 총 목록 갯수 조회
+	     int listCount = cservice.getListCount(category);
+	     ArrayList<Course> list = null;
+	     // 현재 페이지에 출력할 게시글 목록 조회
+	     if(sortName.equals("pop")) {
+	    	 list = cservice.selectSortPurchaseCounrt(currentPage, limit, category);
+	     }else if(sortName.equals("row")) {
+	    	 list = cservice.selectSortRowPrice(currentPage, limit, category);
+	     }else {
+	    	 list = cservice.selectSortHighPrice(currentPage, limit, category);
+	     }
+	     
+	     
+	     // 인기 강좌
+	     ArrayList<Course> flist = cservice.starCourse(category);
+	     
+	     int maxPage = (int)((double)listCount / limit + 0.9);
+	     int startPage = (((int)((double)currentPage / limit + 0.9))-1) * limit + 1;
+	     int endPage = startPage + limit -1;
+	     
+	     if(maxPage < endPage) {
+	    	 endPage = maxPage;
+	     }
+	     
+	     RequestDispatcher view = null;
+	     response.setContentType("text/html; charset=utf-8");
+	     if(list.size() > 0) {
+	    	 view = request.getRequestDispatcher("/views/category/categoryDetail.jsp");
+	    	 request.setAttribute("list", list);
+	    	 request.setAttribute("category", category);
+	    	 request.setAttribute("currentPage", currentPage);
+	    	 request.setAttribute("maxPage", maxPage);
+	    	 request.setAttribute("startPage", startPage);
+	    	 request.setAttribute("endPage", endPage);
+	    	 request.setAttribute("listCount", listCount);
+	    	 request.setAttribute("categoryUpper", categoryUpper);
+	    	 request.setAttribute("flist", flist);
+	    	 view.forward(request, response);
+	     }else{
+	    	 view = request.getRequestDispatcher("/views/category/noCourseCategory.jsp");
+	    	 request.setAttribute("category", category);
+	    	 request.setAttribute("categoryUpper", categoryUpper);
+	    	 view.forward(request, response);
+	     }
+		
+		/*// 전송할 json 객체 생성
 		JSONObject sendJson = new JSONObject();
 		JSONArray jarr = new JSONArray();
 
@@ -69,7 +123,7 @@ public class CourseSortServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.write(sendJson.toJSONString());
 		out.flush();
-		out.close();
+		out.close();*/
 
 		/*
 		 * if(sortName == "인기도") { ArrayList<Course> list =

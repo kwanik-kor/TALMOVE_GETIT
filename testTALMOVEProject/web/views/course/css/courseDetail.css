@@ -152,7 +152,7 @@ a {
 }
 
 .secundo {
-	margin: 10px 0 0 93px;
+	margin: 0;
 }
 
 #secmore {
@@ -161,7 +161,6 @@ a {
 }
 
 .hide1, .hide2 {
-	display: none;
 }
 
 .dropdown1, .dropdown2 {

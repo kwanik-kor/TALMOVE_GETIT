@@ -43,16 +43,18 @@
 <!-- 메뉴 바 -->
 <div class="category-menu">
 		    <ul class="categories">
-		       <li><a id="upcat">비즈니스<i class="fas fa-chevron-down"></i></a></li>
+		       <li><a id="upcat">프로그래밍<i class="fas fa-chevron-down"></i></a></li>
 		       <ul class="dropdown-upcat">
 		           <li><a a href="/testt/cupperview?page=1&category=비즈니스">비즈니스</a></li>
 		           <li><a href="/testt/pcaupview?page=1&category=프로그래밍">프로그래밍</a></li>
 		       </ul>
-		       <li><a href="/testt/ccourse?page=1&category=커뮤니케이션">커뮤니케이션</a></li>
-		       <li><a href="/testt/ccourse?page=1&category=경영">경영</a></li>
-		       <li><a href="/testt/ccourse?page=1&category=판매">판매</a></li>
-		       <li><a href="/testt/ccourse?page=1&category=전략">전략</a></li>
-		       <li><a href="/testt/ccourse?page=1&category=운영">운영</a></li>
+		       <li><a href="/testt/pccourse?page=1&category=프로그래밍 이론">프로그래밍 이론</a></li>
+		       <li><a href="/testt/pccourse?page=1&category=프로그래밍 언어">프로그래밍 언어</a></li>
+		       <li><a href="/testt/pccourse?page=1&category=웹">웹</a></li>
+		       <li><a href="/testt/pccourse?page=1&category=모바일">모바일</a></li>
+		       <li><a href="/testt/pccourse?page=1&category=게임">게임</a></li>
+		       <li><a href="/testt/pccourse?page=1&category=DB">DB</a></li>
+		       <li><a href="/testt/pccourse?page=1&category=데이터 보안">데이터 보안</a></li>
 		    </ul>
 		</div>
 </section>

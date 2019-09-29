@@ -11,6 +11,7 @@
 	ArrayList<Lecture> llist = ((ArrayList<Lecture>)request.getAttribute("llist"));
 	ArrayList<Teacher> tlist = ((ArrayList<Teacher>)request.getAttribute("tlist"));
 	ArrayList<Review> rlist = ((ArrayList<Review>)request.getAttribute("rlist"));
+	String videoSrc = ((String)request.getAttribute("videoSrc"));
 %> 
 <!DOCTYPE html>
 <html>
@@ -47,7 +48,7 @@
 		</div>
 		<div id="coursedetail">
 			<div id="dvideo">
-				<video src="" controls></video>
+				<video src="<%= videoSrc %>" controls></video>
 			</div>
 
 		<div id="priceinfo">
@@ -67,19 +68,19 @@
 		<div id="lectureList">
 			<p id="lectlist">강의 목차</p>
 			<hr><hr>
-			<% for(Section section : slist){ %>
+			<%-- <% for(Section section : slist){ %>
 			<div id="sec1">
 				<p class="secname"><a class="dropdown1"><%= section.getSectionName() %>&nbsp;▼</a></p>
-				<hr>
+				<hr> --%>
 				<% for(Lecture lecture : llist){ %>
 				<div class="hide1">
-					<p class="secmin">(6:46)</p>
+					<!-- <p class="secmin">(6:46)</p> -->
 					<p class="secundo"><%= lecture.getLectureName() %></p><br>
 					<hr>
 				</div>
 				<% } %>
-			</div>
-			<% } %>
+			<%-- </div>
+			<% } %> --%>
 			<hr>	
 		</div>
 	
@@ -161,3 +162,4 @@ $('.star-prototype').generateStars();
 </script>
 </body>
 </html>
+
