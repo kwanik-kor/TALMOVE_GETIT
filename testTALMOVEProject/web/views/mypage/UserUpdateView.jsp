@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="/testt/resources/css/queries.css">
     <link type="text/css" rel="stylesheet" href="/testt/views/teacherPage/css/common.css">
     <link type="text/css" rel="stylesheet" href="/testt/views/mypage/css/UserUpdateView.css">
+    
+	<script type="text/javascript" src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="/testt/resources/js/main.js"></script>
+	<script type="text/javascript" src="/testt/views/mypage/UserUpdateView.js"></script>
 	<title>탈무브 | 마이페이지</title>
 </head>
 
@@ -42,8 +46,8 @@
                 <li id="msgmenu"><a>메시지</a></li>
                 <ul class="maghidemenu">
                 	<li><a href="/testt/views/mypage/MessageNewSendView.jsp">새 메시지</a></li>
-                	<li><a href="/testt/views/mypage/MessageListView.jsp">모든 메시지</a></li>
-                	<li><a href="/testt/views/mypage/MessageImportantListView.jsp">중요 메시지</a></li>
+                	<li><a href="/testt/msglist?uemail=<%= loginUser.getUserEmail()%>">모든 메시지</a></li>
+                	<li><a href="/testt/msgimp?uemail=<%= loginUser.getUserEmail()%>">중요 메시지</a></li>
                 </ul>
             </ul>
         </div>
@@ -119,6 +123,28 @@
         			<p class="guide" id="upwdNowD-focus">사용중인 비밀번호를 입력해주세요</p>
  -->
 	          		<button class="withdrawlBtn clearfix">회원 탈퇴</button>
+	          		<script type="text/javascript">
+					$(document).ready(function(){
+
+						$('.withdrawlBtn').on('click', function(){
+						   var checked = $('#withdrawl-chk').prop('checked');
+						   if(checked){
+						      var r = confirm("정말로 탈퇴하시겠습니까?");
+						      if(r){
+						
+									
+						    	  location.href = "/testt/udelete.ed?uemail=<%= loginUser.getUserEmail()%>";
+						    	  return false;
+						      }else{
+									alert("탈퇴를 취소하였습니다.");
+						      }
+						   }else{
+						      alert("탈퇴 약관에 동의해 주십시오.");
+						   }
+						});
+					}); // documentready
+					// 회원탈퇴 -----------------------
+					</script>
         			</form>
         		</div>
         	</div>
@@ -128,9 +154,6 @@
     
 	<%@ include file="../common/footer.jsp" %>
 
-	<script type="text/javascript" src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
-	<script type="text/javascript" src="/testt/resources/js/main.js"></script>
-	<script type="text/javascript" src="/testt/views/mypage/UserUpdateView.js"></script>
 	
 </body>
 </html>

@@ -50,9 +50,8 @@
 				<ul class="maghidemenu">
 					<li><a href="/testt/views/mypage/MessageNewSendView.jsp">새
 							메시지</a></li>
-					<li><a href="/testt/views/mypage/MessageListView.jsp">모든
-							메시지</a></li>
-					<li><a href="/testt/views/mypage/MessageImportantListView.jsp">중요
+					<li><a href="/testt/msglist?uemail=<%= loginUser.getUserEmail()%>">모든 메시지</a></li>
+					<li><a href="/testt/msgimp?uemail=<%= loginUser.getUserEmail()%>">중요
 							메시지</a></li>
 				</ul>
 			</ul>
