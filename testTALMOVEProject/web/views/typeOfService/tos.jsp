@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/testt/resources/css/common/gnb.css">
     <link rel="stylesheet" href="/testt/resources/css/queries.css">
     <link rel="stylesheet" href="/testt/views/typeOfService/tos.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/testt/resources/img/titlelogo.png">
 	<title>탈무브 | 당신의 재능을 공유해주세요</title>
 	<script src="https://kit.fontawesome.com/08d0951667.js"></script>
 </head>

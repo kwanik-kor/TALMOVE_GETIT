@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400&display=swap" rel="stylesheet">
     <!--CSS링크 수정하세요-->
     <link rel="stylesheet" href="/testt/views/loginEnroll/loginPage.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/testt/resources/img/titlelogo.png">
     <script src="https://kit.fontawesome.com/08d0951667.js"></script>
 </head>
 <body>

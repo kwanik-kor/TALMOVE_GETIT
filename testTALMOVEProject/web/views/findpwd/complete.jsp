@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/testt/resources/css/common/footer.css">
     <link rel="stylesheet" href="/testt/resources/css/emailSended.css">
     <link rel="stylesheet" href="/testt/resources/css/queries.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/testt/resources/img/titlelogo.png">
     <title>탈무브 | 비밀번호 변경 완료</title>
     <script src="https://kit.fontawesome.com/08d0951667.js"></script>
 </head>

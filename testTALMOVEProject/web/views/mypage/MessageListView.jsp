@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="/testt/resources/css/queries.css">
 <link type="text/css" rel="stylesheet" href="/testt/views/teacherPage/css/common.css">
 <link type="text/css" rel="stylesheet" href="/testt/views/mypage/css/MessageListView.css">
-	
+<link rel="shortcut icon" type="image/x-icon" href="/testt/resources/img/titlelogo.png">
 
 	<script type="text/javascript" src="/testt/vendors/js/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="/testt/resources/js/main.js"></script>

@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="/testt/resources/css/queries.css">
 <link rel="stylesheet" href="css/myCourse.css">
 <link href="/testt/views/cart/css/cart_pay_common.css" rel="stylesheet" />
-
+<link rel="shortcut icon" type="image/x-icon" href="/testt/resources/img/titlelogo.png">
 <%
 	ArrayList<Course> course = (ArrayList<Course>) request.getAttribute("course");
 %>

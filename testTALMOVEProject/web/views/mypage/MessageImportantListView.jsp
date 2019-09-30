@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="/testt/resources/css/queries.css">
 <link type="text/css" rel="stylesheet"	href="/testt/views/teacherPage/css/common.css">
 <link type="text/css" rel="stylesheet"	href="/testt/views/mypage/css/MessageImportantListView.css">
+<link rel="shortcut icon" type="image/x-icon" href="/testt/resources/img/titlelogo.png">
 <title>탈무브 | 마이페이지</title>
 </head>
 

@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="/testt/resources/css/queries.css">
     <link type="text/css" rel="stylesheet" href="css/createCommon.css">
     <link type="text/css" rel="stylesheet" href="css/createLectureIntroduce.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/testt/resources/img/titlelogo.png">
     <script src="https://kit.fontawesome.com/08d0951667.js"></script>
     
 </head>

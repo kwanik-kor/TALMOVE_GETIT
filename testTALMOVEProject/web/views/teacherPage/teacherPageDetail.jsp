@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/testt/vendors/css/croppie.css">
     <link type="text/css" rel="stylesheet" href="/testt/views/teacherPage/css/common.css">
     <link type="text/css" rel="stylesheet" href="/testt/views/teacherPage/css/teacherPageDetail.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/testt/resources/img/titlelogo.png">
     <!--ck editor 불러오기 -->
     <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
     <script src="https://kit.fontawesome.com/08d0951667.js"></script>

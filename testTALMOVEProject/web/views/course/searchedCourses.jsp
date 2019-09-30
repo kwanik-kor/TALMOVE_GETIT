@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="/testt/resources/css/common/gnb.css">
     <link rel="stylesheet" href="/testt/resources/css/queries.css">
     <link rel="stylesheet" href="/testt/views/course/css/searchedCourses.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/testt/resources/img/titlelogo.png">
     <script src="https://kit.fontawesome.com/08d0951667.js"></script>
     
 	<title>검색결과 | 탈무브</title>

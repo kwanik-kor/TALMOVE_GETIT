@@ -21,7 +21,7 @@ pageEncoding="UTF-8"%>
    
     <link href="/testt/views/payment/css/payment.css" rel="stylesheet" />
     <link href="/testt/views/cart/css/cart_pay_common.css" rel="stylesheet" />
-
+	<link rel="shortcut icon" type="image/x-icon" href="/testt/resources/img/titlelogo.png">
  
  
   <%

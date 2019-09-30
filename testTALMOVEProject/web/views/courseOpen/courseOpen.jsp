@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/testt/resources/css/common/footer.css">
     <link rel="stylesheet" href="/testt/resources/css/queries.css">
     <link rel="stylesheet" href="css/courseOpen.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/testt/resources/img/titlelogo.png">
 	<title>탈무브 | 강사가 되어보세요!</title>
 </head>
 <body>
