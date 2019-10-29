@@ -43,8 +43,8 @@ public class UserEnrollServlet extends HttpServlet {
 		
 		//DB에 값 입력 성공 시 입력받은 메일로 메일전송
 		if(result > 0) {
-			String host = "http://localhost:8888/testt/";
-			String from = "kwanigi2005@gmail.com";
+			String host = "http://localhost:8889/testt/";
+			String from = "talmubeu@gmail.com";
 			String to = uemail;
 			String subject = "[TALMOVE]회원가입을 위한 인증 메일입니다.";
 			String content = "아래 링크에 접속하여 이메일 인증을 진행하세요" 

@@ -35,7 +35,7 @@ public class FindPasswordServlet extends HttpServlet {
 		User user = new UserService().getUserOneByMail(SHA256.getSHA256(uemail));
 		if(user != null) {
 			String host = "http://localhost:8888/testt/";
-			String from = "kwanigi2005@gmail.com";
+			String from = "talmubeu@gmail.com";
 			String to = uemail;
 			String subject = "[TALMOVE]비밀번호 변경을 위한 인증 메일입니다.";
 			String content = "아래 링크에 접속하여 이메일 인증을 완료하고 비밀번호 변경을 진행하세요" 

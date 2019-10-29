@@ -246,7 +246,7 @@ saveLecture:focus {
 /*body right*/
 #videoUploadZone,.wistia_swatch{
     width: 100%;
-    max-height: 457px;
+    min-height: 490px;
     font-size: 10px;
     border: 0.5px solid gray;
     padding: 0px auto;

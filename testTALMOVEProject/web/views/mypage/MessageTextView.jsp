@@ -101,8 +101,8 @@
 						<div class="rightms">
 							<p class="rightdate"><%= m.getMsgDate() %></p>
 							<p class="rightco">
-							<%= m.getMsgSender()%>
-							<%= other%>
+							<%-- <%= m.getMsgSender()%>
+							<%= other%> --%>
 							<%= m.getMsgContent()%>
 						
 							</p>
@@ -111,8 +111,8 @@
 						<div class="leftms">
 							<p class="leftdate">	<%= m.getMsgDate() %></p>
 							<p class="leftco">
-							<%= m.getMsgSender()%>
-							<%= other%>
+							<%-- <%= m.getMsgSender()%>
+							<%= other%> --%>
 							<%= m.getMsgContent()%>
 											</div>			
 						<% } %>

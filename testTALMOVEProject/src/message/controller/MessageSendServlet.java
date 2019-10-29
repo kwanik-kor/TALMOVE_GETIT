@@ -46,7 +46,7 @@ public class MessageSendServlet extends HttpServlet {
 		int result = msgservice.sendMessage(msg);
 		response.setContentType("text/html;charset=utf-8");
 		if(result > 0) {
-			response.sendRedirect("/testt/msglist");  /*메시지목록으로 고치기*/
+			response.sendRedirect("/testt/views/mypage/MessageNewSendView.jsp");/**/
 		} else {
 	  
 	
